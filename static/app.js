@@ -1678,6 +1678,10 @@ function buildBeatPopup(beat, typeLabel, coord) {
   const riverClass = beat.river === 'Yellands Part' ? 'popup-river-yp' : 'popup-river-sb';
   return `
     <div class="map-popup-card">
+      <div class="popup-beat-photo-wrap">
+        <img src="stream_pool_enhanced.jpg" alt="Cape Mountain Stream Pool" class="popup-beat-img">
+        <span class="popup-photo-badge">📸 Crystal Stream Pool</span>
+      </div>
       <span class="popup-session-badge" style="background: rgba(56, 189, 248, 0.2); color: #38bdf8;">${typeLabel}</span>
       <h4>${escapeHtml(beat.name || beat.code)}</h4>
       <div class="popup-river-tag ${riverClass}">${escapeHtml(beat.river)}</div>
@@ -1698,6 +1702,10 @@ function buildAnglerSessionPopup(anglerName, sessionInfo, coord) {
 
   return `
     <div class="map-popup-card">
+      <div class="popup-beat-photo-wrap">
+        <img src="stream_pool_enhanced.jpg" alt="Cape Mountain Stream Pool" class="popup-beat-img">
+        <span class="popup-photo-badge">📸 Crystal Stream Pool</span>
+      </div>
       <span class="popup-session-badge" style="background: ${color}25; color: ${color}; border: 1px solid ${color};">
         Session ${sId}: ${sessionInfo.session_short}
       </span>
