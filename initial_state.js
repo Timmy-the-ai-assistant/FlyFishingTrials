@@ -7,7 +7,7 @@ export const INITIAL_STATE = {
       "year": 2026,
       "start_date": "2026-11-14",
       "end_date": "2026-11-18",
-      "whatsapp_url": "https://chat.whatsapp.com/FlyFishingTrialsWesternCape",
+      "whatsapp_url": "https://chat.whatsapp.com/CdAmbYEEwfvJtnUIH6jWDY?s=sw&p=a&iam=2",
       "created_at": "2026-11-17T19:32:07.583902",
       "updated_at": "2026-11-17T19:32:07.583902",
       "tournament_data": {

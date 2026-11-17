@@ -510,6 +510,188 @@ export default {
       });
     }
 
+    // 5b. Update Trial (Admin Only) - Name, Dates, WhatsApp URL
+    if (url.pathname === '/api/admin/trial/update' && request.method === 'POST') {
+      const body = await request.json().catch(() => ({}));
+      if (!checkAdminAuth(request, body)) {
+        return new Response(JSON.stringify({
+          success: false,
+          error: "Unauthorized: Organizer password required (small-Blaar)."
+        }), {
+          status: 401,
+          headers: { ...corsHeaders, 'Content-Type': 'application/json' }
+        });
+      }
+
+      const trialId = body.trial_id || currentData.active_trial_id;
+      let targetTrial = null;
+      for (const t of (currentData.trials || [])) {
+        if (t.id === trialId) {
+          targetTrial = t;
+          break;
+        }
+      }
+      if (!targetTrial && currentData.trials && currentData.trials.length > 0) {
+        targetTrial = currentData.trials[0];
+      }
+
+      if (!targetTrial) {
+        return new Response(JSON.stringify({
+          success: false,
+          error: `Trial '${trialId}' not found.`
+        }), {
+          status: 404,
+          headers: { ...corsHeaders, 'Content-Type': 'application/json' }
+        });
+      }
+
+      if (body.name) {
+        targetTrial.name = body.name.trim();
+        if (targetTrial.tournament_data) {
+          targetTrial.tournament_data.tournament_name = targetTrial.name;
+        }
+        currentData.tournament_name = targetTrial.name;
+      }
+      if (body.year) targetTrial.year = parseInt(body.year, 10);
+      if (body.start_date) targetTrial.start_date = body.start_date;
+      if (body.end_date) targetTrial.end_date = body.end_date;
+      if (body.whatsapp_url !== undefined) {
+        targetTrial.whatsapp_url = body.whatsapp_url.trim();
+        currentData.whatsapp_url = targetTrial.whatsapp_url;
+      }
+      targetTrial.updated_at = new Date().toISOString();
+
+      return new Response(JSON.stringify({
+        success: true,
+        message: `Trial '${targetTrial.name}' updated successfully.`,
+        trial: targetTrial,
+        state: getFullState()
+      }), {
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' }
+      });
+    }
+
+    // 5c. Create Trial (Admin Only)
+    if (url.pathname === '/api/admin/trial/create' && request.method === 'POST') {
+      const body = await request.json().catch(() => ({}));
+      if (!checkAdminAuth(request, body)) {
+        return new Response(JSON.stringify({
+          success: false,
+          error: "Unauthorized: Organizer password required (small-Blaar)."
+        }), {
+          status: 401,
+          headers: { ...corsHeaders, 'Content-Type': 'application/json' }
+        });
+      }
+
+      const name = (body.name || "Autumn Trial 2026 A").trim();
+      const year = parseInt(body.year || 2026, 10);
+      const startDate = body.start_date || "2026-11-28";
+      const endDate = body.end_date || "2026-11-29";
+      const waUrl = (body.whatsapp_url || "").trim();
+      const anglers = (body.anglers && body.anglers.length >= 4) 
+        ? body.anglers 
+        : ["Angler 1", "Angler 2", "Angler 3", "Angler 4", "Angler 5", "Angler 6", "Angler 7", "Angler 8", "Angler 9"];
+      const aTeam = body.a_team_anglers || [];
+
+      const cleanName = name.toLowerCase().replace(/[^a-z0-9]+/g, '_').replace(/^_+|_+$/g, '');
+      const trialId = `${cleanName}_${startDate.replace(/-/g, '')}_${Date.now() % 10000}`;
+
+      const sched = generateEdgeSchedule(anglers, aTeam, fallbackBeats);
+      const nowIso = new Date().toISOString();
+
+      const newTrial = {
+        id: trialId,
+        name: name,
+        year: year,
+        start_date: startDate,
+        end_date: endDate,
+        whatsapp_url: waUrl,
+        created_at: nowIso,
+        updated_at: nowIso,
+        tournament_data: {
+          tournament_name: name,
+          venue: "Championship Beats",
+          created_at: nowIso,
+          updated_at: nowIso,
+          anglers: anglers,
+          num_anglers: anglers.length,
+          a_team_anglers: aTeam,
+          num_a_team: aTeam.length,
+          num_beats: sched.numBeats,
+          beats: fallbackBeats.slice(0, sched.numBeats),
+          selected_beats: fallbackBeats.slice(0, sched.numBeats),
+          sessions: sched.sessions,
+          angler_schedule: sched.anglerSchedule,
+          leaderboard: sched.leaderboard,
+          three_way_counts: sched.threeWayCounts,
+          activity_log: []
+        }
+      };
+
+      if (!currentData.trials) currentData.trials = [];
+      currentData.trials.push(newTrial);
+      currentData.active_trial_id = trialId;
+
+      return new Response(JSON.stringify({
+        success: true,
+        message: `Trial '${name}' created successfully.`,
+        trial: newTrial,
+        state: getFullState()
+      }), {
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' }
+      });
+    }
+
+    // 5d. Delete Trial (Admin Only)
+    if (url.pathname === '/api/admin/trial/delete' && request.method === 'POST') {
+      const body = await request.json().catch(() => ({}));
+      if (!checkAdminAuth(request, body)) {
+        return new Response(JSON.stringify({
+          success: false,
+          error: "Unauthorized: Organizer password required (small-Blaar)."
+        }), {
+          status: 401,
+          headers: { ...corsHeaders, 'Content-Type': 'application/json' }
+        });
+      }
+
+      if ((currentData.trials || []).length <= 1) {
+        return new Response(JSON.stringify({
+          success: false,
+          error: "Cannot delete the only remaining trial."
+        }), {
+          status: 400,
+          headers: { ...corsHeaders, 'Content-Type': 'application/json' }
+        });
+      }
+
+      const trialId = body.trial_id;
+      const idx = currentData.trials.findIndex(t => t.id === trialId);
+      if (idx === -1) {
+        return new Response(JSON.stringify({
+          success: false,
+          error: `Trial '${trialId}' not found.`
+        }), {
+          status: 404,
+          headers: { ...corsHeaders, 'Content-Type': 'application/json' }
+        });
+      }
+
+      const removed = currentData.trials.splice(idx, 1)[0];
+      if (currentData.active_trial_id === trialId) {
+        currentData.active_trial_id = currentData.trials[0].id;
+      }
+
+      return new Response(JSON.stringify({
+        success: true,
+        message: `Trial '${removed.name}' deleted.`,
+        state: getFullState()
+      }), {
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' }
+      });
+    }
+
     // 6. Verify Admin Password ("small-Blaar")
     if (url.pathname === '/api/admin/verify_password' && request.method === 'POST') {
       const body = await request.json().catch(() => ({}));
