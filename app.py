@@ -310,7 +310,10 @@ def run_server(port: int = PORT, open_browser: bool = True):
     print(" Press Ctrl+C in terminal to stop server.\n")
 
     if open_browser:
-        webbrowser.open(local_url)
+        try:
+            webbrowser.open(local_url)
+        except Exception:
+            pass
 
     try:
         server.serve_forever()
