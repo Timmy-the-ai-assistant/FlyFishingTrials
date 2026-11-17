@@ -1,7 +1,7 @@
 """
 CPS Beats Catalog - Cape Piscatorial Society Du Toitskloof
 ==========================================================
-Master catalog of beats along Smalblaar (Small Brook) and Elandspad (Yellands Part).
+Master catalog of beats along Smalblaar and Elandspad.
 Includes GPS coordinates for Lower Pin (start), Upper Pin (end), and Mid Pin (second half / meeting point).
 """
 
@@ -11,8 +11,8 @@ CPS_BEATS_DATA: List[Dict[str, Any]] = [
     {
         "id": "SB6",
         "code": "SB6",
-        "name": "Small Brook 6 (SB6)",
-        "river": "Small Brook",
+        "name": "Smalblaar 6 (SB6)",
+        "river": "Smalblaar",
         "enabled": True,
         "lower_pin": [-33.7319, 19.1141],   # Confluence / Junction Pool
         "upper_pin": [-33.7340, 19.1225],   # Tunnel Viaduct / Weir
@@ -24,7 +24,7 @@ CPS_BEATS_DATA: List[Dict[str, Any]] = [
         "id": "EP1",
         "code": "EP1",
         "name": "Elandspad 1 (EP1)",
-        "river": "Yellands Part",
+        "river": "Elandspad",
         "enabled": True,
         "lower_pin": [-33.7319, 19.1141],   # Junction Pool
         "upper_pin": [-33.7385, 19.1118],   # Fisherman's Cave
@@ -36,7 +36,7 @@ CPS_BEATS_DATA: List[Dict[str, Any]] = [
         "id": "EP2",
         "code": "EP2",
         "name": "Elandspad 2 (EP2)",
-        "river": "Yellands Part",
+        "river": "Elandspad",
         "enabled": True,
         "lower_pin": [-33.7385, 19.1118],   # Fisherman's Cave
         "upper_pin": [-33.7455, 19.1092],   # Narrow Gorge
@@ -48,7 +48,7 @@ CPS_BEATS_DATA: List[Dict[str, Any]] = [
         "id": "Star",
         "code": "Star",
         "name": "Star Beat",
-        "river": "Yellands Part",
+        "river": "Elandspad",
         "enabled": True,
         "lower_pin": [-33.7455, 19.1092],   # Narrow Gorge
         "upper_pin": [-33.7530, 19.1065],   # Kraalstroom Confluence
@@ -60,7 +60,7 @@ CPS_BEATS_DATA: List[Dict[str, Any]] = [
         "id": "Transport",
         "code": "Transport",
         "name": "Transport Beat",
-        "river": "Small Brook",
+        "river": "Smalblaar",
         "enabled": True,
         "lower_pin": [-33.7085, 19.1895],   # Farm Boundary
         "upper_pin": [-33.7120, 19.1825],   # Transport Bridge
@@ -71,8 +71,8 @@ CPS_BEATS_DATA: List[Dict[str, Any]] = [
     {
         "id": "SB1",
         "code": "SB1",
-        "name": "Small Brook 1 (SB1)",
-        "river": "Small Brook",
+        "name": "Smalblaar 1 (SB1)",
+        "river": "Smalblaar",
         "enabled": True,
         "lower_pin": [-33.7200, 19.1670],   # Hotel boundary fence
         "upper_pin": [-33.7230, 19.1585],   # Picnic site
@@ -83,8 +83,8 @@ CPS_BEATS_DATA: List[Dict[str, Any]] = [
     {
         "id": "SB2",
         "code": "SB2",
-        "name": "Small Brook 2 (SB2)",
-        "river": "Small Brook",
+        "name": "Smalblaar 2 (SB2)",
+        "river": "Smalblaar",
         "enabled": True,
         "lower_pin": [-33.7230, 19.1585],   # Picnic site
         "upper_pin": [-33.7260, 19.1495],   # Boundary fence
@@ -95,8 +95,8 @@ CPS_BEATS_DATA: List[Dict[str, Any]] = [
     {
         "id": "SB3",
         "code": "SB3",
-        "name": "Small Brook 3 (SB3)",
-        "river": "Small Brook",
+        "name": "Smalblaar 3 (SB3)",
+        "river": "Smalblaar",
         "enabled": True,
         "lower_pin": [-33.7260, 19.1495],   # Boundary fence
         "upper_pin": [-33.7290, 19.1405],   # Python pool
@@ -107,8 +107,8 @@ CPS_BEATS_DATA: List[Dict[str, Any]] = [
     {
         "id": "SB4",
         "code": "SB4",
-        "name": "Small Brook 4 (SB4)",
-        "river": "Small Brook",
+        "name": "Smalblaar 4 (SB4)",
+        "river": "Smalblaar",
         "enabled": True,
         "lower_pin": [-33.7290, 19.1405],   # Python pool
         "upper_pin": [-33.7320, 19.1310],   # Elandspad bridge
@@ -119,8 +119,8 @@ CPS_BEATS_DATA: List[Dict[str, Any]] = [
     {
         "id": "SB5",
         "code": "SB5",
-        "name": "Small Brook 5 (SB5)",
-        "river": "Small Brook",
+        "name": "Smalblaar 5 (SB5)",
+        "river": "Smalblaar",
         "enabled": True,
         "lower_pin": [-33.7320, 19.1310],   # Elandspad bridge
         "upper_pin": [-33.7340, 19.1225],   # Viaduct weir
@@ -131,8 +131,8 @@ CPS_BEATS_DATA: List[Dict[str, Any]] = [
     {
         "id": "Hotel Beat",
         "code": "Hotel Beat",
-        "name": "Small Brook Hotel Beat",
-        "river": "Small Brook",
+        "name": "Smalblaar Hotel Beat",
+        "river": "Smalblaar",
         "enabled": True,
         "lower_pin": [-33.7160, 19.1750],   # Lower weir
         "upper_pin": [-33.7200, 19.1670],   # Hotel upper boundary
@@ -144,7 +144,7 @@ CPS_BEATS_DATA: List[Dict[str, Any]] = [
         "id": "Transport Upper",
         "code": "Transport Upper",
         "name": "Transport Upper",
-        "river": "Small Brook",
+        "river": "Smalblaar",
         "enabled": True,
         "lower_pin": [-33.7120, 19.1825],   # Transport bridge
         "upper_pin": [-33.7160, 19.1750],   # Lower weir
@@ -156,7 +156,7 @@ CPS_BEATS_DATA: List[Dict[str, Any]] = [
         "id": "Transport Lower",
         "code": "Transport Lower",
         "name": "Transport Lower",
-        "river": "Small Brook",
+        "river": "Smalblaar",
         "enabled": True,
         "lower_pin": [-33.7050, 19.1960],   # Lower reserve line
         "upper_pin": [-33.7085, 19.1895],   # Farm fence
@@ -168,7 +168,7 @@ CPS_BEATS_DATA: List[Dict[str, Any]] = [
 
 # River vectors for artistic map rendering
 RIVER_PATHS = {
-    "Small Brook (Smalblaar)": [
+    "Smalblaar": [
         [-33.7340, 19.1225],
         [-33.7319, 19.1141],
         [-33.7320, 19.1310],
@@ -181,7 +181,7 @@ RIVER_PATHS = {
         [-33.7085, 19.1895],
         [-33.7050, 19.1960]
     ],
-    "Yellands Part (Elandspad)": [
+    "Elandspad": [
         [-33.7319, 19.1141],
         [-33.7352, 19.1129],
         [-33.7385, 19.1118],

@@ -353,6 +353,27 @@ class TrialsRequestHandler(SimpleHTTPRequestHandler):
                 self.send_json_response({"success": False, "error": str(e)}, status_code=500)
             return
 
+        # 9b. Admin Clear Draw (Admin Only)
+        elif path == "/api/admin/clear_draw":
+            if not check_admin_auth(self.headers, body_json):
+                self.send_json_response({"success": False, "error": "Organizer password required (small-Blaar)."}, status_code=401)
+                return
+            res = db.clear_draw()
+            res["state"] = db.get_full_state()
+            self.send_json_response(res)
+            return
+
+        # 9c. Admin Clear Session Matches (Admin Only)
+        elif path == "/api/admin/clear_session":
+            if not check_admin_auth(self.headers, body_json):
+                self.send_json_response({"success": False, "error": "Organizer password required (small-Blaar)."}, status_code=401)
+                return
+            session_id = int(body_json.get("session_id", 1))
+            res = db.clear_session_matches(session_id)
+            res["state"] = db.get_full_state()
+            self.send_json_response(res)
+            return
+
         # 10. Saved Sessions (Admin Only for mutation)
         elif path == "/api/session/save":
             if not check_admin_auth(self.headers, body_json):

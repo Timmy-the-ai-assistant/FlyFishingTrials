@@ -607,6 +607,41 @@ class TournamentDB:
             rec["updated_at"] = datetime.datetime.now().isoformat()
         self.save()
 
+    def clear_draw(self):
+        """Clears all matches from all sessions in the active trial, resetting the draw."""
+        t_data = self.get_active_tournament_data()
+        t_data["sessions"] = []
+        t_data["angler_schedule"] = {}
+        t_data["three_way_counts"] = {}
+        for row in t_data.get("leaderboard", []):
+            row["s1_pts"] = 0
+            row["s2_pts"] = 0
+            row["s3_pts"] = 0
+            row["s4_pts"] = 0
+            row["total_points"] = 0
+            row["total_fish"] = 0
+            row["blanks"] = 0
+            row["matches_played"] = 0
+        self._sync_active_trial_to_root()
+        self.save()
+        return {"success": True, "message": "Tournament draw cleared."}
+
+    def clear_session_matches(self, session_id: int):
+        """Resets all match scores in the given session."""
+        t_data = self.get_active_tournament_data()
+        for s in t_data.get("sessions", []):
+            if s.get("session_id") == session_id:
+                for m in s.get("matches", []):
+                    m["status"] = "UNREPORTED"
+                    m["submissions"] = {}
+                    m["official_scores"] = {}
+                    m["calculated_points"] = {}
+                    m["discrepancy_details"] = None
+        self.recalculate_leaderboard()
+        self._sync_active_trial_to_root()
+        self.save()
+        return {"success": True, "message": f"Session {session_id} scores cleared and reset."}
+
     def get_beats(self) -> List[Dict[str, Any]]:
         t_data = self.get_active_tournament_data()
         if "beats" not in t_data or not t_data["beats"]:

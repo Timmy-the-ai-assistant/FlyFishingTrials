@@ -23,7 +23,7 @@ Constraints:
   - Day 1 (S1 -> S2): on each beat, one angler stays on the beat and the other moves.
   - Day 2 (S3 -> S4): the angler that moved on Day 1 stays on the beat, and the one that stayed moves.
   - Anglers have at most the same beat twice across tournament (specifically when staying morning -> afternoon).
-  - Multi-river coverage: each angler fishes both rivers (Small Brook and Yellands Part) during the trials.
+  - Multi-river coverage: each angler fishes both rivers (Smalblaar and Elandspad) during the trials.
 """
 
 import itertools
@@ -47,8 +47,8 @@ def select_active_beats(available_beats: Optional[List[Dict[str, Any]]], num_bea
     if len(active) < num_beats:
         active = list(pool)
         
-    sb = [b for b in active if b.get("river") == "Small Brook"]
-    yp = [b for b in active if b.get("river") == "Yellands Part"]
+    sb = [b for b in active if b.get("river") == "Smalblaar"]
+    yp = [b for b in active if (b.get("river") == "Elandspad" or b.get("river") == "Elandspad")]
     
     selected = []
     if sb and yp:
@@ -85,8 +85,8 @@ def generate_trials_schedule(
     has_both_rivers = len(set(beat_rivers)) > 1
 
     # Calculate river capacity
-    sb_count = sum(1 for b in selected_beats if b.get("river") == "Small Brook")
-    yp_count = sum(1 for b in selected_beats if b.get("river") == "Yellands Part")
+    sb_count = sum(1 for b in selected_beats if b.get("river") == "Smalblaar")
+    yp_count = sum(1 for b in selected_beats if (b.get("river") == "Elandspad" or b.get("river") == "Elandspad"))
     min_river_beats = min(sb_count, yp_count) if has_both_rivers else 0
     # With stayers consuming 2 sessions, maximum distinct anglers that can visit a river with b beats is at least 5 * b
     can_strictly_cover_both_rivers = has_both_rivers and (min_river_beats * 5 >= N)

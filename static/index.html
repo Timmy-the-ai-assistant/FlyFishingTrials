@@ -227,14 +227,24 @@
       <div class="section-header">
         <div>
           <h2>Session Matchups & Beat Matrix</h2>
-          <p class="section-desc">View pairings across all 4 sessions. Click any match to view reports or submit scores.</p>
+          <p class="section-desc">View pairings across all 4 sessions. Zero repeat opponents guaranteed.</p>
         </div>
-        <div class="session-filter-buttons" id="sessionFilters">
-          <button class="filter-btn active" onclick="filterSchedule(0)">All Sessions</button>
-          <button class="filter-btn" onclick="filterSchedule(1)">Sat AM</button>
-          <button class="filter-btn" onclick="filterSchedule(2)">Sat PM</button>
-          <button class="filter-btn" onclick="filterSchedule(3)">Sun AM</button>
-          <button class="filter-btn" onclick="filterSchedule(4)">Sun PM</button>
+        <div style="display:flex; gap:0.6rem; align-items:center; flex-wrap:wrap;">
+          <div class="session-filter-buttons" id="sessionFilters">
+            <button class="filter-btn active" onclick="filterSchedule(0)">All Sessions</button>
+            <button class="filter-btn" onclick="filterSchedule(1)">Sat AM</button>
+            <button class="filter-btn" onclick="filterSchedule(2)">Sat PM</button>
+            <button class="filter-btn" onclick="filterSchedule(3)">Sun AM</button>
+            <button class="filter-btn" onclick="filterSchedule(4)">Sun PM</button>
+          </div>
+          <div class="schedule-actions-group" style="display:flex; gap:0.4rem;">
+            <button class="btn btn-sm btn-primary" onclick="redoTournamentDrawPrompt()" title="Re-randomize tournament with strict zero repeat opponents">
+              🎲 Redo Draw (Unique Pairings)
+            </button>
+            <button class="btn btn-sm btn-outline-danger" onclick="clearTournamentDrawPrompt()" title="Delete and clear current draw">
+              🗑️ Clear Draw
+            </button>
+          </div>
         </div>
       </div>
 
@@ -248,7 +258,7 @@
       <div class="section-header">
         <div>
           <h2>🗺️ CPS Stream & Beat Map (Du Toitskloof)</h2>
-          <p class="section-desc">Interactive Cape Piscatorial Society beats on Smalblaar (Small Brook) and Elandspad (Yellands Part). Jump between Artistic river styling, Google Earth Satellite, Topographic contours, and Street views.</p>
+          <p class="section-desc">Interactive Cape Piscatorial Society beats on Smalblaar and Elandspad. Jump between Artistic river styling, Google Earth Satellite, Topographic contours, and Street views.</p>
         </div>
         <div class="map-top-actions">
           <button class="btn btn-secondary btn-sm" onclick="resetMapView()">🎯 Center Valley</button>
@@ -322,8 +332,8 @@
           </div>
           <div class="legend-group">
             <span class="legend-title">Rivers &amp; Trails:</span>
-            <span class="legend-item"><span class="river-sample sample-sb"></span> Small Brook (Smalblaar)</span>
-            <span class="legend-item"><span class="river-sample sample-yp"></span> Yellands Part (Elandspad)</span>
+            <span class="legend-item"><span class="river-sample sample-sb"></span> Smalblaar</span>
+            <span class="legend-item"><span class="river-sample sample-yp"></span> Elandspad</span>
             <span class="legend-item"><span class="trail-sample"></span> Access Trails</span>
           </div>
           <div class="legend-group">
@@ -430,15 +440,19 @@
       </div>
 
       <!-- Locked Notice Screen for Unauthenticated Visitors -->
-      <div id="adminLockedNotice" class="card text-center" style="padding: 3rem 1.5rem; border: 2px dashed #f59e0b; background: rgba(245, 158, 11, 0.05); margin-bottom: 2rem;">
+      <div id="adminLockedNotice" class="card text-center" style="padding: 2.5rem 1.5rem; border: 2px dashed #f59e0b; background: rgba(245, 158, 11, 0.05); margin-bottom: 2rem;">
         <div style="font-size: 3rem; margin-bottom: 0.5rem;">🔒</div>
         <h3 style="color: #f59e0b; margin-bottom: 0.5rem;">Organizer Admin Locked</h3>
-        <p class="text-muted" style="max-width: 520px; margin: 0 auto 1.5rem auto; font-size: 1rem;">
-          To change tournament settings, edit beats, or randomize draws, you must unlock with the organizer password (<code>small-Blaar</code>).
+        <p class="text-muted" style="max-width: 520px; margin: 0 auto 1.25rem auto; font-size: 1rem;">
+          To change tournament settings, edit beats, or randomize draws, enter the organizer password below (<code>small-Blaar</code>).
         </p>
-        <button type="button" class="btn btn-primary" onclick="openAdminPasswordModal()" style="font-size: 1.05rem; padding: 0.75rem 1.75rem;">
-          🔓 Unlock with Organizer Password
-        </button>
+        <div style="display:inline-flex; gap:0.5rem; max-width:380px; margin: 0 auto; width:100%; justify-content:center;">
+          <input type="password" id="inlineAdminPassword" class="form-control" placeholder="Enter organizer password..." style="max-width:240px;" onkeydown="if(event.key==='Enter') unlockAdminInline()">
+          <button type="button" class="btn btn-primary" onclick="unlockAdminInline()" style="white-space:nowrap; padding:0.6rem 1.2rem;">
+            🔓 Unlock
+          </button>
+        </div>
+        <div id="inlineAdminError" class="text-danger mt-2 hidden" style="font-size:0.9rem; font-weight:600;">Incorrect password. Please try again.</div>
       </div>
 
       <!-- Authenticated Controls Container -->

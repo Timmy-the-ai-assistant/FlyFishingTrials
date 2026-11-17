@@ -39,8 +39,8 @@
       {
         "id": "SB6",
         "code": "SB6",
-        "name": "Small Brook 6 (SB6)",
-        "river": "Small Brook",
+        "name": "Smalblaar 6 (SB6)",
+        "river": "Smalblaar",
         "enabled": true,
         "lower_pin": [
           -33.7319,
@@ -61,7 +61,7 @@
         "id": "EP1",
         "code": "EP1",
         "name": "Elandspad 1 (EP1)",
-        "river": "Yellands Part",
+        "river": "Elandspad",
         "enabled": true,
         "lower_pin": [
           -33.7319,
@@ -82,7 +82,7 @@
         "id": "EP2",
         "code": "EP2",
         "name": "Elandspad 2 (EP2)",
-        "river": "Yellands Part",
+        "river": "Elandspad",
         "enabled": true,
         "lower_pin": [
           -33.7385,
@@ -103,7 +103,7 @@
         "id": "Star",
         "code": "Star",
         "name": "Star Beat",
-        "river": "Yellands Part",
+        "river": "Elandspad",
         "enabled": true,
         "lower_pin": [
           -33.7455,
@@ -124,7 +124,7 @@
         "id": "Transport",
         "code": "Transport",
         "name": "Transport Beat",
-        "river": "Small Brook",
+        "river": "Smalblaar",
         "enabled": true,
         "lower_pin": [
           -33.7085,
@@ -144,8 +144,8 @@
       {
         "id": "SB1",
         "code": "SB1",
-        "name": "Small Brook 1 (SB1)",
-        "river": "Small Brook",
+        "name": "Smalblaar 1 (SB1)",
+        "river": "Smalblaar",
         "enabled": true,
         "lower_pin": [
           -33.72,
@@ -165,8 +165,8 @@
       {
         "id": "SB2",
         "code": "SB2",
-        "name": "Small Brook 2 (SB2)",
-        "river": "Small Brook",
+        "name": "Smalblaar 2 (SB2)",
+        "river": "Smalblaar",
         "enabled": true,
         "lower_pin": [
           -33.723,
@@ -186,8 +186,8 @@
       {
         "id": "SB3",
         "code": "SB3",
-        "name": "Small Brook 3 (SB3)",
-        "river": "Small Brook",
+        "name": "Smalblaar 3 (SB3)",
+        "river": "Smalblaar",
         "enabled": true,
         "lower_pin": [
           -33.726,
@@ -207,8 +207,8 @@
       {
         "id": "SB4",
         "code": "SB4",
-        "name": "Small Brook 4 (SB4)",
-        "river": "Small Brook",
+        "name": "Smalblaar 4 (SB4)",
+        "river": "Smalblaar",
         "enabled": true,
         "lower_pin": [
           -33.729,
@@ -228,8 +228,8 @@
       {
         "id": "SB5",
         "code": "SB5",
-        "name": "Small Brook 5 (SB5)",
-        "river": "Small Brook",
+        "name": "Smalblaar 5 (SB5)",
+        "river": "Smalblaar",
         "enabled": true,
         "lower_pin": [
           -33.732,
@@ -249,8 +249,8 @@
       {
         "id": "Hotel Beat",
         "code": "Hotel Beat",
-        "name": "Small Brook Hotel Beat",
-        "river": "Small Brook",
+        "name": "Smalblaar Hotel Beat",
+        "river": "Smalblaar",
         "enabled": true,
         "lower_pin": [
           -33.716,
@@ -271,7 +271,7 @@
         "id": "Transport Upper",
         "code": "Transport Upper",
         "name": "Transport Upper",
-        "river": "Small Brook",
+        "river": "Smalblaar",
         "enabled": true,
         "lower_pin": [
           -33.712,
@@ -292,7 +292,7 @@
         "id": "Transport Lower",
         "code": "Transport Lower",
         "name": "Transport Lower",
-        "river": "Small Brook",
+        "river": "Smalblaar",
         "enabled": true,
         "lower_pin": [
           -33.705,
@@ -314,8 +314,8 @@
       {
         "id": "SB6",
         "code": "SB6",
-        "name": "Small Brook 6 (SB6)",
-        "river": "Small Brook",
+        "name": "Smalblaar 6 (SB6)",
+        "river": "Smalblaar",
         "enabled": true,
         "lower_pin": [
           -33.7319,
@@ -336,7 +336,7 @@
         "id": "EP1",
         "code": "EP1",
         "name": "Elandspad 1 (EP1)",
-        "river": "Yellands Part",
+        "river": "Elandspad",
         "enabled": true,
         "lower_pin": [
           -33.7319,
@@ -357,7 +357,7 @@
         "id": "Transport",
         "code": "Transport",
         "name": "Transport Beat",
-        "river": "Small Brook",
+        "river": "Smalblaar",
         "enabled": true,
         "lower_pin": [
           -33.7085,
@@ -378,7 +378,7 @@
         "id": "EP2",
         "code": "EP2",
         "name": "Elandspad 2 (EP2)",
-        "river": "Yellands Part",
+        "river": "Elandspad",
         "enabled": true,
         "lower_pin": [
           -33.7385,
@@ -398,8 +398,8 @@
       {
         "id": "SB1",
         "code": "SB1",
-        "name": "Small Brook 1 (SB1)",
-        "river": "Small Brook",
+        "name": "Smalblaar 1 (SB1)",
+        "river": "Smalblaar",
         "enabled": true,
         "lower_pin": [
           -33.72,
@@ -420,7 +420,7 @@
         "id": "Star",
         "code": "Star",
         "name": "Star Beat",
-        "river": "Yellands Part",
+        "river": "Elandspad",
         "enabled": true,
         "lower_pin": [
           -33.7455,
@@ -449,8 +449,8 @@
           "beat_number": 5,
           "beat_id": "SB1",
           "beat_code": "SB1",
-          "beat_name": "Small Brook 1 (SB1)",
-          "river": "Small Brook",
+          "beat_name": "Smalblaar 1 (SB1)",
+          "river": "Smalblaar",
           "meeting_point": "Picnic site pull-off",
           "match_type": "1v1",
           "opponents": [
@@ -484,8 +484,8 @@
           "beat_number": 5,
           "beat_id": "SB1",
           "beat_code": "SB1",
-          "beat_name": "Small Brook 1 (SB1)",
-          "river": "Small Brook",
+          "beat_name": "Smalblaar 1 (SB1)",
+          "river": "Smalblaar",
           "meeting_point": "Picnic site pull-off",
           "match_type": "1v1",
           "opponents": [
@@ -520,7 +520,7 @@
           "beat_id": "Star",
           "beat_code": "Star",
           "beat_name": "Star Beat",
-          "river": "Yellands Part",
+          "river": "Elandspad",
           "meeting_point": "Star beat rock shelter",
           "match_type": "1v1",
           "opponents": [
@@ -555,7 +555,7 @@
           "beat_id": "Star",
           "beat_code": "Star",
           "beat_name": "Star Beat",
-          "river": "Yellands Part",
+          "river": "Elandspad",
           "meeting_point": "Star beat rock shelter",
           "match_type": "1v1",
           "opponents": [
@@ -592,7 +592,7 @@
           "beat_id": "Transport",
           "beat_code": "Transport",
           "beat_name": "Transport Beat",
-          "river": "Small Brook",
+          "river": "Smalblaar",
           "meeting_point": "Transport Bridge layby on N1",
           "match_type": "1v1",
           "opponents": [
@@ -626,8 +626,8 @@
           "beat_number": 5,
           "beat_id": "SB1",
           "beat_code": "SB1",
-          "beat_name": "Small Brook 1 (SB1)",
-          "river": "Small Brook",
+          "beat_name": "Smalblaar 1 (SB1)",
+          "river": "Smalblaar",
           "meeting_point": "Picnic site pull-off",
           "match_type": "1v1",
           "opponents": [
@@ -662,7 +662,7 @@
           "beat_id": "EP2",
           "beat_code": "EP2",
           "beat_name": "Elandspad 2 (EP2)",
-          "river": "Yellands Part",
+          "river": "Elandspad",
           "meeting_point": "Fisherman's Cave trail",
           "match_type": "1v1",
           "opponents": [
@@ -697,7 +697,7 @@
           "beat_id": "EP2",
           "beat_code": "EP2",
           "beat_name": "Elandspad 2 (EP2)",
-          "river": "Yellands Part",
+          "river": "Elandspad",
           "meeting_point": "Fisherman's Cave trail",
           "match_type": "1v1",
           "opponents": [
@@ -734,7 +734,7 @@
           "beat_id": "Star",
           "beat_code": "Star",
           "beat_name": "Star Beat",
-          "river": "Yellands Part",
+          "river": "Elandspad",
           "meeting_point": "Star beat rock shelter",
           "match_type": "1v1",
           "opponents": [
@@ -769,7 +769,7 @@
           "beat_id": "EP1",
           "beat_code": "EP1",
           "beat_name": "Elandspad 1 (EP1)",
-          "river": "Yellands Part",
+          "river": "Elandspad",
           "meeting_point": "Junction Pool trail head",
           "match_type": "1v1",
           "opponents": [
@@ -804,7 +804,7 @@
           "beat_id": "Star",
           "beat_code": "Star",
           "beat_name": "Star Beat",
-          "river": "Yellands Part",
+          "river": "Elandspad",
           "meeting_point": "Star beat rock shelter",
           "match_type": "1v1",
           "opponents": [
@@ -838,8 +838,8 @@
           "beat_number": 5,
           "beat_id": "SB1",
           "beat_code": "SB1",
-          "beat_name": "Small Brook 1 (SB1)",
-          "river": "Small Brook",
+          "beat_name": "Smalblaar 1 (SB1)",
+          "river": "Smalblaar",
           "meeting_point": "Picnic site pull-off",
           "match_type": "1v1",
           "opponents": [
@@ -876,7 +876,7 @@
           "beat_id": "Star",
           "beat_code": "Star",
           "beat_name": "Star Beat",
-          "river": "Yellands Part",
+          "river": "Elandspad",
           "meeting_point": "Star beat rock shelter",
           "match_type": "1v1",
           "opponents": [
@@ -911,7 +911,7 @@
           "beat_id": "Star",
           "beat_code": "Star",
           "beat_name": "Star Beat",
-          "river": "Yellands Part",
+          "river": "Elandspad",
           "meeting_point": "Star beat rock shelter",
           "match_type": "1v1",
           "opponents": [
@@ -946,7 +946,7 @@
           "beat_id": "EP2",
           "beat_code": "EP2",
           "beat_name": "Elandspad 2 (EP2)",
-          "river": "Yellands Part",
+          "river": "Elandspad",
           "meeting_point": "Fisherman's Cave trail",
           "match_type": "1v1",
           "opponents": [
@@ -980,8 +980,8 @@
           "beat_number": 1,
           "beat_id": "SB6",
           "beat_code": "SB6",
-          "beat_name": "Small Brook 6 (SB6)",
-          "river": "Small Brook",
+          "beat_name": "Smalblaar 6 (SB6)",
+          "river": "Smalblaar",
           "meeting_point": "Tunnel East Portal Parking / Junction Path",
           "match_type": "1v1",
           "opponents": [
@@ -1017,8 +1017,8 @@
           "beat_number": 1,
           "beat_id": "SB6",
           "beat_code": "SB6",
-          "beat_name": "Small Brook 6 (SB6)",
-          "river": "Small Brook",
+          "beat_name": "Smalblaar 6 (SB6)",
+          "river": "Smalblaar",
           "meeting_point": "Tunnel East Portal Parking / Junction Path",
           "match_type": "1v1",
           "opponents": [
@@ -1053,7 +1053,7 @@
           "beat_id": "Transport",
           "beat_code": "Transport",
           "beat_name": "Transport Beat",
-          "river": "Small Brook",
+          "river": "Smalblaar",
           "meeting_point": "Transport Bridge layby on N1",
           "match_type": "1v1",
           "opponents": [
@@ -1088,7 +1088,7 @@
           "beat_id": "Transport",
           "beat_code": "Transport",
           "beat_name": "Transport Beat",
-          "river": "Small Brook",
+          "river": "Smalblaar",
           "meeting_point": "Transport Bridge layby on N1",
           "match_type": "1v1",
           "opponents": [
@@ -1123,7 +1123,7 @@
           "beat_id": "Star",
           "beat_code": "Star",
           "beat_name": "Star Beat",
-          "river": "Yellands Part",
+          "river": "Elandspad",
           "meeting_point": "Star beat rock shelter",
           "match_type": "1v1",
           "opponents": [
@@ -1160,7 +1160,7 @@
           "beat_id": "EP1",
           "beat_code": "EP1",
           "beat_name": "Elandspad 1 (EP1)",
-          "river": "Yellands Part",
+          "river": "Elandspad",
           "meeting_point": "Junction Pool trail head",
           "match_type": "1v1",
           "opponents": [
@@ -1195,7 +1195,7 @@
           "beat_id": "EP2",
           "beat_code": "EP2",
           "beat_name": "Elandspad 2 (EP2)",
-          "river": "Yellands Part",
+          "river": "Elandspad",
           "meeting_point": "Fisherman's Cave trail",
           "match_type": "1v1",
           "opponents": [
@@ -1229,8 +1229,8 @@
           "beat_number": 1,
           "beat_id": "SB6",
           "beat_code": "SB6",
-          "beat_name": "Small Brook 6 (SB6)",
-          "river": "Small Brook",
+          "beat_name": "Smalblaar 6 (SB6)",
+          "river": "Smalblaar",
           "meeting_point": "Tunnel East Portal Parking / Junction Path",
           "match_type": "1v1",
           "opponents": [
@@ -1264,8 +1264,8 @@
           "beat_number": 1,
           "beat_id": "SB6",
           "beat_code": "SB6",
-          "beat_name": "Small Brook 6 (SB6)",
-          "river": "Small Brook",
+          "beat_name": "Smalblaar 6 (SB6)",
+          "river": "Smalblaar",
           "meeting_point": "Tunnel East Portal Parking / Junction Path",
           "match_type": "1v1",
           "opponents": [
@@ -1302,7 +1302,7 @@
           "beat_id": "Transport",
           "beat_code": "Transport",
           "beat_name": "Transport Beat",
-          "river": "Small Brook",
+          "river": "Smalblaar",
           "meeting_point": "Transport Bridge layby on N1",
           "match_type": "1v1",
           "opponents": [
@@ -1337,7 +1337,7 @@
           "beat_id": "Transport",
           "beat_code": "Transport",
           "beat_name": "Transport Beat",
-          "river": "Small Brook",
+          "river": "Smalblaar",
           "meeting_point": "Transport Bridge layby on N1",
           "match_type": "1v1",
           "opponents": [
@@ -1372,7 +1372,7 @@
           "beat_id": "EP1",
           "beat_code": "EP1",
           "beat_name": "Elandspad 1 (EP1)",
-          "river": "Yellands Part",
+          "river": "Elandspad",
           "meeting_point": "Junction Pool trail head",
           "match_type": "1v1",
           "opponents": [
@@ -1407,7 +1407,7 @@
           "beat_id": "EP1",
           "beat_code": "EP1",
           "beat_name": "Elandspad 1 (EP1)",
-          "river": "Yellands Part",
+          "river": "Elandspad",
           "meeting_point": "Junction Pool trail head",
           "match_type": "1v1",
           "opponents": [
@@ -1444,7 +1444,7 @@
           "beat_id": "EP1",
           "beat_code": "EP1",
           "beat_name": "Elandspad 1 (EP1)",
-          "river": "Yellands Part",
+          "river": "Elandspad",
           "meeting_point": "Junction Pool trail head",
           "match_type": "1v1",
           "opponents": [
@@ -1479,7 +1479,7 @@
           "beat_id": "EP1",
           "beat_code": "EP1",
           "beat_name": "Elandspad 1 (EP1)",
-          "river": "Yellands Part",
+          "river": "Elandspad",
           "meeting_point": "Junction Pool trail head",
           "match_type": "1v1",
           "opponents": [
@@ -1513,8 +1513,8 @@
           "beat_number": 5,
           "beat_id": "SB1",
           "beat_code": "SB1",
-          "beat_name": "Small Brook 1 (SB1)",
-          "river": "Small Brook",
+          "beat_name": "Smalblaar 1 (SB1)",
+          "river": "Smalblaar",
           "meeting_point": "Picnic site pull-off",
           "match_type": "1v1",
           "opponents": [
@@ -1549,7 +1549,7 @@
           "beat_id": "Transport",
           "beat_code": "Transport",
           "beat_name": "Transport Beat",
-          "river": "Small Brook",
+          "river": "Smalblaar",
           "meeting_point": "Transport Bridge layby on N1",
           "match_type": "1v1",
           "opponents": [
@@ -1585,8 +1585,8 @@
           "beat_number": 5,
           "beat_id": "SB1",
           "beat_code": "SB1",
-          "beat_name": "Small Brook 1 (SB1)",
-          "river": "Small Brook",
+          "beat_name": "Smalblaar 1 (SB1)",
+          "river": "Smalblaar",
           "meeting_point": "Picnic site pull-off",
           "match_type": "1v1",
           "opponents": [
@@ -1620,8 +1620,8 @@
           "beat_number": 1,
           "beat_id": "SB6",
           "beat_code": "SB6",
-          "beat_name": "Small Brook 6 (SB6)",
-          "river": "Small Brook",
+          "beat_name": "Smalblaar 6 (SB6)",
+          "river": "Smalblaar",
           "meeting_point": "Tunnel East Portal Parking / Junction Path",
           "match_type": "1v1",
           "opponents": [
@@ -1655,8 +1655,8 @@
           "beat_number": 1,
           "beat_id": "SB6",
           "beat_code": "SB6",
-          "beat_name": "Small Brook 6 (SB6)",
-          "river": "Small Brook",
+          "beat_name": "Smalblaar 6 (SB6)",
+          "river": "Smalblaar",
           "meeting_point": "Tunnel East Portal Parking / Junction Path",
           "match_type": "1v1",
           "opponents": [
@@ -1691,7 +1691,7 @@
           "beat_id": "EP1",
           "beat_code": "EP1",
           "beat_name": "Elandspad 1 (EP1)",
-          "river": "Yellands Part",
+          "river": "Elandspad",
           "meeting_point": "Junction Pool trail head",
           "match_type": "1v1",
           "opponents": [
@@ -1727,8 +1727,8 @@
           "beat_number": 1,
           "beat_id": "SB6",
           "beat_code": "SB6",
-          "beat_name": "Small Brook 6 (SB6)",
-          "river": "Small Brook",
+          "beat_name": "Smalblaar 6 (SB6)",
+          "river": "Smalblaar",
           "meeting_point": "Tunnel East Portal Parking / Junction Path",
           "match_type": "1v1",
           "opponents": [
@@ -1762,8 +1762,8 @@
           "beat_number": 1,
           "beat_id": "SB6",
           "beat_code": "SB6",
-          "beat_name": "Small Brook 6 (SB6)",
-          "river": "Small Brook",
+          "beat_name": "Smalblaar 6 (SB6)",
+          "river": "Smalblaar",
           "meeting_point": "Tunnel East Portal Parking / Junction Path",
           "match_type": "1v1",
           "opponents": [
@@ -1798,7 +1798,7 @@
           "beat_id": "EP1",
           "beat_code": "EP1",
           "beat_name": "Elandspad 1 (EP1)",
-          "river": "Yellands Part",
+          "river": "Elandspad",
           "meeting_point": "Junction Pool trail head",
           "match_type": "1v1",
           "opponents": [
@@ -1833,7 +1833,7 @@
           "beat_id": "EP2",
           "beat_code": "EP2",
           "beat_name": "Elandspad 2 (EP2)",
-          "river": "Yellands Part",
+          "river": "Elandspad",
           "meeting_point": "Fisherman's Cave trail",
           "match_type": "1v1",
           "opponents": [
@@ -1870,7 +1870,7 @@
           "beat_id": "EP2",
           "beat_code": "EP2",
           "beat_name": "Elandspad 2 (EP2)",
-          "river": "Yellands Part",
+          "river": "Elandspad",
           "meeting_point": "Fisherman's Cave trail",
           "match_type": "1v1",
           "opponents": [
@@ -1905,7 +1905,7 @@
           "beat_id": "Star",
           "beat_code": "Star",
           "beat_name": "Star Beat",
-          "river": "Yellands Part",
+          "river": "Elandspad",
           "meeting_point": "Star beat rock shelter",
           "match_type": "1v1",
           "opponents": [
@@ -1940,7 +1940,7 @@
           "beat_id": "Transport",
           "beat_code": "Transport",
           "beat_name": "Transport Beat",
-          "river": "Small Brook",
+          "river": "Smalblaar",
           "meeting_point": "Transport Bridge layby on N1",
           "match_type": "1v1",
           "opponents": [
@@ -1975,7 +1975,7 @@
           "beat_id": "Transport",
           "beat_code": "Transport",
           "beat_name": "Transport Beat",
-          "river": "Small Brook",
+          "river": "Smalblaar",
           "meeting_point": "Transport Bridge layby on N1",
           "match_type": "1v1",
           "opponents": [
@@ -2012,7 +2012,7 @@
           "beat_id": "EP2",
           "beat_code": "EP2",
           "beat_name": "Elandspad 2 (EP2)",
-          "river": "Yellands Part",
+          "river": "Elandspad",
           "meeting_point": "Fisherman's Cave trail",
           "match_type": "1v1",
           "opponents": [
@@ -2047,7 +2047,7 @@
           "beat_id": "EP2",
           "beat_code": "EP2",
           "beat_name": "Elandspad 2 (EP2)",
-          "river": "Yellands Part",
+          "river": "Elandspad",
           "meeting_point": "Fisherman's Cave trail",
           "match_type": "1v1",
           "opponents": [
@@ -2081,8 +2081,8 @@
           "beat_number": 5,
           "beat_id": "SB1",
           "beat_code": "SB1",
-          "beat_name": "Small Brook 1 (SB1)",
-          "river": "Small Brook",
+          "beat_name": "Smalblaar 1 (SB1)",
+          "river": "Smalblaar",
           "meeting_point": "Picnic site pull-off",
           "match_type": "1v1",
           "opponents": [
@@ -2116,8 +2116,8 @@
           "beat_number": 5,
           "beat_id": "SB1",
           "beat_code": "SB1",
-          "beat_name": "Small Brook 1 (SB1)",
-          "river": "Small Brook",
+          "beat_name": "Smalblaar 1 (SB1)",
+          "river": "Smalblaar",
           "meeting_point": "Picnic site pull-off",
           "match_type": "1v1",
           "opponents": [
@@ -2160,8 +2160,8 @@
             "beat_number": 1,
             "beat_id": "SB6",
             "beat_code": "SB6",
-            "beat_name": "Small Brook 6 (SB6)",
-            "river": "Small Brook",
+            "beat_name": "Smalblaar 6 (SB6)",
+            "river": "Smalblaar",
             "meeting_point": "Tunnel East Portal Parking / Junction Path",
             "lower_pin": [
               -33.7319,
@@ -2203,7 +2203,7 @@
             "beat_id": "EP1",
             "beat_code": "EP1",
             "beat_name": "Elandspad 1 (EP1)",
-            "river": "Yellands Part",
+            "river": "Elandspad",
             "meeting_point": "Junction Pool trail head",
             "lower_pin": [
               -33.7319,
@@ -2245,7 +2245,7 @@
             "beat_id": "Transport",
             "beat_code": "Transport",
             "beat_name": "Transport Beat",
-            "river": "Small Brook",
+            "river": "Smalblaar",
             "meeting_point": "Transport Bridge layby on N1",
             "lower_pin": [
               -33.7085,
@@ -2289,7 +2289,7 @@
             "beat_id": "EP2",
             "beat_code": "EP2",
             "beat_name": "Elandspad 2 (EP2)",
-            "river": "Yellands Part",
+            "river": "Elandspad",
             "meeting_point": "Fisherman's Cave trail",
             "lower_pin": [
               -33.7385,
@@ -2330,8 +2330,8 @@
             "beat_number": 5,
             "beat_id": "SB1",
             "beat_code": "SB1",
-            "beat_name": "Small Brook 1 (SB1)",
-            "river": "Small Brook",
+            "beat_name": "Smalblaar 1 (SB1)",
+            "river": "Smalblaar",
             "meeting_point": "Picnic site pull-off",
             "lower_pin": [
               -33.72,
@@ -2375,7 +2375,7 @@
             "beat_id": "Star",
             "beat_code": "Star",
             "beat_name": "Star Beat",
-            "river": "Yellands Part",
+            "river": "Elandspad",
             "meeting_point": "Star beat rock shelter",
             "lower_pin": [
               -33.7455,
@@ -2428,8 +2428,8 @@
             "beat_number": 1,
             "beat_id": "SB6",
             "beat_code": "SB6",
-            "beat_name": "Small Brook 6 (SB6)",
-            "river": "Small Brook",
+            "beat_name": "Smalblaar 6 (SB6)",
+            "river": "Smalblaar",
             "meeting_point": "Tunnel East Portal Parking / Junction Path",
             "lower_pin": [
               -33.7319,
@@ -2475,7 +2475,7 @@
             "beat_id": "EP1",
             "beat_code": "EP1",
             "beat_name": "Elandspad 1 (EP1)",
-            "river": "Yellands Part",
+            "river": "Elandspad",
             "meeting_point": "Junction Pool trail head",
             "lower_pin": [
               -33.7319,
@@ -2523,7 +2523,7 @@
             "beat_id": "Transport",
             "beat_code": "Transport",
             "beat_name": "Transport Beat",
-            "river": "Small Brook",
+            "river": "Smalblaar",
             "meeting_point": "Transport Bridge layby on N1",
             "lower_pin": [
               -33.7085,
@@ -2569,7 +2569,7 @@
             "beat_id": "EP2",
             "beat_code": "EP2",
             "beat_name": "Elandspad 2 (EP2)",
-            "river": "Yellands Part",
+            "river": "Elandspad",
             "meeting_point": "Fisherman's Cave trail",
             "lower_pin": [
               -33.7385,
@@ -2614,8 +2614,8 @@
             "beat_number": 5,
             "beat_id": "SB1",
             "beat_code": "SB1",
-            "beat_name": "Small Brook 1 (SB1)",
-            "river": "Small Brook",
+            "beat_name": "Smalblaar 1 (SB1)",
+            "river": "Smalblaar",
             "meeting_point": "Picnic site pull-off",
             "lower_pin": [
               -33.72,
@@ -2664,7 +2664,7 @@
             "beat_id": "Star",
             "beat_code": "Star",
             "beat_name": "Star Beat",
-            "river": "Yellands Part",
+            "river": "Elandspad",
             "meeting_point": "Star beat rock shelter",
             "lower_pin": [
               -33.7455,
@@ -2720,8 +2720,8 @@
             "beat_number": 1,
             "beat_id": "SB6",
             "beat_code": "SB6",
-            "beat_name": "Small Brook 6 (SB6)",
-            "river": "Small Brook",
+            "beat_name": "Smalblaar 6 (SB6)",
+            "river": "Smalblaar",
             "meeting_point": "Tunnel East Portal Parking / Junction Path",
             "lower_pin": [
               -33.7319,
@@ -2763,7 +2763,7 @@
             "beat_id": "EP1",
             "beat_code": "EP1",
             "beat_name": "Elandspad 1 (EP1)",
-            "river": "Yellands Part",
+            "river": "Elandspad",
             "meeting_point": "Junction Pool trail head",
             "lower_pin": [
               -33.7319,
@@ -2805,7 +2805,7 @@
             "beat_id": "Transport",
             "beat_code": "Transport",
             "beat_name": "Transport Beat",
-            "river": "Small Brook",
+            "river": "Smalblaar",
             "meeting_point": "Transport Bridge layby on N1",
             "lower_pin": [
               -33.7085,
@@ -2847,7 +2847,7 @@
             "beat_id": "EP2",
             "beat_code": "EP2",
             "beat_name": "Elandspad 2 (EP2)",
-            "river": "Yellands Part",
+            "river": "Elandspad",
             "meeting_point": "Fisherman's Cave trail",
             "lower_pin": [
               -33.7385,
@@ -2891,8 +2891,8 @@
             "beat_number": 5,
             "beat_id": "SB1",
             "beat_code": "SB1",
-            "beat_name": "Small Brook 1 (SB1)",
-            "river": "Small Brook",
+            "beat_name": "Smalblaar 1 (SB1)",
+            "river": "Smalblaar",
             "meeting_point": "Picnic site pull-off",
             "lower_pin": [
               -33.72,
@@ -2934,7 +2934,7 @@
             "beat_id": "Star",
             "beat_code": "Star",
             "beat_name": "Star Beat",
-            "river": "Yellands Part",
+            "river": "Elandspad",
             "meeting_point": "Star beat rock shelter",
             "lower_pin": [
               -33.7455,
@@ -2987,8 +2987,8 @@
             "beat_number": 1,
             "beat_id": "SB6",
             "beat_code": "SB6",
-            "beat_name": "Small Brook 6 (SB6)",
-            "river": "Small Brook",
+            "beat_name": "Smalblaar 6 (SB6)",
+            "river": "Smalblaar",
             "meeting_point": "Tunnel East Portal Parking / Junction Path",
             "lower_pin": [
               -33.7319,
@@ -3036,7 +3036,7 @@
             "beat_id": "EP1",
             "beat_code": "EP1",
             "beat_name": "Elandspad 1 (EP1)",
-            "river": "Yellands Part",
+            "river": "Elandspad",
             "meeting_point": "Junction Pool trail head",
             "lower_pin": [
               -33.7319,
@@ -3082,7 +3082,7 @@
             "beat_id": "Transport",
             "beat_code": "Transport",
             "beat_name": "Transport Beat",
-            "river": "Small Brook",
+            "river": "Smalblaar",
             "meeting_point": "Transport Bridge layby on N1",
             "lower_pin": [
               -33.7085,
@@ -3128,7 +3128,7 @@
             "beat_id": "EP2",
             "beat_code": "EP2",
             "beat_name": "Elandspad 2 (EP2)",
-            "river": "Yellands Part",
+            "river": "Elandspad",
             "meeting_point": "Fisherman's Cave trail",
             "lower_pin": [
               -33.7385,
@@ -3175,8 +3175,8 @@
             "beat_number": 5,
             "beat_id": "SB1",
             "beat_code": "SB1",
-            "beat_name": "Small Brook 1 (SB1)",
-            "river": "Small Brook",
+            "beat_name": "Smalblaar 1 (SB1)",
+            "river": "Smalblaar",
             "meeting_point": "Picnic site pull-off",
             "lower_pin": [
               -33.72,
@@ -3224,7 +3224,7 @@
             "beat_id": "Star",
             "beat_code": "Star",
             "beat_name": "Star Beat",
-            "river": "Yellands Part",
+            "river": "Elandspad",
             "meeting_point": "Star beat rock shelter",
             "lower_pin": [
               -33.7455,

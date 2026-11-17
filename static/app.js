@@ -250,6 +250,9 @@ function renderSchedule() {
             <button class="btn btn-sm btn-secondary" onclick="quickSaveSession(${session.session_id})" title="Save snapshot of Session ${session.session_id}">
               💾 Save Session ${session.session_id}
             </button>
+            <button class="btn btn-sm btn-outline-danger" onclick="clearSessionMatchesPrompt(${session.session_id})" title="Reset/clear scores for Session ${session.session_id}">
+              🗑️ Clear S${session.session_id}
+            </button>
             <span class="text-muted text-sm">${(session.matches || []).length} Beats</span>
           </div>
         </div>
@@ -961,13 +964,160 @@ async function confirmResetTournament() {
   }
 }
 
-// --- Navigation & UI Utilities ---
-function switchTab(tabId) {
-  if (tabId === 'admin' && !isAdminAuthenticated()) {
-    openAdminPasswordModal(() => switchTab('admin'));
+// --- Redo Tournament Draw with Strict Zero Repeat Pairings ---
+async function redoTournamentDrawPrompt() {
+  if (!isAdminAuthenticated()) {
+    openAdminPasswordModal(() => redoTournamentDrawPrompt());
     return;
   }
 
+  const ok = confirm("🎲 Redo tournament draw with fresh random pairings?\n\nThis will re-randomize all 4 sessions with strict ZERO repeat opponents guaranteed.\nExisting match results will be reset.");
+  if (!ok) return;
+
+  const anglers = (tournamentState && tournamentState.anglers && tournamentState.anglers.length >= 4)
+    ? tournamentState.anglers
+    : parseAnglerLines();
+
+  if (anglers.length < 4) {
+    alert("At least 4 anglers are required to generate a draw.");
+    return;
+  }
+
+  const aTeamList = (tournamentState && tournamentState.a_team_anglers) || [];
+  const tName = (tournamentState && tournamentState.tournament_name) || "Fly Fishing Trials 2026";
+  const venue = (tournamentState && tournamentState.venue) || "Championship Beats";
+
+  try {
+    const res = await fetch('/api/admin/reset', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-Admin-Password': getAdminPassword()
+      },
+      body: JSON.stringify({
+        anglers: anglers,
+        a_team_anglers: aTeamList,
+        tournament_name: tName,
+        venue: venue,
+        password: getAdminPassword()
+      })
+    });
+
+    if (res.status === 401) {
+      openAdminPasswordModal(() => redoTournamentDrawPrompt());
+      return;
+    }
+
+    const data = await res.json();
+    if (data.success) {
+      alert("🎉 Tournament draw successfully re-randomized!\n\nAll 4 sessions generated with 100% unique pairings (zero repeat opponents guaranteed).");
+      await loadState();
+      switchTab('schedule');
+    } else {
+      alert(`Error: ${data.error || 'Failed to redo draw'}`);
+    }
+  } catch (err) {
+    alert(`Error: ${err.message}`);
+  }
+}
+
+// --- Clear / Delete Entire Draw ---
+async function clearTournamentDrawPrompt() {
+  if (!isAdminAuthenticated()) {
+    openAdminPasswordModal(() => clearTournamentDrawPrompt());
+    return;
+  }
+
+  const ok = confirm("⚠️ Are you sure you want to clear/delete the current draw?\n\nThis will remove all session matchups and scores.");
+  if (!ok) return;
+
+  try {
+    const res = await fetch('/api/admin/clear_draw', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-Admin-Password': getAdminPassword()
+      },
+      body: JSON.stringify({
+        password: getAdminPassword()
+      })
+    });
+
+    if (res.status === 401) {
+      openAdminPasswordModal(() => clearTournamentDrawPrompt());
+      return;
+    }
+
+    const data = await res.json();
+    if (data.success) {
+      alert("🗑️ Tournament draw has been cleared.");
+      await loadState();
+      switchTab('schedule');
+    } else {
+      alert(`Error: ${data.error || 'Failed to clear draw'}`);
+    }
+  } catch (err) {
+    alert(`Error: ${err.message}`);
+  }
+}
+
+// --- Reset / Clear Single Session Matches ---
+async function clearSessionMatchesPrompt(sessionId) {
+  if (!isAdminAuthenticated()) {
+    openAdminPasswordModal(() => clearSessionMatchesPrompt(sessionId));
+    return;
+  }
+
+  const ok = confirm(`Reset and clear all scores for Session ${sessionId}?\n\nMatches in this session will return to pending status.`);
+  if (!ok) return;
+
+  try {
+    const res = await fetch('/api/admin/clear_session', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-Admin-Password': getAdminPassword()
+      },
+      body: JSON.stringify({
+        session_id: sessionId,
+        password: getAdminPassword()
+      })
+    });
+
+    if (res.status === 401) {
+      openAdminPasswordModal(() => clearSessionMatchesPrompt(sessionId));
+      return;
+    }
+
+    const data = await res.json();
+    if (data.success) {
+      alert(`Session ${sessionId} has been reset.`);
+      await loadState();
+    } else {
+      alert(`Error: ${data.error || 'Failed to reset session'}`);
+    }
+  } catch (err) {
+    alert(`Error: ${err.message}`);
+  }
+}
+
+function unlockAdminInline() {
+  const input = document.getElementById("inlineAdminPassword");
+  const errEl = document.getElementById("inlineAdminError");
+  if (!input) return;
+  const pwd = input.value.trim();
+  if (pwd === "small-Blaar") {
+    sessionStorage.setItem("admin_password", pwd);
+    if (errEl) errEl.classList.add("hidden");
+    updateAdminUIState();
+    alert("🔓 Organizer Admin Mode Unlocked!");
+  } else {
+    if (errEl) errEl.classList.remove("hidden");
+  }
+}
+
+// --- Navigation & UI Utilities ---
+function switchTab(tabId) {
   currentTab = tabId;
   document.querySelectorAll('.tab-btn').forEach(btn => {
     btn.classList.toggle('active', btn.getAttribute('data-tab') === tabId);
@@ -985,6 +1135,7 @@ function switchTab(tabId) {
 
   // Sync admin angler text if opening admin
   if (tabId === 'admin') {
+    updateAdminUIState();
     loadSavedSessionsList();
     if (tournamentState && tournamentState.anglers) {
       const listEl = document.getElementById('adminAnglerList');
@@ -1283,7 +1434,7 @@ let currentEditingBeatsList = [];
 
 // River centerline coordinates for artistic view
 const RIVER_PATHS_CLIENT = {
-  "Small Brook (Smalblaar)": [
+  "Smalblaar": [
     [-33.7340, 19.1225],
     [-33.7319, 19.1141],
     [-33.7320, 19.1310],
@@ -1296,7 +1447,7 @@ const RIVER_PATHS_CLIENT = {
     [-33.7085, 19.1895],
     [-33.7050, 19.1960]
   ],
-  "Yellands Part (Elandspad)": [
+  "Elandspad": [
     [-33.7319, 19.1141],
     [-33.7352, 19.1129],
     [-33.7385, 19.1118],
@@ -1404,7 +1555,7 @@ function renderAnglerItinerary(anglerName, sched) {
   sched.forEach(s => {
     const isSat = s.session_id <= 2;
     const isStay = s.is_stayer;
-    const riverClass = s.river === 'Yellands Part' ? 'popup-river-yp' : 'popup-river-sb';
+    const riverClass = s.river === 'Elandspad' ? 'popup-river-yp' : 'popup-river-sb';
     const cardClass = `card-s${s.session_id}`;
     const pin = s.pin || s.lower_pin || [-33.7319, 19.1141];
 
@@ -1554,23 +1705,23 @@ function resetMapView() {
 function drawRiverAndTrailVectors() {
   if (!streamMap) return;
 
-  // Smalblaar (Small Brook)
-  const sbPath = RIVER_PATHS_CLIENT["Small Brook (Smalblaar)"];
+  // Smalblaar
+  const sbPath = RIVER_PATHS_CLIENT["Smalblaar"];
   L.polyline(sbPath, {
     color: '#0284c7',
     weight: 6,
     opacity: 0.85,
     lineJoin: 'round'
-  }).addTo(streamMap).bindTooltip("🌊 Small Brook (Smalblaar River)", { sticky: true });
+  }).addTo(streamMap).bindTooltip("🌊 Smalblaar River", { sticky: true });
 
-  // Elandspad (Yellands Part)
-  const ypPath = RIVER_PATHS_CLIENT["Yellands Part (Elandspad)"];
+  // Elandspad
+  const ypPath = RIVER_PATHS_CLIENT["Elandspad"];
   L.polyline(ypPath, {
     color: '#059669',
     weight: 6,
     opacity: 0.85,
     lineJoin: 'round'
-  }).addTo(streamMap).bindTooltip("🌿 Yellands Part (Elandspad River)", { sticky: true });
+  }).addTo(streamMap).bindTooltip("🌿 Elandspad River", { sticky: true });
 
   // Trails
   Object.entries(TRAIL_PATHS_CLIENT).forEach(([name, coords]) => {
@@ -1675,7 +1826,7 @@ function updateMapPins() {
 }
 
 function buildBeatPopup(beat, typeLabel, coord) {
-  const riverClass = beat.river === 'Yellands Part' ? 'popup-river-yp' : 'popup-river-sb';
+  const riverClass = beat.river === 'Elandspad' ? 'popup-river-yp' : 'popup-river-sb';
   return `
     <div class="map-popup-card">
       <div class="popup-beat-photo-wrap">
@@ -1698,7 +1849,7 @@ function buildBeatPopup(beat, typeLabel, coord) {
 function buildAnglerSessionPopup(anglerName, sessionInfo, coord) {
   const sId = sessionInfo.session_id;
   const color = sId === 1 ? '#eab308' : (sId === 2 ? '#f97316' : (sId === 3 ? '#10b981' : '#3b82f6'));
-  const riverClass = sessionInfo.river === 'Yellands Part' ? 'popup-river-yp' : 'popup-river-sb';
+  const riverClass = sessionInfo.river === 'Elandspad' ? 'popup-river-yp' : 'popup-river-sb';
 
   return `
     <div class="map-popup-card">
@@ -1782,8 +1933,8 @@ function renderBeatsManagerTable() {
         </td>
         <td>
           <select id="beat_river_${idx}" class="river-select" onchange="onBeatRiverChange(${idx})">
-            <option value="Small Brook" ${b.river === 'Small Brook' ? 'selected' : ''}>Small Brook</option>
-            <option value="Yellands Part" ${b.river === 'Yellands Part' ? 'selected' : ''}>Yellands Part</option>
+            <option value="Smalblaar" ${b.river === 'Smalblaar' ? 'selected' : ''}>Smalblaar</option>
+            <option value="Elandspad" ${b.river === 'Elandspad' ? 'selected' : ''}>Elandspad</option>
           </select>
         </td>
         <td>

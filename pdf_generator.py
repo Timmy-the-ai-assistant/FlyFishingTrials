@@ -112,7 +112,7 @@ def generate_tournament_pdf(state: Dict[str, Any], output_path: str) -> str:
         "<b>Scoring Rules:</b> 1v1 matches: 10.0 pts pool &bull; 3-Way (1v1v1) matches: 15.0 pts pool, capped at 10.0 max pts per angler. "
         "Points = min(10.0, Pool / Total Fish &times; Angler Fish). Blank (0 fish) = 0.00 pts. Total tournament score is the sum across all 4 sessions.<br/>"
         "<b>Beat & River Movement:</b> Day 1 (S1 &rarr; S2): 1 angler stays on beat, 1 moves. Day 2 (S3 &rarr; S4): Day 1 mover stays on beat, Day 1 stayer moves. "
-        "Competitors fish across both Small Brook (Smalblaar) &amp; Yellands Part (Elandspad) beats."
+        "Competitors fish across both Smalblaar &amp; Elandspad beats."
         f"{a_team_rule_text}"
     )
     rules_table = Table(

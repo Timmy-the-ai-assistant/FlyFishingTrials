@@ -138,31 +138,39 @@ function checkAdminAuth(request, body = {}) {
   return (headerPwd === ADMIN_PASSWORD || bodyPwd === ADMIN_PASSWORD);
 }
 
-function generateEdgeSchedule(anglers, aTeamAnglers, availableBeats) {
+function generateEdgeSchedule(anglers, aTeamAnglers = [], availableBeats = []) {
   const N = anglers.length;
+  if (N < 4) throw new Error("At least 4 anglers required for fly fishing trials.");
+
   const isOdd = (N % 2 !== 0);
   const numSessions = 4;
-  const numBeats = isOdd ? Math.floor((N - 3) / 2) + 1 : Math.floor(N / 2);
+  const numBeats = isOdd ? Math.floor((N - 1) / 2) : Math.floor(N / 2);
 
   const fallbackBeats = [
-    { id: "SB6", code: "SB6", name: "Small Brook 6 (SB6)", river: "Small Brook", lower_pin: [-33.7319, 19.1141], mid_pin: [-33.7330, 19.1180], upper_pin: [-33.7340, 19.1225], meeting_point: "Tunnel East Portal" },
-    { id: "EP1", code: "EP1", name: "Elandspad 1 (EP1)", river: "Yellands Part", lower_pin: [-33.7319, 19.1141], mid_pin: [-33.7352, 19.1129], upper_pin: [-33.7385, 19.1118], meeting_point: "Junction Pool" },
-    { id: "EP2", code: "EP2", name: "Elandspad 2 (EP2)", river: "Yellands Part", lower_pin: [-33.7385, 19.1118], mid_pin: [-33.7420, 19.1105], upper_pin: [-33.7455, 19.1092], meeting_point: "Fisherman's Cave" },
-    { id: "Star", code: "Star", name: "Star Beat", river: "Small Brook", lower_pin: [-33.7258, 19.1052], mid_pin: [-33.7285, 19.1095], upper_pin: [-33.7319, 19.1141], meeting_point: "Bridge Parking" },
-    { id: "Transport", code: "Transport", name: "Transport Beat", river: "Small Brook", lower_pin: [-33.7215, 19.0965], mid_pin: [-33.7235, 19.1008], upper_pin: [-33.7258, 19.1052], meeting_point: "Transport Layby" },
-    { id: "SB1", code: "SB1", name: "Small Brook 1 (SB1)", river: "Small Brook", lower_pin: [-33.7180, 19.0880], mid_pin: [-33.7198, 19.0922], upper_pin: [-33.7215, 19.0965], meeting_point: "Picnic Site 1" },
-    { id: "SB2", code: "SB2", name: "Small Brook 2 (SB2)", river: "Small Brook", lower_pin: [-33.7150, 19.0800], mid_pin: [-33.7165, 19.0840], upper_pin: [-33.7180, 19.0880], meeting_point: "Picnic Site 2" },
-    { id: "SB3", code: "SB3", name: "Small Brook 3 (SB3)", river: "Small Brook", lower_pin: [-33.7120, 19.0720], mid_pin: [-33.7135, 19.0760], upper_pin: [-33.7150, 19.0800], meeting_point: "Kloof Halt" },
-    { id: "SB4", code: "SB4", name: "Small Brook 4 (SB4)", river: "Small Brook", lower_pin: [-33.7090, 19.0640], mid_pin: [-33.7105, 19.0680], upper_pin: [-33.7120, 19.0720], meeting_point: "Old Tollhouse" },
-    { id: "SB5", code: "SB5", name: "Small Brook 5 (SB5)", river: "Small Brook", lower_pin: [-33.7060, 19.0560], mid_pin: [-33.7075, 19.0600], upper_pin: [-33.7090, 19.0640], meeting_point: "Hotel Curve" }
+    { id: "SB6", code: "SB6", name: "Smalblaar 6 (SB6)", river: "Smalblaar", lower_pin: [-33.7319, 19.1141], mid_pin: [-33.7330, 19.1180], upper_pin: [-33.7340, 19.1225], meeting_point: "Tunnel East Portal" },
+    { id: "EP1", code: "EP1", name: "Elandspad 1 (EP1)", river: "Elandspad", lower_pin: [-33.7319, 19.1141], mid_pin: [-33.7352, 19.1129], upper_pin: [-33.7385, 19.1118], meeting_point: "Junction Pool" },
+    { id: "EP2", code: "EP2", name: "Elandspad 2 (EP2)", river: "Elandspad", lower_pin: [-33.7385, 19.1118], mid_pin: [-33.7420, 19.1105], upper_pin: [-33.7455, 19.1092], meeting_point: "Fisherman's Cave" },
+    { id: "Star", code: "Star", name: "Star Beat", river: "Smalblaar", lower_pin: [-33.7258, 19.1052], mid_pin: [-33.7285, 19.1095], upper_pin: [-33.7319, 19.1141], meeting_point: "Bridge Parking" },
+    { id: "Transport", code: "Transport", name: "Transport Beat", river: "Smalblaar", lower_pin: [-33.7215, 19.0965], mid_pin: [-33.7235, 19.1008], upper_pin: [-33.7258, 19.1052], meeting_point: "Transport Layby" },
+    { id: "SB1", code: "SB1", name: "Smalblaar 1 (SB1)", river: "Smalblaar", lower_pin: [-33.7180, 19.0880], mid_pin: [-33.7198, 19.0922], upper_pin: [-33.7215, 19.0965], meeting_point: "Picnic Site 1" },
+    { id: "SB2", code: "SB2", name: "Smalblaar 2 (SB2)", river: "Smalblaar", lower_pin: [-33.7150, 19.0800], mid_pin: [-33.7165, 19.0840], upper_pin: [-33.7180, 19.0880], meeting_point: "Picnic Site 2" },
+    { id: "SB3", code: "SB3", name: "Smalblaar 3 (SB3)", river: "Smalblaar", lower_pin: [-33.7120, 19.0720], mid_pin: [-33.7135, 19.0760], upper_pin: [-33.7150, 19.0800], meeting_point: "Kloof Halt" },
+    { id: "SB4", code: "SB4", name: "Smalblaar 4 (SB4)", river: "Smalblaar", lower_pin: [-33.7090, 19.0640], mid_pin: [-33.7105, 19.0680], upper_pin: [-33.7120, 19.0720], meeting_point: "Old Tollhouse" },
+    { id: "SB5", code: "SB5", name: "Smalblaar 5 (SB5)", river: "Smalblaar", lower_pin: [-33.7060, 19.0560], mid_pin: [-33.7075, 19.0600], upper_pin: [-33.7090, 19.0640], meeting_point: "Hotel Curve" }
   ];
 
   const beatsPool = (availableBeats && availableBeats.length >= numBeats) 
     ? availableBeats.slice(0, numBeats)
     : fallbackBeats.slice(0, numBeats);
 
-  const aSet = new Set(aTeamAnglers || []);
-  const sessions = [];
+  const cleanATeam = (aTeamAnglers || []).filter(a => anglers.includes(a));
+  const aIndices = new Set(cleanATeam.map(a => anglers.indexOf(a)));
+  const hasATeam = aIndices.size >= 3;
+
+  function pairKey(i, j) {
+    return i < j ? `${i}|${j}` : `${j}|${i}`;
+  }
+
   const sessionDefs = [
     { id: 1, name: "Saturday Morning", short: "Sat AM", day: "Saturday", time: "Morning" },
     { id: 2, name: "Saturday Afternoon", short: "Sat PM", day: "Saturday", time: "Afternoon" },
@@ -170,31 +178,179 @@ function generateEdgeSchedule(anglers, aTeamAnglers, availableBeats) {
     { id: 4, name: "Sunday Afternoon", short: "Sun PM", day: "Sunday", time: "Afternoon" }
   ];
 
+  let chosenScheduleRaw = null;
+
+  // Strict Constraint Satisfaction Solver: ZERO repeat opponents
+  for (let attempt = 0; attempt < 10000; attempt++) {
+    const pairsMet = new Set();
+    const threeWayCounts = new Array(N).fill(0);
+    const candidateSessions = [];
+    let possible = true;
+    const aVsACount = new Array(N).fill(0);
+
+    for (let sIdx = 0; sIdx < numSessions; sIdx++) {
+      let sessionMatches = null;
+
+      for (let sAttempt = 0; sAttempt < 300; sAttempt++) {
+        let group3 = null;
+        let rem = [];
+
+        if (isOdd) {
+          const candidates = [...Array(N).keys()].sort((a, b) => {
+            if (threeWayCounts[a] !== threeWayCounts[b]) return threeWayCounts[a] - threeWayCounts[b];
+            return Math.random() - 0.5;
+          });
+
+          for (let i = 0; i < candidates.length; i++) {
+            const c1 = candidates[i];
+            if (threeWayCounts[c1] >= 2) continue;
+            for (let j = i + 1; j < candidates.length; j++) {
+              const c2 = candidates[j];
+              if (threeWayCounts[c2] >= 2) continue;
+              if (pairsMet.has(pairKey(c1, c2))) continue;
+              for (let k = j + 1; k < candidates.length; k++) {
+                const c3 = candidates[k];
+                if (threeWayCounts[c3] >= 2) continue;
+                if (pairsMet.has(pairKey(c1, c3)) || pairsMet.has(pairKey(c2, c3))) continue;
+
+                group3 = [c1, c2, c3];
+                break;
+              }
+              if (group3) break;
+            }
+            if (group3) break;
+          }
+
+          if (!group3) continue;
+          rem = [...Array(N).keys()].filter(x => !group3.includes(x));
+        } else {
+          rem = [...Array(N).keys()];
+        }
+
+        // Shuffle pool
+        for (let i = rem.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [rem[i], rem[j]] = [rem[j], rem[i]];
+        }
+
+        // Backtracking pairing
+        function pairUp(pool) {
+          if (pool.length === 0) return [];
+          const p1 = pool[0];
+          const candidates = pool.slice(1);
+          const validCandidates = candidates.filter(p2 => !pairsMet.has(pairKey(p1, p2)));
+          if (validCandidates.length === 0) return null;
+
+          validCandidates.sort((a, b) => {
+            if (hasATeam && aIndices.has(p1)) {
+              const aIsA = aIndices.has(a);
+              const bIsA = aIndices.has(b);
+              if (aVsACount[p1] < 2) {
+                if (aIsA && !bIsA) return -1;
+                if (!aIsA && bIsA) return 1;
+              }
+            }
+            return Math.random() - 0.5;
+          });
+
+          for (const p2 of validCandidates) {
+            const nextPool = candidates.filter(x => x !== p2);
+            const subPairs = pairUp(nextPool);
+            if (subPairs !== null) {
+              return [[p1, p2], ...subPairs];
+            }
+          }
+          return null;
+        }
+
+        const pairs1v1 = pairUp(rem);
+        if (pairs1v1 !== null) {
+          const mList = [];
+          if (group3) mList.push(group3);
+          pairs1v1.forEach(p => mList.push(p));
+          sessionMatches = mList;
+          break;
+        }
+      }
+
+      if (!sessionMatches) {
+        possible = false;
+        break;
+      }
+
+      for (const m of sessionMatches) {
+        if (m.length === 3) {
+          pairsMet.add(pairKey(m[0], m[1]));
+          pairsMet.add(pairKey(m[0], m[2]));
+          pairsMet.add(pairKey(m[1], m[2]));
+          threeWayCounts[m[0]]++;
+          threeWayCounts[m[1]]++;
+          threeWayCounts[m[2]]++;
+          if (aIndices.has(m[0]) && aIndices.has(m[1])) { aVsACount[m[0]]++; aVsACount[m[1]]++; }
+          if (aIndices.has(m[0]) && aIndices.has(m[2])) { aVsACount[m[0]]++; aVsACount[m[2]]++; }
+          if (aIndices.has(m[1]) && aIndices.has(m[2])) { aVsACount[m[1]]++; aVsACount[m[2]]++; }
+        } else {
+          pairsMet.add(pairKey(m[0], m[1]));
+          if (aIndices.has(m[0]) && aIndices.has(m[1])) {
+            aVsACount[m[0]]++;
+            aVsACount[m[1]]++;
+          }
+        }
+      }
+
+      candidateSessions.push(sessionMatches);
+    }
+
+    if (possible && candidateSessions.length === numSessions) {
+      // Validate ZERO repeat opponents
+      const metCounts = {};
+      anglers.forEach(a => { metCounts[a] = {}; });
+      let anyRepeat = false;
+
+      candidateSessions.forEach(sMatches => {
+        sMatches.forEach(m => {
+          const mAnglers = m.map(idx => anglers[idx]);
+          mAnglers.forEach(a => {
+            mAnglers.forEach(o => {
+              if (a !== o) {
+                metCounts[a][o] = (metCounts[a][o] || 0) + 1;
+                if (metCounts[a][o] > 1) anyRepeat = true;
+              }
+            });
+          });
+        });
+      });
+
+      if (!anyRepeat) {
+        chosenScheduleRaw = candidateSessions;
+        break;
+      }
+    }
+  }
+
+  if (!chosenScheduleRaw) {
+    throw new Error("Unable to find schedule satisfying zero repeat pairings.");
+  }
+
+  // Build the complete session objects
+  const sessions = [];
   const anglerSchedule = {};
   anglers.forEach(a => { anglerSchedule[a] = []; });
-  const threeWayCounts = {};
-  if (isOdd) anglers.forEach(a => { threeWayCounts[a] = 0; });
+  const finalThreeWayCounts = {};
+  if (isOdd) anglers.forEach(a => { finalThreeWayCounts[a] = 0; });
 
   for (let sIdx = 0; sIdx < numSessions; sIdx++) {
     const sDef = sessionDefs[sIdx];
     const sMatches = [];
+    const rawMatches = chosenScheduleRaw[sIdx];
 
-    // Shift to rotate matchups cleanly
-    const shift = (sIdx * 3 + 1) % N;
-    const rotated = anglers.slice(shift).concat(anglers.slice(0, shift));
-
-    let aIdx = 0;
-    for (let b = 0; b < numBeats; b++) {
+    for (let b = 0; b < rawMatches.length; b++) {
       const beat = beatsPool[b] || fallbackBeats[b % fallbackBeats.length];
-      let matchAnglers = [];
+      const matchAnglerIndices = rawMatches[b];
+      const matchAnglers = matchAnglerIndices.map(i => anglers[i]);
 
-      if (isOdd && b === 0) {
-        matchAnglers = [rotated[aIdx], rotated[aIdx + 1], rotated[aIdx + 2]];
-        aIdx += 3;
-        matchAnglers.forEach(a => { if (threeWayCounts[a] !== undefined) threeWayCounts[a]++; });
-      } else {
-        matchAnglers = [rotated[aIdx], rotated[aIdx + 1]];
-        aIdx += 2;
+      if (matchAnglers.length === 3) {
+        matchAnglers.forEach(a => { finalThreeWayCounts[a] = (finalThreeWayCounts[a] || 0) + 1; });
       }
 
       const stayer = (sIdx % 2 === 1) ? matchAnglers[0] : null;
@@ -207,7 +363,7 @@ function generateEdgeSchedule(anglers, aTeamAnglers, availableBeats) {
         beat_id: beat.id || beat.code,
         beat_code: beat.code || beat.id,
         beat_name: beat.name,
-        river: beat.river || "Small Brook",
+        river: beat.river || "Smalblaar",
         lower_pin: beat.lower_pin || [-33.7319, 19.1141],
         mid_pin: beat.mid_pin || [-33.7330, 19.1180],
         upper_pin: beat.upper_pin || [-33.7340, 19.1225],
@@ -259,6 +415,7 @@ function generateEdgeSchedule(anglers, aTeamAnglers, availableBeats) {
     });
   }
 
+  const aSet = new Set(cleanATeam);
   const leaderboard = anglers.map((a, i) => ({
     rank: i + 1,
     angler: a,
@@ -274,7 +431,7 @@ function generateEdgeSchedule(anglers, aTeamAnglers, availableBeats) {
     sessions,
     anglerSchedule,
     leaderboard,
-    threeWayCounts,
+    threeWayCounts: finalThreeWayCounts,
     numBeats
   };
 }
@@ -444,6 +601,77 @@ export default {
       return new Response(JSON.stringify({
         success: true,
         message: `Tournament reset successfully for ${anglers.length} anglers with ${aTeam.length} A-Team members.`,
+        state: getFullState()
+      }), {
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' }
+      });
+    }
+
+    // 8b. Admin Clear Draw - Admin Only
+    if (url.pathname === '/api/admin/clear_draw' && request.method === 'POST') {
+      const body = await request.json().catch(() => ({}));
+      if (!checkAdminAuth(request, body)) {
+        return new Response(JSON.stringify({
+          success: false,
+          error: "Unauthorized: Organizer password required (small-Blaar)."
+        }), {
+          status: 401,
+          headers: { ...corsHeaders, 'Content-Type': 'application/json' }
+        });
+      }
+
+      const trial = getActiveTrial();
+      if (trial && trial.tournament_data) {
+        trial.tournament_data.sessions = [];
+        trial.tournament_data.angler_schedule = {};
+        trial.tournament_data.three_way_counts = {};
+        (trial.tournament_data.leaderboard || []).forEach(row => {
+          row.s1_pts = 0; row.s2_pts = 0; row.s3_pts = 0; row.s4_pts = 0;
+          row.total_points = 0; row.total_fish = 0; row.blanks = 0; row.matches_played = 0;
+        });
+      }
+
+      return new Response(JSON.stringify({
+        success: true,
+        message: "Tournament draw cleared successfully.",
+        state: getFullState()
+      }), {
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' }
+      });
+    }
+
+    // 8c. Admin Clear Session Matches - Admin Only
+    if (url.pathname === '/api/admin/clear_session' && request.method === 'POST') {
+      const body = await request.json().catch(() => ({}));
+      if (!checkAdminAuth(request, body)) {
+        return new Response(JSON.stringify({
+          success: false,
+          error: "Unauthorized: Organizer password required (small-Blaar)."
+        }), {
+          status: 401,
+          headers: { ...corsHeaders, 'Content-Type': 'application/json' }
+        });
+      }
+
+      const sId = parseInt(body.session_id || 1, 10);
+      const trial = getActiveTrial();
+      if (trial && trial.tournament_data && trial.tournament_data.sessions) {
+        for (const s of trial.tournament_data.sessions) {
+          if (s.session_id === sId) {
+            for (const m of (s.matches || [])) {
+              m.status = "UNREPORTED";
+              m.submissions = {};
+              m.official_scores = {};
+              m.calculated_points = {};
+              m.discrepancy_details = null;
+            }
+          }
+        }
+      }
+
+      return new Response(JSON.stringify({
+        success: true,
+        message: `Session ${sId} scores cleared and reset.`,
         state: getFullState()
       }), {
         headers: { ...corsHeaders, 'Content-Type': 'application/json' }
