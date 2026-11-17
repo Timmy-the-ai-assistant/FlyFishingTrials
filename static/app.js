@@ -715,6 +715,11 @@ function closeEditModal() {
 
 async function submitAdminEditScore(e) {
   e.preventDefault();
+  if (!isAdminAuthenticated()) {
+    openAdminPasswordModal(() => submitAdminEditScore(e));
+    return;
+  }
+
   const sessionId = parseInt(document.getElementById('editSessionId').value);
   const matchId = document.getElementById('editMatchId').value;
   const adminNote = document.getElementById('editAdminNote').value;
@@ -728,14 +733,23 @@ async function submitAdminEditScore(e) {
   try {
     const res = await fetch('/api/admin/resolve', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 
+        'Content-Type': 'application/json',
+        'X-Admin-Password': getAdminPassword()
+      },
       body: JSON.stringify({
         session_id: sessionId,
         match_id: matchId,
         official_scores: officialScores,
-        admin_note: adminNote
+        admin_note: adminNote,
+        password: getAdminPassword()
       })
     });
+
+    if (res.status === 401) {
+      openAdminPasswordModal(() => submitAdminEditScore(e));
+      return;
+    }
 
     const data = await res.json();
     if (data.success) {
@@ -878,6 +892,11 @@ function clearAteamSelection() {
 }
 
 async function confirmResetTournament() {
+  if (!isAdminAuthenticated()) {
+    openAdminPasswordModal(() => confirmResetTournament());
+    return;
+  }
+
   const anglers = parseAnglerLines();
 
   if (anglers.length < 8 || anglers.length > 20) {
@@ -911,14 +930,23 @@ async function confirmResetTournament() {
   try {
     const res = await fetch('/api/admin/reset', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 
+        'Content-Type': 'application/json',
+        'X-Admin-Password': getAdminPassword()
+      },
       body: JSON.stringify({
         anglers: anglers,
         a_team_anglers: aTeamList,
         tournament_name: tName,
-        venue: venue
+        venue: venue,
+        password: getAdminPassword()
       })
     });
+
+    if (res.status === 401) {
+      openAdminPasswordModal(() => confirmResetTournament());
+      return;
+    }
 
     const data = await res.json();
     if (data.success) {
@@ -1652,6 +1680,11 @@ function buildAnglerSessionPopup(anglerName, sessionInfo, coord) {
 // ========================================================
 
 async function openBeatsManagerModal() {
+  if (!isAdminAuthenticated()) {
+    openAdminPasswordModal(() => openBeatsManagerModal());
+    return;
+  }
+
   const modal = document.getElementById('beatsManagerModal');
   const tbody = document.getElementById('beatsManagerBody');
   if (!modal || !tbody) return;
@@ -1661,11 +1694,17 @@ async function openBeatsManagerModal() {
 
   try {
     const res = await fetch('/api/beats');
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
     const data = await res.json();
-    currentEditingBeatsList = data.beats || [];
+    currentEditingBeatsList = data.beats || (tournamentState && tournamentState.beats) || [];
     renderBeatsManagerTable();
   } catch (err) {
-    tbody.innerHTML = `<tr><td colspan="8" class="text-center py-3 text-danger">Failed to load beats: ${err.message}</td></tr>`;
+    if (tournamentState && tournamentState.beats && tournamentState.beats.length > 0) {
+      currentEditingBeatsList = tournamentState.beats;
+      renderBeatsManagerTable();
+    } else {
+      tbody.innerHTML = `<tr><td colspan="8" class="text-center py-3 text-danger">Failed to load beats: ${err.message}</td></tr>`;
+    }
   }
 }
 
@@ -1906,6 +1945,7 @@ function updateAdminUIState() {
   const isAuth = isAdminAuthenticated();
   const loginBtn = document.getElementById("adminLoginBtn");
   const unlockedRow = document.getElementById("adminUnlockedControls");
+  const beatEditorBtn = document.getElementById("beatEditorBtn");
 
   if (loginBtn && unlockedRow) {
     if (isAuth) {
@@ -1914,6 +1954,14 @@ function updateAdminUIState() {
     } else {
       loginBtn.classList.remove("hidden");
       unlockedRow.classList.add("hidden");
+    }
+  }
+
+  if (beatEditorBtn) {
+    if (isAuth) {
+      beatEditorBtn.innerHTML = "⚙️ Beat &amp; Pin Editor";
+    } else {
+      beatEditorBtn.innerHTML = "🔒 Beat &amp; Pin Editor (Organizer)";
     }
   }
 }

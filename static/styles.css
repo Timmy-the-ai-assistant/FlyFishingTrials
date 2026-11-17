@@ -1724,3 +1724,16 @@ body {
     justify-content: space-between;
   }
 }
+
+/* Disa Flower Logo Styling */
+.disa-logo-img {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.4));
+  transition: transform 0.25s ease;
+}
+
+.logo-badge:hover .disa-logo-img {
+  transform: scale(1.08) rotate(3deg);
+}

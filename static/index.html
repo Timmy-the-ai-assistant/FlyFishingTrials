@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Fly Fishing Trials - Randomiser & Live Tournament</title>
+  <link rel="icon" type="image/png" href="disa_logo.png">
   <link rel="stylesheet" href="styles.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -73,7 +74,9 @@
   <header class="app-header">
     <div class="container header-container">
       <div class="logo-area">
-        <div class="logo-badge">🎣</div>
+        <div class="logo-badge">
+          <img src="disa_logo.png" alt="WP Disa" class="disa-logo-img">
+        </div>
         <div>
           <h1 id="tournamentTitle">Fly Fishing Trials 2026</h1>
           <div class="sub-meta">
@@ -247,7 +250,7 @@
         </div>
         <div class="map-top-actions">
           <button class="btn btn-secondary btn-sm" onclick="resetMapView()">🎯 Center Valley</button>
-          <button class="btn btn-primary btn-sm" onclick="openBeatsManagerModal()">⚙️ Beat &amp; Pin Editor</button>
+          <button id="beatEditorBtn" class="btn btn-primary btn-sm" onclick="openBeatsManagerModal()">🔒 Beat &amp; Pin Editor</button>
         </div>
       </div>
 
