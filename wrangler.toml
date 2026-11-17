@@ -1,0 +1,12 @@
+name = "wpflyfishing"
+main = "worker.js"
+compatibility_date = "2024-09-23"
+
+# Serve static application, map tiles, and assets directly
+[assets]
+directory = "./static"
+binding = "ASSETS"
+
+[vars]
+ENVIRONMENT = "production"
+SITE_NAME = "WP Fly Fishing Trials 2026"
