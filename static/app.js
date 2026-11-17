@@ -966,33 +966,55 @@ function switchTab(tabId) {
 }
 
 // --- Network & Phone QR Sharing ---
+let localNetworkUrl = '';
+const customDomainUrl = 'https://trials.wpflyfishing.com';
+let currentShareMode = 'domain';
+
 async function fetchNetworkInfo() {
   try {
     const res = await fetch('/api/network_info');
     if (!res.ok) return;
     const info = await res.json();
-    const url = info.network_url;
-    document.getElementById('networkUrlInput').value = url;
-
-    // Render client-side QR Code
-    const qrContainer = document.getElementById('qrCodeContainer');
-    qrContainer.innerHTML = '';
-    if (window.QRCode) {
-      qrCodeObj = new QRCode(qrContainer, {
-        text: url,
-        width: 180,
-        height: 180,
-        colorDark: "#000000",
-        colorLight: "#ffffff",
-        correctLevel: QRCode.CorrectLevel.M
-      });
-    }
+    localNetworkUrl = info.network_url;
+    renderShareUrl();
   } catch (e) {
     console.warn("Could not fetch network info:", e);
+    renderShareUrl();
+  }
+}
+
+function switchShareUrlMode(mode) {
+  currentShareMode = mode;
+  document.getElementById('btnShareDomain').classList.toggle('active', mode === 'domain');
+  document.getElementById('btnShareLocal').classList.toggle('active', mode === 'local');
+  renderShareUrl();
+}
+
+function renderShareUrl() {
+  const activeUrl = currentShareMode === 'domain' ? customDomainUrl : (localNetworkUrl || window.location.origin);
+  const input = document.getElementById('networkUrlInput');
+  const label = document.getElementById('shareUrlLabel');
+  if (input) input.value = activeUrl;
+  if (label) label.textContent = currentShareMode === 'domain' ? 'Public Domain URL (Namecheap & Cloudflare):' : 'Local Wi-Fi Network URL:';
+
+  // Render client-side QR Code
+  const qrContainer = document.getElementById('qrCodeContainer');
+  if (!qrContainer) return;
+  qrContainer.innerHTML = '';
+  if (window.QRCode) {
+    qrCodeObj = new QRCode(qrContainer, {
+      text: activeUrl,
+      width: 180,
+      height: 180,
+      colorDark: "#000000",
+      colorLight: "#ffffff",
+      correctLevel: QRCode.CorrectLevel.M
+    });
   }
 }
 
 function openShareModal() {
+  renderShareUrl();
   document.getElementById('shareModal').classList.remove('hidden');
 }
 
@@ -1004,7 +1026,7 @@ function copyNetworkUrl() {
   const input = document.getElementById('networkUrlInput');
   input.select();
   document.execCommand('copy');
-  alert("Wi-Fi URL copied to clipboard! Share it with anglers on the riverbank.");
+  alert(`Copied to clipboard!\n${input.value}\nShare this with anglers on the riverbank.`);
 }
 
 // --- Session Snapshot & Save Manager ---

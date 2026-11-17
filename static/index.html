@@ -490,16 +490,23 @@
   <div id="shareModal" class="modal-overlay hidden">
     <div class="modal-card card">
       <div class="modal-header">
-        <h3>📱 Riverbank Access & Mobile View</h3>
+        <div>
+          <h3>📱 Riverbank Mobile Access</h3>
+          <p class="text-muted text-sm">Scan QR code from any smartphone to view live scores, beat maps, and submit catches.</p>
+        </div>
         <button class="modal-close" onclick="closeShareModal()">&times;</button>
       </div>
       <div class="modal-body text-center">
-        <p>Scan this QR code from your phone (connected to the same Wi-Fi) to view live scores and submit catch reports:</p>
-        
+        <!-- Target Selector -->
+        <div class="share-target-toggle mb-3">
+          <button class="btn btn-sm btn-secondary active" id="btnShareDomain" onclick="switchShareUrlMode('domain')">🌐 trials.wpflyfishing.com</button>
+          <button class="btn btn-sm btn-secondary" id="btnShareLocal" onclick="switchShareUrlMode('local')">📶 Local Wi-Fi IP</button>
+        </div>
+
         <div id="qrCodeContainer" class="qr-box"></div>
 
         <div class="url-copy-box mt-3">
-          <label>Local Wi-Fi Network URL:</label>
+          <label id="shareUrlLabel">Public Domain URL:</label>
           <div class="copy-row">
             <input type="text" id="networkUrlInput" readonly class="form-control monospace">
             <button class="btn btn-secondary btn-sm" onclick="copyNetworkUrl()">Copy</button>
@@ -507,9 +514,9 @@
         </div>
 
         <div class="online-host-guide mt-4">
-          <h4>🌍 Need Worldwide Public Internet Access?</h4>
-          <p class="text-muted text-sm">
-            Run the included <code>share_online.bat</code> script or run <code>npx localtunnel --port 8585</code> in terminal to get an instant HTTPS link anyone can view anywhere.
+          <h4>🌍 Cloudflare &amp; Namecheap Hosting (wpflyfishing.com)</h4>
+          <p class="text-muted text-sm text-left">
+            Run <code>setup_cloudflare_tunnel.bat</code> to connect <strong>trials.wpflyfishing.com</strong> directly to your tournament server over free, encrypted HTTPS with zero port forwarding.
           </p>
         </div>
       </div>

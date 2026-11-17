@@ -322,8 +322,8 @@ def run_server(port: int = PORT, open_browser: bool = True):
         server.server_close()
 
 if __name__ == "__main__":
-    port_to_use = PORT
-    no_browse = "--no-browser" in sys.argv
+    port_to_use = int(os.environ.get("PORT", PORT))
+    no_browse = "--no-browser" in sys.argv or "PORT" in os.environ
     for arg in sys.argv[1:]:
         if arg.isdigit():
             port_to_use = int(arg)
