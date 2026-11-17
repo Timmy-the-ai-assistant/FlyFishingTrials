@@ -1446,33 +1446,30 @@ function initOrUpdateMap() {
       attributionControl: true
     });
 
-    // 1. Satellite (Esri World Imagery)
+    // 1. Satellite (Esri World Imagery - Ultra high res, no API key required)
     baseTileLayers['satellite'] = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
       maxZoom: 19,
-      attribution: 'Esri, Maxar, Earthstar'
+      attribution: 'Esri &bull; High-Res Satellite'
     });
 
-    // 2. Topographic (OpenTopoMap)
-    baseTileLayers['topo'] = L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
-      maxZoom: 17,
-      attribution: 'OpenTopoMap &bull; Contours'
+    // 2. Topographic & Mountain Relief (Esri World Topo Map - No API key required)
+    baseTileLayers['topo'] = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}', {
+      maxZoom: 19,
+      attribution: 'Esri &bull; Topographic Mountain Map'
     });
 
-    // 3. Street Map (OpenStreetMap)
-    baseTileLayers['street'] = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    // 3. Street Map (OpenStreetMap - Free open community map, no API key required)
+    baseTileLayers['street'] = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
       maxZoom: 19,
       attribution: 'OpenStreetMap'
     });
 
-    // 4. Artistic River & Trail Map (Minimalist CartoDB Voyager Nolabels as base + bold custom stream vector art)
-    baseTileLayers['artistic'] = L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager_nolabels/{z}/{x}/{y}{r}.png', {
-      maxZoom: 19,
-      subdomains: 'abcd',
-      attribution: 'CartoDB &bull; CPS Artistic Stream &amp; Trail Map'
-    });
+    // 4. Fallback / Artistic alias mapping directly to Esri Topo Map (zero watermarks)
+    baseTileLayers['artistic'] = baseTileLayers['topo'];
 
-    // Default layer: Artistic
-    baseTileLayers['artistic'].addTo(streamMap);
+    // Default layer: Satellite (crisp, high-definition terrain & river detail)
+    baseTileLayers['satellite'].addTo(streamMap);
+    currentMapLayerName = 'satellite';
 
     // Layer groups for vectors and pins
     beatMarkersLayerGroup = L.layerGroup().addTo(streamMap);
