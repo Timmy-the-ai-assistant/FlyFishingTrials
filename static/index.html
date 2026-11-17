@@ -250,11 +250,14 @@
             <button class="filter-btn" onclick="filterSchedule(3)">Sun AM</button>
             <button class="filter-btn" onclick="filterSchedule(4)">Sun PM</button>
           </div>
-          <div class="schedule-actions-group" style="display:flex; gap:0.4rem;">
-            <button class="btn btn-sm btn-primary" onclick="redoTournamentDrawPrompt()" title="Re-randomize tournament with strict zero repeat opponents">
-              🎲 Redo Draw (Unique Pairings)
+          <div class="schedule-actions-group" style="display:flex; gap:0.4rem; align-items:center;">
+            <button class="btn btn-sm btn-outline-info" onclick="openParameterAuditModal()" title="Audit tournament draw parameters and fairness rules">
+              🔍 Check Parameters
             </button>
-            <button class="btn btn-sm btn-outline-danger" onclick="clearTournamentDrawPrompt()" title="Delete and clear current draw">
+            <button class="btn btn-sm btn-primary admin-only-action hidden" id="btnRedoDrawSchedule" onclick="redoTournamentDrawPrompt()" title="Re-randomize tournament with strict zero repeat opponents (Organizer Only)">
+              🎲 Redo Draw
+            </button>
+            <button class="btn btn-sm btn-outline-danger admin-only-action hidden" id="btnClearDrawSchedule" onclick="clearTournamentDrawPrompt()" title="Delete and clear current draw (Organizer Only)">
               🗑️ Clear Draw
             </button>
           </div>
@@ -538,9 +541,18 @@
             <div id="ateamValidationSummary" class="mt-2 text-sm"></div>
           </div>
 
-          <div class="form-actions mt-3">
+          <div class="form-actions mt-3" style="display:flex; gap:0.6rem; flex-wrap:wrap;">
             <button class="btn btn-danger" onclick="confirmResetTournament()">
               🎲 Randomize & Start New Tournament
+            </button>
+            <button type="button" class="btn btn-primary" onclick="saveAteamSelectionAndRedraw()" title="Save marked A-Team members and redo draw with optimal parameters">
+              💾 Save A-Team & Re-Randomize Draw
+            </button>
+            <button type="button" class="btn btn-outline" onclick="saveAteamSelectionOnly()" title="Update A-Team designations without resetting draw">
+              ⭐ Save A-Team Designation Only
+            </button>
+            <button type="button" class="btn btn-outline-info" onclick="openParameterAuditModal()">
+              🔍 Check Draw Parameters
             </button>
           </div>
         </div>
@@ -913,6 +925,30 @@
           </div>
         </div>
 
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: Tournament Draw Parameters & Fairness Audit -->
+  <div id="parameterAuditModal" class="modal-overlay hidden">
+    <div class="modal-card card modal-lg" style="max-width: 860px; max-height: 90vh; overflow-y: auto;">
+      <div class="modal-header">
+        <div>
+          <h3>🔍 Tournament Draw Parameters & Fairness Audit</h3>
+          <p class="text-muted text-sm">Automated evaluation of opponent uniqueness, A-Team 1v1 clashes, and challenger exposure.</p>
+        </div>
+        <button class="modal-close" onclick="closeParameterAuditModal()">&times;</button>
+      </div>
+
+      <div class="modal-body" id="parameterAuditBody">
+        <!-- Rendered dynamically by app.js -->
+      </div>
+
+      <div class="modal-footer" style="display:flex; justify-content:space-between; align-items:center; margin-top:1.25rem; padding-top:1rem; border-top:1px solid var(--border); flex-wrap:wrap; gap:0.5rem;">
+        <button class="btn btn-outline" onclick="closeParameterAuditModal()">Close Audit</button>
+        <button class="btn btn-primary admin-only-action hidden" onclick="closeParameterAuditModal(); redoTournamentDrawPrompt();">
+          🎲 Redo Draw (Apply Optimal Parameters)
+        </button>
       </div>
     </div>
   </div>

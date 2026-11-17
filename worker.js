@@ -198,19 +198,21 @@ function generateEdgeSchedule(anglers, aTeamAnglers = [], availableBeats = []) {
   ];
 
   let chosenScheduleRaw = null;
+  let bestScheduleScore = -999999;
 
-  // Strict Constraint Satisfaction Solver: ZERO repeat opponents
-  for (let attempt = 0; attempt < 10000; attempt++) {
+  // Strict Constraint Satisfaction Solver: ZERO repeat opponents + A-Team 1v1 Clashes + Challenger Exposure
+  for (let attempt = 0; attempt < 5000; attempt++) {
     const pairsMet = new Set();
     const threeWayCounts = new Array(N).fill(0);
     const candidateSessions = [];
     let possible = true;
     const aVsACount = new Array(N).fill(0);
+    const challengerFacedA = new Array(N).fill(0);
 
     for (let sIdx = 0; sIdx < numSessions; sIdx++) {
       let sessionMatches = null;
 
-      for (let sAttempt = 0; sAttempt < 300; sAttempt++) {
+      for (let sAttempt = 0; sAttempt < 150; sAttempt++) {
         let group3 = null;
         let rem = [];
 
@@ -231,6 +233,10 @@ function generateEdgeSchedule(anglers, aTeamAnglers = [], availableBeats = []) {
                 const c3 = candidates[k];
                 if (threeWayCounts[c3] >= 2) continue;
                 if (pairsMet.has(pairKey(c1, c3)) || pairsMet.has(pairKey(c2, c3))) continue;
+
+                // A-vs-A matches must be strictly 1v1: max 1 A-Team member in any 3-way match!
+                const aCountInG3 = (aIndices.has(c1) ? 1 : 0) + (aIndices.has(c2) ? 1 : 0) + (aIndices.has(c3) ? 1 : 0);
+                if (aCountInG3 > 1) continue;
 
                 group3 = [c1, c2, c3];
                 break;
@@ -261,19 +267,25 @@ function generateEdgeSchedule(anglers, aTeamAnglers = [], availableBeats = []) {
           if (validCandidates.length === 0) return null;
 
           validCandidates.sort((a, b) => {
-            if (hasATeam && aIndices.has(p1)) {
-              const aIsA = aIndices.has(a);
-              const bIsA = aIndices.has(b);
-              if (aVsACount[p1] < 2) {
-                if (aIsA && !bIsA) return -1;
-                if (!aIsA && bIsA) return 1;
+            let scoreA = 0, scoreB = 0;
+            if (hasATeam) {
+              if (aIndices.has(p1)) {
+                scoreA += aIndices.has(a) 
+                  ? (aVsACount[p1] < 2 && aVsACount[a] < 2 ? -200 : 500) 
+                  : (challengerFacedA[a] < 2 ? -100 : 0);
+                scoreB += aIndices.has(b) 
+                  ? (aVsACount[p1] < 2 && aVsACount[b] < 2 ? -200 : 500) 
+                  : (challengerFacedA[b] < 2 ? -100 : 0);
+              } else {
+                if (aIndices.has(a)) scoreA += (challengerFacedA[p1] < 2 ? -100 : 0);
+                if (aIndices.has(b)) scoreB += (challengerFacedA[p1] < 2 ? -100 : 0);
               }
             }
-            return Math.random() - 0.5;
+            return (scoreA - scoreB) + (Math.random() - 0.5);
           });
 
           for (const p2 of validCandidates) {
-            const nextPool = candidates.filter(x => x !== p2);
+            const nextPool = pool.filter(x => x !== p1 && x !== p2);
             const subPairs = pairUp(nextPool);
             if (subPairs !== null) {
               return [[p1, p2], ...subPairs];
@@ -305,14 +317,23 @@ function generateEdgeSchedule(anglers, aTeamAnglers = [], availableBeats = []) {
           threeWayCounts[m[0]]++;
           threeWayCounts[m[1]]++;
           threeWayCounts[m[2]]++;
-          if (aIndices.has(m[0]) && aIndices.has(m[1])) { aVsACount[m[0]]++; aVsACount[m[1]]++; }
-          if (aIndices.has(m[0]) && aIndices.has(m[2])) { aVsACount[m[0]]++; aVsACount[m[2]]++; }
-          if (aIndices.has(m[1]) && aIndices.has(m[2])) { aVsACount[m[1]]++; aVsACount[m[2]]++; }
+          const a1 = aIndices.has(m[0]), a2 = aIndices.has(m[1]), a3 = aIndices.has(m[2]);
+          if (a1 && !a2) challengerFacedA[m[1]]++;
+          if (a1 && !a3) challengerFacedA[m[2]]++;
+          if (a2 && !a1) challengerFacedA[m[0]]++;
+          if (a2 && !a3) challengerFacedA[m[2]]++;
+          if (a3 && !a1) challengerFacedA[m[0]]++;
+          if (a3 && !a2) challengerFacedA[m[1]]++;
         } else {
           pairsMet.add(pairKey(m[0], m[1]));
-          if (aIndices.has(m[0]) && aIndices.has(m[1])) {
+          const a1 = aIndices.has(m[0]), a2 = aIndices.has(m[1]);
+          if (a1 && a2) {
             aVsACount[m[0]]++;
             aVsACount[m[1]]++;
+          } else if (a1 && !a2) {
+            challengerFacedA[m[1]]++;
+          } else if (a2 && !a1) {
+            challengerFacedA[m[0]]++;
           }
         }
       }
@@ -340,9 +361,39 @@ function generateEdgeSchedule(anglers, aTeamAnglers = [], availableBeats = []) {
         });
       });
 
-      if (!anyRepeat) {
+      if (anyRepeat) continue;
+
+      // Validate A-Team criteria (each A-Team member plays exactly 2 A-Team clashes in separate 1v1 sessions)
+      let aTeamValid = true;
+      if (hasATeam) {
+        for (const aIdx of aIndices) {
+          if (aVsACount[aIdx] !== 2) {
+            aTeamValid = false;
+            break;
+          }
+        }
+      }
+      if (hasATeam && !aTeamValid) continue;
+
+      // Quality evaluation for Challenger vs A-Team exposure
+      let cFaced2 = 0;
+      let cFacedAtLeast1 = 0;
+      const nonACount = N - aIndices.size;
+      for (let i = 0; i < N; i++) {
+        if (!aIndices.has(i)) {
+          if (challengerFacedA[i] >= 2) cFaced2++;
+          if (challengerFacedA[i] >= 1) cFacedAtLeast1++;
+        }
+      }
+
+      const score = (cFaced2 * 100) + (cFacedAtLeast1 * 200);
+      if (score > bestScheduleScore) {
+        bestScheduleScore = score;
         chosenScheduleRaw = candidateSessions;
-        break;
+        // Break early if ideal target is reached (all challengers face >= 1, and majority face 2)
+        if (cFacedAtLeast1 === nonACount && cFaced2 >= Math.floor(nonACount / 2)) {
+          break;
+        }
       }
     }
   }
@@ -584,6 +635,54 @@ export default {
         success: true,
         message: `Trial '${targetTrial.name}' updated successfully.`,
         trial: targetTrial,
+        state: getFullState()
+      }), {
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' }
+      });
+    }
+
+    // 5b-2. Update A-Team Members (Admin Only)
+    if (url.pathname === '/api/admin/trial/update_ateam' && request.method === 'POST') {
+      const body = await request.json().catch(() => ({}));
+      if (!checkAdminAuth(request, body)) {
+        return new Response(JSON.stringify({
+          success: false,
+          error: "Unauthorized: Organizer password required (small-Blaar)."
+        }), {
+          status: 401,
+          headers: { ...corsHeaders, 'Content-Type': 'application/json' }
+        });
+      }
+
+      const trial = getActiveTrial();
+      if (trial && trial.tournament_data) {
+        const validAnglers = new Set(trial.tournament_data.anglers || []);
+        const rawATeam = body.a_team_anglers || [];
+        const cleanATeam = rawATeam.filter(a => validAnglers.has(a));
+        trial.tournament_data.a_team_anglers = cleanATeam;
+        trial.tournament_data.num_a_team = cleanATeam.length;
+        
+        // Update is_a_team flags on leaderboard
+        const aSet = new Set(cleanATeam);
+        (trial.tournament_data.leaderboard || []).forEach(row => {
+          const name = row.angler || row.name;
+          row.is_a_team = aSet.has(name);
+        });
+
+        // Also update match badge flags if sessions exist
+        (trial.tournament_data.sessions || []).forEach(s => {
+          (s.matches || []).forEach(m => {
+            const mAnglers = m.anglers || [];
+            m.a_team_competitors = mAnglers.filter(a => aSet.has(a));
+            m.has_a_team_angler = m.a_team_competitors.length > 0;
+            m.is_head_to_head_a_team = m.a_team_competitors.length >= 2;
+          });
+        });
+      }
+
+      return new Response(JSON.stringify({
+        success: true,
+        message: "A-Team members updated successfully.",
         state: getFullState()
       }), {
         headers: { ...corsHeaders, 'Content-Type': 'application/json' }

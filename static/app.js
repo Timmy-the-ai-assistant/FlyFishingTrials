@@ -248,10 +248,10 @@ function renderSchedule() {
             ${completedBadge}
           </div>
           <div style="display:flex; align-items:center; gap:0.6rem;">
-            <button class="btn btn-sm btn-secondary" onclick="quickSaveSession(${session.session_id})" title="Save snapshot of Session ${session.session_id}">
+            <button class="btn btn-sm btn-secondary admin-only-action ${isAdminAuthenticated() ? '' : 'hidden'}" onclick="quickSaveSession(${session.session_id})" title="Save snapshot of Session ${session.session_id}">
               💾 Save Session ${session.session_id}
             </button>
-            <button class="btn btn-sm btn-outline-danger" onclick="clearSessionMatchesPrompt(${session.session_id})" title="Reset/clear scores for Session ${session.session_id}">
+            <button class="btn btn-sm btn-outline-danger admin-only-action ${isAdminAuthenticated() ? '' : 'hidden'}" onclick="clearSessionMatchesPrompt(${session.session_id})" title="Reset/clear scores for Session ${session.session_id}">
               🗑️ Clear S${session.session_id}
             </button>
             <span class="text-muted text-sm">${(session.matches || []).length} Beats</span>
@@ -965,16 +965,14 @@ async function confirmResetTournament() {
   }
 }
 
-// --- Redo Tournament Draw with Strict Zero Repeat Pairings ---
+// --- Redo Tournament Draw with Strict Zero Repeat Pairings & A-Team Criteria ---
 async function redoTournamentDrawPrompt() {
   if (!isAdminAuthenticated()) {
     openAdminPasswordModal(() => redoTournamentDrawPrompt());
     return;
   }
 
-  const ok = confirm("🎲 Redo tournament draw with fresh random pairings?\n\nThis will re-randomize all 4 sessions with strict ZERO repeat opponents guaranteed.\nExisting match results will be reset.");
-  if (!ok) return;
-
+  // Prioritize selectedAteamSet if configured in Admin tab, else tournamentState.a_team_anglers
   const anglers = (tournamentState && tournamentState.anglers && tournamentState.anglers.length >= 4)
     ? tournamentState.anglers
     : parseAnglerLines();
@@ -984,7 +982,20 @@ async function redoTournamentDrawPrompt() {
     return;
   }
 
-  const aTeamList = (tournamentState && tournamentState.a_team_anglers) || [];
+  let aTeamList = [];
+  if (selectedAteamSet && selectedAteamSet.size > 0) {
+    aTeamList = Array.from(selectedAteamSet).filter(a => anglers.includes(a));
+  } else if (tournamentState && tournamentState.a_team_anglers) {
+    aTeamList = tournamentState.a_team_anglers.filter(a => anglers.includes(a));
+  }
+
+  const aTeamDesc = aTeamList.length > 0 
+    ? `\n⭐ A-Team Members (${aTeamList.length}): ${aTeamList.join(', ')}\n• Each faces 2 fellow A-Team members in 2 separate 1v1 sessions.\n• Challengers face A-Team members.`
+    : '\n(No A-Team members selected)';
+
+  const ok = confirm(`🎲 Redo tournament draw with optimal fairness parameters?${aTeamDesc}\n\n• Zero repeat opponents (100% unique pairings guaranteed)\n• Existing match results will be reset.\n\nProceed?`);
+  if (!ok) return;
+
   const tName = (tournamentState && tournamentState.tournament_name) || "Fly Fishing Trials 2026";
   const venue = (tournamentState && tournamentState.venue) || "Championship Beats";
 
@@ -1011,11 +1022,114 @@ async function redoTournamentDrawPrompt() {
 
     const data = await res.json();
     if (data.success) {
-      alert("🎉 Tournament draw successfully re-randomized!\n\nAll 4 sessions generated with 100% unique pairings (zero repeat opponents guaranteed).");
+      alert("🎉 Tournament draw successfully re-randomized!\n\nAll 4 sessions generated with 100% unique pairings and A-Team 1v1 parameters satisfied.");
       await loadState();
       switchTab('schedule');
     } else {
       alert(`Error: ${data.error || 'Failed to redo draw'}`);
+    }
+  } catch (err) {
+    alert(`Error: ${err.message}`);
+  }
+}
+
+// --- Save A-Team Selection & Redo Draw Immediately ---
+async function saveAteamSelectionAndRedraw() {
+  if (!isAdminAuthenticated()) {
+    openAdminPasswordModal(() => saveAteamSelectionAndRedraw());
+    return;
+  }
+
+  const anglers = parseAnglerLines();
+  if (anglers.length < 4) {
+    alert("At least 4 anglers must be entered.");
+    return;
+  }
+
+  const aTeamList = Array.from(selectedAteamSet);
+  if (aTeamList.length > 0 && aTeamList.length < 3) {
+    alert(`A-Team requires at least 3 members (currently selected ${aTeamList.length}). Please select at least 3 or clear A-Team selection.`);
+    return;
+  }
+
+  const aTeamDesc = aTeamList.length > 0 
+    ? `\n⭐ A-Team Members (${aTeamList.length}): ${aTeamList.join(', ')}\n• Each faces 2 fellow A-Team members in 2 separate 1v1 sessions.\n• Challengers face A-Team members.`
+    : '\n(No A-Team members selected)';
+
+  const ok = confirm(`💾 Save A-Team members (${aTeamList.join(', ') || 'None'}) and re-randomize tournament draw?${aTeamDesc}\n\n• Zero repeat opponents guaranteed.\n• Existing match scores will be reset.\n\nProceed?`);
+  if (!ok) return;
+
+  const tName = document.getElementById('adminTournamentName')?.value.trim() || (tournamentState?.tournament_name || "Fly Fishing Trials 2026");
+  const venue = document.getElementById('adminVenue')?.value.trim() || (tournamentState?.venue || "Championship Beats");
+
+  try {
+    const res = await fetch('/api/admin/reset', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-Admin-Password': getAdminPassword()
+      },
+      body: JSON.stringify({
+        anglers: anglers,
+        a_team_anglers: aTeamList,
+        tournament_name: tName,
+        venue: venue,
+        password: getAdminPassword()
+      })
+    });
+
+    if (res.status === 401) {
+      openAdminPasswordModal(() => saveAteamSelectionAndRedraw());
+      return;
+    }
+
+    const data = await res.json();
+    if (data.success) {
+      tournamentState = data.state;
+      alert(`🎉 A-Team saved and tournament draw successfully generated with optimal parameters!\n\nA-Team: ${aTeamList.join(', ')}`);
+      await loadState();
+      switchTab('schedule');
+    } else {
+      alert(`Error: ${data.error || 'Failed to save A-Team and redraw.'}`);
+    }
+  } catch (err) {
+    alert(`Error: ${err.message}`);
+  }
+}
+
+// --- Save A-Team Designation Only (Without Resetting Draw) ---
+async function saveAteamSelectionOnly() {
+  if (!isAdminAuthenticated()) {
+    openAdminPasswordModal(() => saveAteamSelectionOnly());
+    return;
+  }
+
+  const aTeamList = Array.from(selectedAteamSet);
+  try {
+    const res = await fetch('/api/admin/trial/update_ateam', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-Admin-Password': getAdminPassword()
+      },
+      body: JSON.stringify({
+        a_team_anglers: aTeamList,
+        password: getAdminPassword()
+      })
+    });
+
+    if (res.status === 401) {
+      openAdminPasswordModal(() => saveAteamSelectionOnly());
+      return;
+    }
+
+    const data = await res.json();
+    if (data.success) {
+      tournamentState = data.state;
+      alert(`⭐ A-Team designations successfully saved: ${aTeamList.join(', ') || 'None'}`);
+      renderAll();
+    } else {
+      alert(`Error: ${data.error || 'Failed to update A-Team.'}`);
     }
   } catch (err) {
     alert(`Error: ${err.message}`);
@@ -1102,6 +1216,254 @@ async function clearSessionMatchesPrompt(sessionId) {
   }
 }
 
+// --- Parameter Verification Modal & Fairness Audit ---
+function closeParameterAuditModal() {
+  const modal = document.getElementById('parameterAuditModal');
+  if (modal) modal.classList.add('hidden');
+}
+
+function openParameterAuditModal() {
+  const modal = document.getElementById('parameterAuditModal');
+  const body = document.getElementById('parameterAuditBody');
+  if (!modal || !body) return;
+
+  if (!tournamentState || !tournamentState.sessions || tournamentState.sessions.length === 0) {
+    body.innerHTML = `
+      <div class="text-center py-4 text-muted">
+        <p>No active tournament draw found.</p>
+        <p class="text-sm">Please generate or randomize a draw in the Organizer Admin tab first.</p>
+      </div>
+    `;
+    modal.classList.remove('hidden');
+    return;
+  }
+
+  const anglers = tournamentState.anglers || [];
+  const aTeamList = tournamentState.a_team_anglers || [];
+  const aTeamSet = new Set(aTeamList);
+  const challengers = anglers.filter(a => !aTeamSet.has(a));
+  const sessions = tournamentState.sessions || [];
+
+  // Track encounters
+  const encounters = {};
+  anglers.forEach(a => { encounters[a] = {}; });
+  const aTeamOpponents = {};
+  aTeamList.forEach(a => { aTeamOpponents[a] = { opponents: new Set(), sessions: [], is1v1: true }; });
+  const challengerOpponents = {};
+  challengers.forEach(c => { challengerOpponents[c] = { aTeamOpponents: new Set(), allOpponents: new Set() }; });
+  const threeWayCounts = {};
+  anglers.forEach(a => { threeWayCounts[a] = 0; });
+
+  let repeatViolations = [];
+
+  sessions.forEach(s => {
+    (s.matches || []).forEach(m => {
+      const mAnglers = m.anglers || [];
+      if (mAnglers.length === 3) {
+        mAnglers.forEach(a => { threeWayCounts[a] = (threeWayCounts[a] || 0) + 1; });
+      }
+
+      for (let i = 0; i < mAnglers.length; i++) {
+        for (let j = i + 1; j < mAnglers.length; j++) {
+          const p1 = mAnglers[i];
+          const p2 = mAnglers[j];
+
+          encounters[p1][p2] = (encounters[p1][p2] || 0) + 1;
+          encounters[p2][p1] = (encounters[p2][p1] || 0) + 1;
+
+          if (encounters[p1][p2] > 1) {
+            repeatViolations.push(`${p1} vs ${p2} (S${s.session_id})`);
+          }
+
+          // A-Team vs A-Team tracking
+          if (aTeamSet.has(p1) && aTeamSet.has(p2)) {
+            aTeamOpponents[p1].opponents.add(p2);
+            aTeamOpponents[p1].sessions.push(s.session_short || `S${s.session_id}`);
+            if (mAnglers.length > 2) aTeamOpponents[p1].is1v1 = false;
+
+            aTeamOpponents[p2].opponents.add(p1);
+            aTeamOpponents[p2].sessions.push(s.session_short || `S${s.session_id}`);
+            if (mAnglers.length > 2) aTeamOpponents[p2].is1v1 = false;
+          }
+
+          // Challenger vs A-Team tracking
+          if (!aTeamSet.has(p1) && aTeamSet.has(p2)) {
+            challengerOpponents[p1].aTeamOpponents.add(p2);
+          } else if (!aTeamSet.has(p2) && aTeamSet.has(p1)) {
+            challengerOpponents[p2].aTeamOpponents.add(p1);
+          }
+
+          if (!aTeamSet.has(p1)) challengerOpponents[p1].allOpponents.add(p2);
+          if (!aTeamSet.has(p2)) challengerOpponents[p2].allOpponents.add(p1);
+        }
+      }
+    });
+  });
+
+  // Parameter 1: Zero Repeats
+  const hasZeroRepeats = repeatViolations.length === 0;
+
+  // Parameter 2: A-Team criteria (each faces 2 different A-Team members in 2 sessions, 1v1)
+  let aTeamOptimalCount = 0;
+  aTeamList.forEach(a => {
+    const oppCount = aTeamOpponents[a].opponents.size;
+    const sessCount = aTeamOpponents[a].sessions.length;
+    if (oppCount === 2 && sessCount === 2 && aTeamOpponents[a].is1v1) {
+      aTeamOptimalCount++;
+    }
+  });
+  const aTeamPass = aTeamList.length === 0 || aTeamOptimalCount === aTeamList.length;
+
+  // Parameter 3: Challenger vs A-Team exposure (target 2, acceptable >= 1)
+  let challengersFacing2 = 0;
+  let challengersFacingAtLeast1 = 0;
+  challengers.forEach(c => {
+    const count = challengerOpponents[c].aTeamOpponents.size;
+    if (count >= 2) challengersFacing2++;
+    if (count >= 1) challengersFacingAtLeast1++;
+  });
+
+  // Overall status rating
+  let statusBadgeHtml = '';
+  if (hasZeroRepeats && aTeamPass && challengersFacingAtLeast1 === challengers.length) {
+    statusBadgeHtml = `<span class="badge badge-success" style="background:#059669; color:#fff; padding:0.4rem 0.8rem; border-radius:20px; font-weight:700;">✅ ALL PARAMETERS SATISFIED (OPTIMAL)</span>`;
+  } else if (hasZeroRepeats && challengersFacingAtLeast1 === challengers.length) {
+    statusBadgeHtml = `<span class="badge badge-info" style="background:#0284c7; color:#fff; padding:0.4rem 0.8rem; border-radius:20px; font-weight:700;">✓ VALID & ACCEPTABLE FIELD</span>`;
+  } else {
+    statusBadgeHtml = `<span class="badge badge-warning" style="background:#d97706; color:#fff; padding:0.4rem 0.8rem; border-radius:20px; font-weight:700;">⚠️ PARAMETER DISCREPANCY DETECTED</span>`;
+  }
+
+  // Render HTML
+  let html = `
+    <div style="margin-bottom:1.25rem; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.5rem; background:rgba(15,23,42,0.6); padding:1rem; border-radius:8px; border:1px solid var(--border);">
+      <div>
+        <h4 style="margin:0 0 0.25rem 0;">Draw Quality: <strong>${escapeHtml(tournamentState.trial_info?.name || 'Current Trial')}</strong></h4>
+        <div class="text-sm text-muted">${anglers.length} Anglers &bull; ${aTeamList.length} Seeded A-Team &bull; ${challengers.length} Challengers &bull; 4 Sessions</div>
+      </div>
+      <div>${statusBadgeHtml}</div>
+    </div>
+
+    <!-- Parameter 1 Card: Opponent Uniqueness -->
+    <div class="card mb-3" style="background:var(--bg-secondary); border:1px solid var(--border); border-radius:8px; padding:1rem;">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem;">
+        <h4 style="margin:0;">1. Strict Opponent Uniqueness (Zero Repeat Pairings)</h4>
+        <span class="status-badge ${hasZeroRepeats ? 'badge-in-session' : 'badge-past'}">
+          ${hasZeroRepeats ? '✅ Passed (100% Unique)' : '❌ Repeat Pairings Found'}
+        </span>
+      </div>
+      <p class="text-sm text-muted" style="margin:0 0 0.5rem 0;">No competitor should face the same opponent more than once across all 4 sessions.</p>
+      ${hasZeroRepeats 
+        ? `<div style="color:#10b981; font-weight:600; font-size:0.9rem;">✓ Perfect Uniqueness: All match assignments across 4 sessions are unique. Zero repeat pairings detected.</div>`
+        : `<div style="color:#ef4444; font-weight:600; font-size:0.9rem;">⚠️ Violations: ${repeatViolations.join(', ')}</div>`
+      }
+    </div>
+
+    <!-- Parameter 2 Card: A-Team vs A-Team Matchups -->
+    <div class="card mb-3" style="background:var(--bg-secondary); border:1px solid var(--border); border-radius:8px; padding:1rem;">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem;">
+        <h4 style="margin:0;">2. A-Team vs A-Team Clashes (Target: 2 Different A-Team in 2 Sessions, 1v1)</h4>
+        <span class="status-badge ${aTeamPass ? 'badge-in-session' : 'badge-upcoming'}">
+          ${aTeamPass ? `✅ Optimal (${aTeamOptimalCount}/${aTeamList.length} Met)` : `⚠️ Acceptable (${aTeamOptimalCount}/${aTeamList.length})`}
+        </span>
+      </div>
+      <p class="text-sm text-muted" style="margin:0 0 0.75rem 0;">Each A-Team member should compete against 2 different A-Team members across 2 sessions (one-on-one). The other 2 sessions are against challengers.</p>
+      ${aTeamList.length === 0 ? `<div class="text-muted text-sm">No A-Team members designated for this trial.</div>` : `
+        <table class="table text-sm" style="width:100%; border-collapse:collapse;">
+          <thead>
+            <tr style="border-bottom:1px solid var(--border); text-align:left;">
+              <th style="padding:0.4rem;">A-Team Member</th>
+              <th style="padding:0.4rem;">A-Team Opponents Faced</th>
+              <th style="padding:0.4rem;">Sessions</th>
+              <th style="padding:0.4rem;">1v1 Format?</th>
+              <th style="padding:0.4rem;">Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${aTeamList.map(a => {
+              const info = aTeamOpponents[a];
+              const opps = Array.from(info.opponents);
+              const isOpt = opps.length === 2 && info.sessions.length === 2 && info.is1v1;
+              return `
+                <tr style="border-bottom:1px solid rgba(255,255,255,0.05);">
+                  <td style="padding:0.4rem;"><strong>⭐ ${escapeHtml(a)}</strong></td>
+                  <td style="padding:0.4rem;">${opps.length > 0 ? opps.map(o => `⭐ ${escapeHtml(o)}`).join(', ') : '<span class="text-muted">None</span>'}</td>
+                  <td style="padding:0.4rem;">${info.sessions.join(', ') || '-'}</td>
+                  <td style="padding:0.4rem;">${info.is1v1 ? '✅ Yes (1v1)' : '⚠️ 3-Way Match'}</td>
+                  <td style="padding:0.4rem;">${isOpt ? '<span style="color:#10b981; font-weight:700;">✅ Optimal (2 Clashes)</span>' : '<span style="color:#f59e0b; font-weight:600;">⚠️ Acceptable (' + opps.length + ')</span>'}</td>
+                </tr>
+              `;
+            }).join('')}
+          </tbody>
+        </table>
+      `}
+    </div>
+
+    <!-- Parameter 3 Card: Challenger Exposure to A-Team -->
+    <div class="card mb-3" style="background:var(--bg-secondary); border:1px solid var(--border); border-radius:8px; padding:1rem;">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem;">
+        <h4 style="margin:0;">3. Challenger vs A-Team Matches (Ideal: 2 A-Team Opponents)</h4>
+        <span class="status-badge ${challengersFacingAtLeast1 === challengers.length ? 'badge-in-session' : 'badge-upcoming'}">
+          ${challengersFacing2} of ${challengers.length} Face 2 A-Team
+        </span>
+      </div>
+      <p class="text-sm text-muted" style="margin:0 0 0.75rem 0;">Ideal: Every non-A-Team angler faces 2 A-Team members across their 4 sessions. (Facing 1 is acceptable; facing 2 is ideal).</p>
+      <table class="table text-sm" style="width:100%; border-collapse:collapse;">
+        <thead>
+          <tr style="border-bottom:1px solid var(--border); text-align:left;">
+            <th style="padding:0.4rem;">Challenger</th>
+            <th style="padding:0.4rem;">A-Team Opponents Faced</th>
+            <th style="padding:0.4rem;">A-Team Matches</th>
+            <th style="padding:0.4rem;">Evaluation</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${challengers.map(c => {
+            const opps = Array.from(challengerOpponents[c].aTeamOpponents);
+            const count = opps.length;
+            let evalBadge = '';
+            if (count === 2) {
+              evalBadge = '<span style="color:#10b981; font-weight:700;">✅ Optimal (2 A-Team)</span>';
+            } else if (count === 1) {
+              evalBadge = '<span style="color:#0284c7; font-weight:600;">✓ Acceptable (1 A-Team)</span>';
+            } else if (count > 2) {
+              evalBadge = '<span style="color:#8b5cf6; font-weight:600;">✓ High Exposure (' + count + ' A-Team)</span>';
+            } else {
+              evalBadge = '<span style="color:#ef4444; font-weight:700;">❌ Sub-optimal (0 A-Team)</span>';
+            }
+            return `
+              <tr style="border-bottom:1px solid rgba(255,255,255,0.05);">
+                <td style="padding:0.4rem;"><strong>${escapeHtml(c)}</strong></td>
+                <td style="padding:0.4rem;">${opps.length > 0 ? opps.map(o => `⭐ ${escapeHtml(o)}`).join(', ') : '<span class="text-muted">None</span>'}</td>
+                <td style="padding:0.4rem;">${count}</td>
+                <td style="padding:0.4rem;">${evalBadge}</td>
+              </tr>
+            `;
+          }).join('')}
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Parameter 4 Card: 3-Way Match Distribution -->
+    <div class="card" style="background:var(--bg-secondary); border:1px solid var(--border); border-radius:8px; padding:1rem;">
+      <h4 style="margin:0 0 0.5rem 0;">4. 3-Way Match Distribution (1v1v1 Beats)</h4>
+      <p class="text-sm text-muted" style="margin:0 0 0.5rem 0;">In an odd-numbered field, 1 beat per session has 3 competitors. Distribution should be balanced (max 1 or 2 per angler).</p>
+      <div style="display:flex; flex-wrap:wrap; gap:0.5rem;">
+        ${anglers.map(a => {
+          const cnt = threeWayCounts[a] || 0;
+          return `
+            <span style="background:rgba(255,255,255,0.08); padding:0.25rem 0.5rem; border-radius:4px; font-size:0.8rem;">
+              ${escapeHtml(a)}: <strong>${cnt}</strong> 3-way${cnt === 1 ? '' : 's'}
+            </span>
+          `;
+        }).join('')}
+      </div>
+    </div>
+  `;
+
+  body.innerHTML = html;
+  modal.classList.remove('hidden');
+}
+
 function unlockAdminInline() {
   const input = document.getElementById("inlineAdminPassword");
   const errEl = document.getElementById("inlineAdminError");
@@ -1143,7 +1505,8 @@ function switchTab(tabId) {
       if (!listEl.value.trim()) {
         listEl.value = tournamentState.anglers.join('\n');
       }
-      if (selectedAteamSet.size === 0 && tournamentState.a_team_anglers) {
+      if (tournamentState && tournamentState.a_team_anglers) {
+        selectedAteamSet.clear();
         tournamentState.a_team_anglers.forEach(a => selectedAteamSet.add(a));
       }
       updateAnglerCountHint();
@@ -2343,6 +2706,15 @@ function updateAdminUIState() {
       beatEditorBtn.innerHTML = "🔒 Beat &amp; Pin Editor (Organizer)";
     }
   }
+
+  // Show / hide organizer-only action buttons across the app (Redo Draw, Clear Draw, Clear Sessions)
+  document.querySelectorAll(".admin-only-action").forEach(el => {
+    if (isAuth) {
+      el.classList.remove("hidden");
+    } else {
+      el.classList.add("hidden");
+    }
+  });
 }
 
 // --- Trial Bar & Lifecycle Rendering ---

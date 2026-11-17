@@ -133,9 +133,9 @@ def generate_trials_schedule(
                            (c2, c3) not in pairs_met and (c3, c2) not in pairs_met:
                             if has_a_team:
                                 a_in_comb = [x for x in comb if x in a_indices]
-                                if len(a_in_comb) >= 2:
-                                    if any(a_vs_a_count[x] >= 2 for x in a_in_comb):
-                                        continue
+                                # A-vs-A matches must be strictly 1v1: max 1 A-Team member in any 3-way match
+                                if len(a_in_comb) > 1:
+                                    continue
                             found_group3 = comb
                             break
                     if not found_group3:

@@ -240,6 +240,24 @@ class TrialsRequestHandler(SimpleHTTPRequestHandler):
                 self.send_json_response({"success": False, "error": str(e)}, status_code=400)
             return
 
+        # 4b. Update A-Team Members (Admin Only)
+        elif path == "/api/admin/trial/update_ateam":
+            if not check_admin_auth(self.headers, body_json):
+                self.send_json_response({"success": False, "error": "Organizer password required (small-Blaar)."}, status_code=401)
+                return
+            try:
+                raw_a = body_json.get("a_team_anglers", [])
+                t_data = db.get_active_tournament_data()
+                valid_set = set(t_data.get("anglers", []))
+                clean_a = [a for a in raw_a if a in valid_set]
+                t_data["a_team_anglers"] = clean_a
+                t_data["num_a_team"] = len(clean_a)
+                db.save()
+                self.send_json_response({"success": True, "message": "A-Team updated successfully.", "state": db.get_full_state()})
+            except Exception as e:
+                self.send_json_response({"success": False, "error": str(e)}, status_code=400)
+            return
+
         # 5. Delete Trial (Admin Only)
         elif path == "/api/admin/trial/delete":
             if not check_admin_auth(self.headers, body_json):
