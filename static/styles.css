@@ -1737,3 +1737,58 @@ body {
 .logo-badge:hover .disa-logo-img {
   transform: scale(1.08) rotate(3deg);
 }
+
+/* ========================================================
+   CPS BOTANICAL & WILDLIFE ARTISTIC VIGNETTES
+   ======================================================== */
+.artistic-vignettes-bar {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 0.75rem;
+  padding: 0.85rem 1rem;
+  background: rgba(15, 23, 42, 0.95);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.vignette-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: rgba(30, 41, 59, 0.7);
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  border-radius: var(--radius-md);
+  padding: 0.5rem 0.75rem;
+  transition: all 0.2s ease;
+}
+
+.vignette-item:hover {
+  transform: translateY(-2px);
+  border-color: #38bdf8;
+  background: rgba(30, 41, 59, 0.95);
+}
+
+.vignette-img {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: #fdfaf2;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+.vignette-meta {
+  display: flex;
+  flex-direction: column;
+}
+
+.vignette-meta strong {
+  font-size: 0.82rem;
+  color: #f1f5f9;
+  line-height: 1.25;
+}
+
+.vignette-meta span {
+  font-size: 0.72rem;
+  color: #94a3b8;
+}

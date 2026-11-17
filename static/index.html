@@ -260,14 +260,47 @@
         <div class="map-layer-bar">
           <span class="layer-bar-label"><strong>Map View Style:</strong></span>
           <div class="layer-buttons-group">
-            <button class="layer-btn active" id="layerBtnSatellite" onclick="switchMapLayer('satellite')">🛰️ Satellite (High-Res)</button>
+            <button class="layer-btn active" id="layerBtnArtistic" onclick="switchMapLayer('artistic')">🎨 Artistic (Smalblaar &amp; Elandspad Illustrated)</button>
+            <button class="layer-btn" id="layerBtnSatellite" onclick="switchMapLayer('satellite')">🛰️ Satellite (Google Earth / Esri)</button>
             <button class="layer-btn" id="layerBtnTopo" onclick="switchMapLayer('topo')">⛰️ Topographic (Mountain Relief)</button>
-            <button class="layer-btn" id="layerBtnStreet" onclick="switchMapLayer('street')">🛣️ Street Map (OpenStreetMap)</button>
+            <button class="layer-btn" id="layerBtnStreet" onclick="switchMapLayer('street')">🛣️ Street Map</button>
           </div>
         </div>
 
         <!-- The Leaflet Map Element -->
         <div id="streamMap" class="stream-map-container"></div>
+
+        <!-- CPS Botanical & Wildlife Artistic Vignettes -->
+        <div class="artistic-vignettes-bar">
+          <div class="vignette-item">
+            <img src="art_sugarbird.png" alt="Cape Sugarbird on Protea" class="vignette-img">
+            <div class="vignette-meta">
+              <strong>Cape Sugarbird &amp; Protea</strong>
+              <span>Du Toitskloof Fynbos</span>
+            </div>
+          </div>
+          <div class="vignette-item">
+            <img src="art_trout.png" alt="Cape Wild Rainbow Trout" class="vignette-img">
+            <div class="vignette-meta">
+              <strong>Cape Wild Rainbow Trout</strong>
+              <span>Smalblaar &amp; Elandspad</span>
+            </div>
+          </div>
+          <div class="vignette-item">
+            <img src="art_disa.png" alt="Red Disa Orchid" class="vignette-img">
+            <div class="vignette-meta">
+              <strong>Red Disa Orchid</strong>
+              <span>Pride of Table Mountain</span>
+            </div>
+          </div>
+          <div class="vignette-item">
+            <img src="art_canyon.png" alt="Elandspad Mountain Gorge" class="vignette-img">
+            <div class="vignette-meta">
+              <strong>Elandspad Gorge &amp; Flies</strong>
+              <span>Amber Mountain Streams</span>
+            </div>
+          </div>
+        </div>
 
         <!-- Legend & Color Code Guide -->
         <div class="map-legend-row">

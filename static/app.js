@@ -1433,6 +1433,14 @@ function renderAnglerItinerary(anglerName, sched) {
 // LEAFLET MAP INITIALIZATION & LAYER SWITCHER
 // ========================================================
 
+let artisticOverlayLayer = null;
+
+// Smalblaar & Elandspad geographical bounding box (valley limits)
+const CPS_VALLEY_BOUNDS = [
+  [-33.775, 19.085], // Southwest: Du Toitskloof tunnel entrance & lower Smalblaar
+  [-33.685, 19.220]  // Northeast: Upper Elandspad / Kraalstroom
+];
+
 function initOrUpdateMap() {
   const mapContainer = document.getElementById('streamMap');
   if (!mapContainer || typeof L === 'undefined') return;
@@ -1442,34 +1450,49 @@ function initOrUpdateMap() {
     streamMap = L.map('streamMap', {
       center: [-33.727, 19.145],
       zoom: 13,
+      minZoom: 13, // Clamped: Cannot zoom out further than Smalblaar & Elandspad!
+      maxZoom: 18, // Zoom in to pools, boulders, and beat boundaries
+      maxBounds: CPS_VALLEY_BOUNDS,
+      maxBoundsViscosity: 1.0, // Strictly keeps view inside valley
       zoomControl: true,
       attributionControl: true
     });
 
     // 1. Satellite (Esri World Imagery - Ultra high res, no API key required)
     baseTileLayers['satellite'] = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
-      maxZoom: 19,
+      maxZoom: 18,
       attribution: 'Esri &bull; High-Res Satellite'
     });
 
     // 2. Topographic & Mountain Relief (Esri World Topo Map - No API key required)
     baseTileLayers['topo'] = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}', {
-      maxZoom: 19,
+      maxZoom: 18,
       attribution: 'Esri &bull; Topographic Mountain Map'
     });
 
     // 3. Street Map (OpenStreetMap - Free open community map, no API key required)
     baseTileLayers['street'] = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      maxZoom: 19,
+      maxZoom: 18,
       attribution: 'OpenStreetMap'
     });
 
-    // 4. Fallback / Artistic alias mapping directly to Esri Topo Map (zero watermarks)
-    baseTileLayers['artistic'] = baseTileLayers['topo'];
+    // 4. Fallback / Base for Artistic view
+    baseTileLayers['artistic'] = baseTileLayers['satellite'];
 
-    // Default layer: Satellite (crisp, high-definition terrain & river detail)
+    // Authentic CPS Illustrated Watercolor Overlay (Smalblaar & Elandspad)
+    artisticOverlayLayer = L.imageOverlay('cps_artistic_valley.jpg', [
+      [-33.765, 19.095],
+      [-33.695, 19.208]
+    ], {
+      opacity: 0.85,
+      interactive: false,
+      alt: 'Cape Piscatorial Society Illustrated Watercolor Map'
+    });
+
+    // Default layer: Artistic (illustrated watercolor blended on satellite base)
     baseTileLayers['satellite'].addTo(streamMap);
-    currentMapLayerName = 'satellite';
+    artisticOverlayLayer.addTo(streamMap);
+    currentMapLayerName = 'artistic';
 
     // Layer groups for vectors and pins
     beatMarkersLayerGroup = L.layerGroup().addTo(streamMap);
@@ -1483,15 +1506,32 @@ function initOrUpdateMap() {
 }
 
 function switchMapLayer(layerName) {
-  if (!streamMap || !baseTileLayers[layerName]) return;
+  if (!streamMap) return;
 
-  // Remove current base tile layers
-  Object.values(baseTileLayers).forEach(l => {
-    if (streamMap.hasLayer(l)) streamMap.removeLayer(l);
-  });
+  if (layerName === 'artistic') {
+    // Show satellite base with hand-painted watercolor overlay
+    if (!streamMap.hasLayer(baseTileLayers['satellite'])) {
+      Object.values(baseTileLayers).forEach(l => {
+        if (streamMap.hasLayer(l)) streamMap.removeLayer(l);
+      });
+      baseTileLayers['satellite'].addTo(streamMap);
+    }
+    if (artisticOverlayLayer && !streamMap.hasLayer(artisticOverlayLayer)) {
+      artisticOverlayLayer.addTo(streamMap);
+    }
+  } else {
+    // Standard satellite/topo/street: remove artistic overlay
+    if (artisticOverlayLayer && streamMap.hasLayer(artisticOverlayLayer)) {
+      streamMap.removeLayer(artisticOverlayLayer);
+    }
+    if (baseTileLayers[layerName]) {
+      Object.values(baseTileLayers).forEach(l => {
+        if (streamMap.hasLayer(l)) streamMap.removeLayer(l);
+      });
+      baseTileLayers[layerName].addTo(streamMap);
+    }
+  }
 
-  // Add selected layer
-  baseTileLayers[layerName].addTo(streamMap);
   currentMapLayerName = layerName;
 
   // Update UI buttons
@@ -1503,7 +1543,10 @@ function switchMapLayer(layerName) {
 
 function resetMapView() {
   if (streamMap) {
-    streamMap.setView([-33.727, 19.145], 13);
+    streamMap.fitBounds([
+      [-33.755, 19.105],
+      [-33.705, 19.198]
+    ], { padding: [25, 25] });
   }
 }
 
