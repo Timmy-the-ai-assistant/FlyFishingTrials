@@ -147,18 +147,18 @@ function generateEdgeSchedule(anglers, aTeamAnglers = [], availableBeats = []) {
   const numBeats = isOdd ? Math.floor((N - 1) / 2) : Math.floor(N / 2);
 
   const fallbackBeats = [
-    { id: "SB6", code: "SB6", name: "Smalblaar 6 (SB6)", river: "Smalblaar", lower_pin: [-33.7319, 19.1141], mid_pin: [-33.7330, 19.1105], upper_pin: [-33.7342, 19.1065], meeting_point: "Tunnel East Portal" },
-    { id: "EP1", code: "EP1", name: "Elandspad 1 (EP1)", river: "Elandspad", lower_pin: [-33.7319, 19.1141], mid_pin: [-33.7360, 19.1152], upper_pin: [-33.7405, 19.1162], meeting_point: "Junction Pool" },
-    { id: "EP2", code: "EP2", name: "Elandspad 2 (EP2)", river: "Elandspad", lower_pin: [-33.7405, 19.1162], mid_pin: [-33.7460, 19.1172], upper_pin: [-33.7520, 19.1188], meeting_point: "Fisherman's Cave" },
-    { id: "Star", code: "Star", name: "Star Beat", river: "Elandspad", lower_pin: [-33.7520, 19.1188], mid_pin: [-33.7565, 19.1195], upper_pin: [-33.7610, 19.1205], meeting_point: "Star beat shelter" },
-    { id: "SB5", code: "SB5", name: "Smalblaar 5 (SB5)", river: "Smalblaar", lower_pin: [-33.7295, 19.1320], mid_pin: [-33.7305, 19.1270], upper_pin: [-33.7319, 19.1141], meeting_point: "CPS Elandspad parking" },
-    { id: "SB4", code: "SB4", name: "Smalblaar 4 (SB4)", river: "Smalblaar", lower_pin: [-33.7272, 19.1415], mid_pin: [-33.7285, 19.1370], upper_pin: [-33.7295, 19.1320], meeting_point: "Donkergat pull-off" },
-    { id: "SB3", code: "SB3", name: "Smalblaar 3 (SB3)", river: "Smalblaar", lower_pin: [-33.7235, 19.1530], mid_pin: [-33.7258, 19.1470], upper_pin: [-33.7272, 19.1415], meeting_point: "Emergency telephone layby 3" },
-    { id: "SB2", code: "SB2", name: "Smalblaar 2 (SB2)", river: "Smalblaar", lower_pin: [-33.7190, 19.1655], mid_pin: [-33.7212, 19.1590], upper_pin: [-33.7235, 19.1530], meeting_point: "Picnic Site parking" },
-    { id: "SB1", code: "SB1", name: "Smalblaar 1 (SB1)", river: "Smalblaar", lower_pin: [-33.7150, 19.1740], mid_pin: [-33.7170, 19.1700], upper_pin: [-33.7190, 19.1655], meeting_point: "Picnic Site 1" },
-    { id: "Hotel Beat", code: "Hotel Beat", name: "Smalblaar Hotel Beat", river: "Smalblaar", lower_pin: [-33.7125, 19.1800], mid_pin: [-33.7138, 19.1770], upper_pin: [-33.7150, 19.1740], meeting_point: "Du Kloof Lodge" },
-    { id: "Transport Upper", code: "Transport Upper", name: "Transport Upper", river: "Smalblaar", lower_pin: [-33.7085, 19.1895], mid_pin: [-33.7105, 19.1845], upper_pin: [-33.7125, 19.1800], meeting_point: "Transport bridge parking" },
-    { id: "Transport Lower", code: "Transport Lower", name: "Transport Lower", river: "Smalblaar", lower_pin: [-33.7040, 19.2000], mid_pin: [-33.7065, 19.1945], upper_pin: [-33.7085, 19.1895], meeting_point: "Farm gate boundary" }
+    { id: "SB6", code: "SB6", name: "Smalblaar 6 (SB6)", river: "Small Blaar", lower_pin: [-33.7319, 19.1141], mid_pin: [-33.7330, 19.1105], upper_pin: [-33.7342, 19.1065], meeting_point: "Tunnel East Portal" },
+    { id: "EP1", code: "EP1", name: "Elandspad 1 (EP1)", river: "Elands Pad", lower_pin: [-33.7319, 19.1141], mid_pin: [-33.7360, 19.1152], upper_pin: [-33.7405, 19.1162], meeting_point: "Junction Pool" },
+    { id: "EP2", code: "EP2", name: "Elandspad 2 (EP2)", river: "Elands Pad", lower_pin: [-33.7405, 19.1162], mid_pin: [-33.7460, 19.1172], upper_pin: [-33.7520, 19.1188], meeting_point: "Fisherman's Cave" },
+    { id: "Star", code: "Star", name: "Star Beat", river: "Elands Pad", lower_pin: [-33.7520, 19.1188], mid_pin: [-33.7565, 19.1195], upper_pin: [-33.7610, 19.1205], meeting_point: "Star beat shelter" },
+    { id: "SB5", code: "SB5", name: "Smalblaar 5 (SB5)", river: "Small Blaar", lower_pin: [-33.7295, 19.1320], mid_pin: [-33.7305, 19.1270], upper_pin: [-33.7319, 19.1141], meeting_point: "CPS Elandspad parking" },
+    { id: "SB4", code: "SB4", name: "Smalblaar 4 (SB4)", river: "Small Blaar", lower_pin: [-33.7272, 19.1415], mid_pin: [-33.7285, 19.1370], upper_pin: [-33.7295, 19.1320], meeting_point: "Donkergat pull-off" },
+    { id: "SB3", code: "SB3", name: "Smalblaar 3 (SB3)", river: "Small Blaar", lower_pin: [-33.7235, 19.1530], mid_pin: [-33.7258, 19.1470], upper_pin: [-33.7272, 19.1415], meeting_point: "Emergency telephone layby 3" },
+    { id: "SB2", code: "SB2", name: "Smalblaar 2 (SB2)", river: "Small Blaar", lower_pin: [-33.7190, 19.1655], mid_pin: [-33.7212, 19.1590], upper_pin: [-33.7235, 19.1530], meeting_point: "Picnic Site parking" },
+    { id: "SB1", code: "SB1", name: "Smalblaar 1 (SB1)", river: "Small Blaar", lower_pin: [-33.7150, 19.1740], mid_pin: [-33.7170, 19.1700], upper_pin: [-33.7190, 19.1655], meeting_point: "Picnic Site 1" },
+    { id: "Hotel Beat", code: "Hotel Beat", name: "Smalblaar Hotel Beat", river: "Small Blaar", lower_pin: [-33.7125, 19.1800], mid_pin: [-33.7138, 19.1770], upper_pin: [-33.7150, 19.1740], meeting_point: "Du Kloof Lodge" },
+    { id: "Transport Upper", code: "Transport Upper", name: "Transport Upper", river: "Small Blaar", lower_pin: [-33.7085, 19.1895], mid_pin: [-33.7105, 19.1845], upper_pin: [-33.7125, 19.1800], meeting_point: "Transport bridge parking" },
+    { id: "Transport Lower", code: "Transport Lower", name: "Transport Lower", river: "Small Blaar", lower_pin: [-33.7040, 19.2000], mid_pin: [-33.7065, 19.1945], upper_pin: [-33.7085, 19.1895], meeting_point: "Farm gate boundary" }
   ];
 
   const beatsPool = (availableBeats && availableBeats.length >= numBeats) 

@@ -1598,7 +1598,9 @@ function renderAnglerItinerary(anglerName, sched) {
   sched.forEach(s => {
     const isSat = s.session_id <= 2;
     const isStay = s.is_stayer;
-    const riverClass = s.river === 'Elandspad' ? 'popup-river-yp' : 'popup-river-sb';
+    const isYP = (s.river && s.river.toLowerCase().includes('eland'));
+    const riverClass = isYP ? 'popup-river-yp' : 'popup-river-sb';
+    const riverDisplay = isYP ? 'Elands Pad' : 'Small Blaar';
     const cardClass = `card-s${s.session_id}`;
     const pin = s.pin || s.lower_pin || [-33.7319, 19.1141];
 
@@ -1609,7 +1611,7 @@ function renderAnglerItinerary(anglerName, sched) {
           <span class="itinerary-status-tag ${isStay ? 'tag-stay' : 'tag-move'}">${isStay ? '📍 Stay on Beat' : '🚶 Move Beat'}</span>
         </div>
         <div class="itinerary-beat-title">${escapeHtml(s.beat_name || s.beat_code)}</div>
-        <div class="popup-river-tag ${riverClass}">${escapeHtml(s.river || 'Du Toitskloof')} &bull; ${escapeHtml(s.section || 'First Half')}</div>
+        <div class="popup-river-tag ${riverClass}">${escapeHtml(riverDisplay)} &bull; ${escapeHtml(s.section || 'First Half')}</div>
         <div class="popup-detail"><strong>Opponent(s):</strong> ${escapeHtml(s.opponents.join(' & ') || 'TBD')}</div>
         <div class="popup-detail"><strong>Meeting Point:</strong> ${escapeHtml(s.meeting_point || 'Bridge Layby')}</div>
         <div class="popup-detail"><strong>GPS:</strong> <code>${pin[0].toFixed(4)}, ${pin[1].toFixed(4)}</code></div>
@@ -1969,7 +1971,9 @@ function updateMapPins() {
 }
 
 function buildBeatPopup(beat, typeLabel, coord) {
-  const riverClass = beat.river === 'Elandspad' ? 'popup-river-yp' : 'popup-river-sb';
+  const isYP = (beat.river && beat.river.toLowerCase().includes('eland'));
+  const riverClass = isYP ? 'popup-river-yp' : 'popup-river-sb';
+  const riverDisplay = isYP ? 'Elands Pad' : 'Small Blaar';
   return `
     <div class="map-popup-card">
       <div class="popup-beat-photo-wrap">
@@ -1978,7 +1982,7 @@ function buildBeatPopup(beat, typeLabel, coord) {
       </div>
       <span class="popup-session-badge" style="background: rgba(56, 189, 248, 0.2); color: #38bdf8;">${typeLabel}</span>
       <h4>${escapeHtml(beat.name || beat.code)}</h4>
-      <div class="popup-river-tag ${riverClass}">${escapeHtml(beat.river)}</div>
+      <div class="popup-river-tag ${riverClass}">${escapeHtml(riverDisplay)}</div>
       <div class="popup-detail"><strong>Meeting Point:</strong> ${escapeHtml(beat.meeting_point || 'Layby')}</div>
       <div class="popup-detail"><strong>GPS:</strong> <code>${coord[0].toFixed(5)}, ${coord[1].toFixed(5)}</code></div>
       <div class="popup-detail text-muted text-sm">${escapeHtml(beat.notes || '')}</div>
@@ -1992,7 +1996,9 @@ function buildBeatPopup(beat, typeLabel, coord) {
 function buildAnglerSessionPopup(anglerName, sessionInfo, coord) {
   const sId = sessionInfo.session_id;
   const color = sId === 1 ? '#eab308' : (sId === 2 ? '#f97316' : (sId === 3 ? '#10b981' : '#3b82f6'));
-  const riverClass = sessionInfo.river === 'Elandspad' ? 'popup-river-yp' : 'popup-river-sb';
+  const isYP = (sessionInfo.river && sessionInfo.river.toLowerCase().includes('eland'));
+  const riverClass = isYP ? 'popup-river-yp' : 'popup-river-sb';
+  const riverDisplay = isYP ? 'Elands Pad' : 'Small Blaar';
 
   return `
     <div class="map-popup-card">
@@ -2004,7 +2010,7 @@ function buildAnglerSessionPopup(anglerName, sessionInfo, coord) {
         Session ${sId}: ${sessionInfo.session_short}
       </span>
       <h4>${escapeHtml(anglerName)}</h4>
-      <div class="popup-river-tag ${riverClass}">${escapeHtml(sessionInfo.beat_name)} (${escapeHtml(sessionInfo.river)})</div>
+      <div class="popup-river-tag ${riverClass}">${escapeHtml(sessionInfo.beat_name)} (${escapeHtml(riverDisplay)})</div>
       <div class="popup-detail"><strong>Section:</strong> ${escapeHtml(sessionInfo.section)}</div>
       <div class="popup-detail"><strong>Status:</strong> ${sessionInfo.is_stayer ? '📍 Stayer (Morning &rarr; Afternoon)' : '🚶 Mover'}</div>
       <div class="popup-detail"><strong>Opponent(s):</strong> ${escapeHtml(sessionInfo.opponents.join(', '))}</div>
@@ -2065,6 +2071,9 @@ function renderBeatsManagerTable() {
     const mid = b.mid_pin || [0, 0];
     const upper = b.upper_pin || [0, 0];
 
+    const isYP = (b.river && b.river.toLowerCase().includes('eland'));
+    const isSB = !isYP;
+
     html += `
       <tr>
         <td class="text-center">
@@ -2076,8 +2085,8 @@ function renderBeatsManagerTable() {
         </td>
         <td>
           <select id="beat_river_${idx}" class="river-select" onchange="onBeatRiverChange(${idx})">
-            <option value="Smalblaar" ${b.river === 'Smalblaar' ? 'selected' : ''}>Smalblaar</option>
-            <option value="Elandspad" ${b.river === 'Elandspad' ? 'selected' : ''}>Elandspad</option>
+            <option value="Small Blaar" ${isSB ? 'selected' : ''}>Small Blaar</option>
+            <option value="Elands Pad" ${isYP ? 'selected' : ''}>Elands Pad</option>
           </select>
         </td>
         <td>
