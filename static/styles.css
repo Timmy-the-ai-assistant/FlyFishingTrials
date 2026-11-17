@@ -128,16 +128,17 @@ body {
 }
 
 .logo-badge {
-  font-size: 2.5rem;
-  background: var(--bg-subtle);
-  border: 1px solid var(--border-light);
-  width: 58px;
-  height: 58px;
+  background: rgba(30, 41, 59, 0.7);
+  border: 1px solid rgba(239, 68, 68, 0.35);
+  width: 62px;
+  height: 62px;
   border-radius: var(--radius-md);
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: var(--shadow-sm);
+  box-shadow: 0 4px 14px rgba(220, 38, 38, 0.2);
+  backdrop-filter: blur(8px);
+  padding: 4px;
 }
 
 .logo-area h1 {
