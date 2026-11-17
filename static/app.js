@@ -68,6 +68,10 @@ async function loadState(isManual = false) {
     if (!res.ok) throw new Error(`HTTP error ${res.status}`);
     const data = await res.json();
     tournamentState = data;
+    if (data.a_team_anglers && (!selectedAteamSet || selectedAteamSet.size === 0)) {
+      selectedAteamSet.clear();
+      data.a_team_anglers.forEach(a => selectedAteamSet.add(a));
+    }
     renderAll();
   } catch (err) {
     console.error("Failed to load tournament state:", err);
@@ -1126,8 +1130,11 @@ async function saveAteamSelectionOnly() {
     const data = await res.json();
     if (data.success) {
       tournamentState = data.state;
-      alert(`⭐ A-Team designations successfully saved: ${aTeamList.join(', ') || 'None'}`);
+      selectedAteamSet.clear();
+      (tournamentState.a_team_anglers || []).forEach(a => selectedAteamSet.add(a));
       renderAll();
+      renderAteamChecklist();
+      alert(`✅ A-Team successfully saved for ${tournamentState.trial_info?.name || 'this trial'}:\n\n${aTeamList.join(', ') || 'None'}`);
     } else {
       alert(`Error: ${data.error || 'Failed to update A-Team.'}`);
     }
@@ -1505,7 +1512,7 @@ function switchTab(tabId) {
       if (!listEl.value.trim()) {
         listEl.value = tournamentState.anglers.join('\n');
       }
-      if (tournamentState && tournamentState.a_team_anglers) {
+      if (tournamentState && tournamentState.a_team_anglers && selectedAteamSet.size === 0) {
         selectedAteamSet.clear();
         tournamentState.a_team_anglers.forEach(a => selectedAteamSet.add(a));
       }
@@ -2852,8 +2859,15 @@ async function onTrialSelected(trialId) {
       const card = document.getElementById('anglerItineraryCard');
       if (pillsRow) pillsRow.classList.add('hidden');
       if (card) card.classList.add('hidden');
+
+      // Sync A-Team checklist to the newly selected trial's saved A-Team
+      selectedAteamSet.clear();
+      if (tournamentState.a_team_anglers) {
+        tournamentState.a_team_anglers.forEach(a => selectedAteamSet.add(a));
+      }
       
       renderAll();
+      renderAteamChecklist();
       if (typeof updateMapPins === 'function') {
         updateMapPins();
       }

@@ -526,7 +526,10 @@
           <div class="form-group mt-3" style="background: var(--bg-primary); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 1rem;">
             <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.4rem; flex-wrap:wrap; gap:0.5rem;">
               <label style="margin-bottom:0;"><strong>⭐ Mark A-Team Members:</strong></label>
-              <div style="display:flex; gap:0.4rem;">
+              <div style="display:flex; gap:0.4rem; align-items:center; flex-wrap:wrap;">
+                <button type="button" class="btn btn-sm btn-primary" onclick="saveAteamSelectionOnly()" style="background:#059669; border-color:#059669; font-weight:700; display:flex; align-items:center; gap:0.35rem;" title="Save marked A-Team members for this trial">
+                  💾 Save A-Team
+                </button>
                 <button type="button" class="btn btn-sm btn-outline" onclick="selectTopNAteam(3)">Top 3 A-Team</button>
                 <button type="button" class="btn btn-sm btn-outline" onclick="selectTopNAteam(4)">Top 4 A-Team</button>
                 <button type="button" class="btn btn-sm btn-outline" onclick="clearAteamSelection()">Clear A-Team</button>
@@ -538,7 +541,12 @@
             <div id="ateamChecklistContainer" class="ateam-checklist-grid">
               <!-- Dynamically populated from names -->
             </div>
-            <div id="ateamValidationSummary" class="mt-2 text-sm"></div>
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-top:0.75rem; flex-wrap:wrap; gap:0.5rem; padding-top:0.5rem; border-top:1px solid rgba(255,255,255,0.06);">
+              <div id="ateamValidationSummary" class="text-sm"></div>
+              <button type="button" class="btn btn-sm btn-primary" onclick="saveAteamSelectionOnly()" style="background:#059669; border-color:#059669; font-weight:700; padding:0.35rem 0.9rem;" title="Save marked A-Team members for this trial">
+                💾 Save A-Team Members
+              </button>
+            </div>
           </div>
 
           <div class="form-actions mt-3" style="display:flex; gap:0.6rem; flex-wrap:wrap;">
