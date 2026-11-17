@@ -1,0 +1,15 @@
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+.venv/
+test_*.py
+quick_check.py
+debug_*.py
+*.pdf
+trials_data.json.bak*
+.DS_Store
+Thumbs.db

@@ -1,0 +1,517 @@
+{
+  "snapshot_metadata": {
+    "filename": "Tournament_Tournament_Snapshot_20261117_172917.json",
+    "saved_at": "2026-11-17T17:29:17.779862",
+    "session_id": null,
+    "snapshot_name": "Tournament_Snapshot",
+    "tournament_name": "Fly Fishing Trials 2026",
+    "num_anglers": 11
+  },
+  "tournament_data": {
+    "tournament_name": "Fly Fishing Trials 2026",
+    "venue": "Championship Beats",
+    "created_at": "2026-11-17T17:27:54.785449",
+    "updated_at": "2026-11-17T17:27:54.785449",
+    "anglers": [
+      "James",
+      "Barry",
+      "Daniel",
+      "Garth",
+      "Dale",
+      "Dylan",
+      "Ian",
+      "Malcolm",
+      "Ryan",
+      "Gary",
+      "Michelle"
+    ],
+    "num_anglers": 11,
+    "num_beats": 5,
+    "three_way_counts": {
+      "James": 1,
+      "Barry": 1,
+      "Daniel": 1,
+      "Garth": 1,
+      "Dale": 1,
+      "Dylan": 1,
+      "Ian": 1,
+      "Malcolm": 2,
+      "Ryan": 1,
+      "Gary": 1,
+      "Michelle": 1
+    },
+    "sessions": [
+      {
+        "session_id": 1,
+        "session_name": "Saturday Morning",
+        "session_short": "Sat AM",
+        "day": "Saturday",
+        "time": "Morning",
+        "matches": [
+          {
+            "match_id": "S1_B1",
+            "session_id": 1,
+            "beat": 1,
+            "beat_number": 1,
+            "beat_name": "Beat 1",
+            "match_type": "1v1v1",
+            "anglers": [
+              "Gary",
+              "Ryan",
+              "Garth"
+            ],
+            "angler_indices": [
+              9,
+              8,
+              3
+            ],
+            "status": "UNREPORTED",
+            "submissions": {},
+            "official_scores": {},
+            "calculated_points": {},
+            "discrepancy_details": null
+          },
+          {
+            "match_id": "S1_B2",
+            "session_id": 1,
+            "beat": 2,
+            "beat_number": 2,
+            "beat_name": "Beat 2",
+            "match_type": "1v1",
+            "anglers": [
+              "Ian",
+              "Dylan"
+            ],
+            "angler_indices": [
+              6,
+              5
+            ],
+            "status": "UNREPORTED",
+            "submissions": {},
+            "official_scores": {},
+            "calculated_points": {},
+            "discrepancy_details": null
+          },
+          {
+            "match_id": "S1_B3",
+            "session_id": 1,
+            "beat": 3,
+            "beat_number": 3,
+            "beat_name": "Beat 3",
+            "match_type": "1v1",
+            "anglers": [
+              "Malcolm",
+              "Dale"
+            ],
+            "angler_indices": [
+              7,
+              4
+            ],
+            "status": "UNREPORTED",
+            "submissions": {},
+            "official_scores": {},
+            "calculated_points": {},
+            "discrepancy_details": null
+          },
+          {
+            "match_id": "S1_B4",
+            "session_id": 1,
+            "beat": 4,
+            "beat_number": 4,
+            "beat_name": "Beat 4",
+            "match_type": "1v1",
+            "anglers": [
+              "Daniel",
+              "Michelle"
+            ],
+            "angler_indices": [
+              2,
+              10
+            ],
+            "status": "UNREPORTED",
+            "submissions": {},
+            "official_scores": {},
+            "calculated_points": {},
+            "discrepancy_details": null
+          },
+          {
+            "match_id": "S1_B5",
+            "session_id": 1,
+            "beat": 5,
+            "beat_number": 5,
+            "beat_name": "Beat 5",
+            "match_type": "1v1",
+            "anglers": [
+              "James",
+              "Barry"
+            ],
+            "angler_indices": [
+              0,
+              1
+            ],
+            "status": "UNREPORTED",
+            "submissions": {},
+            "official_scores": {},
+            "calculated_points": {},
+            "discrepancy_details": null
+          }
+        ]
+      },
+      {
+        "session_id": 2,
+        "session_name": "Saturday Afternoon",
+        "session_short": "Sat PM",
+        "day": "Saturday",
+        "time": "Afternoon",
+        "matches": [
+          {
+            "match_id": "S2_B1",
+            "session_id": 2,
+            "beat": 1,
+            "beat_number": 1,
+            "beat_name": "Beat 1",
+            "match_type": "1v1",
+            "anglers": [
+              "Dale",
+              "Gary"
+            ],
+            "angler_indices": [
+              4,
+              9
+            ],
+            "status": "UNREPORTED",
+            "submissions": {},
+            "official_scores": {},
+            "calculated_points": {},
+            "discrepancy_details": null
+          },
+          {
+            "match_id": "S2_B2",
+            "session_id": 2,
+            "beat": 2,
+            "beat_number": 2,
+            "beat_name": "Beat 2",
+            "match_type": "1v1v1",
+            "anglers": [
+              "Dylan",
+              "Malcolm",
+              "Daniel"
+            ],
+            "angler_indices": [
+              5,
+              7,
+              2
+            ],
+            "status": "UNREPORTED",
+            "submissions": {},
+            "official_scores": {},
+            "calculated_points": {},
+            "discrepancy_details": null
+          },
+          {
+            "match_id": "S2_B3",
+            "session_id": 2,
+            "beat": 3,
+            "beat_number": 3,
+            "beat_name": "Beat 3",
+            "match_type": "1v1",
+            "anglers": [
+              "Ryan",
+              "Barry"
+            ],
+            "angler_indices": [
+              8,
+              1
+            ],
+            "status": "UNREPORTED",
+            "submissions": {},
+            "official_scores": {},
+            "calculated_points": {},
+            "discrepancy_details": null
+          },
+          {
+            "match_id": "S2_B4",
+            "session_id": 2,
+            "beat": 4,
+            "beat_number": 4,
+            "beat_name": "Beat 4",
+            "match_type": "1v1",
+            "anglers": [
+              "Garth",
+              "James"
+            ],
+            "angler_indices": [
+              3,
+              0
+            ],
+            "status": "UNREPORTED",
+            "submissions": {},
+            "official_scores": {},
+            "calculated_points": {},
+            "discrepancy_details": null
+          },
+          {
+            "match_id": "S2_B5",
+            "session_id": 2,
+            "beat": 5,
+            "beat_number": 5,
+            "beat_name": "Beat 5",
+            "match_type": "1v1",
+            "anglers": [
+              "Michelle",
+              "Ian"
+            ],
+            "angler_indices": [
+              10,
+              6
+            ],
+            "status": "UNREPORTED",
+            "submissions": {},
+            "official_scores": {},
+            "calculated_points": {},
+            "discrepancy_details": null
+          }
+        ]
+      },
+      {
+        "session_id": 3,
+        "session_name": "Sunday Morning",
+        "session_short": "Sun AM",
+        "day": "Sunday",
+        "time": "Morning",
+        "matches": [
+          {
+            "match_id": "S3_B1",
+            "session_id": 3,
+            "beat": 1,
+            "beat_number": 1,
+            "beat_name": "Beat 1",
+            "match_type": "1v1",
+            "anglers": [
+              "Daniel",
+              "Barry"
+            ],
+            "angler_indices": [
+              2,
+              1
+            ],
+            "status": "UNREPORTED",
+            "submissions": {},
+            "official_scores": {},
+            "calculated_points": {},
+            "discrepancy_details": null
+          },
+          {
+            "match_id": "S3_B2",
+            "session_id": 3,
+            "beat": 2,
+            "beat_number": 2,
+            "beat_name": "Beat 2",
+            "match_type": "1v1",
+            "anglers": [
+              "Ryan",
+              "Michelle"
+            ],
+            "angler_indices": [
+              8,
+              10
+            ],
+            "status": "UNREPORTED",
+            "submissions": {},
+            "official_scores": {},
+            "calculated_points": {},
+            "discrepancy_details": null
+          },
+          {
+            "match_id": "S3_B3",
+            "session_id": 3,
+            "beat": 3,
+            "beat_number": 3,
+            "beat_name": "Beat 3",
+            "match_type": "1v1v1",
+            "anglers": [
+              "Dale",
+              "James",
+              "Ian"
+            ],
+            "angler_indices": [
+              4,
+              0,
+              6
+            ],
+            "status": "UNREPORTED",
+            "submissions": {},
+            "official_scores": {},
+            "calculated_points": {},
+            "discrepancy_details": null
+          },
+          {
+            "match_id": "S3_B4",
+            "session_id": 3,
+            "beat": 4,
+            "beat_number": 4,
+            "beat_name": "Beat 4",
+            "match_type": "1v1",
+            "anglers": [
+              "Gary",
+              "Dylan"
+            ],
+            "angler_indices": [
+              9,
+              5
+            ],
+            "status": "UNREPORTED",
+            "submissions": {},
+            "official_scores": {},
+            "calculated_points": {},
+            "discrepancy_details": null
+          },
+          {
+            "match_id": "S3_B5",
+            "session_id": 3,
+            "beat": 5,
+            "beat_number": 5,
+            "beat_name": "Beat 5",
+            "match_type": "1v1",
+            "anglers": [
+              "Garth",
+              "Malcolm"
+            ],
+            "angler_indices": [
+              3,
+              7
+            ],
+            "status": "UNREPORTED",
+            "submissions": {},
+            "official_scores": {},
+            "calculated_points": {},
+            "discrepancy_details": null
+          }
+        ]
+      },
+      {
+        "session_id": 4,
+        "session_name": "Sunday Afternoon",
+        "session_short": "Sun PM",
+        "day": "Sunday",
+        "time": "Afternoon",
+        "matches": [
+          {
+            "match_id": "S4_B1",
+            "session_id": 4,
+            "beat": 1,
+            "beat_number": 1,
+            "beat_name": "Beat 1",
+            "match_type": "1v1",
+            "anglers": [
+              "Dylan",
+              "James"
+            ],
+            "angler_indices": [
+              5,
+              0
+            ],
+            "status": "UNREPORTED",
+            "submissions": {},
+            "official_scores": {},
+            "calculated_points": {},
+            "discrepancy_details": null
+          },
+          {
+            "match_id": "S4_B2",
+            "session_id": 4,
+            "beat": 2,
+            "beat_number": 2,
+            "beat_name": "Beat 2",
+            "match_type": "1v1",
+            "anglers": [
+              "Ian",
+              "Garth"
+            ],
+            "angler_indices": [
+              6,
+              3
+            ],
+            "status": "UNREPORTED",
+            "submissions": {},
+            "official_scores": {},
+            "calculated_points": {},
+            "discrepancy_details": null
+          },
+          {
+            "match_id": "S4_B3",
+            "session_id": 4,
+            "beat": 3,
+            "beat_number": 3,
+            "beat_name": "Beat 3",
+            "match_type": "1v1",
+            "anglers": [
+              "Daniel",
+              "Gary"
+            ],
+            "angler_indices": [
+              2,
+              9
+            ],
+            "status": "UNREPORTED",
+            "submissions": {},
+            "official_scores": {},
+            "calculated_points": {},
+            "discrepancy_details": null
+          },
+          {
+            "match_id": "S4_B4",
+            "session_id": 4,
+            "beat": 4,
+            "beat_number": 4,
+            "beat_name": "Beat 4",
+            "match_type": "1v1v1",
+            "anglers": [
+              "Barry",
+              "Michelle",
+              "Malcolm"
+            ],
+            "angler_indices": [
+              1,
+              10,
+              7
+            ],
+            "status": "UNREPORTED",
+            "submissions": {},
+            "official_scores": {},
+            "calculated_points": {},
+            "discrepancy_details": null
+          },
+          {
+            "match_id": "S4_B5",
+            "session_id": 4,
+            "beat": 5,
+            "beat_number": 5,
+            "beat_name": "Beat 5",
+            "match_type": "1v1",
+            "anglers": [
+              "Ryan",
+              "Dale"
+            ],
+            "angler_indices": [
+              8,
+              4
+            ],
+            "status": "UNREPORTED",
+            "submissions": {},
+            "official_scores": {},
+            "calculated_points": {},
+            "discrepancy_details": null
+          }
+        ]
+      }
+    ],
+    "activity_log": [
+      {
+        "timestamp": "2026-11-17T17:27:54.785449",
+        "type": "RESET",
+        "message": "Tournament randomized for 11 anglers."
+      }
+    ]
+  }
+}

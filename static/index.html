@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fly Fishing Trials - Randomiser & Live Tournament</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <!-- Leaflet CSS & JS for Interactive Map -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <!-- QRCode.js CDN for client-side instant QR codes -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+</head>
+<body>
+
+  <!-- Top Announcement / Discrepancy Banner -->
+  <div id="discrepancyBanner" class="alert-banner hidden">
+    <div class="banner-content">
+      <span class="banner-icon">⚠️</span>
+      <span id="bannerText"><strong>Score Discrepancy Detected!</strong> Review organizer queue to resolve conflicting match scores.</span>
+      <button class="banner-btn" onclick="switchTab('admin')">Resolve Now</button>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header class="app-header">
+    <div class="container header-container">
+      <div class="logo-area">
+        <div class="logo-badge">🎣</div>
+        <div>
+          <h1 id="tournamentTitle">Fly Fishing Trials 2026</h1>
+          <div class="sub-meta">
+            <span id="tournamentVenue" class="meta-tag">Championship Beats</span>
+            <span id="anglerCountTag" class="meta-tag tag-accent">9 Anglers</span>
+            <span id="aTeamCountTag" class="meta-tag tag-ateam hidden">3 A-Team</span>
+            <span id="formatTag" class="meta-tag tag-format">Odd: 1v1v1 + 1v1</span>
+            <span id="sessionsTag" class="meta-tag">4 Sessions</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="header-actions">
+        <button class="btn btn-secondary" onclick="openSaveSnapshotModal()">
+          <span>💾 Save</span>
+        </button>
+        <a href="/api/session/export" class="btn btn-secondary" title="Download full JSON backup">
+          <span>📥 Export JSON</span>
+        </a>
+        <button class="btn btn-secondary" onclick="openShareModal()">
+          <span>📱 Phone / Share</span>
+        </button>
+        <a id="pdfDownloadBtn" href="/api/pdf" target="_blank" class="btn btn-secondary">
+          <span>📄 Download PDF</span>
+        </a>
+        <button class="btn btn-primary" onclick="loadState(true)">
+          <span id="refreshIcon">🔄</span> Refresh
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Navigation Bar -->
+  <nav class="tabs-nav">
+    <div class="container tabs-container">
+      <button class="tab-btn active" data-tab="leaderboard" onclick="switchTab('leaderboard')">
+        🏆 Leaderboard
+      </button>
+      <button class="tab-btn" data-tab="schedule" onclick="switchTab('schedule')">
+        📅 Schedule & Beats
+      </button>
+      <button class="tab-btn tab-map-btn" data-tab="map" onclick="switchTab('map')">
+        🗺️ Stream Map & GPS Pins
+      </button>
+      <button class="tab-btn tab-highlight" data-tab="submit" onclick="switchTab('submit')">
+        📝 Submit Score (Google Form)
+      </button>
+      <button class="tab-btn" data-tab="admin" onclick="switchTab('admin')">
+        ⚙️ Organizer Admin <span id="adminBadge" class="badge-count hidden">0</span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Top 4-Session Visual Pin Tracker -->
+  <div class="top-tracker-bar">
+    <div class="container tracker-flex">
+      <div class="tracker-left">
+        <span class="tracker-title">📍 <strong>Where Am I Fishing?</strong></span>
+        <select id="topAnglerSelector" class="form-select tracker-select" onchange="onTopAnglerSelected()">
+          <option value="">Select your name to track 4 sessions with color-coded pins...</option>
+        </select>
+      </div>
+      <div id="quickSessionPills" class="session-pills-row hidden">
+        <span class="sess-pill pill-s1" id="pillS1" title="Session 1: Sat AM">🟡 S1: -</span>
+        <span class="sess-pill pill-s2" id="pillS2" title="Session 2: Sat PM">🟠 S2: -</span>
+        <span class="sess-pill pill-s3" id="pillS3" title="Session 3: Sun AM">🟢 S3: -</span>
+        <span class="sess-pill pill-s4" id="pillS4" title="Session 4: Sun PM">🔵 S4: -</span>
+        <button class="btn btn-sm btn-map-jump" onclick="switchTab('map')">🗺️ Open Map</button>
+      </div>
+      <div class="tracker-right">
+        <button class="btn btn-sm btn-outline-beats" onclick="openBeatsManagerModal()">⚙️ Manage Beats & GPS</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Content Area -->
+  <main class="container main-content">
+
+    <!-- TAB 1: LEADERBOARD -->
+    <section id="tab-leaderboard" class="tab-pane active">
+      <div class="section-header">
+        <div>
+          <h2>Championship Standings</h2>
+          <p class="section-desc">Ranked by Total Points across all 4 sessions. Scoring: <code>10 / (Beat Total Fish) × Angler Fish</code>. Blanks = 0.00 pts.</p>
+        </div>
+        <div class="stats-overview">
+          <div class="stat-box">
+            <span class="stat-value" id="statCompletedMatches">0 / 16</span>
+            <span class="stat-label">Matches Completed</span>
+          </div>
+          <div class="stat-box">
+            <span class="stat-value" id="statTotalFish">0</span>
+            <span class="stat-label">Total Fish Caught</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="table-responsive card">
+        <table class="data-table" id="leaderboardTable">
+          <thead>
+            <tr>
+              <th style="width: 70px;">Rank</th>
+              <th>Angler</th>
+              <th>Total Points</th>
+              <th>Total Fish</th>
+              <th>Blanks</th>
+              <th>Sat AM (S1)</th>
+              <th>Sat PM (S2)</th>
+              <th>Sun AM (S3)</th>
+              <th>Sun PM (S4)</th>
+              <th>3-Way Matches</th>
+            </tr>
+          </thead>
+          <tbody id="leaderboardBody">
+            <tr><td colspan="10" class="text-center py-4">Loading standings...</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Scoring Rule Explainer -->
+      <div class="card rule-card mt-4">
+        <h3>ℹ️ Official Scoring & Randomiser Rules</h3>
+        <div class="rule-grid">
+          <div class="rule-item">
+            <strong>1. Beat Proportional Points:</strong>
+            10 points are split proportionally based on catch: <code>Points = 10 × (Angler Fish / Beat Total)</code>.
+          </div>
+          <div class="rule-item">
+            <strong>2. Blank Rule:</strong>
+            An angler catching zero fish gets exactly 0.00 points for that session.
+          </div>
+          <div class="rule-item">
+            <strong>3. Unique Opponents:</strong>
+            Every angler is randomized to face new opponents in each of the 4 sessions.
+          </div>
+          <div class="rule-item">
+            <strong>4. Odd Field 1v1v1 Guarantee:</strong>
+            For 9 anglers, one beat per session is a 3-way match, ensuring every competitor participates in at least one 1v1v1.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 2: SCHEDULE & BEATS -->
+    <section id="tab-schedule" class="tab-pane">
+      <div class="section-header">
+        <div>
+          <h2>Session Matchups & Beat Matrix</h2>
+          <p class="section-desc">View pairings across all 4 sessions. Click any match to view reports or submit scores.</p>
+        </div>
+        <div class="session-filter-buttons" id="sessionFilters">
+          <button class="filter-btn active" onclick="filterSchedule(0)">All Sessions</button>
+          <button class="filter-btn" onclick="filterSchedule(1)">Sat AM</button>
+          <button class="filter-btn" onclick="filterSchedule(2)">Sat PM</button>
+          <button class="filter-btn" onclick="filterSchedule(3)">Sun AM</button>
+          <button class="filter-btn" onclick="filterSchedule(4)">Sun PM</button>
+        </div>
+      </div>
+
+      <div id="scheduleContainer" class="schedule-sessions-grid">
+        <!-- Rendered dynamically -->
+      </div>
+    </section>
+
+    <!-- TAB: STREAM MAP & GPS PINS -->
+    <section id="tab-map" class="tab-pane">
+      <div class="section-header">
+        <div>
+          <h2>🗺️ CPS Stream & Beat Map (Du Toitskloof)</h2>
+          <p class="section-desc">Interactive Cape Piscatorial Society beats on Smalblaar (Small Brook) and Elandspad (Yellands Part). Jump between Artistic river styling, Google Earth Satellite, Topographic contours, and Street views.</p>
+        </div>
+        <div class="map-top-actions">
+          <button class="btn btn-secondary btn-sm" onclick="resetMapView()">🎯 Center Valley</button>
+          <button class="btn btn-primary btn-sm" onclick="openBeatsManagerModal()">⚙️ Beat &amp; Pin Editor</button>
+        </div>
+      </div>
+
+      <!-- Map Card -->
+      <div class="map-card card">
+        <!-- Layer Switcher Bar -->
+        <div class="map-layer-bar">
+          <span class="layer-bar-label"><strong>Map View Style:</strong></span>
+          <div class="layer-buttons-group">
+            <button class="layer-btn active" id="layerBtnArtistic" onclick="switchMapLayer('artistic')">🎨 Artistic (River &amp; Path Only)</button>
+            <button class="layer-btn" id="layerBtnSatellite" onclick="switchMapLayer('satellite')">🛰️ Satellite (Google Earth)</button>
+            <button class="layer-btn" id="layerBtnTopo" onclick="switchMapLayer('topo')">⛰️ Topographic (Contours)</button>
+            <button class="layer-btn" id="layerBtnStreet" onclick="switchMapLayer('street')">🛣️ Street Map</button>
+          </div>
+        </div>
+
+        <!-- The Leaflet Map Element -->
+        <div id="streamMap" class="stream-map-container"></div>
+
+        <!-- Legend & Color Code Guide -->
+        <div class="map-legend-row">
+          <div class="legend-group">
+            <span class="legend-title">Angler 4-Session Pins:</span>
+            <span class="legend-pill pill-s1">🟡 S1: Sat AM</span>
+            <span class="legend-pill pill-s2">🟠 S2: Sat PM</span>
+            <span class="legend-pill pill-s3">🟢 S3: Sun AM</span>
+            <span class="legend-pill pill-s4">🔵 S4: Sun PM</span>
+          </div>
+          <div class="legend-group">
+            <span class="legend-title">Rivers &amp; Trails:</span>
+            <span class="legend-item"><span class="river-sample sample-sb"></span> Small Brook (Smalblaar)</span>
+            <span class="legend-item"><span class="river-sample sample-yp"></span> Yellands Part (Elandspad)</span>
+            <span class="legend-item"><span class="trail-sample"></span> Access Trails</span>
+          </div>
+          <div class="legend-group">
+            <span class="legend-title">Beat Markers:</span>
+            <span class="legend-item">🟢 Start (Lower Pin)</span>
+            <span class="legend-item">📍 Midpoint / 2nd Half</span>
+            <span class="legend-item">🏁 End (Upper Pin)</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Angler Selected 4-Session Itinerary Details Card -->
+      <div id="anglerItineraryCard" class="card mt-4 hidden">
+        <div class="itinerary-header">
+          <div class="itinerary-title-box">
+            <span class="itinerary-avatar">🎣</span>
+            <div>
+              <h3 id="itineraryAnglerName">Angler Name</h3>
+              <p class="text-muted text-sm">Personal 4-Session River Schedule &amp; Meeting Points</p>
+            </div>
+          </div>
+          <button class="btn btn-secondary btn-sm" onclick="clearAnglerSelection()">Clear Selection</button>
+        </div>
+        <div id="itineraryGrid" class="itinerary-grid">
+          <!-- Populated dynamically with 4 session cards -->
+        </div>
+      </div>
+    </section>
+    <section id="tab-submit" class="tab-pane">
+      <div class="form-wrapper">
+        <div class="form-card card">
+          <div class="form-header">
+            <div class="form-badge">Google Forms Style Match Entry</div>
+            <h2>Submit Session Scorecard</h2>
+            <p>Both competitors on each beat must submit their catch results. When both submissions match, the score is automatically confirmed and the leaderboard updates instantly!</p>
+          </div>
+
+          <form id="matchSubmissionForm" onsubmit="handleFormSubmit(event)">
+            <!-- Step 1: Session Selection -->
+            <div class="form-group">
+              <label for="submitSessionSelect"><strong>1. Select Session</strong></label>
+              <select id="submitSessionSelect" class="form-control" required onchange="onSessionChange()">
+                <option value="">-- Choose Session --</option>
+                <option value="1">Session 1: Saturday Morning</option>
+                <option value="2">Session 2: Saturday Afternoon</option>
+                <option value="3">Session 3: Sunday Morning</option>
+                <option value="4">Session 4: Sunday Afternoon</option>
+              </select>
+            </div>
+
+            <!-- Step 2: Angler Identification -->
+            <div class="form-group">
+              <label for="submitAnglerSelect"><strong>2. Your Name (Submitting Angler)</strong></label>
+              <select id="submitAnglerSelect" class="form-control" required onchange="onAnglerChange()" disabled>
+                <option value="">-- Select session first --</option>
+              </select>
+              <small class="form-hint">Choose your name. The system will automatically look up your beat and opponents.</small>
+            </div>
+
+            <!-- Match Auto-Lookup Banner -->
+            <div id="matchLookupBanner" class="match-info-card hidden">
+              <div class="match-info-title">
+                <span id="matchBeatTitle">Beat #</span>
+                <span id="matchTypeBadge" class="tag-accent">1 vs 1</span>
+              </div>
+              <div id="matchStatusText" class="match-info-status">Ready for submission</div>
+            </div>
+
+            <!-- Step 3: Catch Input Fields -->
+            <div id="catchInputsContainer" class="catch-inputs-container hidden">
+              <label><strong>3. Fish Caught by Each Angler on Beat</strong></label>
+              <p class="form-hint">Enter the number of fish caught by you and your opponent(s). Zero (0) indicates a blank.</p>
+              <div id="catchFieldsGrid" class="catch-fields-grid">
+                <!-- Dynamically generated based on match anglers -->
+              </div>
+
+              <!-- Notes / Signature -->
+              <div class="form-group mt-3">
+                <label for="submitNotes">Optional Notes / Catch Details</label>
+                <input type="text" id="submitNotes" class="form-control" placeholder="e.g. 2 rainbows, 1 brown trout on nymphs">
+              </div>
+
+              <div class="form-actions mt-4">
+                <button type="submit" id="submitScoreBtn" class="btn btn-primary btn-block">
+                  🚀 Submit Official Scorecard
+                </button>
+              </div>
+            </div>
+          </form>
+
+          <!-- Result Alert Box -->
+          <div id="submissionAlert" class="submission-alert hidden"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 4: ORGANIZER ADMIN -->
+    <section id="tab-admin" class="tab-pane">
+      <div class="section-header">
+        <div>
+          <h2>Tournament Organizer Control Center</h2>
+          <p class="section-desc">Manage discrepancies, re-randomize trial draws, and manually adjust scores if needed.</p>
+        </div>
+      </div>
+
+      <!-- Discrepancy Queue -->
+      <div class="admin-section">
+        <div class="card">
+          <div class="card-header-flex">
+            <h3>⚠️ Discrepancy Resolution Queue</h3>
+            <span id="discrepancyCounter" class="badge-count">0 pending</span>
+          </div>
+          <p class="text-muted">When two anglers report different catch numbers for the same match, it appears here for organizer decision.</p>
+          
+          <div id="discrepancyList" class="discrepancy-list mt-3">
+            <div class="empty-state">✅ No unresolved discrepancies. All dual-submissions match!</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Angler Manager & Randomiser -->
+      <div class="admin-section mt-4">
+        <div class="card">
+          <h3>🎲 Randomiser & Angler Field Setup (8 to 20 Anglers)</h3>
+          <p class="text-muted">Configure 8 to 20 anglers and click generate. It computes constraint-satisfaction pairings with zero repeat opponents and guaranteed 1v1v1 rotation.</p>
+
+          <div class="preset-buttons mt-2 mb-3">
+            <span class="text-muted text-sm" style="display:block; margin-bottom:0.3rem;">Quick Presets:</span>
+            <button class="btn btn-sm btn-outline" onclick="loadPreset(8)">8 Anglers (4 Beats)</button>
+            <button class="btn btn-sm btn-outline" onclick="loadPreset(9)">9 Anglers (Odd 1v1v1)</button>
+            <button class="btn btn-sm btn-outline" onclick="loadPreset(10)">10 Anglers (5 Beats)</button>
+            <button class="btn btn-sm btn-outline" onclick="loadPreset(11)">11 Anglers (Odd 1v1v1)</button>
+            <button class="btn btn-sm btn-outline" onclick="loadPreset(12)">12 Anglers (6 Beats)</button>
+            <button class="btn btn-sm btn-outline" onclick="loadPreset(14)">14 Anglers (7 Beats)</button>
+            <button class="btn btn-sm btn-outline" onclick="loadPreset(16)">16 Anglers (8 Beats)</button>
+            <button class="btn btn-sm btn-outline" onclick="loadPreset(20)">20 Anglers (10 Beats)</button>
+          </div>
+
+          <div class="grid-2-col">
+            <div class="form-group">
+              <label for="adminTournamentName">Tournament Name</label>
+              <input type="text" id="adminTournamentName" class="form-control" value="Fly Fishing Trials 2026">
+            </div>
+            <div class="form-group">
+              <label for="adminVenue">Venue / River Section</label>
+              <input type="text" id="adminVenue" class="form-control" value="Championship Beats">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="adminAnglerList">Angler Names (one per line, 8 to 20 anglers):</label>
+            <textarea id="adminAnglerList" class="form-control monospace" rows="10"></textarea>
+            <small class="form-hint" id="anglerValidationHint">9 anglers entered.</small>
+          </div>
+
+          <!-- Interactive A-Team Member Designation -->
+          <div class="form-group mt-3" style="background: var(--bg-primary); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 1rem;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.4rem; flex-wrap:wrap; gap:0.5rem;">
+              <label style="margin-bottom:0;"><strong>⭐ Mark A-Team Members:</strong></label>
+              <div style="display:flex; gap:0.4rem;">
+                <button type="button" class="btn btn-sm btn-outline" onclick="selectTopNAteam(3)">Top 3 A-Team</button>
+                <button type="button" class="btn btn-sm btn-outline" onclick="selectTopNAteam(4)">Top 4 A-Team</button>
+                <button type="button" class="btn btn-sm btn-outline" onclick="clearAteamSelection()">Clear A-Team</button>
+              </div>
+            </div>
+            <p class="form-hint" style="color: var(--text-muted); margin-bottom: 0.75rem;">
+              Mark who of the anglers provided are in the <strong>A-team</strong>. The randomiser guarantees each A-Team member faces fellow A-Team members <strong>twice</strong>, and has <strong>two normal matches</strong> against challengers. Every challenger will face at least one A-Team member.
+            </p>
+            <div id="ateamChecklistContainer" class="ateam-checklist-grid">
+              <!-- Dynamically populated from names -->
+            </div>
+            <div id="ateamValidationSummary" class="mt-2 text-sm"></div>
+          </div>
+
+          <div class="form-actions mt-3">
+            <button class="btn btn-danger" onclick="confirmResetTournament()">
+              🎲 Randomize & Start New Tournament
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Saved Sessions & Backups Manager -->
+      <div class="admin-section mt-4">
+        <div class="card">
+          <div class="card-header-flex">
+            <div>
+              <h3>💾 Saved Sessions & Tournament Snapshots</h3>
+              <p class="text-muted">Save snapshots after each session, load past sessions, or import/export backup files.</p>
+            </div>
+            <div class="header-actions">
+              <button class="btn btn-sm btn-primary" onclick="openSaveSnapshotModal()">
+                ➕ New Session Snapshot
+              </button>
+              <label class="btn btn-sm btn-secondary" style="cursor:pointer; margin-bottom:0;">
+                📂 Import JSON <input type="file" id="importJsonFileInput" accept=".json" style="display:none;" onchange="handleImportJsonFile(event)">
+              </label>
+            </div>
+          </div>
+
+          <div class="table-responsive mt-3">
+            <table class="data-table" id="savedSessionsTable">
+              <thead>
+                <tr>
+                  <th>Snapshot Name</th>
+                  <th>Session</th>
+                  <th>Date Saved</th>
+                  <th>Anglers</th>
+                  <th>Matches Completed</th>
+                  <th>File Size</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="savedSessionsBody">
+                <tr><td colspan="7" class="text-center py-3">Loading saved snapshots...</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- Manual Match Score Override -->
+      <div class="admin-section mt-4">
+        <div class="card">
+          <h3>✍️ Manual Score Override (All Matches)</h3>
+          <p class="text-muted">Directly adjust or enter verified catches for any match in any session.</p>
+
+          <div class="table-responsive mt-3">
+            <table class="data-table" id="allMatchesTable">
+              <thead>
+                <tr>
+                  <th>Session</th>
+                  <th>Beat</th>
+                  <th>Anglers</th>
+                  <th>Status</th>
+                  <th>Confirmed Fish</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody id="allMatchesBody">
+                <!-- Dynamically populated -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Share & Mobile QR Modal -->
+  <div id="shareModal" class="modal-overlay hidden">
+    <div class="modal-card card">
+      <div class="modal-header">
+        <h3>📱 Riverbank Access & Mobile View</h3>
+        <button class="modal-close" onclick="closeShareModal()">&times;</button>
+      </div>
+      <div class="modal-body text-center">
+        <p>Scan this QR code from your phone (connected to the same Wi-Fi) to view live scores and submit catch reports:</p>
+        
+        <div id="qrCodeContainer" class="qr-box"></div>
+
+        <div class="url-copy-box mt-3">
+          <label>Local Wi-Fi Network URL:</label>
+          <div class="copy-row">
+            <input type="text" id="networkUrlInput" readonly class="form-control monospace">
+            <button class="btn btn-secondary btn-sm" onclick="copyNetworkUrl()">Copy</button>
+          </div>
+        </div>
+
+        <div class="online-host-guide mt-4">
+          <h4>🌍 Need Worldwide Public Internet Access?</h4>
+          <p class="text-muted text-sm">
+            Run the included <code>share_online.bat</code> script or run <code>npx localtunnel --port 8585</code> in terminal to get an instant HTTPS link anyone can view anywhere.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Beat Manager & Coordinates Editor Modal -->
+  <div id="beatsManagerModal" class="modal-overlay hidden">
+    <div class="modal-card modal-large card">
+      <div class="modal-header">
+        <div>
+          <h3>⚙️ Cape Piscatorial Society Beats & GPS Coordinates</h3>
+          <p class="text-muted text-sm">Select beats available for the tournament, assign rivers, and adjust GPS start/end/mid pins manually. Pins can also be dragged directly on the map.</p>
+        </div>
+        <button class="modal-close" onclick="closeBeatsManagerModal()">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="table-responsive beats-table-wrapper">
+          <table class="data-table" id="beatsManagerTable">
+            <thead>
+              <tr>
+                <th style="width: 50px;">Active</th>
+                <th>Beat Name</th>
+                <th>River</th>
+                <th>Lower Pin [Lat, Lng]</th>
+                <th>Mid Pin [Lat, Lng]</th>
+                <th>Upper Pin [Lat, Lng]</th>
+                <th>Meeting Point</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="beatsManagerBody">
+              <!-- Populated dynamically via JS -->
+            </tbody>
+          </table>
+        </div>
+        <div class="modal-footer-actions mt-3">
+          <button type="button" class="btn btn-secondary" onclick="closeBeatsManagerModal()">Close</button>
+          <button type="button" class="btn btn-primary" onclick="saveAllBeatsAndApply()">💾 Save All Beats & Sync Map</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Admin Quick Edit Score Modal -->
+  <div id="editScoreModal" class="modal-overlay hidden">
+    <div class="modal-card card">
+      <div class="modal-header">
+        <h3 id="editModalTitle">Edit Official Match Score</h3>
+        <button class="modal-close" onclick="closeEditModal()">&times;</button>
+      </div>
+      <div class="modal-body">
+        <form id="editScoreForm" onsubmit="submitAdminEditScore(event)">
+          <input type="hidden" id="editSessionId">
+          <input type="hidden" id="editMatchId">
+
+          <div id="editFieldsContainer" class="catch-fields-grid mt-2 mb-3">
+            <!-- Populated via JS -->
+          </div>
+
+          <div class="form-group">
+            <label for="editAdminNote">Organizer Reason / Note</label>
+            <input type="text" id="editAdminNote" class="form-control" placeholder="e.g. Official organizer beat count verification">
+          </div>
+
+          <div class="form-actions mt-3">
+            <button type="button" class="btn btn-secondary" onclick="closeEditModal()">Cancel</button>
+            <button type="submit" class="btn btn-primary">Save & Confirm Official Score</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Save Session / Tournament Snapshot Modal -->
+  <div id="saveSnapshotModal" class="modal-overlay hidden">
+    <div class="modal-card card">
+      <div class="modal-header">
+        <h3>💾 Save Session / Tournament Snapshot</h3>
+        <button class="modal-close" onclick="closeSaveSnapshotModal()">&times;</button>
+      </div>
+      <div class="modal-body">
+        <form id="saveSnapshotForm" onsubmit="submitSaveSnapshot(event)">
+          <div class="form-group">
+            <label for="saveSnapshotScope"><strong>Select Target Session:</strong></label>
+            <select id="saveSnapshotScope" class="form-control">
+              <option value="">Full Tournament (All Sessions)</option>
+              <option value="1">Session 1: Saturday Morning</option>
+              <option value="2">Session 2: Saturday Afternoon</option>
+              <option value="3">Session 3: Sunday Morning</option>
+              <option value="4">Session 4: Sunday Afternoon</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="saveSnapshotName"><strong>Snapshot Label / Name (optional):</strong></label>
+            <input type="text" id="saveSnapshotName" class="form-control" placeholder="e.g. Session_1_Final or After_Round_2">
+            <small class="form-hint">A timestamp is automatically added to make the file unique.</small>
+          </div>
+
+          <div class="form-actions mt-3">
+            <button type="button" class="btn btn-secondary" onclick="closeSaveSnapshotModal()">Cancel</button>
+            <button type="submit" class="btn btn-primary">Save Snapshot Now</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
