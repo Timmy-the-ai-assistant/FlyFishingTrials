@@ -9,173 +9,242 @@ from typing import Dict, List, Any
 
 CPS_BEATS_DATA: List[Dict[str, Any]] = [
     {
-        "id": "SB6",
-        "code": "SB6",
-        "name": "Smalblaar 6 (SB6)",
+        "id": "SB1",
+        "code": "SB1",
+        "name": "SB1",
         "river": "Small Blaar",
         "enabled": True,
+        "sat_available": True,
+        "sat_sessions": 2,
+        "sun_available": True,
+        "sun_sessions": 2,
         "usage_mode": "double",
-        "lower_pin": [-33.7319, 19.1141],   # Confluence / Junction Pool
-        "upper_pin": [-33.7342, 19.1065],   # Tunnel Viaduct / Weir
-        "mid_pin": [-33.7330, 19.1105],     # Midpoint / Second half
+        "lower_pin": [-33.7150, 19.1740],
+        "mid_pin": [-33.7170, 19.1700],
+        "upper_pin": [-33.7190, 19.1655],
+        "meeting_point": "Picnic site pull-off",
+        "notes": "Productive long glides and pocket water."
+    },
+    {
+        "id": "SB2",
+        "code": "SB2",
+        "name": "SB2",
+        "river": "Small Blaar",
+        "enabled": True,
+        "sat_available": True,
+        "sat_sessions": 2,
+        "sun_available": True,
+        "sun_sessions": 2,
+        "usage_mode": "double",
+        "lower_pin": [-33.7190, 19.1655],
+        "mid_pin": [-33.7212, 19.1590],
+        "upper_pin": [-33.7235, 19.1530],
+        "meeting_point": "Picnic site parking",
+        "notes": "Fast broken water and deep corner pools."
+    },
+    {
+        "id": "SB3",
+        "code": "SB3",
+        "name": "SB3",
+        "river": "Small Blaar",
+        "enabled": True,
+        "sat_available": True,
+        "sat_sessions": 2,
+        "sun_available": True,
+        "sun_sessions": 2,
+        "usage_mode": "double",
+        "lower_pin": [-33.7235, 19.1530],
+        "mid_pin": [-33.7258, 19.1470],
+        "upper_pin": [-33.7272, 19.1415],
+        "meeting_point": "N1 emergency telephone layby 3",
+        "notes": "Challenging technical water with overhanging vegetation."
+    },
+    {
+        "id": "SB4",
+        "code": "SB4",
+        "name": "SB4",
+        "river": "Small Blaar",
+        "enabled": True,
+        "sat_available": True,
+        "sat_sessions": 2,
+        "sun_available": True,
+        "sun_sessions": 2,
+        "usage_mode": "double",
+        "lower_pin": [-33.7272, 19.1415],
+        "mid_pin": [-33.7285, 19.1370],
+        "upper_pin": [-33.7295, 19.1320],
+        "meeting_point": "Donkergat pull-off",
+        "notes": "Varied water with boulder gardens."
+    },
+    {
+        "id": "SB5",
+        "code": "SB5",
+        "name": "SB5",
+        "river": "Small Blaar",
+        "enabled": True,
+        "sat_available": True,
+        "sat_sessions": 2,
+        "sun_available": True,
+        "sun_sessions": 2,
+        "usage_mode": "double",
+        "lower_pin": [-33.7295, 19.1320],
+        "mid_pin": [-33.7305, 19.1270],
+        "upper_pin": [-33.7319, 19.1141],
+        "meeting_point": "CPS Elandspad parking lot",
+        "notes": "Directly accessible from official CPS parking."
+    },
+    {
+        "id": "SB6",
+        "code": "SB6",
+        "name": "SB6",
+        "river": "Small Blaar",
+        "enabled": True,
+        "sat_available": True,
+        "sat_sessions": 2,
+        "sun_available": True,
+        "sun_sessions": 2,
+        "usage_mode": "double",
+        "lower_pin": [-33.7319, 19.1141],
+        "mid_pin": [-33.7330, 19.1105],
+        "upper_pin": [-33.7342, 19.1065],
         "meeting_point": "Tunnel East Portal Parking / Junction Path",
         "notes": "Upper Smalblaar beat from Junction pool up to tunnel weir."
     },
     {
+        "id": "SB(HOTEL)",
+        "code": "SB(HOTEL)",
+        "name": "SB(HOTEL)",
+        "river": "Small Blaar",
+        "enabled": True,
+        "sat_available": True,
+        "sat_sessions": 1,
+        "sun_available": True,
+        "sun_sessions": 1,
+        "usage_mode": "single",
+        "lower_pin": [-33.7125, 19.1800],
+        "mid_pin": [-33.7138, 19.1770],
+        "upper_pin": [-33.7150, 19.1740],
+        "meeting_point": "Du Kloof Lodge guest parking",
+        "notes": "Historic beat opposite the old hotel. Single session limit per day."
+    },
+    {
+        "id": "SB(TRANSPORT)",
+        "code": "SB(TRANSPORT)",
+        "name": "SB(TRANSPORT)",
+        "river": "Small Blaar",
+        "enabled": True,
+        "sat_available": True,
+        "sat_sessions": 2,
+        "sun_available": True,
+        "sun_sessions": 2,
+        "usage_mode": "double",
+        "lower_pin": [-33.7085, 19.1895],
+        "mid_pin": [-33.7105, 19.1845],
+        "upper_pin": [-33.7125, 19.1800],
+        "meeting_point": "Transport bridge parking",
+        "notes": "Upper section of Molenaars Transport reserve."
+    },
+    {
         "id": "EP1",
         "code": "EP1",
-        "name": "Elandspad 1 (EP1)",
+        "name": "EP1",
         "river": "Elands Pad",
         "enabled": True,
+        "sat_available": True,
+        "sat_sessions": 2,
+        "sun_available": True,
+        "sun_sessions": 2,
         "usage_mode": "double",
-        "lower_pin": [-33.7319, 19.1141],   # Junction Pool
-        "upper_pin": [-33.7405, 19.1162],   # Fisherman's Cave
-        "mid_pin": [-33.7360, 19.1152],     # River bend / 2nd half
+        "lower_pin": [-33.7319, 19.1141],
+        "mid_pin": [-33.7360, 19.1152],
+        "upper_pin": [-33.7405, 19.1162],
         "meeting_point": "Junction Pool trail head",
         "notes": "Kloof canyon stream, crystal clear water with pocket pools."
     },
     {
         "id": "EP2",
         "code": "EP2",
-        "name": "Elandspad 2 (EP2)",
+        "name": "EP2",
         "river": "Elands Pad",
         "enabled": True,
+        "sat_available": True,
+        "sat_sessions": 2,
+        "sun_available": True,
+        "sun_sessions": 2,
         "usage_mode": "double",
-        "lower_pin": [-33.7405, 19.1162],   # Fisherman's Cave
-        "upper_pin": [-33.7520, 19.1188],   # Pine Trees / Upper Gorge
-        "mid_pin": [-33.7460, 19.1172],     # Pine tree clearing
+        "lower_pin": [-33.7405, 19.1162],
+        "mid_pin": [-33.7460, 19.1172],
+        "upper_pin": [-33.7520, 19.1188],
         "meeting_point": "Fisherman's Cave trail",
         "notes": "Middle Elandspad through pristine mountain gorge."
     },
     {
-        "id": "Star",
-        "code": "Star",
-        "name": "Star Beat",
+        "id": "EP3",
+        "code": "EP3",
+        "name": "EP3",
         "river": "Elands Pad",
         "enabled": True,
+        "sat_available": True,
+        "sat_sessions": 1,
+        "sun_available": True,
+        "sun_sessions": 1,
         "usage_mode": "single",
-        "lower_pin": [-33.7520, 19.1188],   # Pine Trees / Upper Gorge
-        "upper_pin": [-33.7610, 19.1205],   # Kraalstroom Confluence
-        "mid_pin": [-33.7565, 19.1195],     # High cascades
+        "lower_pin": [-33.7520, 19.1188],
+        "mid_pin": [-33.7565, 19.1195],
+        "upper_pin": [-33.7610, 19.1205],
         "meeting_point": "Star beat rock shelter",
-        "notes": "Wild upper gorge with deep plunge pools. Sensitive upper beat."
+        "notes": "Wild upper canyon gorge with deep plunge pools. Sensitive upper beat."
     },
     {
-        "id": "SB5",
-        "code": "SB5",
-        "name": "Smalblaar 5 (SB5)",
-        "river": "Small Blaar",
+        "id": "EP4",
+        "code": "EP4",
+        "name": "EP4",
+        "river": "Elands Pad",
         "enabled": True,
-        "usage_mode": "double",
-        "lower_pin": [-33.7295, 19.1320],   # Elandspad Bridge & CPS Parking
-        "upper_pin": [-33.7319, 19.1141],   # Junction Pool
-        "mid_pin": [-33.7305, 19.1270],     # Bridge pools
-        "meeting_point": "CPS Elandspad parking lot",
-        "notes": "Directly accessible from official CPS parking."
-    },
-    {
-        "id": "SB4",
-        "code": "SB4",
-        "name": "Smalblaar 4 (SB4)",
-        "river": "Small Blaar",
-        "enabled": True,
-        "usage_mode": "double",
-        "lower_pin": [-33.7272, 19.1415],   # Python pool
-        "upper_pin": [-33.7295, 19.1320],   # Elandspad bridge
-        "mid_pin": [-33.7285, 19.1370],     # Donkergat
-        "meeting_point": "Donkergat pull-off",
-        "notes": "Varied water with boulder gardens."
-    },
-    {
-        "id": "SB3",
-        "code": "SB3",
-        "name": "Smalblaar 3 (SB3)",
-        "river": "Small Blaar",
-        "enabled": True,
-        "usage_mode": "double",
-        "lower_pin": [-33.7235, 19.1530],   # Boundary fence
-        "upper_pin": [-33.7272, 19.1415],   # Python pool
-        "mid_pin": [-33.7258, 19.1470],     # Mid channel
-        "meeting_point": "N1 emergency telephone layby 3",
-        "notes": "Challenging technical water with overhanging vegetation."
-    },
-    {
-        "id": "SB2",
-        "code": "SB2",
-        "name": "Smalblaar 2 (SB2)",
-        "river": "Small Blaar",
-        "enabled": True,
-        "usage_mode": "double",
-        "lower_pin": [-33.7190, 19.1655],   # Picnic site
-        "upper_pin": [-33.7235, 19.1530],   # Boundary fence
-        "mid_pin": [-33.7212, 19.1590],     # Granite run
-        "meeting_point": "Picnic site parking",
-        "notes": "Fast broken water and deep corner pools."
-    },
-    {
-        "id": "SB1",
-        "code": "SB1",
-        "name": "Smalblaar 1 (SB1)",
-        "river": "Small Blaar",
-        "enabled": True,
-        "usage_mode": "double",
-        "lower_pin": [-33.7150, 19.1740],   # Hotel boundary fence
-        "upper_pin": [-33.7190, 19.1655],   # Picnic site
-        "mid_pin": [-33.7170, 19.1700],     # Willow pool
-        "meeting_point": "Picnic site pull-off",
-        "notes": "Productive long glides and pocket water."
-    },
-    {
-        "id": "Hotel Beat",
-        "code": "Hotel Beat",
-        "name": "Smalblaar Hotel Beat",
-        "river": "Small Blaar",
-        "enabled": True,
+        "sat_available": True,
+        "sat_sessions": 1,
+        "sun_available": True,
+        "sun_sessions": 1,
         "usage_mode": "single",
-        "lower_pin": [-33.7125, 19.1800],   # Lower weir
-        "upper_pin": [-33.7150, 19.1740],   # Hotel upper boundary
-        "mid_pin": [-33.7138, 19.1770],     # Lodge terrace pool
-        "meeting_point": "Du Kloof Lodge guest parking",
-        "notes": "Historic beat opposite the old hotel. Single session limit per day."
+        "lower_pin": [-33.7610, 19.1205],
+        "mid_pin": [-33.7650, 19.1212],
+        "upper_pin": [-33.7690, 19.1220],
+        "meeting_point": "Kraalstroom trail / Upper gorge",
+        "notes": "Upper cascades and remote gorge."
     },
     {
-        "id": "Transport Upper",
-        "code": "Transport Upper",
-        "name": "Transport Upper",
+        "id": "MOLENAARS(UPPER)",
+        "code": "MOLENAARS(UPPER)",
+        "name": "MOLENAARS(UPPER)",
         "river": "Small Blaar",
         "enabled": True,
+        "sat_available": True,
+        "sat_sessions": 2,
+        "sun_available": True,
+        "sun_sessions": 2,
         "usage_mode": "double",
-        "lower_pin": [-33.7085, 19.1895],   # Transport bridge
-        "upper_pin": [-33.7125, 19.1800],   # Lower weir
-        "mid_pin": [-33.7105, 19.1845],     # Island run
+        "lower_pin": [-33.7085, 19.1895],
+        "mid_pin": [-33.7105, 19.1845],
+        "upper_pin": [-33.7125, 19.1800],
         "meeting_point": "Transport bridge parking",
-        "notes": "Upper section of Molenaars Transport reserve."
+        "notes": "Upper section of Molenaars reserve."
     },
     {
-        "id": "Transport Lower",
-        "code": "Transport Lower",
-        "name": "Transport Lower",
+        "id": "MOLENAARS(LOWER)",
+        "code": "MOLENAARS(LOWER)",
+        "name": "MOLENAARS(LOWER)",
         "river": "Small Blaar",
         "enabled": True,
+        "sat_available": True,
+        "sat_sessions": 2,
+        "sun_available": True,
+        "sun_sessions": 2,
         "usage_mode": "double",
-        "lower_pin": [-33.7040, 19.2000],   # Farm Boundary
-        "upper_pin": [-33.7085, 19.1895],   # Transport Bridge
-        "mid_pin": [-33.7065, 19.1945],     # Klip river confluence
+        "lower_pin": [-33.7040, 19.2000],
+        "mid_pin": [-33.7065, 19.1945],
+        "upper_pin": [-33.7085, 19.1895],
         "meeting_point": "Farm gate boundary on N1",
         "notes": "Lower pastoral reach of the Molenaars."
-    },
-    {
-        "id": "Transport",
-        "code": "Transport",
-        "name": "Transport Beat",
-        "river": "Small Blaar",
-        "enabled": True,
-        "usage_mode": "double",
-        "lower_pin": [-33.7040, 19.2000],   # Farm Boundary
-        "upper_pin": [-33.7085, 19.1895],   # Transport Bridge
-        "mid_pin": [-33.7065, 19.1945],     # Mid rapids
-        "meeting_point": "Transport Bridge layby on N1",
-        "notes": "Classic riffles and runs below Du Kloof Lodge."
     }
 ]
 

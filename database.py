@@ -668,7 +668,7 @@ class TournamentDB:
         if not found:
             return {"success": False, "error": f"Beat {beat_id} not found."}
             
-        allowed_fields = ["lower_pin", "upper_pin", "mid_pin", "river", "enabled", "meeting_point", "notes", "name", "usage_mode"]
+        allowed_fields = ["lower_pin", "upper_pin", "mid_pin", "river", "enabled", "meeting_point", "notes", "name", "usage_mode", "sat_available", "sat_sessions", "sun_available", "sun_sessions"]
         for f in allowed_fields:
             if f in update_dict:
                 target_beat[f] = update_dict[f]
@@ -696,7 +696,7 @@ class TournamentDB:
         """Batch updates beats configuration (enabled, river, usage_mode, pins, meeting_point)."""
         current_beats = self.get_beats()
         updated_count = 0
-        allowed_fields = ["lower_pin", "upper_pin", "mid_pin", "river", "enabled", "meeting_point", "notes", "name", "usage_mode"]
+        allowed_fields = ["lower_pin", "upper_pin", "mid_pin", "river", "enabled", "meeting_point", "notes", "name", "usage_mode", "sat_available", "sat_sessions", "sun_available", "sun_sessions"]
         
         for new_b in beats_list:
             b_id = new_b.get("id") or new_b.get("code")

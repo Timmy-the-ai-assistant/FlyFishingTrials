@@ -1233,10 +1233,13 @@ function renderAdminBeatsConfig() {
     <table class="data-table text-sm" style="width:100%; border-collapse:collapse;">
       <thead>
         <tr style="border-bottom:1px solid var(--border); text-align:left;">
-          <th style="width:50px; text-align:center; padding:0.4rem;">Active</th>
+          <th style="width:40px; text-align:center; padding:0.4rem;">Active</th>
           <th style="padding:0.4rem;">Beat</th>
           <th style="padding:0.4rem;">River Section</th>
-          <th style="padding:0.4rem;">Usage Capacity</th>
+          <th style="text-align:center; padding:0.4rem;">Sat Avail</th>
+          <th style="padding:0.4rem;">Sat Sessions</th>
+          <th style="text-align:center; padding:0.4rem;">Sun Avail</th>
+          <th style="padding:0.4rem;">Sun Sessions</th>
           <th style="padding:0.4rem;">Meeting Point / Access</th>
         </tr>
       </thead>
@@ -1244,17 +1247,19 @@ function renderAdminBeatsConfig() {
   `;
 
   let activeCount = 0;
-  let doubleCount = 0;
-  let singleCount = 0;
+  let satAvailCount = 0;
+  let sunAvailCount = 0;
 
   adminBeatsList.forEach((b, idx) => {
     const isEnabled = (b.enabled !== false);
     if (isEnabled) activeCount++;
-    const isSingle = (b.usage_mode === 'single');
-    if (isEnabled) {
-      if (isSingle) singleCount++;
-      else doubleCount++;
-    }
+    const isSat = (b.sat_available !== false);
+    const satSess = b.sat_sessions !== undefined ? Number(b.sat_sessions) : (b.usage_mode === 'single' ? 1 : 2);
+    if (isEnabled && isSat) satAvailCount++;
+
+    const isSun = (b.sun_available !== false);
+    const sunSess = b.sun_sessions !== undefined ? Number(b.sun_sessions) : (b.usage_mode === 'single' ? 1 : 2);
+    if (isEnabled && isSun) sunAvailCount++;
 
     const isYP = (b.river && b.river.toLowerCase().includes('eland'));
     const isSB = !isYP;
@@ -1262,7 +1267,7 @@ function renderAdminBeatsConfig() {
     html += `
       <tr style="border-bottom:1px solid rgba(255,255,255,0.05); background:${isEnabled ? 'transparent' : 'rgba(0,0,0,0.2)'}; opacity:${isEnabled ? '1' : '0.6'};">
         <td style="text-align:center; padding:0.4rem;">
-          <input type="checkbox" id="admin_beat_active_${idx}" ${isEnabled ? 'checked' : ''} onchange="toggleAdminBeatActive(${idx})">
+          <input type="checkbox" id="admin_beat_active_${idx}" ${isEnabled ? 'checked' : ''} onchange="toggleAdminBeatActive(${idx})" title="Toggle Active">
         </td>
         <td style="padding:0.4rem;">
           <strong>${escapeHtml(b.code || b.id)}</strong>
@@ -1274,10 +1279,22 @@ function renderAdminBeatsConfig() {
             <option value="Elands Pad" ${isYP ? 'selected' : ''}>Elands Pad</option>
           </select>
         </td>
+        <td style="text-align:center; padding:0.4rem;">
+          <input type="checkbox" id="admin_beat_sat_avail_${idx}" ${isSat ? 'checked' : ''} onchange="updateAdminBeatSatAvail(${idx})" title="Available on Saturday">
+        </td>
         <td style="padding:0.4rem;">
-          <select id="admin_beat_mode_${idx}" class="form-control form-control-sm" style="padding:0.25rem 0.4rem; font-size:0.8rem; background:var(--bg-secondary); color:var(--text-primary); border:1px solid var(--border); border-radius:4px;" onchange="updateAdminBeatMode(${idx})">
-            <option value="double" ${!isSingle ? 'selected' : ''}>Double Session (AM + PM)</option>
-            <option value="single" ${isSingle ? 'selected' : ''}>Single Session (1x / Day)</option>
+          <select id="admin_beat_sat_sess_${idx}" class="form-control form-control-sm" style="padding:0.25rem 0.4rem; font-size:0.8rem; background:var(--bg-secondary); color:var(--text-primary); border:1px solid var(--border); border-radius:4px;" onchange="updateAdminBeatSatSessions(${idx})">
+            <option value="2" ${satSess === 2 ? 'selected' : ''}>2 Sessions (AM+PM)</option>
+            <option value="1" ${satSess === 1 ? 'selected' : ''}>1 Session (1x)</option>
+          </select>
+        </td>
+        <td style="text-align:center; padding:0.4rem;">
+          <input type="checkbox" id="admin_beat_sun_avail_${idx}" ${isSun ? 'checked' : ''} onchange="updateAdminBeatSunAvail(${idx})" title="Available on Sunday">
+        </td>
+        <td style="padding:0.4rem;">
+          <select id="admin_beat_sun_sess_${idx}" class="form-control form-control-sm" style="padding:0.25rem 0.4rem; font-size:0.8rem; background:var(--bg-secondary); color:var(--text-primary); border:1px solid var(--border); border-radius:4px;" onchange="updateAdminBeatSunSessions(${idx})">
+            <option value="2" ${sunSess === 2 ? 'selected' : ''}>2 Sessions (AM+PM)</option>
+            <option value="1" ${sunSess === 1 ? 'selected' : ''}>1 Session (1x)</option>
           </select>
         </td>
         <td style="padding:0.4rem;" class="text-xs text-muted">${escapeHtml(b.meeting_point || '')}</td>
@@ -1290,7 +1307,7 @@ function renderAdminBeatsConfig() {
 
   const summaryEl = document.getElementById('adminBeatsValidationSummary');
   if (summaryEl) {
-    summaryEl.innerHTML = `<strong>${activeCount} Active Beats:</strong> ${doubleCount} Double Session (AM+PM) &bull; ${singleCount} Single Session (1x/Day)`;
+    summaryEl.innerHTML = `<strong>${activeCount} Active Beats:</strong> Saturday: ${satAvailCount} beats available &bull; Sunday: ${sunAvailCount} beats available`;
   }
 }
 
@@ -1309,11 +1326,31 @@ function updateAdminBeatRiver(idx) {
   }
 }
 
-function updateAdminBeatMode(idx) {
-  const sel = document.getElementById(`admin_beat_mode_${idx}`);
+function updateAdminBeatSatAvail(idx) {
+  const chk = document.getElementById(`admin_beat_sat_avail_${idx}`);
+  if (chk && adminBeatsList[idx]) {
+    adminBeatsList[idx].sat_available = chk.checked;
+  }
+}
+
+function updateAdminBeatSatSessions(idx) {
+  const sel = document.getElementById(`admin_beat_sat_sess_${idx}`);
   if (sel && adminBeatsList[idx]) {
-    adminBeatsList[idx].usage_mode = sel.value;
-    renderAdminBeatsConfig();
+    adminBeatsList[idx].sat_sessions = parseInt(sel.value, 10);
+  }
+}
+
+function updateAdminBeatSunAvail(idx) {
+  const chk = document.getElementById(`admin_beat_sun_avail_${idx}`);
+  if (chk && adminBeatsList[idx]) {
+    adminBeatsList[idx].sun_available = chk.checked;
+  }
+}
+
+function updateAdminBeatSunSessions(idx) {
+  const sel = document.getElementById(`admin_beat_sun_sess_${idx}`);
+  if (sel && adminBeatsList[idx]) {
+    adminBeatsList[idx].sun_sessions = parseInt(sel.value, 10);
   }
 }
 
@@ -1328,8 +1365,15 @@ async function saveAdminBeatsConfig() {
     if (act) b.enabled = act.checked;
     const riv = document.getElementById(`admin_beat_river_${idx}`);
     if (riv) b.river = riv.value;
-    const mod = document.getElementById(`admin_beat_mode_${idx}`);
-    if (mod) b.usage_mode = mod.value;
+    const satAvail = document.getElementById(`admin_beat_sat_avail_${idx}`);
+    if (satAvail) b.sat_available = satAvail.checked;
+    const satSess = document.getElementById(`admin_beat_sat_sess_${idx}`);
+    if (satSess) b.sat_sessions = parseInt(satSess.value, 10);
+    const sunAvail = document.getElementById(`admin_beat_sun_avail_${idx}`);
+    if (sunAvail) b.sun_available = sunAvail.checked;
+    const sunSess = document.getElementById(`admin_beat_sun_sess_${idx}`);
+    if (sunSess) b.sun_sessions = parseInt(sunSess.value, 10);
+    b.usage_mode = (b.sat_sessions === 1 && b.sun_sessions === 1) ? 'single' : 'double';
   });
 
   try {
@@ -1352,7 +1396,7 @@ async function saveAdminBeatsConfig() {
 
     const data = await res.json();
     if (data.success) {
-      alert(`✅ Active beats and river configuration saved successfully! (${adminBeatsList.filter(b => b.enabled !== false).length} active beats ready for draw)`);
+      alert(`✅ Active beats and day availability saved successfully! (${adminBeatsList.filter(b => b.enabled !== false).length} active beats ready for draw)`);
       await loadState();
       renderAdminBeatsConfig();
       updateMapPins();
@@ -1635,7 +1679,7 @@ function openParameterAuditModal() {
   });
   const bothRiversRate = anglers.length > 0 ? Math.round((anglersBothRivers / anglers.length) * 100) : 100;
 
-  // Parameter 6: Beat Usage Limits (Single vs Double Sessions)
+  // Parameter 6: Beat Usage Limits (Sat / Sun Daily Session Limits)
   const beatUsageCounts = {};
   sessions.forEach(s => {
     const isSat = (s.session_id === 1 || s.session_id === 2);
@@ -1646,7 +1690,10 @@ function openParameterAuditModal() {
         beatUsageCounts[bKey] = {
           name: m.beat_name || bKey,
           river: m.river || bConf.river || '',
-          usage_mode: bConf.usage_mode || 'double',
+          sat_available: bConf.sat_available !== false,
+          sat_sessions: bConf.sat_sessions !== undefined ? Number(bConf.sat_sessions) : (bConf.usage_mode === 'single' ? 1 : 2),
+          sun_available: bConf.sun_available !== false,
+          sun_sessions: bConf.sun_sessions !== undefined ? Number(bConf.sun_sessions) : (bConf.usage_mode === 'single' ? 1 : 2),
           satCount: 0,
           sunCount: 0,
           totalCount: 0
@@ -1658,24 +1705,24 @@ function openParameterAuditModal() {
     });
   });
 
-  let singleUsageCompliant = true;
-  const singleViolations = [];
+  let beatUsageCompliant = true;
+  const beatViolations = [];
   Object.values(beatUsageCounts).forEach(b => {
-    if (b.usage_mode === 'single') {
-      if (b.satCount > 1) {
-        singleUsageCompliant = false;
-        singleViolations.push(`${b.name}: ${b.satCount}x on Saturday`);
-      }
-      if (b.sunCount > 1) {
-        singleUsageCompliant = false;
-        singleViolations.push(`${b.name}: ${b.sunCount}x on Sunday`);
-      }
+    const maxSat = b.sat_available ? b.sat_sessions : 0;
+    const maxSun = b.sun_available ? b.sun_sessions : 0;
+    if (b.satCount > maxSat) {
+      beatUsageCompliant = false;
+      beatViolations.push(`${b.name}: ${b.satCount}x on Saturday (Limit: ${maxSat})`);
+    }
+    if (b.sunCount > maxSun) {
+      beatUsageCompliant = false;
+      beatViolations.push(`${b.name}: ${b.sunCount}x on Sunday (Limit: ${maxSun})`);
     }
   });
 
   // Overall status rating
   let statusBadgeHtml = '';
-  if (hasZeroRepeats && aTeamPass && challengersFacingAtLeast1 === challengers.length && singleUsageCompliant) {
+  if (hasZeroRepeats && aTeamPass && challengersFacingAtLeast1 === challengers.length && beatUsageCompliant) {
     statusBadgeHtml = `<span class="badge badge-success" style="background:#059669; color:#fff; padding:0.4rem 0.8rem; border-radius:20px; font-weight:700;">✅ ALL PARAMETERS SATISFIED (OPTIMAL)</span>`;
   } else if (hasZeroRepeats && challengersFacingAtLeast1 === challengers.length) {
     statusBadgeHtml = `<span class="badge badge-info" style="background:#0284c7; color:#fff; padding:0.4rem 0.8rem; border-radius:20px; font-weight:700;">✓ VALID & ACCEPTABLE FIELD</span>`;
@@ -1909,40 +1956,43 @@ function openParameterAuditModal() {
       </table>
     </div>
 
-    <!-- Parameter 6 Card: Beat Usage Limits (Single vs Double Sessions) -->
+    <!-- Parameter 6 Card: Beat Daily Availability & Session Limits -->
     <div class="card mb-3" style="background:var(--bg-secondary); border:1px solid var(--border); border-radius:8px; padding:1rem;">
       <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem; flex-wrap:wrap; gap:0.4rem;">
-        <h4 style="margin:0;">6. Beat Usage Limits (Single vs Double Sessions)</h4>
-        <span class="status-badge ${singleUsageCompliant ? 'badge-in-session' : 'badge-past'}">
-          ${singleUsageCompliant ? '✅ 100% Compliant with Limits' : '❌ Capacity Violation Detected'}
+        <h4 style="margin:0;">6. Beat Daily Availability &amp; Session Limits</h4>
+        <span class="status-badge ${beatUsageCompliant ? 'badge-in-session' : 'badge-past'}">
+          ${beatUsageCompliant ? '✅ 100% Compliant with Limits' : '❌ Capacity Violation Detected'}
         </span>
       </div>
       <p class="text-sm text-muted" style="margin:0 0 0.75rem 0;">
-        Single session beats (e.g. Hotel Beat, Star) must be used at most <strong>once per day</strong> (1x Saturday, 1x Sunday). Double session beats can be fished in both Morning & Afternoon.
+        Each beat is configured with daily availability and allowed session counts (1 Session vs 2 Sessions AM+PM) for Saturday and Sunday.
       </p>
       <table class="table text-xs" style="width:100%; border-collapse:collapse;">
         <thead>
           <tr style="border-bottom:1px solid var(--border); text-align:left;">
             <th style="padding:0.35rem;">Beat</th>
             <th style="padding:0.35rem;">River</th>
-            <th style="padding:0.35rem;">Allowed Capacity</th>
-            <th style="padding:0.35rem;">Saturday Usage</th>
-            <th style="padding:0.35rem;">Sunday Usage</th>
+            <th style="padding:0.35rem;">Sat Limit</th>
+            <th style="padding:0.35rem;">Sat Fished</th>
+            <th style="padding:0.35rem;">Sun Limit</th>
+            <th style="padding:0.35rem;">Sun Fished</th>
             <th style="padding:0.35rem;">Total Usage</th>
             <th style="padding:0.35rem;">Compliance</th>
           </tr>
         </thead>
         <tbody>
           ${Object.values(beatUsageCounts).map(b => {
-            const isSingle = (b.usage_mode === 'single');
-            const valid = !isSingle || (b.satCount <= 1 && b.sunCount <= 1);
+            const maxSat = b.sat_available ? b.sat_sessions : 0;
+            const maxSun = b.sun_available ? b.sun_sessions : 0;
+            const valid = (b.satCount <= maxSat) && (b.sunCount <= maxSun);
             return `
               <tr style="border-bottom:1px solid rgba(255,255,255,0.05);">
                 <td style="padding:0.35rem;"><strong>${escapeHtml(b.name)}</strong></td>
                 <td style="padding:0.35rem;">${escapeHtml(b.river)}</td>
-                <td style="padding:0.35rem;">${isSingle ? '<span class="badge" style="background:#d97706; color:#fff; font-size:0.7rem; padding:0.1rem 0.35rem;">Single (1x/Day)</span>' : '<span class="badge" style="background:#0284c7; color:#fff; font-size:0.7rem; padding:0.1rem 0.35rem;">Double (AM+PM)</span>'}</td>
-                <td style="padding:0.35rem;">${b.satCount}x ${isSingle && b.satCount > 1 ? '<span style="color:#ef4444; font-weight:700;">(Exceeded)</span>' : ''}</td>
-                <td style="padding:0.35rem;">${b.sunCount}x ${isSingle && b.sunCount > 1 ? '<span style="color:#ef4444; font-weight:700;">(Exceeded)</span>' : ''}</td>
+                <td style="padding:0.35rem;">${b.sat_available ? `<span class="badge" style="background:#0284c7; color:#fff; font-size:0.7rem; padding:0.1rem 0.35rem;">${maxSat} Session${maxSat > 1 ? 's' : ''}</span>` : '<span class="badge" style="background:#ef4444; color:#fff; font-size:0.7rem; padding:0.1rem 0.35rem;">Unavailable</span>'}</td>
+                <td style="padding:0.35rem;">${b.satCount}x ${b.satCount > maxSat ? '<span style="color:#ef4444; font-weight:700;">(Exceeded)</span>' : ''}</td>
+                <td style="padding:0.35rem;">${b.sun_available ? `<span class="badge" style="background:#0284c7; color:#fff; font-size:0.7rem; padding:0.1rem 0.35rem;">${maxSun} Session${maxSun > 1 ? 's' : ''}</span>` : '<span class="badge" style="background:#ef4444; color:#fff; font-size:0.7rem; padding:0.1rem 0.35rem;">Unavailable</span>'}</td>
+                <td style="padding:0.35rem;">${b.sunCount}x ${b.sunCount > maxSun ? '<span style="color:#ef4444; font-weight:700;">(Exceeded)</span>' : ''}</td>
                 <td style="padding:0.35rem;">${b.totalCount} sessions</td>
                 <td style="padding:0.35rem;">${valid ? '<span style="color:#10b981; font-weight:700;">✅ Compliant</span>' : '<span style="color:#ef4444; font-weight:700;">❌ Exceeded</span>'}</td>
               </tr>
@@ -2958,16 +3008,19 @@ function renderBeatsManagerTable() {
 
     const isYP = (b.river && b.river.toLowerCase().includes('eland'));
     const isSB = !isYP;
-    const isSingle = (b.usage_mode === 'single');
+    const isSatAvail = b.sat_available !== false;
+    const satSess = b.sat_sessions !== undefined ? Number(b.sat_sessions) : (b.usage_mode === 'single' ? 1 : 2);
+    const isSunAvail = b.sun_available !== false;
+    const sunSess = b.sun_sessions !== undefined ? Number(b.sun_sessions) : (b.usage_mode === 'single' ? 1 : 2);
 
     html += `
       <tr>
         <td class="text-center">
-          <input type="checkbox" id="beat_active_${idx}" ${b.enabled ? 'checked' : ''} onchange="onBeatActiveToggle(${idx})">
+          <input type="checkbox" id="beat_active_${idx}" ${b.enabled !== false ? 'checked' : ''} onchange="onBeatActiveToggle(${idx})">
         </td>
         <td>
-          <strong>${escapeHtml(b.code)}</strong><br/>
-          <small class="text-muted">${escapeHtml(b.name)}</small>
+          <strong>${escapeHtml(b.code || b.id)}</strong><br/>
+          <small class="text-muted">${escapeHtml(b.name || '')}</small>
         </td>
         <td>
           <select id="beat_river_${idx}" class="river-select" onchange="onBeatRiverChange(${idx})">
@@ -2975,10 +3028,22 @@ function renderBeatsManagerTable() {
             <option value="Elands Pad" ${isYP ? 'selected' : ''}>Elands Pad</option>
           </select>
         </td>
+        <td class="text-center">
+          <input type="checkbox" id="beat_sat_avail_${idx}" ${isSatAvail ? 'checked' : ''} onchange="onBeatSatToggle(${idx})">
+        </td>
         <td>
-          <select id="beat_mode_${idx}" class="river-select" onchange="onBeatModeChange(${idx})">
-            <option value="double" ${!isSingle ? 'selected' : ''}>Double (AM+PM)</option>
-            <option value="single" ${isSingle ? 'selected' : ''}>Single (1x/Day)</option>
+          <select id="beat_sat_sess_${idx}" class="river-select" onchange="onBeatSatSessChange(${idx})">
+            <option value="2" ${satSess === 2 ? 'selected' : ''}>2 Sessions</option>
+            <option value="1" ${satSess === 1 ? 'selected' : ''}>1 Session</option>
+          </select>
+        </td>
+        <td class="text-center">
+          <input type="checkbox" id="beat_sun_avail_${idx}" ${isSunAvail ? 'checked' : ''} onchange="onBeatSunToggle(${idx})">
+        </td>
+        <td>
+          <select id="beat_sun_sess_${idx}" class="river-select" onchange="onBeatSunSessChange(${idx})">
+            <option value="2" ${sunSess === 2 ? 'selected' : ''}>2 Sessions</option>
+            <option value="1" ${sunSess === 1 ? 'selected' : ''}>1 Session</option>
           </select>
         </td>
         <td>
@@ -3017,10 +3082,31 @@ function onBeatRiverChange(idx) {
   }
 }
 
-function onBeatModeChange(idx) {
-  const sel = document.getElementById(`beat_mode_${idx}`);
+function onBeatSatToggle(idx) {
+  const chk = document.getElementById(`beat_sat_avail_${idx}`);
+  if (chk && currentEditingBeatsList[idx]) {
+    currentEditingBeatsList[idx].sat_available = chk.checked;
+  }
+}
+
+function onBeatSatSessChange(idx) {
+  const sel = document.getElementById(`beat_sat_sess_${idx}`);
   if (sel && currentEditingBeatsList[idx]) {
-    currentEditingBeatsList[idx].usage_mode = sel.value;
+    currentEditingBeatsList[idx].sat_sessions = parseInt(sel.value, 10);
+  }
+}
+
+function onBeatSunToggle(idx) {
+  const chk = document.getElementById(`beat_sun_avail_${idx}`);
+  if (chk && currentEditingBeatsList[idx]) {
+    currentEditingBeatsList[idx].sun_available = chk.checked;
+  }
+}
+
+function onBeatSunSessChange(idx) {
+  const sel = document.getElementById(`beat_sun_sess_${idx}`);
+  if (sel && currentEditingBeatsList[idx]) {
+    currentEditingBeatsList[idx].sun_sessions = parseInt(sel.value, 10);
   }
 }
 
@@ -3043,11 +3129,19 @@ async function saveSingleBeat(idx) {
   const meetStr = document.getElementById(`beat_meet_${idx}`)?.value;
   const riverStr = document.getElementById(`beat_river_${idx}`)?.value;
   const activeChk = document.getElementById(`beat_active_${idx}`)?.checked;
-  const modeStr = document.getElementById(`beat_mode_${idx}`)?.value || 'double';
+  const satAvail = document.getElementById(`beat_sat_avail_${idx}`)?.checked ?? true;
+  const satSess = parseInt(document.getElementById(`beat_sat_sess_${idx}`)?.value || '2', 10);
+  const sunAvail = document.getElementById(`beat_sun_avail_${idx}`)?.checked ?? true;
+  const sunSess = parseInt(document.getElementById(`beat_sun_sess_${idx}`)?.value || '2', 10);
+  const modeStr = (satSess === 1 && sunSess === 1) ? 'single' : 'double';
 
   const payload = {
     beat_id: b.id,
     enabled: activeChk,
+    sat_available: satAvail,
+    sat_sessions: satSess,
+    sun_available: sunAvail,
+    sun_sessions: sunSess,
     river: riverStr,
     usage_mode: modeStr,
     lower_pin: parseCoords(lowerStr),
@@ -3092,12 +3186,20 @@ async function saveAllBeatsAndApply() {
     const meetStr = document.getElementById(`beat_meet_${idx}`)?.value || '';
     const riverStr = document.getElementById(`beat_river_${idx}`)?.value || b.river;
     const activeChk = document.getElementById(`beat_active_${idx}`)?.checked ?? b.enabled;
-    const modeStr = document.getElementById(`beat_mode_${idx}`)?.value || b.usage_mode || 'double';
+    const satAvail = document.getElementById(`beat_sat_avail_${idx}`)?.checked ?? (b.sat_available !== false);
+    const satSess = parseInt(document.getElementById(`beat_sat_sess_${idx}`)?.value || (b.sat_sessions || 2), 10);
+    const sunAvail = document.getElementById(`beat_sun_avail_${idx}`)?.checked ?? (b.sun_available !== false);
+    const sunSess = parseInt(document.getElementById(`beat_sun_sess_${idx}`)?.value || (b.sun_sessions || 2), 10);
+    const modeStr = (satSess === 1 && sunSess === 1) ? 'single' : 'double';
 
     payloadList.push({
       id: b.id,
       code: b.code,
       enabled: activeChk,
+      sat_available: satAvail,
+      sat_sessions: satSess,
+      sun_available: sunAvail,
+      sun_sessions: sunSess,
       river: riverStr,
       usage_mode: modeStr,
       lower_pin: lowerStr ? parseCoords(lowerStr) : b.lower_pin,
