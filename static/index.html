@@ -25,6 +25,50 @@
     </div>
   </div>
 
+  <!-- Active Trial / Multi-Trial & WhatsApp Bar -->
+  <div class="trial-bar">
+    <div class="container trial-bar-container">
+      <div class="trial-left">
+        <label for="trialSelect" class="trial-label">🏆 <strong>Trial:</strong></label>
+        <select id="trialSelect" class="form-select trial-select" onchange="onTrialSelected(this.value)">
+          <option value="">Loading trials...</option>
+        </select>
+        <span id="trialStatusBadge" class="status-badge badge-in-session">🟢 Active Trial in Session</span>
+        <span id="trialDatesBadge" class="trial-dates-tag">📅 14 Nov – 18 Nov 2026</span>
+      </div>
+
+      <div class="trial-right">
+        <!-- WhatsApp Group Invite Button -->
+        <a id="trialWhatsappBtn" href="#" target="_blank" class="btn btn-whatsapp hidden" title="Join the official WhatsApp group for this trial">
+          <span>💬 Join WhatsApp Group</span>
+        </a>
+
+        <!-- Organizer Admin Auth Lock/Unlock Status -->
+        <div id="adminAuthArea" class="admin-auth-box">
+          <button id="adminLoginBtn" class="btn btn-sm btn-admin-lock" onclick="openAdminPasswordModal()">
+            <span>🔒 Organizer Admin</span>
+          </button>
+          <div id="adminUnlockedControls" class="admin-unlocked-row hidden">
+            <span class="admin-active-pill">🔓 Admin Active</span>
+            <button class="btn btn-sm btn-outline-admin" onclick="openTrialManagerModal()" title="Create, edit, or configure trials">
+              ⚙️ Manage Trials
+            </button>
+            <button class="btn btn-sm btn-outline-admin btn-admin-logout" onclick="logoutAdmin()" title="Lock admin controls">
+              🔒 Logout
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Past Event Banner -->
+  <div id="pastEventBanner" class="past-event-banner hidden">
+    <div class="container past-event-container">
+      <span>🏁 <strong>PAST EVENT ARCHIVE:</strong> <span id="pastEventText">This trial was completed. Viewing official standings, schedule, and maps in read-only mode.</span></span>
+    </div>
+  </div>
+
   <!-- Header -->
   <header class="app-header">
     <div class="container header-container">
@@ -622,6 +666,168 @@
             <button type="submit" class="btn btn-primary">Save Snapshot Now</button>
           </div>
         </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Organizer Admin Password Modal -->
+  <div id="adminPasswordModal" class="modal-overlay hidden">
+    <div class="modal-card card modal-sm">
+      <div class="modal-header">
+        <div>
+          <h3>🔒 Organizer Admin Login</h3>
+          <p class="text-muted text-sm">Protected management controls for Fly Fishing Trials.</p>
+        </div>
+        <button class="modal-close" onclick="closeAdminPasswordModal()">&times;</button>
+      </div>
+      <div class="modal-body">
+        <form id="adminPasswordForm" onsubmit="submitAdminPassword(event)">
+          <div class="form-group">
+            <label for="adminPasswordInput">Organizer Password</label>
+            <input type="password" id="adminPasswordInput" class="form-control" placeholder="Enter organizer password..." autocomplete="current-password" required>
+            <small class="form-hint">Default organizer password: <code>small-Blaar</code></small>
+          </div>
+          <div id="adminPasswordError" class="alert alert-danger hidden mt-2" style="padding: 0.5rem; font-size: 0.85rem; border-radius: var(--radius-sm); background: rgba(239, 68, 68, 0.2); border: 1px solid var(--danger); color: #fca5a5;"></div>
+          <div class="form-actions mt-3">
+            <button type="button" class="btn btn-secondary" onclick="closeAdminPasswordModal()">Cancel</button>
+            <button type="submit" class="btn btn-primary">Unlock Admin Controls</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Trial Lifecycle & Management Modal -->
+  <div id="trialManagerModal" class="modal-overlay hidden">
+    <div class="modal-card card modal-lg">
+      <div class="modal-header">
+        <div>
+          <h3>🏆 Trials Lifecycle & Annual Schedule Manager</h3>
+          <p class="text-muted text-sm">Create and schedule trials, configure WhatsApp links, and manage past event archives.</p>
+        </div>
+        <button class="modal-close" onclick="closeTrialManagerModal()">&times;</button>
+      </div>
+      <div class="modal-body">
+        
+        <!-- Rules Summary Alert -->
+        <div class="p-3 mb-3" style="background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.3); border-radius: var(--radius-sm); font-size: 0.85rem;">
+          <strong>📋 Rules Enforced:</strong>
+          <ul style="margin: 0.25rem 0 0 1.25rem; line-height: 1.4;">
+            <li><strong>Official Naming:</strong> Autumn Trial [Year] A/B, Spring Trial [Year] A/B, Stillwater Trial [Year] A/B.</li>
+            <li><strong>Single Trial Per Set Date:</strong> Dates cannot overlap with another trial.</li>
+            <li><strong>Annual Limit:</strong> Maximum of 10 trials per calendar year.</li>
+            <li><strong>Automatic Lifecycle:</strong> Displays as <em>Active In-Session</em> during event dates, and moves automatically to <em>Past Event Archive</em> after the date.</li>
+          </ul>
+        </div>
+
+        <!-- Section 1: Active Trial Configuration -->
+        <div class="card p-3 mb-4" style="background: var(--bg-primary); border: 1px solid var(--border);">
+          <h4 style="margin-bottom: 0.5rem; color: var(--accent-gold);">✏️ Edit Active Trial Details</h4>
+          <form id="editActiveTrialForm" onsubmit="submitEditActiveTrial(event)">
+            <input type="hidden" id="editTrialId">
+            <div class="grid-2col mb-2">
+              <div class="form-group">
+                <label for="editTrialName">Trial Name</label>
+                <input type="text" id="editTrialName" class="form-control" required>
+              </div>
+              <div class="form-group">
+                <label for="editTrialYear">Year</label>
+                <input type="number" id="editTrialYear" class="form-control" min="2024" max="2035" required>
+              </div>
+            </div>
+            <div class="grid-2col mb-2">
+              <div class="form-group">
+                <label for="editTrialStartDate">Start Date</label>
+                <input type="date" id="editTrialStartDate" class="form-control" required>
+              </div>
+              <div class="form-group">
+                <label for="editTrialEndDate">End Date</label>
+                <input type="date" id="editTrialEndDate" class="form-control" required>
+              </div>
+            </div>
+            <div class="form-group mb-3">
+              <label for="editTrialWhatsapp">💬 WhatsApp Group Direct Invite Link</label>
+              <input type="url" id="editTrialWhatsapp" class="form-control" placeholder="https://chat.whatsapp.com/...">
+              <small class="form-hint">Allows competitors to join the official WhatsApp group directly from the app.</small>
+            </div>
+            <div class="text-right">
+              <button type="submit" class="btn btn-primary btn-sm">Save Trial Changes</button>
+            </div>
+          </form>
+        </div>
+
+        <!-- Section 2: Create New Trial -->
+        <div class="card p-3 mb-4" style="background: var(--bg-primary); border: 1px solid var(--border);">
+          <h4 style="margin-bottom: 0.5rem; color: #34d399;">➕ Schedule New Official Trial</h4>
+          <form id="createTrialForm" onsubmit="submitCreateNewTrial(event)">
+            <div class="grid-2col mb-2">
+              <div class="form-group">
+                <label for="newTrialTypePreset">Official Name Preset</label>
+                <select id="newTrialTypePreset" class="form-control" onchange="applyTrialNamePreset()">
+                  <option value="Autumn Trial A">Autumn Trial A</option>
+                  <option value="Autumn Trial B">Autumn Trial B</option>
+                  <option value="Spring Trial A">Spring Trial A</option>
+                  <option value="Spring Trial B">Spring Trial B</option>
+                  <option value="Stillwater Trial A">Stillwater Trial A</option>
+                  <option value="Stillwater Trial B">Stillwater Trial B</option>
+                  <option value="custom">Custom (Must start with official prefix)</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="newTrialYear">Year</label>
+                <input type="number" id="newTrialYear" class="form-control" value="2026" min="2024" max="2035" onchange="applyTrialNamePreset()" required>
+              </div>
+            </div>
+
+            <div class="form-group mb-2">
+              <label for="newTrialFullName">Generated Trial Name</label>
+              <input type="text" id="newTrialFullName" class="form-control" value="Autumn Trial 2026 A" required>
+            </div>
+
+            <div class="grid-2col mb-2">
+              <div class="form-group">
+                <label for="newTrialStartDate">Start Date</label>
+                <input type="date" id="newTrialStartDate" class="form-control" required>
+              </div>
+              <div class="form-group">
+                <label for="newTrialEndDate">End Date</label>
+                <input type="date" id="newTrialEndDate" class="form-control" required>
+              </div>
+            </div>
+
+            <div class="form-group mb-3">
+              <label for="newTrialWhatsapp">💬 WhatsApp Group Invite Link</label>
+              <input type="url" id="newTrialWhatsapp" class="form-control" placeholder="https://chat.whatsapp.com/...">
+            </div>
+
+            <div class="text-right">
+              <button type="submit" class="btn btn-primary btn-sm">Schedule Trial Now</button>
+            </div>
+          </form>
+        </div>
+
+        <!-- Section 3: All Trials Directory -->
+        <div>
+          <h4 style="margin-bottom: 0.5rem;">📅 All Registered Trials & Past Archives</h4>
+          <div class="table-responsive">
+            <table class="data-table" id="allTrialsDirectoryTable">
+              <thead>
+                <tr>
+                  <th>Trial Name</th>
+                  <th>Dates</th>
+                  <th>Status</th>
+                  <th>Anglers</th>
+                  <th>WhatsApp</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="allTrialsDirectoryBody">
+                <tr><td colspan="6" class="text-center py-2">Loading trials list...</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
       </div>
     </div>
   </div>

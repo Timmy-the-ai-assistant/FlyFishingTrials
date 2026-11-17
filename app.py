@@ -1,14 +1,18 @@
 """
 Fly Fishing Trials Web Application Server
 =========================================
-Runs a multi-threaded HTTP server on port 8080 (or configurable).
+Runs a multi-threaded HTTP server on port 8585 (or configurable).
 Provides:
 - Complete REST API for schedule, live scoring, conflict resolution, angler management
+- Multi-Trial Lifecycle (Active Trial in Session, Past Events Archive, Upcoming)
+- Date validation (Single trial per date, max 10 trials/year)
+- Standard Naming (Autumn/Spring/Stillwater Trial [Year] A/B)
+- Organizer Admin Authentication (Password: "small-Blaar")
+- WhatsApp Group Link per trial
 - Dual-submission verification engine ("Google Forms" style)
 - Live Leaderboard with 10-point proportional scoring & blanks rule
 - Dynamic PDF generator download
 - Automatic Local IP detection for mobile device access on Wi-Fi
-- Built-in online tunneling integration
 """
 
 import os
@@ -17,11 +21,11 @@ import json
 import socket
 import urllib.parse
 import webbrowser
-from typing import Any, Dict, List
+from typing import Any, Dict, List, Optional
 from http.server import HTTPServer, SimpleHTTPRequestHandler
 from socketserver import ThreadingMixIn
 
-from database import TournamentDB
+from database import TournamentDB, ADMIN_PASSWORD
 from pdf_generator import generate_tournament_pdf
 
 PORT = 8585
@@ -34,13 +38,17 @@ def get_local_ip() -> str:
     try:
         s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
         s.settimeout(0.5)
-        # Doesn't need to actually reach external internet
         s.connect(('10.254.254.254', 1))
         ip = s.getsockname()[0]
         s.close()
         return ip
     except Exception:
         return "127.0.0.1"
+
+def check_admin_auth(headers: Any, body_json: Dict[str, Any]) -> bool:
+    """Verifies organizer password 'small-Blaar'."""
+    pwd = headers.get("X-Admin-Password") or body_json.get("password") or body_json.get("admin_password")
+    return db.verify_admin_password(pwd)
 
 class ThreadedHTTPServer(ThreadingMixIn, HTTPServer):
     daemon_threads = True
@@ -51,7 +59,6 @@ class TrialsRequestHandler(SimpleHTTPRequestHandler):
         super().__init__(*args, directory=STATIC_DIR, **kwargs)
 
     def log_message(self, format, *args):
-        # Clean console logging
         sys.stdout.write(f"[{self.log_date_time_string()}] {args[0]} {args[1]}\n")
 
     def send_json_response(self, data: Any, status_code: int = 200):
@@ -61,7 +68,7 @@ class TrialsRequestHandler(SimpleHTTPRequestHandler):
         self.send_header("Content-Length", str(len(body)))
         self.send_header("Access-Control-Allow-Origin", "*")
         self.send_header("Access-Control-Allow-Methods", "GET, POST, OPTIONS")
-        self.send_header("Access-Control-Allow-Headers", "Content-Type")
+        self.send_header("Access-Control-Allow-Headers", "Content-Type, X-Admin-Password")
         self.send_header("Cache-Control", "no-cache, no-store, must-revalidate")
         self.end_headers()
         self.wfile.write(body)
@@ -70,7 +77,7 @@ class TrialsRequestHandler(SimpleHTTPRequestHandler):
         self.send_response(200)
         self.send_header("Access-Control-Allow-Origin", "*")
         self.send_header("Access-Control-Allow-Methods", "GET, POST, OPTIONS")
-        self.send_header("Access-Control-Allow-Headers", "Content-Type")
+        self.send_header("Access-Control-Allow-Headers", "Content-Type, X-Admin-Password")
         self.end_headers()
 
     def do_GET(self):
@@ -80,6 +87,16 @@ class TrialsRequestHandler(SimpleHTTPRequestHandler):
         if path == "/api/state":
             state = db.get_full_state()
             self.send_json_response(state)
+            return
+
+        elif path == "/api/trials":
+            trials = db.get_trials_summary_list()
+            active_id = db.data.get("active_trial_id")
+            self.send_json_response({
+                "success": True, 
+                "trials": trials, 
+                "active_trial_id": active_id
+            })
             return
 
         elif path == "/api/beats":
@@ -124,7 +141,6 @@ class TrialsRequestHandler(SimpleHTTPRequestHandler):
             return
 
         elif path == "/api/pdf":
-            # Generate fresh PDF
             pdf_path = os.path.join(os.path.dirname(__file__), "Fly_Fishing_Trials_Official_Schedule_Scores.pdf")
             try:
                 generate_tournament_pdf(db.get_full_state(), pdf_path)
@@ -161,7 +177,82 @@ class TrialsRequestHandler(SimpleHTTPRequestHandler):
             self.send_json_response({"error": "Invalid JSON body"}, status_code=400)
             return
 
-        if path == "/api/submit":
+        # 1. Admin Password Verification
+        if path == "/api/admin/verify_password":
+            pwd = body_json.get("password", "")
+            if db.verify_admin_password(pwd):
+                self.send_json_response({"success": True, "message": "Organizer Admin authenticated."})
+            else:
+                self.send_json_response({"success": False, "error": "Invalid organizer password. Access denied."}, status_code=401)
+            return
+
+        # 2. Trial Selection (Public)
+        elif path == "/api/trials/select":
+            trial_id = body_json.get("trial_id", "")
+            res = db.set_active_trial(trial_id)
+            if res.get("success"):
+                self.send_json_response({
+                    "success": True,
+                    "state": db.get_full_state()
+                })
+            else:
+                self.send_json_response(res, status_code=400)
+            return
+
+        # 3. Create Trial (Admin Only)
+        elif path == "/api/admin/trial/create":
+            if not check_admin_auth(self.headers, body_json):
+                self.send_json_response({"success": False, "error": "Organizer password required (small-Blaar)."}, status_code=401)
+                return
+            try:
+                res = db.create_trial(
+                    name=body_json.get("name", ""),
+                    year=int(body_json.get("year", 2026)),
+                    start_date=body_json.get("start_date", ""),
+                    end_date=body_json.get("end_date", ""),
+                    whatsapp_url=body_json.get("whatsapp_url", ""),
+                    anglers=body_json.get("anglers"),
+                    a_team_anglers=body_json.get("a_team_anglers")
+                )
+                res["state"] = db.get_full_state()
+                self.send_json_response(res)
+            except Exception as e:
+                self.send_json_response({"success": False, "error": str(e)}, status_code=400)
+            return
+
+        # 4. Update Trial (Admin Only)
+        elif path == "/api/admin/trial/update":
+            if not check_admin_auth(self.headers, body_json):
+                self.send_json_response({"success": False, "error": "Organizer password required (small-Blaar)."}, status_code=401)
+                return
+            try:
+                res = db.update_trial(
+                    trial_id=body_json.get("trial_id", ""),
+                    name=body_json.get("name"),
+                    year=int(body_json.get("year")) if body_json.get("year") else None,
+                    start_date=body_json.get("start_date"),
+                    end_date=body_json.get("end_date"),
+                    whatsapp_url=body_json.get("whatsapp_url")
+                )
+                res["state"] = db.get_full_state()
+                self.send_json_response(res)
+            except Exception as e:
+                self.send_json_response({"success": False, "error": str(e)}, status_code=400)
+            return
+
+        # 5. Delete Trial (Admin Only)
+        elif path == "/api/admin/trial/delete":
+            if not check_admin_auth(self.headers, body_json):
+                self.send_json_response({"success": False, "error": "Organizer password required (small-Blaar)."}, status_code=401)
+                return
+            res = db.delete_trial(body_json.get("trial_id", ""))
+            if res.get("success"):
+                res["state"] = db.get_full_state()
+            self.send_json_response(res, status_code=200 if res.get("success") else 400)
+            return
+
+        # 6. Score Submission (Participants)
+        elif path == "/api/submit":
             session_id = body_json.get("session_id")
             match_id = body_json.get("match_id")
             submitter_name = body_json.get("submitter_name")
@@ -185,7 +276,12 @@ class TrialsRequestHandler(SimpleHTTPRequestHandler):
             self.send_json_response(res, status_code=200 if res.get("success") else 400)
             return
 
+        # 7. Admin Resolve Match (Admin Only)
         elif path == "/api/admin/resolve":
+            if not check_admin_auth(self.headers, body_json):
+                self.send_json_response({"success": False, "error": "Organizer password required (small-Blaar)."}, status_code=401)
+                return
+
             session_id = body_json.get("session_id")
             match_id = body_json.get("match_id")
             official_scores = body_json.get("official_scores", {})
@@ -207,7 +303,12 @@ class TrialsRequestHandler(SimpleHTTPRequestHandler):
             self.send_json_response(res, status_code=200 if res.get("success") else 400)
             return
 
+        # 8. Update Beat GPS & Details (Admin Only)
         elif path == "/api/beats/update":
+            if not check_admin_auth(self.headers, body_json):
+                self.send_json_response({"success": False, "error": "Organizer password required (small-Blaar)."}, status_code=401)
+                return
+
             beat_id = body_json.get("beat_id") or body_json.get("id") or body_json.get("code")
             if not beat_id:
                 self.send_json_response({"success": False, "error": "Missing beat 'id' or 'code'."}, status_code=400)
@@ -216,12 +317,17 @@ class TrialsRequestHandler(SimpleHTTPRequestHandler):
             self.send_json_response(res, status_code=200 if res.get("success") else 400)
             return
 
+        # 9. Admin Reset / Randomize (Admin Only)
         elif path == "/api/admin/reset":
+            if not check_admin_auth(self.headers, body_json):
+                self.send_json_response({"success": False, "error": "Organizer password required (small-Blaar)."}, status_code=401)
+                return
+
             anglers = body_json.get("anglers", [])
             a_team_anglers = body_json.get("a_team_anglers", [])
             available_beats = body_json.get("available_beats", None)
-            t_name = body_json.get("tournament_name", "Fly Fishing Trials 2026")
-            venue = body_json.get("venue", "Championship Beats")
+            t_name = body_json.get("tournament_name")
+            venue = body_json.get("venue", "Cape Piscatorial Society - Smalblaar & Elandspad")
 
             if len(anglers) < 4:
                 self.send_json_response({
@@ -247,7 +353,12 @@ class TrialsRequestHandler(SimpleHTTPRequestHandler):
                 self.send_json_response({"success": False, "error": str(e)}, status_code=500)
             return
 
+        # 10. Saved Sessions (Admin Only for mutation)
         elif path == "/api/session/save":
+            if not check_admin_auth(self.headers, body_json):
+                self.send_json_response({"success": False, "error": "Organizer password required (small-Blaar)."}, status_code=401)
+                return
+
             session_id = body_json.get("session_id")
             if session_id is not None:
                 try:
@@ -259,26 +370,14 @@ class TrialsRequestHandler(SimpleHTTPRequestHandler):
             self.send_json_response(res, status_code=200 if res.get("success") else 400)
             return
 
-        elif path == "/api/session/load":
-            filename = body_json.get("filename", "")
-            if not filename:
-                self.send_json_response({"success": False, "error": "Filename is required."}, status_code=400)
+        elif path == "/api/session/restore":
+            if not check_admin_auth(self.headers, body_json):
+                self.send_json_response({"success": False, "error": "Organizer password required (small-Blaar)."}, status_code=401)
                 return
-            res = db.load_saved_session(filename)
-            self.send_json_response(res, status_code=200 if res.get("success") else 400)
-            return
-
-        elif path == "/api/session/delete":
             filename = body_json.get("filename", "")
-            if not filename:
-                self.send_json_response({"success": False, "error": "Filename is required."}, status_code=400)
-                return
-            res = db.delete_saved_session(filename)
-            self.send_json_response(res, status_code=200 if res.get("success") else 400)
-            return
-
-        elif path == "/api/session/import":
-            res = db.import_tournament_json(body_json)
+            res = db.restore_session_snapshot(filename)
+            if res.get("success"):
+                res["state"] = db.get_full_state()
             self.send_json_response(res, status_code=200 if res.get("success") else 400)
             return
 
@@ -298,13 +397,14 @@ def run_server(port: int = PORT, open_browser: bool = True):
     print(f" ▶ Mobile / Wi-Fi URL:  {network_url}")
     print("=" * 72)
     print(" Features Active:")
+    print("   • Multi-Trial Management (Active In-Session vs Past Events Archive)")
+    print("   • Single Trial per Set Date & Max 10 Trials/Year Validation")
+    print("   • Official Naming (Autumn/Spring/Stillwater Trial [Year] A/B)")
+    print("   • Organizer Admin Protection (Password: 'small-Blaar')")
+    print("   • Trial WhatsApp Group Direct Invite Link")
     print("   • Randomiser (8 to 20 anglers; even=1v1, odd=1v1v1 + 1v1s)")
-    print("   • 1v1v1 Rotation (every angler participates in odd field <=11)")
-    print("   • Unique opponents each session (no pair meets twice)")
     print("   • 10-Point Proportional Scoring (blank = 0.00 pts)")
     print("   • Dual-Submission Verification (Google Forms style)")
-    print("   • Discrepancy Alert & Admin Intervention System")
-    print("   • Session & Tournament Save / Snapshot / Export / Import")
     print("   • Instant PDF Download of Schedule & Scores")
     print("=" * 72)
     print(" Press Ctrl+C in terminal to stop server.\n")

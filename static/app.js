@@ -78,6 +78,8 @@ async function loadState(isManual = false) {
 function renderAll() {
   if (!tournamentState) return;
 
+  renderTrialBar();
+  updateAdminUIState();
   renderHeader();
   renderLeaderboard();
   renderSchedule();
@@ -933,6 +935,11 @@ async function confirmResetTournament() {
 
 // --- Navigation & UI Utilities ---
 function switchTab(tabId) {
+  if (tabId === 'admin' && !isAdminAuthenticated()) {
+    openAdminPasswordModal(() => switchTab('admin'));
+    return;
+  }
+
   currentTab = tabId;
   document.querySelectorAll('.tab-btn').forEach(btn => {
     btn.classList.toggle('active', btn.getAttribute('data-tab') === tabId);
@@ -1815,4 +1822,424 @@ async function saveAllBeatsAndApply() {
   closeBeatsManagerModal();
   await loadState();
   updateMapPins();
+}
+
+
+// ====================================================================
+// Organizer Admin Password & Trial Lifecycle Management
+// ====================================================================
+
+function getAdminPassword() {
+  return sessionStorage.getItem("admin_password") || "";
+}
+
+function isAdminAuthenticated() {
+  return sessionStorage.getItem("admin_password") === "small-Blaar";
+}
+
+let pendingAdminCallback = null;
+
+function openAdminPasswordModal(callback = null) {
+  pendingAdminCallback = callback;
+  const modal = document.getElementById("adminPasswordModal");
+  const input = document.getElementById("adminPasswordInput");
+  const errEl = document.getElementById("adminPasswordError");
+  if (errEl) errEl.classList.add("hidden");
+  if (input) input.value = "";
+  if (modal) modal.classList.remove("hidden");
+  if (input) setTimeout(() => input.focus(), 150);
+}
+
+function closeAdminPasswordModal() {
+  const modal = document.getElementById("adminPasswordModal");
+  if (modal) modal.classList.add("hidden");
+  pendingAdminCallback = null;
+}
+
+async function submitAdminPassword(event) {
+  if (event) event.preventDefault();
+  const input = document.getElementById("adminPasswordInput");
+  const errEl = document.getElementById("adminPasswordError");
+  const pwd = input ? input.value.trim() : "";
+
+  try {
+    const res = await fetch("/api/admin/verify_password", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ password: pwd })
+    });
+    const data = await res.json();
+    if (data.success) {
+      sessionStorage.setItem("admin_password", pwd);
+      closeAdminPasswordModal();
+      updateAdminUIState();
+      alert("🔓 Organizer Admin Mode Unlocked!");
+      if (pendingAdminCallback) {
+        const cb = pendingAdminCallback;
+        pendingAdminCallback = null;
+        cb();
+      }
+    } else {
+      if (errEl) {
+        errEl.textContent = data.error || "Incorrect organizer password.";
+        errEl.classList.remove("hidden");
+      }
+    }
+  } catch (err) {
+    if (errEl) {
+      errEl.textContent = "Error contacting server.";
+      errEl.classList.remove("hidden");
+    }
+  }
+}
+
+function logoutAdmin() {
+  sessionStorage.removeItem("admin_password");
+  updateAdminUIState();
+  alert("🔒 Admin mode locked.");
+  if (currentTab === "admin") {
+    switchTab("leaderboard");
+  }
+}
+
+function updateAdminUIState() {
+  const isAuth = isAdminAuthenticated();
+  const loginBtn = document.getElementById("adminLoginBtn");
+  const unlockedRow = document.getElementById("adminUnlockedControls");
+
+  if (loginBtn && unlockedRow) {
+    if (isAuth) {
+      loginBtn.classList.add("hidden");
+      unlockedRow.classList.remove("hidden");
+    } else {
+      loginBtn.classList.remove("hidden");
+      unlockedRow.classList.add("hidden");
+    }
+  }
+}
+
+// --- Trial Bar & Lifecycle Rendering ---
+function renderTrialBar() {
+  if (!tournamentState) return;
+  const trialInfo = tournamentState.trial_info || {};
+  const allTrials = tournamentState.all_trials || [];
+
+  // Update Title
+  const titleEl = document.getElementById("tournamentTitle");
+  if (titleEl && trialInfo.name) {
+    titleEl.textContent = trialInfo.name;
+  }
+
+  // Dropdown selector
+  const selectEl = document.getElementById("trialSelect");
+  if (selectEl && allTrials.length > 0) {
+    selectEl.innerHTML = "";
+    const inSession = allTrials.filter(t => t.status === "IN_SESSION");
+    const upcoming = allTrials.filter(t => t.status === "UPCOMING");
+    const past = allTrials.filter(t => t.status === "PAST");
+
+    if (inSession.length > 0) {
+      const grp = document.createElement("optgroup");
+      grp.label = "🟢 Active Trial in Session";
+      inSession.forEach(t => {
+        const opt = document.createElement("option");
+        opt.value = t.id;
+        opt.textContent = `${t.name} (${t.date_range_label || t.start_date})`;
+        if (t.id === trialInfo.id) opt.selected = true;
+        grp.appendChild(opt);
+      });
+      selectEl.appendChild(grp);
+    }
+
+    if (upcoming.length > 0) {
+      const grp = document.createElement("optgroup");
+      grp.label = "📅 Upcoming Trials";
+      upcoming.forEach(t => {
+        const opt = document.createElement("option");
+        opt.value = t.id;
+        opt.textContent = `${t.name} (${t.date_range_label || t.start_date})`;
+        if (t.id === trialInfo.id) opt.selected = true;
+        grp.appendChild(opt);
+      });
+      selectEl.appendChild(grp);
+    }
+
+    if (past.length > 0) {
+      const grp = document.createElement("optgroup");
+      grp.label = "🏁 Past Events Archive";
+      past.forEach(t => {
+        const opt = document.createElement("option");
+        opt.value = t.id;
+        opt.textContent = `${t.name} (${t.date_range_label || t.end_date})`;
+        if (t.id === trialInfo.id) opt.selected = true;
+        grp.appendChild(opt);
+      });
+      selectEl.appendChild(grp);
+    }
+  }
+
+  // Status badge
+  const statusBadge = document.getElementById("trialStatusBadge");
+  if (statusBadge) {
+    statusBadge.textContent = trialInfo.status_label || "Active Trial";
+    statusBadge.className = "status-badge";
+    if (trialInfo.status === "IN_SESSION") {
+      statusBadge.classList.add("badge-in-session");
+    } else if (trialInfo.status === "PAST") {
+      statusBadge.classList.add("badge-past");
+    } else {
+      statusBadge.classList.add("badge-upcoming");
+    }
+  }
+
+  // Dates badge
+  const datesBadge = document.getElementById("trialDatesBadge");
+  if (datesBadge) {
+    datesBadge.textContent = `📅 ${trialInfo.date_range_label || trialInfo.start_date || 'Dates TBD'}`;
+  }
+
+  // WhatsApp button
+  const waBtn = document.getElementById("trialWhatsappBtn");
+  if (waBtn) {
+    if (trialInfo.whatsapp_url && trialInfo.whatsapp_url.trim()) {
+      waBtn.href = trialInfo.whatsapp_url;
+      waBtn.classList.remove("hidden");
+    } else {
+      waBtn.classList.add("hidden");
+    }
+  }
+
+  // Past event banner
+  const pastBanner = document.getElementById("pastEventBanner");
+  const pastText = document.getElementById("pastEventText");
+  if (pastBanner) {
+    if (trialInfo.is_past) {
+      pastBanner.classList.remove("hidden");
+      if (pastText) {
+        pastText.textContent = `This trial was completed on ${trialInfo.date_range_label || trialInfo.end_date}. Viewing official standings, schedule, and maps in read-only archive mode.`;
+      }
+    } else {
+      pastBanner.classList.add("hidden");
+    }
+  }
+}
+
+async function onTrialSelected(trialId) {
+  if (!trialId) return;
+  try {
+    const res = await fetch("/api/trials/select", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ trial_id: trialId })
+    });
+    const data = await res.json();
+    if (data.success && data.state) {
+      tournamentState = data.state;
+      renderAll();
+    } else {
+      alert(`Error switching trial: ${data.error || "Unknown error"}`);
+    }
+  } catch (err) {
+    console.error("Failed to switch trial:", err);
+  }
+}
+
+// --- Trial Manager Modal Controls ---
+function openTrialManagerModal() {
+  if (!isAdminAuthenticated()) {
+    openAdminPasswordModal(() => openTrialManagerModal());
+    return;
+  }
+
+  const modal = document.getElementById("trialManagerModal");
+  if (!modal) return;
+
+  const trialInfo = tournamentState ? (tournamentState.trial_info || {}) : {};
+
+  // Populate Edit Active Trial form
+  const editId = document.getElementById("editTrialId");
+  const editName = document.getElementById("editTrialName");
+  const editYear = document.getElementById("editTrialYear");
+  const editStart = document.getElementById("editTrialStartDate");
+  const editEnd = document.getElementById("editTrialEndDate");
+  const editWa = document.getElementById("editTrialWhatsapp");
+
+  if (editId) editId.value = trialInfo.id || "";
+  if (editName) editName.value = trialInfo.name || "";
+  if (editYear) editYear.value = trialInfo.year || 2026;
+  if (editStart) editStart.value = trialInfo.start_date || "";
+  if (editEnd) editEnd.value = trialInfo.end_date || "";
+  if (editWa) editWa.value = trialInfo.whatsapp_url || "";
+
+  // Populate All Trials Directory Table
+  renderAllTrialsDirectory();
+
+  modal.classList.remove("hidden");
+}
+
+function closeTrialManagerModal() {
+  const modal = document.getElementById("trialManagerModal");
+  if (modal) modal.classList.add("hidden");
+}
+
+function applyTrialNamePreset() {
+  const preset = document.getElementById("newTrialTypePreset").value;
+  const year = document.getElementById("newTrialYear").value || "2026";
+  const nameInput = document.getElementById("newTrialFullName");
+  if (!nameInput) return;
+
+  if (preset === "custom") {
+    nameInput.value = `Autumn Trial ${year} A`;
+  } else {
+    const parts = preset.split(' ');
+    const division = parts.pop();
+    const prefix = parts.join(' ');
+    nameInput.value = `${prefix} ${year} ${division}`;
+  }
+}
+
+function renderAllTrialsDirectory() {
+  const tbody = document.getElementById("allTrialsDirectoryBody");
+  if (!tbody || !tournamentState) return;
+
+  const allTrials = tournamentState.all_trials || [];
+  const activeId = (tournamentState.trial_info || {}).id;
+
+  if (allTrials.length === 0) {
+    tbody.innerHTML = `<tr><td colspan="6" class="text-center py-2">No trials registered.</td></tr>`;
+    return;
+  }
+
+  let html = "";
+  allTrials.forEach(t => {
+    const isActive = (t.id === activeId);
+    const waLink = t.whatsapp_url 
+      ? `<a href="${escapeHtml(t.whatsapp_url)}" target="_blank" class="text-success">✓ Group Link</a>` 
+      : `<span class="text-muted">None</span>`;
+
+    html += `
+      <tr class="${isActive ? 'table-row-active' : ''}">
+        <td><strong>${escapeHtml(t.name)}</strong> ${isActive ? '<span class="meta-tag tag-accent ml-1">Current</span>' : ''}</td>
+        <td>${escapeHtml(t.date_range_label || (t.start_date + ' – ' + t.end_date))}</td>
+        <td><span class="status-badge ${t.status === 'IN_SESSION' ? 'badge-in-session' : (t.status === 'PAST' ? 'badge-past' : 'badge-upcoming')}">${escapeHtml(t.status_label)}</span></td>
+        <td>${t.num_anglers || 0}</td>
+        <td>${waLink}</td>
+        <td>
+          <div class="actions-cell">
+            ${!isActive ? `<button class="btn btn-sm btn-outline" onclick="onTrialSelected('${t.id}'); closeTrialManagerModal();">Switch To</button>` : ''}
+            ${allTrials.length > 1 ? `<button class="btn btn-sm btn-outline text-danger" onclick="deleteTrial('${t.id}', '${escapeHtml(t.name)}')">Delete</button>` : ''}
+          </div>
+        </td>
+      </tr>
+    `;
+  });
+  tbody.innerHTML = html;
+}
+
+async function submitEditActiveTrial(event) {
+  if (event) event.preventDefault();
+  const trialId = document.getElementById("editTrialId").value;
+  const name = document.getElementById("editTrialName").value.trim();
+  const year = parseInt(document.getElementById("editTrialYear").value, 10);
+  const startDate = document.getElementById("editTrialStartDate").value;
+  const endDate = document.getElementById("editTrialEndDate").value;
+  const wa = document.getElementById("editTrialWhatsapp").value.trim();
+
+  try {
+    const res = await fetch("/api/admin/trial/update", {
+      method: "POST",
+      headers: { 
+        "Content-Type": "application/json",
+        "X-Admin-Password": getAdminPassword()
+      },
+      body: JSON.stringify({
+        trial_id: trialId,
+        name: name,
+        year: year,
+        start_date: startDate,
+        end_date: endDate,
+        whatsapp_url: wa
+      })
+    });
+    const data = await res.json();
+    if (data.success) {
+      alert("✅ Trial updated successfully!");
+      if (data.state) tournamentState = data.state;
+      closeTrialManagerModal();
+      renderAll();
+    } else {
+      alert(`Validation Error: ${data.error || "Failed to update trial"}`);
+    }
+  } catch (err) {
+    alert(`Error: ${err.message}`);
+  }
+}
+
+async function submitCreateNewTrial(event) {
+  if (event) event.preventDefault();
+  const name = document.getElementById("newTrialFullName").value.trim();
+  const year = parseInt(document.getElementById("newTrialYear").value, 10);
+  const startDate = document.getElementById("newTrialStartDate").value;
+  const endDate = document.getElementById("newTrialEndDate").value;
+  const wa = document.getElementById("newTrialWhatsapp").value.trim();
+
+  if (!startDate || !endDate) {
+    alert("Please specify both Start Date and End Date.");
+    return;
+  }
+
+  try {
+    const res = await fetch("/api/admin/trial/create", {
+      method: "POST",
+      headers: { 
+        "Content-Type": "application/json",
+        "X-Admin-Password": getAdminPassword()
+      },
+      body: JSON.stringify({
+        name: name,
+        year: year,
+        start_date: startDate,
+        end_date: endDate,
+        whatsapp_url: wa
+      })
+    });
+    const data = await res.json();
+    if (data.success) {
+      alert(`🎉 Successfully scheduled '${name}'! It is now the active trial.`);
+      if (data.state) tournamentState = data.state;
+      closeTrialManagerModal();
+      renderAll();
+    } else {
+      alert(`Validation Error: ${data.error || "Failed to create trial"}`);
+    }
+  } catch (err) {
+    alert(`Error: ${err.message}`);
+  }
+}
+
+async function deleteTrial(trialId, trialName) {
+  const ok = confirm(`Are you sure you want to delete '${trialName}'? This action cannot be undone.`);
+  if (!ok) return;
+
+  try {
+    const res = await fetch("/api/admin/trial/delete", {
+      method: "POST",
+      headers: { 
+        "Content-Type": "application/json",
+        "X-Admin-Password": getAdminPassword()
+      },
+      body: JSON.stringify({ trial_id: trialId })
+    });
+    const data = await res.json();
+    if (data.success) {
+      alert("Trial deleted.");
+      if (data.state) tournamentState = data.state;
+      renderAllTrialsDirectory();
+      renderAll();
+    } else {
+      alert(`Error: ${data.error || "Failed to delete trial"}`);
+    }
+  } catch (err) {
+    alert(`Error: ${err.message}`);
+  }
 }

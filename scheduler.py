@@ -109,7 +109,7 @@ def generate_trials_schedule(
     strict_non_a_coverage = (2 * k >= len(non_a_indices))
     
     # Search for valid schedule
-    for attempt in range(5000):
+    for attempt in range(15000):
         pairs_met = set()
         three_way_counts = {i: 0 for i in range(N)}
         sessions_matches = []
