@@ -299,7 +299,10 @@ function renderSchedule() {
             <div class="match-card-top">
               <div style="display:flex; align-items:center; gap:0.4rem; flex-wrap:wrap;">
                 <span class="beat-tag">Beat ${match.beat || match.beat_number}</span>
+                ${match.beat_code || match.beat_name ? `<span class="beat-tag" style="background:rgba(255,255,255,0.06); font-size:0.75rem;">${escapeHtml(match.beat_code || match.beat_name)}</span>` : ''}
+                ${match.river ? `<span class="beat-tag" style="background:${(match.river||'').toLowerCase().includes('eland') ? 'rgba(168,85,247,0.15)' : 'rgba(56,189,248,0.15)'}; font-size:0.7rem; color:${(match.river||'').toLowerCase().includes('eland') ? '#c084fc' : '#7dd3fc'};">${escapeHtml(match.river)}</span>` : ''}
                 ${aTeamClashBadge}
+                ${match.stayer ? `<span class="badge" style="background:rgba(16,185,129,0.2); color:#34d399; border:1px solid rgba(16,185,129,0.3); font-size:0.7rem; padding:0.15rem 0.4rem; border-radius:4px; font-weight:700;">🔄 Stayer: ${escapeHtml(match.stayer)}</span>` : ''}
               </div>
               <span class="match-status-badge ${statusClass}">${statusLabel}</span>
             </div>
@@ -325,12 +328,15 @@ function renderSchedule() {
 
         const isAnglerA = aTeamList.includes(angler);
         const aTag = isAnglerA ? `<span class="ateam-badge-mini">A-Team</span>` : '';
+        const isStayerAngler = (match.stayer === angler);
+        const stayerTag = isStayerAngler ? `<span class="ateam-badge-mini" style="background:rgba(16,185,129,0.2); color:#34d399; border-color:rgba(16,185,129,0.3);" title="Remains on beat from morning session">🔄 Stayer</span>` : '';
 
         html += `
           <div class="competitor-row">
             <div style="display:flex; align-items:center; gap:0.4rem;">
               <span class="competitor-name">${escapeHtml(angler)}</span>
               ${aTag}
+              ${stayerTag}
             </div>
             <div class="competitor-result">${resultStr}</div>
           </div>
@@ -1143,6 +1149,221 @@ async function saveAteamSelectionOnly() {
   }
 }
 
+// --- Save Tournament Name and Venue ---
+async function saveTournamentMetadata() {
+  if (!isAdminAuthenticated()) {
+    openAdminPasswordModal(() => saveTournamentMetadata());
+    return;
+  }
+
+  const nameInput = document.getElementById('adminTournamentName');
+  const venueInput = document.getElementById('adminVenue');
+  const name = nameInput ? nameInput.value.trim() : '';
+  const venue = venueInput ? venueInput.value.trim() : '';
+
+  if (!name) {
+    alert("Please enter a Tournament Name.");
+    return;
+  }
+
+  const trialId = tournamentState?.trial_info?.id || tournamentState?.active_trial_id;
+
+  try {
+    const res = await fetch('/api/admin/trial/update', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-Admin-Password': getAdminPassword()
+      },
+      body: JSON.stringify({
+        trial_id: trialId,
+        name: name,
+        venue: venue,
+        password: getAdminPassword()
+      })
+    });
+
+    if (res.status === 401) {
+      openAdminPasswordModal(() => saveTournamentMetadata());
+      return;
+    }
+
+    const data = await res.json();
+    if (data.success) {
+      if (tournamentState) {
+        tournamentState.tournament_name = name;
+        tournamentState.venue = venue;
+        if (tournamentState.trial_info) {
+          tournamentState.trial_info.name = name;
+          tournamentState.trial_info.venue = venue;
+        }
+      }
+      const titleEl = document.getElementById('tournamentTitle');
+      if (titleEl) titleEl.textContent = name;
+      const subtitleEl = document.getElementById('tournamentSubtitle');
+      if (subtitleEl) subtitleEl.textContent = venue;
+      alert(`✅ Tournament Name ("${name}") and Venue ("${venue}") updated successfully!`);
+    } else {
+      alert(`Error updating tournament details: ${data.error || 'Failed'}`);
+    }
+  } catch (err) {
+    alert(`Error: ${err.message}`);
+  }
+}
+
+// --- Admin Beats & River Allocation Configuration ---
+let adminBeatsList = [];
+
+function renderAdminBeatsConfig() {
+  const container = document.getElementById('adminBeatsConfigContainer');
+  if (!container) return;
+
+  const rawBeats = (tournamentState && tournamentState.beats && tournamentState.beats.length > 0)
+    ? tournamentState.beats
+    : (tournamentState?.trial_info?.tournament_data?.beats || []);
+
+  if (rawBeats.length === 0) {
+    container.innerHTML = '<div class="text-muted text-sm py-2">Loading beats configuration...</div>';
+    return;
+  }
+
+  adminBeatsList = JSON.parse(JSON.stringify(rawBeats));
+
+  let html = `
+    <table class="data-table text-sm" style="width:100%; border-collapse:collapse;">
+      <thead>
+        <tr style="border-bottom:1px solid var(--border); text-align:left;">
+          <th style="width:50px; text-align:center; padding:0.4rem;">Active</th>
+          <th style="padding:0.4rem;">Beat</th>
+          <th style="padding:0.4rem;">River Section</th>
+          <th style="padding:0.4rem;">Usage Capacity</th>
+          <th style="padding:0.4rem;">Meeting Point / Access</th>
+        </tr>
+      </thead>
+      <tbody>
+  `;
+
+  let activeCount = 0;
+  let doubleCount = 0;
+  let singleCount = 0;
+
+  adminBeatsList.forEach((b, idx) => {
+    const isEnabled = (b.enabled !== false);
+    if (isEnabled) activeCount++;
+    const isSingle = (b.usage_mode === 'single');
+    if (isEnabled) {
+      if (isSingle) singleCount++;
+      else doubleCount++;
+    }
+
+    const isYP = (b.river && b.river.toLowerCase().includes('eland'));
+    const isSB = !isYP;
+
+    html += `
+      <tr style="border-bottom:1px solid rgba(255,255,255,0.05); background:${isEnabled ? 'transparent' : 'rgba(0,0,0,0.2)'}; opacity:${isEnabled ? '1' : '0.6'};">
+        <td style="text-align:center; padding:0.4rem;">
+          <input type="checkbox" id="admin_beat_active_${idx}" ${isEnabled ? 'checked' : ''} onchange="toggleAdminBeatActive(${idx})">
+        </td>
+        <td style="padding:0.4rem;">
+          <strong>${escapeHtml(b.code || b.id)}</strong>
+          <div class="text-xs text-muted">${escapeHtml(b.name || '')}</div>
+        </td>
+        <td style="padding:0.4rem;">
+          <select id="admin_beat_river_${idx}" class="form-control form-control-sm" style="padding:0.25rem 0.4rem; font-size:0.8rem; background:var(--bg-secondary); color:var(--text-primary); border:1px solid var(--border); border-radius:4px;" onchange="updateAdminBeatRiver(${idx})">
+            <option value="Small Blaar" ${isSB ? 'selected' : ''}>Small Blaar</option>
+            <option value="Elands Pad" ${isYP ? 'selected' : ''}>Elands Pad</option>
+          </select>
+        </td>
+        <td style="padding:0.4rem;">
+          <select id="admin_beat_mode_${idx}" class="form-control form-control-sm" style="padding:0.25rem 0.4rem; font-size:0.8rem; background:var(--bg-secondary); color:var(--text-primary); border:1px solid var(--border); border-radius:4px;" onchange="updateAdminBeatMode(${idx})">
+            <option value="double" ${!isSingle ? 'selected' : ''}>Double Session (AM + PM)</option>
+            <option value="single" ${isSingle ? 'selected' : ''}>Single Session (1x / Day)</option>
+          </select>
+        </td>
+        <td style="padding:0.4rem;" class="text-xs text-muted">${escapeHtml(b.meeting_point || '')}</td>
+      </tr>
+    `;
+  });
+
+  html += `</tbody></table>`;
+  container.innerHTML = html;
+
+  const summaryEl = document.getElementById('adminBeatsValidationSummary');
+  if (summaryEl) {
+    summaryEl.innerHTML = `<strong>${activeCount} Active Beats:</strong> ${doubleCount} Double Session (AM+PM) &bull; ${singleCount} Single Session (1x/Day)`;
+  }
+}
+
+function toggleAdminBeatActive(idx) {
+  const chk = document.getElementById(`admin_beat_active_${idx}`);
+  if (chk && adminBeatsList[idx]) {
+    adminBeatsList[idx].enabled = chk.checked;
+    renderAdminBeatsConfig();
+  }
+}
+
+function updateAdminBeatRiver(idx) {
+  const sel = document.getElementById(`admin_beat_river_${idx}`);
+  if (sel && adminBeatsList[idx]) {
+    adminBeatsList[idx].river = sel.value;
+  }
+}
+
+function updateAdminBeatMode(idx) {
+  const sel = document.getElementById(`admin_beat_mode_${idx}`);
+  if (sel && adminBeatsList[idx]) {
+    adminBeatsList[idx].usage_mode = sel.value;
+    renderAdminBeatsConfig();
+  }
+}
+
+async function saveAdminBeatsConfig() {
+  if (!isAdminAuthenticated()) {
+    openAdminPasswordModal(() => saveAdminBeatsConfig());
+    return;
+  }
+
+  adminBeatsList.forEach((b, idx) => {
+    const act = document.getElementById(`admin_beat_active_${idx}`);
+    if (act) b.enabled = act.checked;
+    const riv = document.getElementById(`admin_beat_river_${idx}`);
+    if (riv) b.river = riv.value;
+    const mod = document.getElementById(`admin_beat_mode_${idx}`);
+    if (mod) b.usage_mode = mod.value;
+  });
+
+  try {
+    const res = await fetch('/api/admin/beats/update_all', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-Admin-Password': getAdminPassword()
+      },
+      body: JSON.stringify({
+        beats: adminBeatsList,
+        password: getAdminPassword()
+      })
+    });
+
+    if (res.status === 401) {
+      openAdminPasswordModal(() => saveAdminBeatsConfig());
+      return;
+    }
+
+    const data = await res.json();
+    if (data.success) {
+      alert(`✅ Active beats and river configuration saved successfully! (${adminBeatsList.filter(b => b.enabled !== false).length} active beats ready for draw)`);
+      await loadState();
+      renderAdminBeatsConfig();
+      updateMapPins();
+    } else {
+      alert(`Error saving beats config: ${data.error || 'Failed'}`);
+    }
+  } catch (err) {
+    alert(`Error: ${err.message}`);
+  }
+}
+
 // --- Clear / Delete Entire Draw ---
 async function clearTournamentDrawPrompt() {
   if (!isAdminAuthenticated()) {
@@ -1330,9 +1551,131 @@ function openParameterAuditModal() {
     if (count >= 1) challengersFacingAtLeast1++;
   });
 
+  // Parameter 4: Beat Stayers (Morning -> Afternoon Rotation)
+  const s1Session = sessions.find(s => s.session_id === 1);
+  const s2Session = sessions.find(s => s.session_id === 2);
+  const s3Session = sessions.find(s => s.session_id === 3);
+  const s4Session = sessions.find(s => s.session_id === 4);
+
+  function auditDayStayers(amSession, pmSession, dayLabel) {
+    if (!amSession || !pmSession) return { day: dayLabel, overlaps: [], totalOverlaps: 0, stayersCount: 0 };
+    const amBeats = {};
+    (amSession.matches || []).forEach(m => {
+      const bKey = m.beat_id || m.beat_code || m.beat || m.beat_number;
+      amBeats[bKey] = m;
+    });
+
+    const results = [];
+    let stayersCount = 0;
+    (pmSession.matches || []).forEach(pmM => {
+      const bKey = pmM.beat_id || pmM.beat_code || pmM.beat || pmM.beat_number;
+      const amM = amBeats[bKey];
+      if (amM) {
+        const amAnglers = amM.anglers || [];
+        const pmAnglers = pmM.anglers || [];
+        let stayer = pmM.stayer;
+        if (!stayer) {
+          stayer = amAnglers.find(a => pmAnglers.includes(a));
+        }
+        const hasStayer = !!stayer;
+        if (hasStayer) stayersCount++;
+        const moversAway = amAnglers.filter(a => a !== stayer);
+        const moversIn = pmAnglers.filter(a => a !== stayer);
+
+        results.push({
+          beatKey: bKey,
+          beatName: pmM.beat_name || `Beat ${pmM.beat || pmM.beat_number}`,
+          river: pmM.river || '',
+          hasStayer: hasStayer,
+          stayer: stayer || 'None',
+          moversAway: moversAway,
+          moversIn: moversIn
+        });
+      }
+    });
+
+    return {
+      day: dayLabel,
+      overlaps: results,
+      totalOverlaps: results.length,
+      stayersCount: stayersCount
+    };
+  }
+
+  const satAudit = auditDayStayers(s1Session, s2Session, "Saturday (S1 ➔ S2)");
+  const sunAudit = auditDayStayers(s3Session, s4Session, "Sunday (S3 ➔ S4)");
+  const totalOverlappingBeats = satAudit.totalOverlaps + sunAudit.totalOverlaps;
+  const totalStayersFound = satAudit.stayersCount + sunAudit.stayersCount;
+  const stayerRate = totalOverlappingBeats > 0 ? Math.round((totalStayersFound / totalOverlappingBeats) * 100) : 100;
+  const stayerOptimal = totalOverlappingBeats === 0 || totalStayersFound === totalOverlappingBeats;
+
+  // Parameter 5: Dual-River Coverage (Small Blaar & Elands Pad)
+  const anglerRivers = {};
+  anglers.forEach(a => {
+    anglerRivers[a] = { sb: 0, ep: 0, total: 0 };
+  });
+
+  sessions.forEach(s => {
+    (s.matches || []).forEach(m => {
+      const r = (m.river || '').toLowerCase();
+      const isEP = r.includes('eland');
+      (m.anglers || []).forEach(a => {
+        if (anglerRivers[a]) {
+          anglerRivers[a].total++;
+          if (isEP) anglerRivers[a].ep++;
+          else anglerRivers[a].sb++;
+        }
+      });
+    });
+  });
+
+  let anglersBothRivers = 0;
+  anglers.forEach(a => {
+    if (anglerRivers[a].sb > 0 && anglerRivers[a].ep > 0) anglersBothRivers++;
+  });
+  const bothRiversRate = anglers.length > 0 ? Math.round((anglersBothRivers / anglers.length) * 100) : 100;
+
+  // Parameter 6: Beat Usage Limits (Single vs Double Sessions)
+  const beatUsageCounts = {};
+  sessions.forEach(s => {
+    const isSat = (s.session_id === 1 || s.session_id === 2);
+    (s.matches || []).forEach(m => {
+      const bKey = m.beat_id || m.beat_code || m.beat_name || `Beat_${m.beat}`;
+      if (!beatUsageCounts[bKey]) {
+        const bConf = (tournamentState.beats || []).find(b => b.id === bKey || b.code === bKey) || {};
+        beatUsageCounts[bKey] = {
+          name: m.beat_name || bKey,
+          river: m.river || bConf.river || '',
+          usage_mode: bConf.usage_mode || 'double',
+          satCount: 0,
+          sunCount: 0,
+          totalCount: 0
+        };
+      }
+      if (isSat) beatUsageCounts[bKey].satCount++;
+      else beatUsageCounts[bKey].sunCount++;
+      beatUsageCounts[bKey].totalCount++;
+    });
+  });
+
+  let singleUsageCompliant = true;
+  const singleViolations = [];
+  Object.values(beatUsageCounts).forEach(b => {
+    if (b.usage_mode === 'single') {
+      if (b.satCount > 1) {
+        singleUsageCompliant = false;
+        singleViolations.push(`${b.name}: ${b.satCount}x on Saturday`);
+      }
+      if (b.sunCount > 1) {
+        singleUsageCompliant = false;
+        singleViolations.push(`${b.name}: ${b.sunCount}x on Sunday`);
+      }
+    }
+  });
+
   // Overall status rating
   let statusBadgeHtml = '';
-  if (hasZeroRepeats && aTeamPass && challengersFacingAtLeast1 === challengers.length) {
+  if (hasZeroRepeats && aTeamPass && challengersFacingAtLeast1 === challengers.length && singleUsageCompliant) {
     statusBadgeHtml = `<span class="badge badge-success" style="background:#059669; color:#fff; padding:0.4rem 0.8rem; border-radius:20px; font-weight:700;">✅ ALL PARAMETERS SATISFIED (OPTIMAL)</span>`;
   } else if (hasZeroRepeats && challengersFacingAtLeast1 === challengers.length) {
     statusBadgeHtml = `<span class="badge badge-info" style="background:#0284c7; color:#fff; padding:0.4rem 0.8rem; border-radius:20px; font-weight:700;">✓ VALID & ACCEPTABLE FIELD</span>`;
@@ -1450,9 +1793,168 @@ function openParameterAuditModal() {
       </table>
     </div>
 
-    <!-- Parameter 4 Card: 3-Way Match Distribution -->
+    <!-- Parameter 4 Card: Beat Stayer Optimization (Morning -> Afternoon Rotation) -->
+    <div class="card mb-3" style="background:var(--bg-secondary); border:1px solid var(--border); border-radius:8px; padding:1rem;">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem; flex-wrap:wrap; gap:0.4rem;">
+        <h4 style="margin:0;">4. Beat Stayer Optimization (Morning ➔ Afternoon Rotation)</h4>
+        <span class="status-badge ${stayerOptimal ? 'badge-in-session' : 'badge-upcoming'}">
+          ${stayerRate}% Stayers on Overlapping Beats (${totalStayersFound}/${totalOverlappingBeats})
+        </span>
+      </div>
+      <p class="text-sm text-muted" style="margin:0 0 0.75rem 0;">
+        For beats fished in both Morning and Afternoon (Sat S1➔S2 and Sun S3➔S4), <strong>one person stays on the beat</strong> and waits for a fresh opponent, while the other competitor(s) move to new beats.
+      </p>
+      
+      <div style="margin-bottom:0.75rem;">
+        <strong class="text-sm" style="color:#38bdf8;">Saturday Rotation (S1 Morning ➔ S2 Afternoon):</strong>
+        ${satAudit.overlaps.length === 0 ? `<div class="text-muted text-xs">No overlapping beats on Saturday.</div>` : `
+          <table class="table text-xs mt-1" style="width:100%; border-collapse:collapse;">
+            <thead>
+              <tr style="border-bottom:1px solid var(--border); text-align:left;">
+                <th style="padding:0.3rem;">Beat</th>
+                <th style="padding:0.3rem;">River</th>
+                <th style="padding:0.3rem;">Stayer (Waited on Beat)</th>
+                <th style="padding:0.3rem;">Moved Out</th>
+                <th style="padding:0.3rem;">Arrived In</th>
+                <th style="padding:0.3rem;">Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${satAudit.overlaps.map(o => `
+                <tr style="border-bottom:1px solid rgba(255,255,255,0.05);">
+                  <td style="padding:0.3rem;"><strong>${escapeHtml(o.beatName)}</strong></td>
+                  <td style="padding:0.3rem;">${escapeHtml(o.river)}</td>
+                  <td style="padding:0.3rem;">${o.hasStayer ? `<span class="badge" style="background:#059669; color:#fff; padding:0.15rem 0.4rem; border-radius:4px; font-weight:700;">🔄 ${escapeHtml(o.stayer)}</span>` : '<span class="text-muted">None</span>'}</td>
+                  <td style="padding:0.3rem;" class="text-muted">${o.moversAway.join(', ') || '-'}</td>
+                  <td style="padding:0.3rem;" class="text-info">${o.moversIn.join(', ') || '-'}</td>
+                  <td style="padding:0.3rem;">${o.hasStayer ? '<span style="color:#10b981; font-weight:700;">✅ Stayer Maintained</span>' : '<span style="color:#f59e0b;">⚠️ Full Mover</span>'}</td>
+                </tr>
+              `).join('')}
+            </tbody>
+          </table>
+        `}
+      </div>
+
+      <div>
+        <strong class="text-sm" style="color:#38bdf8;">Sunday Rotation (S3 Morning ➔ S4 Afternoon):</strong>
+        ${sunAudit.overlaps.length === 0 ? `<div class="text-muted text-xs">No overlapping beats on Sunday.</div>` : `
+          <table class="table text-xs mt-1" style="width:100%; border-collapse:collapse;">
+            <thead>
+              <tr style="border-bottom:1px solid var(--border); text-align:left;">
+                <th style="padding:0.3rem;">Beat</th>
+                <th style="padding:0.3rem;">River</th>
+                <th style="padding:0.3rem;">Stayer (Waited on Beat)</th>
+                <th style="padding:0.3rem;">Moved Out</th>
+                <th style="padding:0.3rem;">Arrived In</th>
+                <th style="padding:0.3rem;">Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${sunAudit.overlaps.map(o => `
+                <tr style="border-bottom:1px solid rgba(255,255,255,0.05);">
+                  <td style="padding:0.3rem;"><strong>${escapeHtml(o.beatName)}</strong></td>
+                  <td style="padding:0.3rem;">${escapeHtml(o.river)}</td>
+                  <td style="padding:0.3rem;">${o.hasStayer ? `<span class="badge" style="background:#059669; color:#fff; padding:0.15rem 0.4rem; border-radius:4px; font-weight:700;">🔄 ${escapeHtml(o.stayer)}</span>` : '<span class="text-muted">None</span>'}</td>
+                  <td style="padding:0.3rem;" class="text-muted">${o.moversAway.join(', ') || '-'}</td>
+                  <td style="padding:0.3rem;" class="text-info">${o.moversIn.join(', ') || '-'}</td>
+                  <td style="padding:0.3rem;">${o.hasStayer ? '<span style="color:#10b981; font-weight:700;">✅ Stayer Maintained</span>' : '<span style="color:#f59e0b;">⚠️ Full Mover</span>'}</td>
+                </tr>
+              `).join('')}
+            </tbody>
+          </table>
+        `}
+      </div>
+    </div>
+
+    <!-- Parameter 5 Card: Dual-River Coverage (Small Blaar & Elands Pad) -->
+    <div class="card mb-3" style="background:var(--bg-secondary); border:1px solid var(--border); border-radius:8px; padding:1rem;">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem; flex-wrap:wrap; gap:0.4rem;">
+        <h4 style="margin:0;">5. Dual-River Coverage (Small Blaar & Elands Pad)</h4>
+        <span class="status-badge ${bothRiversRate >= 90 ? 'badge-in-session' : 'badge-upcoming'}">
+          ${anglersBothRivers} of ${anglers.length} Fish Both Rivers (${bothRiversRate}%)
+        </span>
+      </div>
+      <p class="text-sm text-muted" style="margin:0 0 0.75rem 0;">
+        Ideal: Every angler gets the opportunity to fish on both <strong>Small Blaar</strong> and <strong>Elands Pad</strong> across their 4 competition sessions.
+      </p>
+      <table class="table text-xs" style="width:100%; border-collapse:collapse;">
+        <thead>
+          <tr style="border-bottom:1px solid var(--border); text-align:left;">
+            <th style="padding:0.35rem;">Angler</th>
+            <th style="padding:0.35rem;">Small Blaar Sessions</th>
+            <th style="padding:0.35rem;">Elands Pad Sessions</th>
+            <th style="padding:0.35rem;">Total Sessions</th>
+            <th style="padding:0.35rem;">Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${anglers.map(a => {
+            const counts = anglerRivers[a] || { sb: 0, ep: 0, total: 0 };
+            const isBoth = (counts.sb > 0 && counts.ep > 0);
+            return `
+              <tr style="border-bottom:1px solid rgba(255,255,255,0.05);">
+                <td style="padding:0.35rem;"><strong>${escapeHtml(a)}</strong></td>
+                <td style="padding:0.35rem;">${counts.sb} session${counts.sb === 1 ? '' : 's'}</td>
+                <td style="padding:0.35rem;">${counts.ep} session${counts.ep === 1 ? '' : 's'}</td>
+                <td style="padding:0.35rem;">${counts.total}</td>
+                <td style="padding:0.35rem;">
+                  ${isBoth 
+                    ? '<span style="color:#10b981; font-weight:700;">✅ Both Rivers Fished</span>' 
+                    : '<span style="color:#f59e0b; font-weight:600;">⚠️ Single River (' + (counts.sb > 0 ? 'Small Blaar' : 'Elands Pad') + ')</span>'}
+                </td>
+              </tr>
+            `;
+          }).join('')}
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Parameter 6 Card: Beat Usage Limits (Single vs Double Sessions) -->
+    <div class="card mb-3" style="background:var(--bg-secondary); border:1px solid var(--border); border-radius:8px; padding:1rem;">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem; flex-wrap:wrap; gap:0.4rem;">
+        <h4 style="margin:0;">6. Beat Usage Limits (Single vs Double Sessions)</h4>
+        <span class="status-badge ${singleUsageCompliant ? 'badge-in-session' : 'badge-past'}">
+          ${singleUsageCompliant ? '✅ 100% Compliant with Limits' : '❌ Capacity Violation Detected'}
+        </span>
+      </div>
+      <p class="text-sm text-muted" style="margin:0 0 0.75rem 0;">
+        Single session beats (e.g. Hotel Beat, Star) must be used at most <strong>once per day</strong> (1x Saturday, 1x Sunday). Double session beats can be fished in both Morning & Afternoon.
+      </p>
+      <table class="table text-xs" style="width:100%; border-collapse:collapse;">
+        <thead>
+          <tr style="border-bottom:1px solid var(--border); text-align:left;">
+            <th style="padding:0.35rem;">Beat</th>
+            <th style="padding:0.35rem;">River</th>
+            <th style="padding:0.35rem;">Allowed Capacity</th>
+            <th style="padding:0.35rem;">Saturday Usage</th>
+            <th style="padding:0.35rem;">Sunday Usage</th>
+            <th style="padding:0.35rem;">Total Usage</th>
+            <th style="padding:0.35rem;">Compliance</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${Object.values(beatUsageCounts).map(b => {
+            const isSingle = (b.usage_mode === 'single');
+            const valid = !isSingle || (b.satCount <= 1 && b.sunCount <= 1);
+            return `
+              <tr style="border-bottom:1px solid rgba(255,255,255,0.05);">
+                <td style="padding:0.35rem;"><strong>${escapeHtml(b.name)}</strong></td>
+                <td style="padding:0.35rem;">${escapeHtml(b.river)}</td>
+                <td style="padding:0.35rem;">${isSingle ? '<span class="badge" style="background:#d97706; color:#fff; font-size:0.7rem; padding:0.1rem 0.35rem;">Single (1x/Day)</span>' : '<span class="badge" style="background:#0284c7; color:#fff; font-size:0.7rem; padding:0.1rem 0.35rem;">Double (AM+PM)</span>'}</td>
+                <td style="padding:0.35rem;">${b.satCount}x ${isSingle && b.satCount > 1 ? '<span style="color:#ef4444; font-weight:700;">(Exceeded)</span>' : ''}</td>
+                <td style="padding:0.35rem;">${b.sunCount}x ${isSingle && b.sunCount > 1 ? '<span style="color:#ef4444; font-weight:700;">(Exceeded)</span>' : ''}</td>
+                <td style="padding:0.35rem;">${b.totalCount} sessions</td>
+                <td style="padding:0.35rem;">${valid ? '<span style="color:#10b981; font-weight:700;">✅ Compliant</span>' : '<span style="color:#ef4444; font-weight:700;">❌ Exceeded</span>'}</td>
+              </tr>
+            `;
+          }).join('')}
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Parameter 7 Card: 3-Way Match Distribution -->
     <div class="card" style="background:var(--bg-secondary); border:1px solid var(--border); border-radius:8px; padding:1rem;">
-      <h4 style="margin:0 0 0.5rem 0;">4. 3-Way Match Distribution (1v1v1 Beats)</h4>
+      <h4 style="margin:0 0 0.5rem 0;">7. 3-Way Match Distribution (1v1v1 Beats)</h4>
       <p class="text-sm text-muted" style="margin:0 0 0.5rem 0;">In an odd-numbered field, 1 beat per session has 3 competitors. Distribution should be balanced (max 1 or 2 per angler).</p>
       <div style="display:flex; flex-wrap:wrap; gap:0.5rem;">
         ${anglers.map(a => {
@@ -1507,6 +2009,13 @@ function switchTab(tabId) {
   if (tabId === 'admin') {
     updateAdminUIState();
     loadSavedSessionsList();
+    if (tournamentState) {
+      const nameInput = document.getElementById('adminTournamentName');
+      const venueInput = document.getElementById('adminVenue');
+      if (nameInput && tournamentState.tournament_name) nameInput.value = tournamentState.tournament_name;
+      if (venueInput && tournamentState.venue) venueInput.value = tournamentState.venue;
+    }
+    renderAdminBeatsConfig();
     if (tournamentState && tournamentState.anglers) {
       const listEl = document.getElementById('adminAnglerList');
       if (!listEl.value.trim()) {
@@ -2449,6 +2958,7 @@ function renderBeatsManagerTable() {
 
     const isYP = (b.river && b.river.toLowerCase().includes('eland'));
     const isSB = !isYP;
+    const isSingle = (b.usage_mode === 'single');
 
     html += `
       <tr>
@@ -2463,6 +2973,12 @@ function renderBeatsManagerTable() {
           <select id="beat_river_${idx}" class="river-select" onchange="onBeatRiverChange(${idx})">
             <option value="Small Blaar" ${isSB ? 'selected' : ''}>Small Blaar</option>
             <option value="Elands Pad" ${isYP ? 'selected' : ''}>Elands Pad</option>
+          </select>
+        </td>
+        <td>
+          <select id="beat_mode_${idx}" class="river-select" onchange="onBeatModeChange(${idx})">
+            <option value="double" ${!isSingle ? 'selected' : ''}>Double (AM+PM)</option>
+            <option value="single" ${isSingle ? 'selected' : ''}>Single (1x/Day)</option>
           </select>
         </td>
         <td>
@@ -2501,6 +3017,13 @@ function onBeatRiverChange(idx) {
   }
 }
 
+function onBeatModeChange(idx) {
+  const sel = document.getElementById(`beat_mode_${idx}`);
+  if (sel && currentEditingBeatsList[idx]) {
+    currentEditingBeatsList[idx].usage_mode = sel.value;
+  }
+}
+
 function parseCoords(str) {
   if (!str) return [0, 0];
   const parts = str.split(',').map(s => parseFloat(s.trim()));
@@ -2514,33 +3037,39 @@ async function saveSingleBeat(idx) {
   const b = currentEditingBeatsList[idx];
   if (!b) return;
 
-  const lowerStr = document.getElementById(`beat_lower_${idx}`).value;
-  const midStr = document.getElementById(`beat_mid_${idx}`).value;
-  const upperStr = document.getElementById(`beat_upper_${idx}`).value;
-  const meetStr = document.getElementById(`beat_meet_${idx}`).value;
-  const riverStr = document.getElementById(`beat_river_${idx}`).value;
-  const activeChk = document.getElementById(`beat_active_${idx}`).checked;
+  const lowerStr = document.getElementById(`beat_lower_${idx}`)?.value;
+  const midStr = document.getElementById(`beat_mid_${idx}`)?.value;
+  const upperStr = document.getElementById(`beat_upper_${idx}`)?.value;
+  const meetStr = document.getElementById(`beat_meet_${idx}`)?.value;
+  const riverStr = document.getElementById(`beat_river_${idx}`)?.value;
+  const activeChk = document.getElementById(`beat_active_${idx}`)?.checked;
+  const modeStr = document.getElementById(`beat_mode_${idx}`)?.value || 'double';
 
   const payload = {
     beat_id: b.id,
     enabled: activeChk,
     river: riverStr,
+    usage_mode: modeStr,
     lower_pin: parseCoords(lowerStr),
     mid_pin: parseCoords(midStr),
     upper_pin: parseCoords(upperStr),
-    meeting_point: meetStr.trim()
+    meeting_point: (meetStr || '').trim()
   };
 
   try {
     const res = await fetch('/api/beats/update', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: {
+        'Content-Type': 'application/json',
+        'X-Admin-Password': getAdminPassword()
+      },
       body: JSON.stringify(payload)
     });
     const data = await res.json();
     if (data.success) {
       alert(`✅ Beat ${b.code} updated successfully!`);
       await loadState();
+      renderAdminBeatsConfig();
       updateMapPins();
     } else {
       alert(`Error updating beat: ${data.error}`);
@@ -2554,40 +3083,55 @@ async function saveAllBeatsAndApply() {
   const ok = confirm("Save all beat settings and update map?");
   if (!ok) return;
 
+  const payloadList = [];
   for (let idx = 0; idx < currentEditingBeatsList.length; idx++) {
     const b = currentEditingBeatsList[idx];
-    const lowerStr = document.getElementById(`beat_lower_${idx}`).value;
-    const midStr = document.getElementById(`beat_mid_${idx}`).value;
-    const upperStr = document.getElementById(`beat_upper_${idx}`).value;
-    const meetStr = document.getElementById(`beat_meet_${idx}`).value;
-    const riverStr = document.getElementById(`beat_river_${idx}`).value;
-    const activeChk = document.getElementById(`beat_active_${idx}`).checked;
+    const lowerStr = document.getElementById(`beat_lower_${idx}`)?.value;
+    const midStr = document.getElementById(`beat_mid_${idx}`)?.value;
+    const upperStr = document.getElementById(`beat_upper_${idx}`)?.value;
+    const meetStr = document.getElementById(`beat_meet_${idx}`)?.value || '';
+    const riverStr = document.getElementById(`beat_river_${idx}`)?.value || b.river;
+    const activeChk = document.getElementById(`beat_active_${idx}`)?.checked ?? b.enabled;
+    const modeStr = document.getElementById(`beat_mode_${idx}`)?.value || b.usage_mode || 'double';
 
-    const payload = {
-      beat_id: b.id,
+    payloadList.push({
+      id: b.id,
+      code: b.code,
       enabled: activeChk,
       river: riverStr,
-      lower_pin: parseCoords(lowerStr),
-      mid_pin: parseCoords(midStr),
-      upper_pin: parseCoords(upperStr),
+      usage_mode: modeStr,
+      lower_pin: lowerStr ? parseCoords(lowerStr) : b.lower_pin,
+      mid_pin: midStr ? parseCoords(midStr) : b.mid_pin,
+      upper_pin: upperStr ? parseCoords(upperStr) : b.upper_pin,
       meeting_point: meetStr.trim()
-    };
-
-    try {
-      await fetch('/api/beats/update', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload)
-      });
-    } catch (e) {
-      console.error("Error saving beat:", b.id, e);
-    }
+    });
   }
 
-  alert("✅ All beats updated and synchronized!");
-  closeBeatsManagerModal();
-  await loadState();
-  updateMapPins();
+  try {
+    const res = await fetch('/api/admin/beats/update_all', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-Admin-Password': getAdminPassword()
+      },
+      body: JSON.stringify({
+        beats: payloadList,
+        password: getAdminPassword()
+      })
+    });
+    if (res.status === 401) {
+      openAdminPasswordModal(() => saveAllBeatsAndApply());
+      return;
+    }
+    alert("✅ All beats updated and synchronized!");
+    closeBeatsManagerModal();
+    await loadState();
+    renderAdminBeatsConfig();
+    updateMapPins();
+  } catch (e) {
+    console.error("Error saving all beats:", e);
+    alert(`Error saving beats: ${e.message}`);
+  }
 }
 
 

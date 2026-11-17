@@ -515,6 +515,11 @@
               <input type="text" id="adminVenue" class="form-control" value="Championship Beats">
             </div>
           </div>
+          <div style="display:flex; justify-content:flex-end; margin-top:-0.5rem; margin-bottom:1rem;">
+            <button type="button" class="btn btn-sm btn-primary" onclick="saveTournamentMetadata()" style="background:#0284c7; border-color:#0284c7; font-weight:700; display:flex; align-items:center; gap:0.35rem;" title="Save Tournament Name and Venue without wiping the draw">
+              💾 Save Tournament Name & Venue
+            </button>
+          </div>
 
           <div class="form-group">
             <label for="adminAnglerList">Angler Names (one per line, 8 to 20 anglers):</label>
@@ -545,6 +550,31 @@
               <div id="ateamValidationSummary" class="text-sm"></div>
               <button type="button" class="btn btn-sm btn-primary" onclick="saveAteamSelectionOnly()" style="background:#059669; border-color:#059669; font-weight:700; padding:0.35rem 0.9rem;" title="Save marked A-Team members for this trial">
                 💾 Save A-Team Members
+              </button>
+            </div>
+          </div>
+
+          <!-- Active Beats, River Allocation & Usage Capacity Configuration -->
+          <div class="form-group mt-3" style="background: var(--bg-primary); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 1rem;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.4rem; flex-wrap:wrap; gap:0.5rem;">
+              <label style="margin-bottom:0;"><strong>🏞️ Active Beats, River Allocation & Usage Capacity:</strong></label>
+              <div style="display:flex; gap:0.4rem; align-items:center; flex-wrap:wrap;">
+                <button type="button" class="btn btn-sm btn-primary" onclick="saveAdminBeatsConfig()" style="background:#059669; border-color:#059669; font-weight:700; display:flex; align-items:center; gap:0.35rem;" title="Save active beats and usage rules">
+                  💾 Save Beats Setup
+                </button>
+                <button type="button" class="btn btn-sm btn-outline" onclick="openBeatsManagerModal()">⚙️ Full Beat & GPS Editor</button>
+              </div>
+            </div>
+            <p class="form-hint" style="color: var(--text-muted); margin-bottom: 0.75rem;">
+              Configure active beats for the trial. Set <strong>Double Session (AM+PM)</strong> for standard beats that can be fished twice in a day, or <strong>Single Session (1x/Day)</strong> for sensitive beats (e.g. Hotel Beat or Star) that can only be used once per day. Assign beats to <strong>Small Blaar</strong> or <strong>Elands Pad</strong> so anglers get to fish both river sections.
+            </p>
+            <div id="adminBeatsConfigContainer" class="table-responsive" style="max-height: 280px; overflow-y: auto;">
+              <!-- Dynamically populated via renderAdminBeatsConfig() -->
+            </div>
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-top:0.75rem; flex-wrap:wrap; gap:0.5rem; padding-top:0.5rem; border-top:1px solid rgba(255,255,255,0.06);">
+              <div id="adminBeatsValidationSummary" class="text-sm text-muted"></div>
+              <button type="button" class="btn btn-sm btn-primary" onclick="saveAdminBeatsConfig()" style="background:#059669; border-color:#059669; font-weight:700; padding:0.35rem 0.9rem;" title="Save active beats and usage rules">
+                💾 Save Beats Setup
               </button>
             </div>
           </div>
@@ -690,6 +720,7 @@
                 <th style="width: 50px;">Active</th>
                 <th>Beat Name</th>
                 <th>River</th>
+                <th>Usage Mode</th>
                 <th>Lower Pin [Lat, Lng]</th>
                 <th>Mid Pin [Lat, Lng]</th>
                 <th>Upper Pin [Lat, Lng]</th>

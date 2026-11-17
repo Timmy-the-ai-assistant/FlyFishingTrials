@@ -47,8 +47,8 @@ def select_active_beats(available_beats: Optional[List[Dict[str, Any]]], num_bea
     if len(active) < num_beats:
         active = list(pool)
         
-    sb = [b for b in active if b.get("river") == "Smalblaar"]
-    yp = [b for b in active if (b.get("river") == "Elandspad" or b.get("river") == "Elandspad")]
+    sb = [b for b in active if "blaar" in b.get("river", "").lower() or "smal" in b.get("river", "").lower()]
+    yp = [b for b in active if "eland" in b.get("river", "").lower()]
     
     selected = []
     if sb and yp:
@@ -85,8 +85,8 @@ def generate_trials_schedule(
     has_both_rivers = len(set(beat_rivers)) > 1
 
     # Calculate river capacity
-    sb_count = sum(1 for b in selected_beats if b.get("river") == "Smalblaar")
-    yp_count = sum(1 for b in selected_beats if (b.get("river") == "Elandspad" or b.get("river") == "Elandspad"))
+    sb_count = sum(1 for b in selected_beats if "blaar" in b.get("river", "").lower() or "smal" in b.get("river", "").lower())
+    yp_count = sum(1 for b in selected_beats if "eland" in b.get("river", "").lower())
     min_river_beats = min(sb_count, yp_count) if has_both_rivers else 0
     # With stayers consuming 2 sessions, maximum distinct anglers that can visit a river with b beats is at least 5 * b
     can_strictly_cover_both_rivers = has_both_rivers and (min_river_beats * 5 >= N)

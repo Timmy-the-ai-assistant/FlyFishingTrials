@@ -474,9 +474,10 @@ class TournamentDB:
         year: Optional[int] = None,
         start_date: Optional[str] = None,
         end_date: Optional[str] = None,
-        whatsapp_url: Optional[str] = None
+        whatsapp_url: Optional[str] = None,
+        venue: Optional[str] = None
     ) -> Dict[str, Any]:
-        """Updates trial metadata (name, dates, WhatsApp link) with rule validation."""
+        """Updates trial metadata (name, dates, WhatsApp link, venue) with rule validation."""
         trial = None
         for t in self.data.get("trials", []):
             if t["id"] == trial_id:
@@ -498,8 +499,13 @@ class TournamentDB:
         trial["start_date"] = new_sd
         trial["end_date"] = new_ed
         trial["whatsapp_url"] = new_wa
+        if venue is not None:
+            trial["venue"] = venue.strip()
         trial["updated_at"] = datetime.datetime.now().isoformat()
-        trial["tournament_data"]["tournament_name"] = new_name
+        if "tournament_data" in trial:
+            trial["tournament_data"]["tournament_name"] = new_name
+            if venue is not None:
+                trial["tournament_data"]["venue"] = venue.strip()
 
         self.save()
         return {"success": True, "message": f"Trial '{new_name}' updated successfully.", "trial": trial}
@@ -662,7 +668,7 @@ class TournamentDB:
         if not found:
             return {"success": False, "error": f"Beat {beat_id} not found."}
             
-        allowed_fields = ["lower_pin", "upper_pin", "mid_pin", "river", "enabled", "meeting_point", "notes", "name"]
+        allowed_fields = ["lower_pin", "upper_pin", "mid_pin", "river", "enabled", "meeting_point", "notes", "name", "usage_mode"]
         for f in allowed_fields:
             if f in update_dict:
                 target_beat[f] = update_dict[f]
@@ -685,6 +691,41 @@ class TournamentDB:
                         
         self.save()
         return {"success": True, "beat": target_beat}
+
+    def update_all_beats(self, beats_list: List[Dict[str, Any]]) -> Dict[str, Any]:
+        """Batch updates beats configuration (enabled, river, usage_mode, pins, meeting_point)."""
+        current_beats = self.get_beats()
+        updated_count = 0
+        allowed_fields = ["lower_pin", "upper_pin", "mid_pin", "river", "enabled", "meeting_point", "notes", "name", "usage_mode"]
+        
+        for new_b in beats_list:
+            b_id = new_b.get("id") or new_b.get("code")
+            if not b_id:
+                continue
+            for cur_b in current_beats:
+                if cur_b.get("id") == b_id or cur_b.get("code") == b_id:
+                    for f in allowed_fields:
+                        if f in new_b:
+                            cur_b[f] = new_b[f]
+                    updated_count += 1
+                    break
+
+        # Also sync to current match records where applicable
+        t_data = self.get_active_tournament_data()
+        for s in t_data.get("sessions", []):
+            for m in s.get("matches", []):
+                m_beat_id = m.get("beat_id") or m.get("beat_code")
+                for cur_b in current_beats:
+                    if cur_b.get("id") == m_beat_id or cur_b.get("code") == m_beat_id:
+                        if "river" in cur_b: m["river"] = cur_b["river"]
+                        if "lower_pin" in cur_b: m["lower_pin"] = cur_b["lower_pin"]
+                        if "mid_pin" in cur_b: m["mid_pin"] = cur_b["mid_pin"]
+                        if "upper_pin" in cur_b: m["upper_pin"] = cur_b["upper_pin"]
+                        if "meeting_point" in cur_b: m["meeting_point"] = cur_b["meeting_point"]
+                        break
+
+        self.save()
+        return {"success": True, "updated": updated_count, "beats": current_beats}
 
     def get_angler_schedule(self, angler_name: str) -> List[Dict[str, Any]]:
         """Returns 4-session schedule with pins and match details for an angler."""

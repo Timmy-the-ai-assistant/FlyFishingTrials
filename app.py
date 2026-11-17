@@ -232,7 +232,8 @@ class TrialsRequestHandler(SimpleHTTPRequestHandler):
                     year=int(body_json.get("year")) if body_json.get("year") else None,
                     start_date=body_json.get("start_date"),
                     end_date=body_json.get("end_date"),
-                    whatsapp_url=body_json.get("whatsapp_url")
+                    whatsapp_url=body_json.get("whatsapp_url"),
+                    venue=body_json.get("venue")
                 )
                 res["state"] = db.get_full_state()
                 self.send_json_response(res)
@@ -332,6 +333,21 @@ class TrialsRequestHandler(SimpleHTTPRequestHandler):
                 self.send_json_response({"success": False, "error": "Missing beat 'id' or 'code'."}, status_code=400)
                 return
             res = db.update_beat(beat_id, body_json)
+            self.send_json_response(res, status_code=200 if res.get("success") else 400)
+            return
+
+        # 8b. Batch Update All Beats (Admin Only)
+        elif path == "/api/admin/beats/update_all":
+            if not check_admin_auth(self.headers, body_json):
+                self.send_json_response({"success": False, "error": "Organizer password required (small-Blaar)."}, status_code=401)
+                return
+
+            beats_list = body_json.get("beats", [])
+            if not isinstance(beats_list, list) or len(beats_list) == 0:
+                self.send_json_response({"success": False, "error": "Beats list required."}, status_code=400)
+                return
+            res = db.update_all_beats(beats_list)
+            res["state"] = db.get_full_state()
             self.send_json_response(res, status_code=200 if res.get("success") else 400)
             return
 

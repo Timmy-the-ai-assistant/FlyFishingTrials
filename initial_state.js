@@ -1,3 +1,4 @@
+// Auto-generated initial state from trials_data.json
 export const INITIAL_STATE = {
   "active_trial_id": "autumn_trial_2026_a",
   "trials": [
@@ -57,7 +58,8 @@ export const INITIAL_STATE = {
               19.1105
             ],
             "meeting_point": "Tunnel East Portal Parking / Junction Path",
-            "notes": "Upper Smalblaar beat from Junction pool up to tunnel weir."
+            "notes": "Upper Smalblaar beat from Junction pool up to tunnel weir.",
+            "usage_mode": "double"
           },
           {
             "id": "EP1",
@@ -78,7 +80,8 @@ export const INITIAL_STATE = {
               19.1152
             ],
             "meeting_point": "Junction Pool trail head",
-            "notes": "Kloof canyon stream, crystal clear water with pocket pools."
+            "notes": "Kloof canyon stream, crystal clear water with pocket pools.",
+            "usage_mode": "double"
           },
           {
             "id": "EP2",
@@ -99,7 +102,8 @@ export const INITIAL_STATE = {
               19.1172
             ],
             "meeting_point": "Fisherman's Cave trail",
-            "notes": "Middle Elandspad through pristine mountain gorge."
+            "notes": "Middle Elandspad through pristine mountain gorge.",
+            "usage_mode": "double"
           },
           {
             "id": "Star",
@@ -120,7 +124,8 @@ export const INITIAL_STATE = {
               19.1195
             ],
             "meeting_point": "Star beat rock shelter",
-            "notes": "Wild upper gorge with deep plunge pools."
+            "notes": "Wild upper gorge with deep plunge pools.",
+            "usage_mode": "single"
           },
           {
             "id": "Transport",
@@ -141,7 +146,8 @@ export const INITIAL_STATE = {
               19.1945
             ],
             "meeting_point": "Transport Bridge layby on N1",
-            "notes": "Classic riffles and runs below Du Kloof Lodge."
+            "notes": "Classic riffles and runs below Du Kloof Lodge.",
+            "usage_mode": "double"
           },
           {
             "id": "SB1",
@@ -162,7 +168,8 @@ export const INITIAL_STATE = {
               19.17
             ],
             "meeting_point": "Picnic site pull-off",
-            "notes": "Productive long glides and pocket water."
+            "notes": "Productive long glides and pocket water.",
+            "usage_mode": "double"
           },
           {
             "id": "SB2",
@@ -183,7 +190,8 @@ export const INITIAL_STATE = {
               19.159
             ],
             "meeting_point": "Picnic site parking",
-            "notes": "Fast broken water and deep corner pools."
+            "notes": "Fast broken water and deep corner pools.",
+            "usage_mode": "double"
           },
           {
             "id": "SB3",
@@ -204,7 +212,8 @@ export const INITIAL_STATE = {
               19.147
             ],
             "meeting_point": "N1 emergency telephone layby 3",
-            "notes": "Challenging technical water with overhanging vegetation."
+            "notes": "Challenging technical water with overhanging vegetation.",
+            "usage_mode": "double"
           },
           {
             "id": "SB4",
@@ -225,7 +234,8 @@ export const INITIAL_STATE = {
               19.137
             ],
             "meeting_point": "Donkergat pull-off",
-            "notes": "Varied water with boulder gardens."
+            "notes": "Varied water with boulder gardens.",
+            "usage_mode": "double"
           },
           {
             "id": "SB5",
@@ -246,7 +256,8 @@ export const INITIAL_STATE = {
               19.127
             ],
             "meeting_point": "CPS Elandspad parking lot",
-            "notes": "Directly accessible from official CPS parking."
+            "notes": "Directly accessible from official CPS parking.",
+            "usage_mode": "double"
           },
           {
             "id": "Hotel Beat",
@@ -267,7 +278,8 @@ export const INITIAL_STATE = {
               19.177
             ],
             "meeting_point": "Du Kloof Lodge guest parking",
-            "notes": "Historic beat opposite the old hotel."
+            "notes": "Historic beat opposite the old hotel.",
+            "usage_mode": "single"
           },
           {
             "id": "Transport Upper",
@@ -288,7 +300,8 @@ export const INITIAL_STATE = {
               19.1845
             ],
             "meeting_point": "Transport bridge parking",
-            "notes": "Upper section of Molenaars Transport reserve."
+            "notes": "Upper section of Molenaars Transport reserve.",
+            "usage_mode": "double"
           },
           {
             "id": "Transport Lower",
@@ -309,7 +322,8 @@ export const INITIAL_STATE = {
               19.1945
             ],
             "meeting_point": "Farm gate boundary on N1",
-            "notes": "Lower boundary beat with broad runs."
+            "notes": "Lower boundary beat with broad runs.",
+            "usage_mode": "double"
           }
         ],
         "selected_beats": [
@@ -1925,7 +1939,8 @@ export const INITIAL_STATE = {
               19.1105
             ],
             "meeting_point": "Tunnel East Portal Parking / Junction Path",
-            "notes": "Upper Smalblaar beat from Junction pool up to tunnel weir."
+            "notes": "Upper Smalblaar beat from Junction pool up to tunnel weir.",
+            "usage_mode": "double"
           },
           {
             "id": "EP1",
@@ -1946,7 +1961,8 @@ export const INITIAL_STATE = {
               19.1152
             ],
             "meeting_point": "Junction Pool trail head",
-            "notes": "Kloof canyon stream, crystal clear water with pocket pools."
+            "notes": "Kloof canyon stream, crystal clear water with pocket pools.",
+            "usage_mode": "double"
           },
           {
             "id": "EP2",
@@ -1967,7 +1983,8 @@ export const INITIAL_STATE = {
               19.1172
             ],
             "meeting_point": "Fisherman's Cave trail",
-            "notes": "Middle Elandspad through pristine mountain gorge."
+            "notes": "Middle Elandspad through pristine mountain gorge.",
+            "usage_mode": "double"
           },
           {
             "id": "Star",
@@ -1988,7 +2005,8 @@ export const INITIAL_STATE = {
               19.1195
             ],
             "meeting_point": "Star beat rock shelter",
-            "notes": "Wild upper gorge with deep plunge pools."
+            "notes": "Wild upper gorge with deep plunge pools.",
+            "usage_mode": "single"
           },
           {
             "id": "Transport",
@@ -2009,7 +2027,8 @@ export const INITIAL_STATE = {
               19.1945
             ],
             "meeting_point": "Transport Bridge layby on N1",
-            "notes": "Classic riffles and runs below Du Kloof Lodge."
+            "notes": "Classic riffles and runs below Du Kloof Lodge.",
+            "usage_mode": "double"
           },
           {
             "id": "SB1",
@@ -2030,7 +2049,8 @@ export const INITIAL_STATE = {
               19.17
             ],
             "meeting_point": "Picnic site pull-off",
-            "notes": "Productive long glides and pocket water."
+            "notes": "Productive long glides and pocket water.",
+            "usage_mode": "double"
           },
           {
             "id": "SB2",
@@ -2051,7 +2071,8 @@ export const INITIAL_STATE = {
               19.159
             ],
             "meeting_point": "Picnic site parking",
-            "notes": "Fast broken water and deep corner pools."
+            "notes": "Fast broken water and deep corner pools.",
+            "usage_mode": "double"
           },
           {
             "id": "SB3",
@@ -2072,7 +2093,8 @@ export const INITIAL_STATE = {
               19.147
             ],
             "meeting_point": "N1 emergency telephone layby 3",
-            "notes": "Challenging technical water with overhanging vegetation."
+            "notes": "Challenging technical water with overhanging vegetation.",
+            "usage_mode": "double"
           },
           {
             "id": "SB4",
@@ -2093,7 +2115,8 @@ export const INITIAL_STATE = {
               19.137
             ],
             "meeting_point": "Donkergat pull-off",
-            "notes": "Varied water with boulder gardens."
+            "notes": "Varied water with boulder gardens.",
+            "usage_mode": "double"
           },
           {
             "id": "SB5",
@@ -2114,7 +2137,8 @@ export const INITIAL_STATE = {
               19.127
             ],
             "meeting_point": "CPS Elandspad parking lot",
-            "notes": "Directly accessible from official CPS parking."
+            "notes": "Directly accessible from official CPS parking.",
+            "usage_mode": "double"
           },
           {
             "id": "Hotel Beat",
@@ -2135,7 +2159,8 @@ export const INITIAL_STATE = {
               19.177
             ],
             "meeting_point": "Du Kloof Lodge guest parking",
-            "notes": "Historic beat opposite the old hotel."
+            "notes": "Historic beat opposite the old hotel.",
+            "usage_mode": "single"
           },
           {
             "id": "Transport Upper",
@@ -2156,7 +2181,8 @@ export const INITIAL_STATE = {
               19.1845
             ],
             "meeting_point": "Transport bridge parking",
-            "notes": "Upper section of Molenaars Transport reserve."
+            "notes": "Upper section of Molenaars Transport reserve.",
+            "usage_mode": "double"
           },
           {
             "id": "Transport Lower",
@@ -2177,7 +2203,8 @@ export const INITIAL_STATE = {
               19.1945
             ],
             "meeting_point": "Farm gate boundary on N1",
-            "notes": "Lower boundary beat with broad runs."
+            "notes": "Lower boundary beat with broad runs.",
+            "usage_mode": "double"
           }
         ],
         "selected_beats": [
@@ -5112,7 +5139,8 @@ export const INITIAL_STATE = {
               19.1105
             ],
             "meeting_point": "Tunnel East Portal Parking / Junction Path",
-            "notes": "Upper Smalblaar beat from Junction pool up to tunnel weir."
+            "notes": "Upper Smalblaar beat from Junction pool up to tunnel weir.",
+            "usage_mode": "double"
           },
           {
             "id": "EP1",
@@ -5133,7 +5161,8 @@ export const INITIAL_STATE = {
               19.1152
             ],
             "meeting_point": "Junction Pool trail head",
-            "notes": "Kloof canyon stream, crystal clear water with pocket pools."
+            "notes": "Kloof canyon stream, crystal clear water with pocket pools.",
+            "usage_mode": "double"
           },
           {
             "id": "EP2",
@@ -5154,7 +5183,8 @@ export const INITIAL_STATE = {
               19.1172
             ],
             "meeting_point": "Fisherman's Cave trail",
-            "notes": "Middle Elandspad through pristine mountain gorge."
+            "notes": "Middle Elandspad through pristine mountain gorge.",
+            "usage_mode": "double"
           },
           {
             "id": "Star",
@@ -5175,7 +5205,8 @@ export const INITIAL_STATE = {
               19.1195
             ],
             "meeting_point": "Star beat rock shelter",
-            "notes": "Wild upper gorge with deep plunge pools."
+            "notes": "Wild upper gorge with deep plunge pools.",
+            "usage_mode": "single"
           },
           {
             "id": "Transport",
@@ -5196,7 +5227,8 @@ export const INITIAL_STATE = {
               19.1945
             ],
             "meeting_point": "Transport Bridge layby on N1",
-            "notes": "Classic riffles and runs below Du Kloof Lodge."
+            "notes": "Classic riffles and runs below Du Kloof Lodge.",
+            "usage_mode": "double"
           },
           {
             "id": "SB1",
@@ -5217,7 +5249,8 @@ export const INITIAL_STATE = {
               19.17
             ],
             "meeting_point": "Picnic site pull-off",
-            "notes": "Productive long glides and pocket water."
+            "notes": "Productive long glides and pocket water.",
+            "usage_mode": "double"
           },
           {
             "id": "SB2",
@@ -5238,7 +5271,8 @@ export const INITIAL_STATE = {
               19.159
             ],
             "meeting_point": "Picnic site parking",
-            "notes": "Fast broken water and deep corner pools."
+            "notes": "Fast broken water and deep corner pools.",
+            "usage_mode": "double"
           },
           {
             "id": "SB3",
@@ -5259,7 +5293,8 @@ export const INITIAL_STATE = {
               19.147
             ],
             "meeting_point": "N1 emergency telephone layby 3",
-            "notes": "Challenging technical water with overhanging vegetation."
+            "notes": "Challenging technical water with overhanging vegetation.",
+            "usage_mode": "double"
           },
           {
             "id": "SB4",
@@ -5280,7 +5315,8 @@ export const INITIAL_STATE = {
               19.137
             ],
             "meeting_point": "Donkergat pull-off",
-            "notes": "Varied water with boulder gardens."
+            "notes": "Varied water with boulder gardens.",
+            "usage_mode": "double"
           },
           {
             "id": "SB5",
@@ -5301,7 +5337,8 @@ export const INITIAL_STATE = {
               19.127
             ],
             "meeting_point": "CPS Elandspad parking lot",
-            "notes": "Directly accessible from official CPS parking."
+            "notes": "Directly accessible from official CPS parking.",
+            "usage_mode": "double"
           },
           {
             "id": "Hotel Beat",
@@ -5322,7 +5359,8 @@ export const INITIAL_STATE = {
               19.177
             ],
             "meeting_point": "Du Kloof Lodge guest parking",
-            "notes": "Historic beat opposite the old hotel."
+            "notes": "Historic beat opposite the old hotel.",
+            "usage_mode": "single"
           },
           {
             "id": "Transport Upper",
@@ -5343,7 +5381,8 @@ export const INITIAL_STATE = {
               19.1845
             ],
             "meeting_point": "Transport bridge parking",
-            "notes": "Upper section of Molenaars Transport reserve."
+            "notes": "Upper section of Molenaars Transport reserve.",
+            "usage_mode": "double"
           },
           {
             "id": "Transport Lower",
@@ -5364,7 +5403,8 @@ export const INITIAL_STATE = {
               19.1945
             ],
             "meeting_point": "Farm gate boundary on N1",
-            "notes": "Lower boundary beat with broad runs."
+            "notes": "Lower boundary beat with broad runs.",
+            "usage_mode": "double"
           }
         ],
         "selected_beats": [
@@ -8289,7 +8329,8 @@ export const INITIAL_STATE = {
         19.1105
       ],
       "meeting_point": "Tunnel East Portal Parking / Junction Path",
-      "notes": "Upper Smalblaar beat from Junction pool up to tunnel weir."
+      "notes": "Upper Smalblaar beat from Junction pool up to tunnel weir.",
+      "usage_mode": "double"
     },
     {
       "id": "EP1",
@@ -8310,7 +8351,8 @@ export const INITIAL_STATE = {
         19.1152
       ],
       "meeting_point": "Junction Pool trail head",
-      "notes": "Kloof canyon stream, crystal clear water with pocket pools."
+      "notes": "Kloof canyon stream, crystal clear water with pocket pools.",
+      "usage_mode": "double"
     },
     {
       "id": "EP2",
@@ -8331,7 +8373,8 @@ export const INITIAL_STATE = {
         19.1172
       ],
       "meeting_point": "Fisherman's Cave trail",
-      "notes": "Middle Elandspad through pristine mountain gorge."
+      "notes": "Middle Elandspad through pristine mountain gorge.",
+      "usage_mode": "double"
     },
     {
       "id": "Star",
@@ -8352,7 +8395,8 @@ export const INITIAL_STATE = {
         19.1195
       ],
       "meeting_point": "Star beat rock shelter",
-      "notes": "Wild upper gorge with deep plunge pools."
+      "notes": "Wild upper gorge with deep plunge pools.",
+      "usage_mode": "single"
     },
     {
       "id": "Transport",
@@ -8373,7 +8417,8 @@ export const INITIAL_STATE = {
         19.1945
       ],
       "meeting_point": "Transport Bridge layby on N1",
-      "notes": "Classic riffles and runs below Du Kloof Lodge."
+      "notes": "Classic riffles and runs below Du Kloof Lodge.",
+      "usage_mode": "double"
     },
     {
       "id": "SB1",
@@ -8394,7 +8439,8 @@ export const INITIAL_STATE = {
         19.17
       ],
       "meeting_point": "Picnic site pull-off",
-      "notes": "Productive long glides and pocket water."
+      "notes": "Productive long glides and pocket water.",
+      "usage_mode": "double"
     },
     {
       "id": "SB2",
@@ -8415,7 +8461,8 @@ export const INITIAL_STATE = {
         19.159
       ],
       "meeting_point": "Picnic site parking",
-      "notes": "Fast broken water and deep corner pools."
+      "notes": "Fast broken water and deep corner pools.",
+      "usage_mode": "double"
     },
     {
       "id": "SB3",
@@ -8436,7 +8483,8 @@ export const INITIAL_STATE = {
         19.147
       ],
       "meeting_point": "N1 emergency telephone layby 3",
-      "notes": "Challenging technical water with overhanging vegetation."
+      "notes": "Challenging technical water with overhanging vegetation.",
+      "usage_mode": "double"
     },
     {
       "id": "SB4",
@@ -8457,7 +8505,8 @@ export const INITIAL_STATE = {
         19.137
       ],
       "meeting_point": "Donkergat pull-off",
-      "notes": "Varied water with boulder gardens."
+      "notes": "Varied water with boulder gardens.",
+      "usage_mode": "double"
     },
     {
       "id": "SB5",
@@ -8478,7 +8527,8 @@ export const INITIAL_STATE = {
         19.127
       ],
       "meeting_point": "CPS Elandspad parking lot",
-      "notes": "Directly accessible from official CPS parking."
+      "notes": "Directly accessible from official CPS parking.",
+      "usage_mode": "double"
     },
     {
       "id": "Hotel Beat",
@@ -8499,7 +8549,8 @@ export const INITIAL_STATE = {
         19.177
       ],
       "meeting_point": "Du Kloof Lodge guest parking",
-      "notes": "Historic beat opposite the old hotel."
+      "notes": "Historic beat opposite the old hotel.",
+      "usage_mode": "single"
     },
     {
       "id": "Transport Upper",
@@ -8520,7 +8571,8 @@ export const INITIAL_STATE = {
         19.1845
       ],
       "meeting_point": "Transport bridge parking",
-      "notes": "Upper section of Molenaars Transport reserve."
+      "notes": "Upper section of Molenaars Transport reserve.",
+      "usage_mode": "double"
     },
     {
       "id": "Transport Lower",
@@ -8541,7 +8593,8 @@ export const INITIAL_STATE = {
         19.1945
       ],
       "meeting_point": "Farm gate boundary on N1",
-      "notes": "Lower boundary beat with broad runs."
+      "notes": "Lower boundary beat with broad runs.",
+      "usage_mode": "double"
     }
   ],
   "selected_beats": [

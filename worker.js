@@ -164,18 +164,18 @@ function generateEdgeSchedule(anglers, aTeamAnglers = [], availableBeats = []) {
   const numBeats = isOdd ? Math.floor((N - 1) / 2) : Math.floor(N / 2);
 
   const fallbackBeats = [
-    { id: "SB6", code: "SB6", name: "Smalblaar 6 (SB6)", river: "Small Blaar", lower_pin: [-33.7319, 19.1141], mid_pin: [-33.7330, 19.1105], upper_pin: [-33.7342, 19.1065], meeting_point: "Tunnel East Portal" },
-    { id: "EP1", code: "EP1", name: "Elandspad 1 (EP1)", river: "Elands Pad", lower_pin: [-33.7319, 19.1141], mid_pin: [-33.7360, 19.1152], upper_pin: [-33.7405, 19.1162], meeting_point: "Junction Pool" },
-    { id: "EP2", code: "EP2", name: "Elandspad 2 (EP2)", river: "Elands Pad", lower_pin: [-33.7405, 19.1162], mid_pin: [-33.7460, 19.1172], upper_pin: [-33.7520, 19.1188], meeting_point: "Fisherman's Cave" },
-    { id: "Star", code: "Star", name: "Star Beat", river: "Elands Pad", lower_pin: [-33.7520, 19.1188], mid_pin: [-33.7565, 19.1195], upper_pin: [-33.7610, 19.1205], meeting_point: "Star beat shelter" },
-    { id: "SB5", code: "SB5", name: "Smalblaar 5 (SB5)", river: "Small Blaar", lower_pin: [-33.7295, 19.1320], mid_pin: [-33.7305, 19.1270], upper_pin: [-33.7319, 19.1141], meeting_point: "CPS Elandspad parking" },
-    { id: "SB4", code: "SB4", name: "Smalblaar 4 (SB4)", river: "Small Blaar", lower_pin: [-33.7272, 19.1415], mid_pin: [-33.7285, 19.1370], upper_pin: [-33.7295, 19.1320], meeting_point: "Donkergat pull-off" },
-    { id: "SB3", code: "SB3", name: "Smalblaar 3 (SB3)", river: "Small Blaar", lower_pin: [-33.7235, 19.1530], mid_pin: [-33.7258, 19.1470], upper_pin: [-33.7272, 19.1415], meeting_point: "Emergency telephone layby 3" },
-    { id: "SB2", code: "SB2", name: "Smalblaar 2 (SB2)", river: "Small Blaar", lower_pin: [-33.7190, 19.1655], mid_pin: [-33.7212, 19.1590], upper_pin: [-33.7235, 19.1530], meeting_point: "Picnic Site parking" },
-    { id: "SB1", code: "SB1", name: "Smalblaar 1 (SB1)", river: "Small Blaar", lower_pin: [-33.7150, 19.1740], mid_pin: [-33.7170, 19.1700], upper_pin: [-33.7190, 19.1655], meeting_point: "Picnic Site 1" },
-    { id: "Hotel Beat", code: "Hotel Beat", name: "Smalblaar Hotel Beat", river: "Small Blaar", lower_pin: [-33.7125, 19.1800], mid_pin: [-33.7138, 19.1770], upper_pin: [-33.7150, 19.1740], meeting_point: "Du Kloof Lodge" },
-    { id: "Transport Upper", code: "Transport Upper", name: "Transport Upper", river: "Small Blaar", lower_pin: [-33.7085, 19.1895], mid_pin: [-33.7105, 19.1845], upper_pin: [-33.7125, 19.1800], meeting_point: "Transport bridge parking" },
-    { id: "Transport Lower", code: "Transport Lower", name: "Transport Lower", river: "Small Blaar", lower_pin: [-33.7040, 19.2000], mid_pin: [-33.7065, 19.1945], upper_pin: [-33.7085, 19.1895], meeting_point: "Farm gate boundary" }
+    { id: "SB6", code: "SB6", name: "Smalblaar 6 (SB6)", river: "Small Blaar", usage_mode: "double", lower_pin: [-33.7319, 19.1141], mid_pin: [-33.7330, 19.1105], upper_pin: [-33.7342, 19.1065], meeting_point: "Tunnel East Portal" },
+    { id: "EP1", code: "EP1", name: "Elandspad 1 (EP1)", river: "Elands Pad", usage_mode: "double", lower_pin: [-33.7319, 19.1141], mid_pin: [-33.7360, 19.1152], upper_pin: [-33.7405, 19.1162], meeting_point: "Junction Pool" },
+    { id: "EP2", code: "EP2", name: "Elandspad 2 (EP2)", river: "Elands Pad", usage_mode: "double", lower_pin: [-33.7405, 19.1162], mid_pin: [-33.7460, 19.1172], upper_pin: [-33.7520, 19.1188], meeting_point: "Fisherman's Cave" },
+    { id: "Star", code: "Star", name: "Star Beat", river: "Elands Pad", usage_mode: "single", lower_pin: [-33.7520, 19.1188], mid_pin: [-33.7565, 19.1195], upper_pin: [-33.7610, 19.1205], meeting_point: "Star beat shelter" },
+    { id: "SB5", code: "SB5", name: "Smalblaar 5 (SB5)", river: "Small Blaar", usage_mode: "double", lower_pin: [-33.7295, 19.1320], mid_pin: [-33.7305, 19.1270], upper_pin: [-33.7319, 19.1141], meeting_point: "CPS Elandspad parking" },
+    { id: "SB4", code: "SB4", name: "Smalblaar 4 (SB4)", river: "Small Blaar", usage_mode: "double", lower_pin: [-33.7272, 19.1415], mid_pin: [-33.7285, 19.1370], upper_pin: [-33.7295, 19.1320], meeting_point: "Donkergat pull-off" },
+    { id: "SB3", code: "SB3", name: "Smalblaar 3 (SB3)", river: "Small Blaar", usage_mode: "double", lower_pin: [-33.7235, 19.1530], mid_pin: [-33.7258, 19.1470], upper_pin: [-33.7272, 19.1415], meeting_point: "Emergency telephone layby 3" },
+    { id: "SB2", code: "SB2", name: "Smalblaar 2 (SB2)", river: "Small Blaar", usage_mode: "double", lower_pin: [-33.7190, 19.1655], mid_pin: [-33.7212, 19.1590], upper_pin: [-33.7235, 19.1530], meeting_point: "Picnic Site parking" },
+    { id: "SB1", code: "SB1", name: "Smalblaar 1 (SB1)", river: "Small Blaar", usage_mode: "double", lower_pin: [-33.7150, 19.1740], mid_pin: [-33.7170, 19.1700], upper_pin: [-33.7190, 19.1655], meeting_point: "Picnic Site 1" },
+    { id: "Hotel Beat", code: "Hotel Beat", name: "Smalblaar Hotel Beat", river: "Small Blaar", usage_mode: "single", lower_pin: [-33.7125, 19.1800], mid_pin: [-33.7138, 19.1770], upper_pin: [-33.7150, 19.1740], meeting_point: "Du Kloof Lodge" },
+    { id: "Transport Upper", code: "Transport Upper", name: "Transport Upper", river: "Small Blaar", usage_mode: "double", lower_pin: [-33.7085, 19.1895], mid_pin: [-33.7105, 19.1845], upper_pin: [-33.7125, 19.1800], meeting_point: "Transport bridge parking" },
+    { id: "Transport Lower", code: "Transport Lower", name: "Transport Lower", river: "Small Blaar", usage_mode: "double", lower_pin: [-33.7040, 19.2000], mid_pin: [-33.7065, 19.1945], upper_pin: [-33.7085, 19.1895], meeting_point: "Farm gate boundary" }
   ];
 
   const beatsPool = (availableBeats && availableBeats.length >= numBeats) 
@@ -409,21 +409,197 @@ function generateEdgeSchedule(anglers, aTeamAnglers = [], availableBeats = []) {
   const finalThreeWayCounts = {};
   if (isOdd) anglers.forEach(a => { finalThreeWayCounts[a] = 0; });
 
+  // --- Dynamic Beat Allocation & Stayer Engine ---
+  const activePool = (availableBeats && availableBeats.length >= numBeats)
+    ? availableBeats.filter(b => b.enabled !== false)
+    : fallbackBeats;
+  const pool = activePool.length >= numBeats ? activePool : fallbackBeats;
+
+  const isEp = b => (b.river || '').toLowerCase().includes('eland');
+  const isSb = b => !isEp(b);
+
+  function pickBalancedBeats(beatList, count, preferDouble = true) {
+    const list = [...beatList];
+    if (preferDouble) {
+      list.sort((a, b) => {
+        const ma = (a.usage_mode === 'single') ? 1 : 0;
+        const mb = (b.usage_mode === 'single') ? 1 : 0;
+        return ma - mb;
+      });
+    }
+    const ep = list.filter(isEp);
+    const sb = list.filter(isSb);
+    const res = [];
+    const maxL = Math.max(ep.length, sb.length);
+    for (let i = 0; i < maxL; i++) {
+      if (sb[i] && res.length < count && !res.includes(sb[i])) res.push(sb[i]);
+      if (ep[i] && res.length < count && !res.includes(ep[i])) res.push(ep[i]);
+    }
+    for (const b of list) {
+      if (res.length >= count) break;
+      if (!res.includes(b)) res.push(b);
+    }
+    return res;
+  }
+
+  // Day 1 (Saturday): S1 Morning & S2 Afternoon
+  const s1Beats = pickBalancedBeats(pool, numBeats, true);
+  const s1DoubleBeats = s1Beats.filter(b => b.usage_mode !== 'single');
+  const s1SingleIds = new Set(s1Beats.filter(b => b.usage_mode === 'single').map(b => b.id || b.code));
+  const s2UnusedPool = pool.filter(b => {
+    const id = b.id || b.code;
+    return !s1SingleIds.has(id) && !s1DoubleBeats.some(db => (db.id || db.code) === id);
+  });
+  const s2Beats = [...s1DoubleBeats];
+  for (const b of s2UnusedPool) {
+    if (s2Beats.length >= numBeats) break;
+    s2Beats.push(b);
+  }
+
+  const s1MatchesRaw = chosenScheduleRaw[0];
+  const s2MatchesRaw = chosenScheduleRaw[1];
+
+  const s1OverlappingCount = s1DoubleBeats.length;
+  function matchDay1Stayers(beatIdx, usedS2, curr) {
+    if (beatIdx === s1OverlappingCount) return curr;
+    const beatAnglers = s1MatchesRaw[beatIdx];
+    for (const stayerIdx of beatAnglers) {
+      const s2mIdx = s2MatchesRaw.findIndex(m => m.includes(stayerIdx));
+      if (s2mIdx !== -1 && !usedS2.has(s2mIdx)) {
+        const nextUsed = new Set(usedS2);
+        nextUsed.add(s2mIdx);
+        const res = matchDay1Stayers(beatIdx + 1, nextUsed, [...curr, { beatIdx, stayerIdx, s2mIdx }]);
+        if (res) return res;
+      }
+    }
+    return null;
+  }
+
+  const d1Stayers = matchDay1Stayers(0, new Set(), []) || [];
+  const s2AssignedMatches = new Array(numBeats).fill(null);
+  const s2Stayers = new Array(numBeats).fill(null);
+  const usedS2Indices = new Set();
+
+  d1Stayers.forEach(item => {
+    s2AssignedMatches[item.beatIdx] = s2MatchesRaw[item.s2mIdx];
+    s2Stayers[item.beatIdx] = anglers[item.stayerIdx];
+    usedS2Indices.add(item.s2mIdx);
+  });
+
+  let remS2Matches = s2MatchesRaw.filter((_, idx) => !usedS2Indices.has(idx));
+  for (let b = 0; b < numBeats; b++) {
+    if (!s2AssignedMatches[b]) {
+      s2AssignedMatches[b] = remS2Matches.shift();
+      s2Stayers[b] = null;
+    }
+  }
+
+  // Track rivers fished on Day 1
+  const anglerRiversD1 = {};
+  anglers.forEach(a => { anglerRiversD1[a] = new Set(); });
+  for (let b = 0; b < numBeats; b++) {
+    s1MatchesRaw[b].forEach(idx => anglerRiversD1[anglers[idx]].add(s1Beats[b].river));
+    s2AssignedMatches[b].forEach(idx => anglerRiversD1[anglers[idx]].add(s2Beats[b].river));
+  }
+
+  // Day 2 (Sunday): S3 Morning & S4 Afternoon (daily limits reset)
+  const s3Beats = pickBalancedBeats(pool, numBeats, true);
+  const s3DoubleBeats = s3Beats.filter(b => b.usage_mode !== 'single');
+  const s3SingleIds = new Set(s3Beats.filter(b => b.usage_mode === 'single').map(b => b.id || b.code));
+  const s4UnusedPool = pool.filter(b => {
+    const id = b.id || b.code;
+    return !s3SingleIds.has(id) && !s3DoubleBeats.some(db => (db.id || db.code) === id);
+  });
+  const s4Beats = [...s3DoubleBeats];
+  for (const b of s4UnusedPool) {
+    if (s4Beats.length >= numBeats) break;
+    s4Beats.push(b);
+  }
+
+  const s3MatchesRaw = chosenScheduleRaw[2];
+  const s4MatchesRaw = chosenScheduleRaw[3];
+
+  let bestS3Perm = [...Array(numBeats).keys()];
+  let bestS3Score = -1;
+  for (let pTry = 0; pTry < 25; pTry++) {
+    const perm = [...Array(numBeats).keys()].sort(() => Math.random() - 0.5);
+    let sc = 0;
+    for (let b = 0; b < numBeats; b++) {
+      const r = s3Beats[b].river;
+      s3MatchesRaw[perm[b]].forEach(idx => {
+        if (!anglerRiversD1[anglers[idx]].has(r)) sc += 10;
+      });
+    }
+    if (sc > bestS3Score) {
+      bestS3Score = sc;
+      bestS3Perm = perm;
+    }
+  }
+  const s3AssignedMatches = bestS3Perm.map(idx => s3MatchesRaw[idx]);
+
+  const s3OverlappingCount = s3DoubleBeats.length;
+  function matchDay2Stayers(beatIdx, usedS4, curr) {
+    if (beatIdx === s3OverlappingCount) return curr;
+    const beatAnglers = s3AssignedMatches[beatIdx];
+    const sortedCandidates = [...beatAnglers].sort((a, b) => {
+      const wasStayerA = s2Stayers.includes(anglers[a]) ? 1 : 0;
+      const wasStayerB = s2Stayers.includes(anglers[b]) ? 1 : 0;
+      return wasStayerA - wasStayerB;
+    });
+
+    for (const stayerIdx of sortedCandidates) {
+      const s4mIdx = s4MatchesRaw.findIndex(m => m.includes(stayerIdx));
+      if (s4mIdx !== -1 && !usedS4.has(s4mIdx)) {
+        const nextUsed = new Set(usedS4);
+        nextUsed.add(s4mIdx);
+        const res = matchDay2Stayers(beatIdx + 1, nextUsed, [...curr, { beatIdx, stayerIdx, s4mIdx }]);
+        if (res) return res;
+      }
+    }
+    return null;
+  }
+
+  const d2Stayers = matchDay2Stayers(0, new Set(), []) || [];
+  const s4AssignedMatches = new Array(numBeats).fill(null);
+  const s4Stayers = new Array(numBeats).fill(null);
+  const usedS4Indices = new Set();
+
+  d2Stayers.forEach(item => {
+    s4AssignedMatches[item.beatIdx] = s4MatchesRaw[item.s4mIdx];
+    s4Stayers[item.beatIdx] = anglers[item.stayerIdx];
+    usedS4Indices.add(item.s4mIdx);
+  });
+
+  let remS4Matches = s4MatchesRaw.filter((_, idx) => !usedS4Indices.has(idx));
+  for (let b = 0; b < numBeats; b++) {
+    if (!s4AssignedMatches[b]) {
+      s4AssignedMatches[b] = remS4Matches.shift();
+      s4Stayers[b] = null;
+    }
+  }
+
+  const sessionBeatAssignments = [
+    { beats: s1Beats, matches: s1MatchesRaw, stayers: new Array(numBeats).fill(null) },
+    { beats: s2Beats, matches: s2AssignedMatches, stayers: s2Stayers },
+    { beats: s3Beats, matches: s3AssignedMatches, stayers: new Array(numBeats).fill(null) },
+    { beats: s4Beats, matches: s4AssignedMatches, stayers: s4Stayers }
+  ];
+
   for (let sIdx = 0; sIdx < numSessions; sIdx++) {
     const sDef = sessionDefs[sIdx];
     const sMatches = [];
-    const rawMatches = chosenScheduleRaw[sIdx];
+    const assignment = sessionBeatAssignments[sIdx];
 
-    for (let b = 0; b < rawMatches.length; b++) {
-      const beat = beatsPool[b] || fallbackBeats[b % fallbackBeats.length];
-      const matchAnglerIndices = rawMatches[b];
+    for (let b = 0; b < numBeats; b++) {
+      const beat = assignment.beats[b] || fallbackBeats[b % fallbackBeats.length];
+      const matchAnglerIndices = assignment.matches[b];
       const matchAnglers = matchAnglerIndices.map(i => anglers[i]);
 
       if (matchAnglers.length === 3) {
         matchAnglers.forEach(a => { finalThreeWayCounts[a] = (finalThreeWayCounts[a] || 0) + 1; });
       }
 
-      const stayer = (sIdx % 2 === 1) ? matchAnglers[0] : null;
+      const stayer = assignment.stayers[b];
 
       const m = {
         match_id: `S${sDef.id}_M${b + 1}`,
@@ -433,7 +609,7 @@ function generateEdgeSchedule(anglers, aTeamAnglers = [], availableBeats = []) {
         beat_id: beat.id || beat.code,
         beat_code: beat.code || beat.id,
         beat_name: beat.name,
-        river: beat.river || "Smalblaar",
+        river: beat.river || "Small Blaar",
         lower_pin: beat.lower_pin || [-33.7319, 19.1141],
         mid_pin: beat.mid_pin || [-33.7330, 19.1180],
         upper_pin: beat.upper_pin || [-33.7340, 19.1225],
@@ -628,6 +804,13 @@ export default {
       if (body.whatsapp_url !== undefined) {
         targetTrial.whatsapp_url = body.whatsapp_url.trim();
         currentData.whatsapp_url = targetTrial.whatsapp_url;
+      }
+      if (body.venue !== undefined) {
+        targetTrial.venue = body.venue.trim();
+        if (targetTrial.tournament_data) {
+          targetTrial.tournament_data.venue = targetTrial.venue;
+        }
+        currentData.venue = targetTrial.venue;
       }
       targetTrial.updated_at = new Date().toISOString();
 
@@ -843,6 +1026,7 @@ export default {
           if (b.id === beatId || b.code === beatId) {
             if (body.enabled !== undefined) b.enabled = body.enabled;
             if (body.river !== undefined) b.river = body.river;
+            if (body.usage_mode !== undefined) b.usage_mode = body.usage_mode;
             if (body.lower_pin !== undefined) b.lower_pin = body.lower_pin;
             if (body.mid_pin !== undefined) b.mid_pin = body.mid_pin;
             if (body.upper_pin !== undefined) b.upper_pin = body.upper_pin;
@@ -853,6 +1037,48 @@ export default {
       }
 
       return new Response(JSON.stringify({ success: true, message: "Beat updated successfully." }), {
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' }
+      });
+    }
+
+    // 7b. Batch Update All Beats (Admin Only)
+    if (url.pathname === '/api/admin/beats/update_all' && request.method === 'POST') {
+      const body = await request.json().catch(() => ({}));
+      if (!checkAdminAuth(request, body)) {
+        return new Response(JSON.stringify({
+          success: false,
+          error: "Unauthorized: Organizer password required (small-Blaar)."
+        }), {
+          status: 401,
+          headers: { ...corsHeaders, 'Content-Type': 'application/json' }
+        });
+      }
+
+      const beatsList = body.beats || [];
+      const trial = getActiveTrial();
+      let updatedCount = 0;
+      if (trial && trial.tournament_data && trial.tournament_data.beats) {
+        beatsList.forEach(nb => {
+          const bId = nb.id || nb.code;
+          const found = trial.tournament_data.beats.find(b => b.id === bId || b.code === bId);
+          if (found) {
+            if (nb.enabled !== undefined) found.enabled = nb.enabled;
+            if (nb.river !== undefined) found.river = nb.river;
+            if (nb.usage_mode !== undefined) found.usage_mode = nb.usage_mode;
+            if (nb.meeting_point !== undefined) found.meeting_point = nb.meeting_point;
+            if (nb.lower_pin !== undefined) found.lower_pin = nb.lower_pin;
+            if (nb.mid_pin !== undefined) found.mid_pin = nb.mid_pin;
+            if (nb.upper_pin !== undefined) found.upper_pin = nb.upper_pin;
+            updatedCount++;
+          }
+        });
+      }
+
+      return new Response(JSON.stringify({
+        success: true,
+        message: `Successfully updated ${updatedCount} beats.`,
+        state: getFullState()
+      }), {
         headers: { ...corsHeaders, 'Content-Type': 'application/json' }
       });
     }

@@ -14,6 +14,7 @@ CPS_BEATS_DATA: List[Dict[str, Any]] = [
         "name": "Smalblaar 6 (SB6)",
         "river": "Small Blaar",
         "enabled": True,
+        "usage_mode": "double",
         "lower_pin": [-33.7319, 19.1141],   # Confluence / Junction Pool
         "upper_pin": [-33.7342, 19.1065],   # Tunnel Viaduct / Weir
         "mid_pin": [-33.7330, 19.1105],     # Midpoint / Second half
@@ -26,6 +27,7 @@ CPS_BEATS_DATA: List[Dict[str, Any]] = [
         "name": "Elandspad 1 (EP1)",
         "river": "Elands Pad",
         "enabled": True,
+        "usage_mode": "double",
         "lower_pin": [-33.7319, 19.1141],   # Junction Pool
         "upper_pin": [-33.7405, 19.1162],   # Fisherman's Cave
         "mid_pin": [-33.7360, 19.1152],     # River bend / 2nd half
@@ -38,6 +40,7 @@ CPS_BEATS_DATA: List[Dict[str, Any]] = [
         "name": "Elandspad 2 (EP2)",
         "river": "Elands Pad",
         "enabled": True,
+        "usage_mode": "double",
         "lower_pin": [-33.7405, 19.1162],   # Fisherman's Cave
         "upper_pin": [-33.7520, 19.1188],   # Pine Trees / Upper Gorge
         "mid_pin": [-33.7460, 19.1172],     # Pine tree clearing
@@ -50,11 +53,12 @@ CPS_BEATS_DATA: List[Dict[str, Any]] = [
         "name": "Star Beat",
         "river": "Elands Pad",
         "enabled": True,
+        "usage_mode": "single",
         "lower_pin": [-33.7520, 19.1188],   # Pine Trees / Upper Gorge
         "upper_pin": [-33.7610, 19.1205],   # Kraalstroom Confluence
         "mid_pin": [-33.7565, 19.1195],     # High cascades
         "meeting_point": "Star beat rock shelter",
-        "notes": "Wild upper gorge with deep plunge pools."
+        "notes": "Wild upper gorge with deep plunge pools. Sensitive upper beat."
     },
     {
         "id": "SB5",
@@ -62,6 +66,7 @@ CPS_BEATS_DATA: List[Dict[str, Any]] = [
         "name": "Smalblaar 5 (SB5)",
         "river": "Small Blaar",
         "enabled": True,
+        "usage_mode": "double",
         "lower_pin": [-33.7295, 19.1320],   # Elandspad Bridge & CPS Parking
         "upper_pin": [-33.7319, 19.1141],   # Junction Pool
         "mid_pin": [-33.7305, 19.1270],     # Bridge pools
@@ -74,6 +79,7 @@ CPS_BEATS_DATA: List[Dict[str, Any]] = [
         "name": "Smalblaar 4 (SB4)",
         "river": "Small Blaar",
         "enabled": True,
+        "usage_mode": "double",
         "lower_pin": [-33.7272, 19.1415],   # Python pool
         "upper_pin": [-33.7295, 19.1320],   # Elandspad bridge
         "mid_pin": [-33.7285, 19.1370],     # Donkergat
@@ -86,6 +92,7 @@ CPS_BEATS_DATA: List[Dict[str, Any]] = [
         "name": "Smalblaar 3 (SB3)",
         "river": "Small Blaar",
         "enabled": True,
+        "usage_mode": "double",
         "lower_pin": [-33.7235, 19.1530],   # Boundary fence
         "upper_pin": [-33.7272, 19.1415],   # Python pool
         "mid_pin": [-33.7258, 19.1470],     # Mid channel
@@ -98,6 +105,7 @@ CPS_BEATS_DATA: List[Dict[str, Any]] = [
         "name": "Smalblaar 2 (SB2)",
         "river": "Small Blaar",
         "enabled": True,
+        "usage_mode": "double",
         "lower_pin": [-33.7190, 19.1655],   # Picnic site
         "upper_pin": [-33.7235, 19.1530],   # Boundary fence
         "mid_pin": [-33.7212, 19.1590],     # Granite run
@@ -110,6 +118,7 @@ CPS_BEATS_DATA: List[Dict[str, Any]] = [
         "name": "Smalblaar 1 (SB1)",
         "river": "Small Blaar",
         "enabled": True,
+        "usage_mode": "double",
         "lower_pin": [-33.7150, 19.1740],   # Hotel boundary fence
         "upper_pin": [-33.7190, 19.1655],   # Picnic site
         "mid_pin": [-33.7170, 19.1700],     # Willow pool
@@ -122,11 +131,12 @@ CPS_BEATS_DATA: List[Dict[str, Any]] = [
         "name": "Smalblaar Hotel Beat",
         "river": "Small Blaar",
         "enabled": True,
+        "usage_mode": "single",
         "lower_pin": [-33.7125, 19.1800],   # Lower weir
         "upper_pin": [-33.7150, 19.1740],   # Hotel upper boundary
         "mid_pin": [-33.7138, 19.1770],     # Lodge terrace pool
         "meeting_point": "Du Kloof Lodge guest parking",
-        "notes": "Historic beat opposite the old hotel."
+        "notes": "Historic beat opposite the old hotel. Single session limit per day."
     },
     {
         "id": "Transport Upper",
@@ -134,6 +144,7 @@ CPS_BEATS_DATA: List[Dict[str, Any]] = [
         "name": "Transport Upper",
         "river": "Small Blaar",
         "enabled": True,
+        "usage_mode": "double",
         "lower_pin": [-33.7085, 19.1895],   # Transport bridge
         "upper_pin": [-33.7125, 19.1800],   # Lower weir
         "mid_pin": [-33.7105, 19.1845],     # Island run
@@ -146,6 +157,7 @@ CPS_BEATS_DATA: List[Dict[str, Any]] = [
         "name": "Transport Lower",
         "river": "Small Blaar",
         "enabled": True,
+        "usage_mode": "double",
         "lower_pin": [-33.7040, 19.2000],   # Farm Boundary
         "upper_pin": [-33.7085, 19.1895],   # Transport Bridge
         "mid_pin": [-33.7065, 19.1945],     # Klip river confluence
@@ -158,6 +170,7 @@ CPS_BEATS_DATA: List[Dict[str, Any]] = [
         "name": "Transport Beat",
         "river": "Small Blaar",
         "enabled": True,
+        "usage_mode": "double",
         "lower_pin": [-33.7040, 19.2000],   # Farm Boundary
         "upper_pin": [-33.7085, 19.1895],   # Transport Bridge
         "mid_pin": [-33.7065, 19.1945],     # Mid rapids
