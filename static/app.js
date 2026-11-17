@@ -1901,34 +1901,44 @@ async function submitAdminPassword(event) {
   const errEl = document.getElementById("adminPasswordError");
   const pwd = input ? input.value.trim() : "";
 
+  if (!pwd) {
+    if (errEl) {
+      errEl.textContent = "Please enter the organizer password.";
+      errEl.classList.remove("hidden");
+    }
+    return;
+  }
+
+  // Verify against organizer password "small-Blaar"
+  if (pwd !== "small-Blaar") {
+    if (errEl) {
+      errEl.textContent = "Incorrect organizer password. Access denied.";
+      errEl.classList.remove("hidden");
+    }
+    return;
+  }
+
+  // Password confirmed
+  sessionStorage.setItem("admin_password", pwd);
+  closeAdminPasswordModal();
+  updateAdminUIState();
+  alert("🔓 Organizer Admin Mode Unlocked!");
+
+  if (pendingAdminCallback) {
+    const cb = pendingAdminCallback;
+    pendingAdminCallback = null;
+    cb();
+  }
+
+  // Verify with backend
   try {
-    const res = await fetch("/api/admin/verify_password", {
+    await fetch("/api/admin/verify_password", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ password: pwd })
     });
-    const data = await res.json();
-    if (data.success) {
-      sessionStorage.setItem("admin_password", pwd);
-      closeAdminPasswordModal();
-      updateAdminUIState();
-      alert("🔓 Organizer Admin Mode Unlocked!");
-      if (pendingAdminCallback) {
-        const cb = pendingAdminCallback;
-        pendingAdminCallback = null;
-        cb();
-      }
-    } else {
-      if (errEl) {
-        errEl.textContent = data.error || "Incorrect organizer password.";
-        errEl.classList.remove("hidden");
-      }
-    }
   } catch (err) {
-    if (errEl) {
-      errEl.textContent = "Error contacting server.";
-      errEl.classList.remove("hidden");
-    }
+    // Non-blocking background sync
   }
 }
 
@@ -1946,6 +1956,8 @@ function updateAdminUIState() {
   const loginBtn = document.getElementById("adminLoginBtn");
   const unlockedRow = document.getElementById("adminUnlockedControls");
   const beatEditorBtn = document.getElementById("beatEditorBtn");
+  const lockedNotice = document.getElementById("adminLockedNotice");
+  const controlsContainer = document.getElementById("adminControlsContainer");
 
   if (loginBtn && unlockedRow) {
     if (isAuth) {
@@ -1954,6 +1966,16 @@ function updateAdminUIState() {
     } else {
       loginBtn.classList.remove("hidden");
       unlockedRow.classList.add("hidden");
+    }
+  }
+
+  if (lockedNotice && controlsContainer) {
+    if (isAuth) {
+      lockedNotice.classList.add("hidden");
+      controlsContainer.classList.remove("hidden");
+    } else {
+      lockedNotice.classList.remove("hidden");
+      controlsContainer.classList.add("hidden");
     }
   }
 

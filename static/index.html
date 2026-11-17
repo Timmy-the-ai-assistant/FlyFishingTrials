@@ -384,11 +384,24 @@
       <div class="section-header">
         <div>
           <h2>Tournament Organizer Control Center</h2>
-          <p class="section-desc">Manage discrepancies, re-randomize trial draws, and manually adjust scores if needed.</p>
+          <p class="section-desc">Manage discrepancies, re-randomize trial draws, and configure tournament settings.</p>
         </div>
       </div>
 
-      <!-- Discrepancy Queue -->
+      <!-- Locked Notice Screen for Unauthenticated Visitors -->
+      <div id="adminLockedNotice" class="card text-center" style="padding: 3rem 1.5rem; border: 2px dashed #f59e0b; background: rgba(245, 158, 11, 0.05); margin-bottom: 2rem;">
+        <div style="font-size: 3rem; margin-bottom: 0.5rem;">🔒</div>
+        <h3 style="color: #f59e0b; margin-bottom: 0.5rem;">Organizer Admin Locked</h3>
+        <p class="text-muted" style="max-width: 520px; margin: 0 auto 1.5rem auto; font-size: 1rem;">
+          To change tournament settings, edit beats, or randomize draws, you must unlock with the organizer password (<code>small-Blaar</code>).
+        </p>
+        <button type="button" class="btn btn-primary" onclick="openAdminPasswordModal()" style="font-size: 1.05rem; padding: 0.75rem 1.75rem;">
+          🔓 Unlock with Organizer Password
+        </button>
+      </div>
+
+      <!-- Authenticated Controls Container -->
+      <div id="adminControlsContainer" class="hidden">
       <div class="admin-section">
         <div class="card">
           <div class="card-header-flex">
@@ -529,6 +542,7 @@
           </div>
         </div>
       </div>
+      </div> <!-- End adminControlsContainer -->
     </section>
 
   </main>
