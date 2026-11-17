@@ -1430,6 +1430,22 @@ body {
   text-decoration: underline;
 }
 
+/* Custom Beat Tooltip (Hover) */
+.leaflet-tooltip.custom-beat-tooltip {
+  background: #0f172a !important;
+  color: #f8fafc !important;
+  border: 1px solid rgba(56, 189, 248, 0.4) !important;
+  border-radius: 6px !important;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.5) !important;
+  padding: 6px 10px !important;
+  font-family: inherit !important;
+  pointer-events: none !important;
+}
+
+.leaflet-tooltip.custom-beat-tooltip::before {
+  border-top-color: #0f172a !important;
+}
+
 /* ========================================================
    ANGLER 4-SESSION ITINERARY CARDS
    ======================================================== */

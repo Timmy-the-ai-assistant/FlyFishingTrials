@@ -1432,51 +1432,94 @@ let anglerPinsLayerGroup = null;
 let selectedTrackingAngler = '';
 let currentEditingBeatsList = [];
 
-// River centerline coordinates for artistic view
+// River centerline coordinates for artistic view and accurate riverbed tracing
 const RIVER_PATHS_CLIENT = {
   "Smalblaar": [
-    [-33.7340, 19.1225],
+    [-33.7346, 19.1030],
+    [-33.7342, 19.1065],
+    [-33.7335, 19.1090],
+    [-33.7330, 19.1105],
+    [-33.7323, 19.1125],
     [-33.7319, 19.1141],
-    [-33.7320, 19.1310],
-    [-33.7290, 19.1405],
-    [-33.7260, 19.1495],
-    [-33.7230, 19.1585],
-    [-33.7200, 19.1670],
-    [-33.7160, 19.1750],
-    [-33.7120, 19.1825],
+    [-33.7315, 19.1180],
+    [-33.7312, 19.1220],
+    [-33.7305, 19.1270],
+    [-33.7298, 19.1305],
+    [-33.7295, 19.1320],
+    [-33.7290, 19.1345],
+    [-33.7285, 19.1370],
+    [-33.7278, 19.1395],
+    [-33.7272, 19.1415],
+    [-33.7265, 19.1440],
+    [-33.7258, 19.1470],
+    [-33.7248, 19.1500],
+    [-33.7235, 19.1530],
+    [-33.7225, 19.1560],
+    [-33.7212, 19.1590],
+    [-33.7200, 19.1625],
+    [-33.7190, 19.1655],
+    [-33.7180, 19.1680],
+    [-33.7170, 19.1700],
+    [-33.7160, 19.1720],
+    [-33.7150, 19.1740],
+    [-33.7142, 19.1758],
+    [-33.7138, 19.1770],
+    [-33.7130, 19.1785],
+    [-33.7125, 19.1800],
+    [-33.7115, 19.1820],
+    [-33.7105, 19.1845],
+    [-33.7095, 19.1870],
     [-33.7085, 19.1895],
-    [-33.7050, 19.1960]
+    [-33.7075, 19.1920],
+    [-33.7065, 19.1945],
+    [-33.7052, 19.1975],
+    [-33.7040, 19.2000],
+    [-33.7025, 19.2040],
+    [-33.7005, 19.2085],
+    [-33.6985, 19.2140],
+    [-33.6970, 19.2195],
+    [-33.6960, 19.2245]
   ],
   "Elandspad": [
     [-33.7319, 19.1141],
-    [-33.7352, 19.1129],
-    [-33.7385, 19.1118],
-    [-33.7420, 19.1105],
-    [-33.7455, 19.1092],
-    [-33.7492, 19.1078],
-    [-33.7530, 19.1065]
+    [-33.7335, 19.1145],
+    [-33.7350, 19.1150],
+    [-33.7360, 19.1152],
+    [-33.7375, 19.1156],
+    [-33.7390, 19.1160],
+    [-33.7405, 19.1162],
+    [-33.7420, 19.1164],
+    [-33.7440, 19.1168],
+    [-33.7460, 19.1172],
+    [-33.7480, 19.1175],
+    [-33.7500, 19.1182],
+    [-33.7520, 19.1188],
+    [-33.7540, 19.1192],
+    [-33.7565, 19.1195],
+    [-33.7585, 19.1200],
+    [-33.7610, 19.1205]
   ]
 };
 
 const TRAIL_PATHS_CLIENT = {
   "Elandspad River Path": [
-    [-33.7320, 19.1310],
-    [-33.7325, 19.1220],
+    [-33.7295, 19.1320],
+    [-33.7310, 19.1220],
     [-33.7319, 19.1141],
-    [-33.7350, 19.1132],
-    [-33.7385, 19.1120],
-    [-33.7450, 19.1095],
-    [-33.7525, 19.1068]
+    [-33.7350, 19.1145],
+    [-33.7405, 19.1160],
+    [-33.7460, 19.1170],
+    [-33.7520, 19.1185],
+    [-33.7610, 19.1200]
   ],
   "Smalblaar Angler Trail": [
-    [-33.7320, 19.1310],
-    [-33.7292, 19.1400],
-    [-33.7262, 19.1490],
-    [-33.7232, 19.1580],
-    [-33.7202, 19.1665],
-    [-33.7162, 19.1745],
-    [-33.7122, 19.1820],
-    [-33.7086, 19.1890]
+    [-33.7295, 19.1320],
+    [-33.7275, 19.1410],
+    [-33.7240, 19.1520],
+    [-33.7195, 19.1650],
+    [-33.7155, 19.1735],
+    [-33.7130, 19.1795],
+    [-33.7090, 19.1890]
   ]
 };
 
@@ -1584,12 +1627,12 @@ function renderAnglerItinerary(anglerName, sched) {
 // LEAFLET MAP INITIALIZATION & LAYER SWITCHER
 // ========================================================
 
-let artisticOverlayLayer = null;
+let riverVectorsLayerGroup = null;
 
 // Smalblaar & Elandspad geographical bounding box (valley limits)
 const CPS_VALLEY_BOUNDS = [
   [-33.775, 19.085], // Southwest: Du Toitskloof tunnel entrance & lower Smalblaar
-  [-33.685, 19.220]  // Northeast: Upper Elandspad / Kraalstroom
+  [-33.685, 19.230]  // Northeast: Lower Molenaars / Kraalstroom
 ];
 
 function initOrUpdateMap() {
@@ -1601,10 +1644,10 @@ function initOrUpdateMap() {
     streamMap = L.map('streamMap', {
       center: [-33.727, 19.145],
       zoom: 13,
-      minZoom: 13, // Clamped: Cannot zoom out further than Smalblaar & Elandspad!
+      minZoom: 12, // Clamped: Cannot zoom out further than Smalblaar & Elandspad valley!
       maxZoom: 18, // Zoom in to pools, boulders, and beat boundaries
       maxBounds: CPS_VALLEY_BOUNDS,
-      maxBoundsViscosity: 1.0, // Strictly keeps view inside valley
+      maxBoundsViscosity: 0.9,
       zoomControl: true,
       attributionControl: true
     });
@@ -1627,29 +1670,19 @@ function initOrUpdateMap() {
       attribution: 'OpenStreetMap'
     });
 
-    // 4. Fallback / Base for Artistic view
+    // 4. Artistic River View (High-Res satellite terrain with luminous artistic river ribbon)
     baseTileLayers['artistic'] = baseTileLayers['satellite'];
 
-    // Authentic CPS Illustrated Watercolor Overlay (Smalblaar & Elandspad)
-    artisticOverlayLayer = L.imageOverlay('cps_artistic_valley.jpg', [
-      [-33.765, 19.095],
-      [-33.695, 19.208]
-    ], {
-      opacity: 0.85,
-      interactive: false,
-      alt: 'Cape Piscatorial Society Illustrated Watercolor Map'
-    });
-
-    // Default layer: Artistic (illustrated watercolor blended on satellite base)
+    // Default layer: Satellite with Artistic River Flare
     baseTileLayers['satellite'].addTo(streamMap);
-    artisticOverlayLayer.addTo(streamMap);
-    currentMapLayerName = 'artistic';
+    currentMapLayerName = 'satellite';
 
     // Layer groups for vectors and pins
+    riverVectorsLayerGroup = L.layerGroup().addTo(streamMap);
     beatMarkersLayerGroup = L.layerGroup().addTo(streamMap);
     anglerPinsLayerGroup = L.layerGroup().addTo(streamMap);
 
-    // Render river centerlines and trails
+    // Render river centerlines and trails following authentic river course
     drawRiverAndTrailVectors();
   }
 
@@ -1659,31 +1692,18 @@ function initOrUpdateMap() {
 function switchMapLayer(layerName) {
   if (!streamMap) return;
 
-  if (layerName === 'artistic') {
-    // Show satellite base with hand-painted watercolor overlay
-    if (!streamMap.hasLayer(baseTileLayers['satellite'])) {
-      Object.values(baseTileLayers).forEach(l => {
-        if (streamMap.hasLayer(l)) streamMap.removeLayer(l);
-      });
-      baseTileLayers['satellite'].addTo(streamMap);
-    }
-    if (artisticOverlayLayer && !streamMap.hasLayer(artisticOverlayLayer)) {
-      artisticOverlayLayer.addTo(streamMap);
-    }
-  } else {
-    // Standard satellite/topo/street: remove artistic overlay
-    if (artisticOverlayLayer && streamMap.hasLayer(artisticOverlayLayer)) {
-      streamMap.removeLayer(artisticOverlayLayer);
-    }
-    if (baseTileLayers[layerName]) {
-      Object.values(baseTileLayers).forEach(l => {
-        if (streamMap.hasLayer(l)) streamMap.removeLayer(l);
-      });
-      baseTileLayers[layerName].addTo(streamMap);
-    }
+  const targetTileLayer = baseTileLayers[layerName] || baseTileLayers['satellite'];
+  Object.values(baseTileLayers).forEach(l => {
+    if (streamMap.hasLayer(l) && l !== targetTileLayer) streamMap.removeLayer(l);
+  });
+  if (!streamMap.hasLayer(targetTileLayer)) {
+    targetTileLayer.addTo(streamMap);
   }
 
   currentMapLayerName = layerName;
+
+  // Toggle artistic river styling flare
+  drawRiverAndTrailVectors();
 
   // Update UI buttons
   ['artistic', 'satellite', 'topo', 'street'].forEach(k => {
@@ -1696,45 +1716,98 @@ function resetMapView() {
   if (streamMap) {
     streamMap.fitBounds([
       [-33.755, 19.105],
-      [-33.705, 19.198]
+      [-33.705, 19.215]
     ], { padding: [25, 25] });
   }
 }
 
-// Draws the flowing river polylines and trails
+// Draws the flowing river polylines with authentic curves and artistic flare
 function drawRiverAndTrailVectors() {
   if (!streamMap) return;
+  if (!riverVectorsLayerGroup) {
+    riverVectorsLayerGroup = L.layerGroup().addTo(streamMap);
+  } else {
+    riverVectorsLayerGroup.clearLayers();
+  }
 
-  // Smalblaar
+  const isArtistic = (currentMapLayerName === 'artistic' || currentMapLayerName === 'satellite');
+
+  // --- 1. Smalblaar (Molenaars) River Path ---
   const sbPath = RIVER_PATHS_CLIENT["Smalblaar"];
+  
+  if (isArtistic) {
+    // Outer Aquatic Glow Ribbon
+    L.polyline(sbPath, {
+      color: '#00e5ff',
+      weight: 12,
+      opacity: 0.4,
+      lineCap: 'round',
+      lineJoin: 'round'
+    }).addTo(riverVectorsLayerGroup);
+  }
+
+  // Deep Mountain River Core
   L.polyline(sbPath, {
     color: '#0284c7',
-    weight: 6,
-    opacity: 0.85,
+    weight: isArtistic ? 6 : 5,
+    opacity: 0.9,
+    lineCap: 'round',
     lineJoin: 'round'
-  }).addTo(streamMap).bindTooltip("🌊 Smalblaar River", { sticky: true });
+  }).addTo(riverVectorsLayerGroup);
 
-  // Elandspad
+  // Shimmering Water Current
+  L.polyline(sbPath, {
+    color: '#e0f2fe',
+    weight: 2,
+    opacity: 0.95,
+    dashArray: '8, 12',
+    lineCap: 'round'
+  }).addTo(riverVectorsLayerGroup).bindTooltip("🌊 Smalblaar River (Molenaars Valley)", { sticky: true });
+
+  // --- 2. Elandspad River Path ---
   const ypPath = RIVER_PATHS_CLIENT["Elandspad"];
+
+  if (isArtistic) {
+    // Outer Emerald Gorge Glow
+    L.polyline(ypPath, {
+      color: '#34d399',
+      weight: 12,
+      opacity: 0.4,
+      lineCap: 'round',
+      lineJoin: 'round'
+    }).addTo(riverVectorsLayerGroup);
+  }
+
+  // Deep Mountain Jade Core
   L.polyline(ypPath, {
     color: '#059669',
-    weight: 6,
-    opacity: 0.85,
+    weight: isArtistic ? 6 : 5,
+    opacity: 0.9,
+    lineCap: 'round',
     lineJoin: 'round'
-  }).addTo(streamMap).bindTooltip("🌿 Elandspad River", { sticky: true });
+  }).addTo(riverVectorsLayerGroup);
 
-  // Trails
+  // Shimmering Water Current
+  L.polyline(ypPath, {
+    color: '#ecfdf5',
+    weight: 2,
+    opacity: 0.95,
+    dashArray: '8, 12',
+    lineCap: 'round'
+  }).addTo(riverVectorsLayerGroup).bindTooltip("🌿 Elandspad River (Mountain Gorge)", { sticky: true });
+
+  // --- 3. Access Trails ---
   Object.entries(TRAIL_PATHS_CLIENT).forEach(([name, coords]) => {
     L.polyline(coords, {
-      color: '#d97706',
-      weight: 3,
+      color: '#f59e0b',
+      weight: 3.5,
       dashArray: '6, 6',
-      opacity: 0.8
-    }).addTo(streamMap).bindTooltip(`🥾 ${name}`, { sticky: true });
+      opacity: 0.85
+    }).addTo(riverVectorsLayerGroup).bindTooltip(`🥾 ${name}`, { sticky: true });
   });
 }
 
-// Updates all beat boundaries and the selected angler's 4 pins
+// Updates all beat boundaries and the selected angler's 4 pins with hover & persistent popup selection
 function updateMapPins() {
   if (!streamMap || !beatMarkersLayerGroup || !anglerPinsLayerGroup) return;
 
@@ -1744,7 +1817,7 @@ function updateMapPins() {
   const beats = (tournamentState && tournamentState.beats) || [];
   const activeSelectedBeats = (tournamentState && tournamentState.selected_beats) || [];
 
-  // 1. Draw Beat Boundaries (Start/Mid/End)
+  // 1. Draw Beat Boundaries (Start/Mid/End) directly along the river course
   beats.forEach(b => {
     if (!b.enabled && activeSelectedBeats.every(sb => sb.id !== b.id)) return;
 
@@ -1754,37 +1827,91 @@ function updateMapPins() {
 
     if (lower) {
       const markerLower = L.circleMarker(lower, {
-        radius: 6,
+        radius: 7,
         fillColor: '#10b981',
-        color: '#fff',
-        weight: 1.5,
-        fillOpacity: 0.9
+        color: '#ffffff',
+        weight: 2.5,
+        fillOpacity: 0.95
       });
-      markerLower.bindPopup(buildBeatPopup(b, 'Start (Lower Pin)', lower));
+      // Hover tooltip: indicates what it is immediately
+      markerLower.bindTooltip(`
+        <div style="font-weight:700; color:#10b981; font-size:12px;">📍 Start (Lower Pin)</div>
+        <div style="font-size:13px; font-weight:800; color:#0f172a;">${escapeHtml(b.name)}</div>
+        <div style="font-size:11px; color:#475569;">${escapeHtml(b.river)} &bull; ${escapeHtml(b.meeting_point || '')}</div>
+      `, {
+        direction: 'top',
+        offset: [0, -10],
+        opacity: 0.98,
+        className: 'custom-beat-tooltip'
+      });
+      // Click selection: persistent popup that stays and doesn't reload
+      markerLower.bindPopup(buildBeatPopup(b, 'Start (Lower Pin)', lower), {
+        autoClose: false,
+        closeOnClick: false,
+        className: 'persistent-beat-popup',
+        maxWidth: 340,
+        minWidth: 280
+      });
       beatMarkersLayerGroup.addLayer(markerLower);
     }
 
     if (upper) {
       const markerUpper = L.circleMarker(upper, {
-        radius: 6,
+        radius: 7,
         fillColor: '#ef4444',
-        color: '#fff',
-        weight: 1.5,
-        fillOpacity: 0.9
+        color: '#ffffff',
+        weight: 2.5,
+        fillOpacity: 0.95
       });
-      markerUpper.bindPopup(buildBeatPopup(b, 'End (Upper Pin)', upper));
+      // Hover tooltip
+      markerUpper.bindTooltip(`
+        <div style="font-weight:700; color:#ef4444; font-size:12px;">🏁 End (Upper Pin)</div>
+        <div style="font-size:13px; font-weight:800; color:#0f172a;">${escapeHtml(b.name)}</div>
+        <div style="font-size:11px; color:#475569;">${escapeHtml(b.river)} &bull; ${escapeHtml(b.meeting_point || '')}</div>
+      `, {
+        direction: 'top',
+        offset: [0, -10],
+        opacity: 0.98,
+        className: 'custom-beat-tooltip'
+      });
+      // Click selection: persistent popup that stays and doesn't reload
+      markerUpper.bindPopup(buildBeatPopup(b, 'End (Upper Pin)', upper), {
+        autoClose: false,
+        closeOnClick: false,
+        className: 'persistent-beat-popup',
+        maxWidth: 340,
+        minWidth: 280
+      });
       beatMarkersLayerGroup.addLayer(markerUpper);
     }
 
     if (mid) {
       const markerMid = L.circleMarker(mid, {
-        radius: 5,
-        fillColor: '#38bdf8',
-        color: '#fff',
-        weight: 1.5,
-        fillOpacity: 0.85
+        radius: 6,
+        fillColor: '#0ea5e9',
+        color: '#ffffff',
+        weight: 2,
+        fillOpacity: 0.9
       });
-      markerMid.bindPopup(buildBeatPopup(b, 'Midpoint / Meeting / 2nd Half', mid));
+      // Hover tooltip
+      markerMid.bindTooltip(`
+        <div style="font-weight:700; color:#0ea5e9; font-size:12px;">⏱️ Midpoint / 2nd Half</div>
+        <div style="font-size:13px; font-weight:800; color:#0f172a;">${escapeHtml(b.name)}</div>
+        <div style="font-size:11px; color:#475569;">${escapeHtml(b.river)} &bull; Meeting Point</div>
+      `, {
+        direction: 'top',
+        offset: [0, -10],
+        opacity: 0.98,
+        className: 'custom-beat-tooltip'
+      });
+      // Click selection: persistent popup that stays and doesn't reload
+      markerMid.bindPopup(buildBeatPopup(b, 'Midpoint / Meeting / 2nd Half', mid), {
+        autoClose: false,
+        closeOnClick: false,
+        className: 'persistent-beat-popup',
+        maxWidth: 340,
+        minWidth: 280
+      });
       beatMarkersLayerGroup.addLayer(markerMid);
     }
   });
@@ -1814,7 +1941,23 @@ function updateMapPins() {
       });
 
       const pinMarker = L.marker(coord, { icon: customIcon });
-      pinMarker.bindPopup(buildAnglerSessionPopup(selectedTrackingAngler, s, coord));
+      pinMarker.bindTooltip(`
+        <div style="font-weight:700; color:${color}; font-size:12px;">Session ${sId}: ${escapeHtml(selectedTrackingAngler)}</div>
+        <div style="font-size:13px; font-weight:800; color:#0f172a;">${escapeHtml(s.beat_name || s.beat_code)}</div>
+        <div style="font-size:11px; color:#475569;">${escapeHtml(s.river)} &bull; Opponents: ${escapeHtml(s.opponents.join(' & '))}</div>
+      `, {
+        direction: 'top',
+        offset: [0, -18],
+        opacity: 0.98,
+        className: 'custom-beat-tooltip'
+      });
+      pinMarker.bindPopup(buildAnglerSessionPopup(selectedTrackingAngler, s, coord), {
+        autoClose: false,
+        closeOnClick: false,
+        className: 'persistent-beat-popup',
+        maxWidth: 340,
+        minWidth: 280
+      });
       anglerPinsLayerGroup.addLayer(pinMarker);
     });
 

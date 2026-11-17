@@ -15,8 +15,8 @@ CPS_BEATS_DATA: List[Dict[str, Any]] = [
         "river": "Smalblaar",
         "enabled": True,
         "lower_pin": [-33.7319, 19.1141],   # Confluence / Junction Pool
-        "upper_pin": [-33.7340, 19.1225],   # Tunnel Viaduct / Weir
-        "mid_pin": [-33.7330, 19.1180],     # Midpoint / Second half
+        "upper_pin": [-33.7342, 19.1065],   # Tunnel Viaduct / Weir
+        "mid_pin": [-33.7330, 19.1105],     # Midpoint / Second half
         "meeting_point": "Tunnel East Portal Parking / Junction Path",
         "notes": "Upper Smalblaar beat from Junction pool up to tunnel weir."
     },
@@ -27,8 +27,8 @@ CPS_BEATS_DATA: List[Dict[str, Any]] = [
         "river": "Elandspad",
         "enabled": True,
         "lower_pin": [-33.7319, 19.1141],   # Junction Pool
-        "upper_pin": [-33.7385, 19.1118],   # Fisherman's Cave
-        "mid_pin": [-33.7352, 19.1129],     # River bend / 2nd half
+        "upper_pin": [-33.7405, 19.1162],   # Fisherman's Cave
+        "mid_pin": [-33.7360, 19.1152],     # River bend / 2nd half
         "meeting_point": "Junction Pool trail head",
         "notes": "Kloof canyon stream, crystal clear water with pocket pools."
     },
@@ -38,9 +38,9 @@ CPS_BEATS_DATA: List[Dict[str, Any]] = [
         "name": "Elandspad 2 (EP2)",
         "river": "Elandspad",
         "enabled": True,
-        "lower_pin": [-33.7385, 19.1118],   # Fisherman's Cave
-        "upper_pin": [-33.7455, 19.1092],   # Narrow Gorge
-        "mid_pin": [-33.7420, 19.1105],     # Pine tree clearing
+        "lower_pin": [-33.7405, 19.1162],   # Fisherman's Cave
+        "upper_pin": [-33.7520, 19.1188],   # Pine Trees / Upper Gorge
+        "mid_pin": [-33.7460, 19.1172],     # Pine tree clearing
         "meeting_point": "Fisherman's Cave trail",
         "notes": "Middle Elandspad through pristine mountain gorge."
     },
@@ -50,71 +50,11 @@ CPS_BEATS_DATA: List[Dict[str, Any]] = [
         "name": "Star Beat",
         "river": "Elandspad",
         "enabled": True,
-        "lower_pin": [-33.7455, 19.1092],   # Narrow Gorge
-        "upper_pin": [-33.7530, 19.1065],   # Kraalstroom Confluence
-        "mid_pin": [-33.7492, 19.1078],     # High cascades
+        "lower_pin": [-33.7520, 19.1188],   # Pine Trees / Upper Gorge
+        "upper_pin": [-33.7610, 19.1205],   # Kraalstroom Confluence
+        "mid_pin": [-33.7565, 19.1195],     # High cascades
         "meeting_point": "Star beat rock shelter",
         "notes": "Wild upper gorge with deep plunge pools."
-    },
-    {
-        "id": "Transport",
-        "code": "Transport",
-        "name": "Transport Beat",
-        "river": "Smalblaar",
-        "enabled": True,
-        "lower_pin": [-33.7085, 19.1895],   # Farm Boundary
-        "upper_pin": [-33.7120, 19.1825],   # Transport Bridge
-        "mid_pin": [-33.7100, 19.1860],     # Mid rapids
-        "meeting_point": "Transport Bridge layby on N1",
-        "notes": "Classic riffles and runs below Du Kloof Lodge."
-    },
-    {
-        "id": "SB1",
-        "code": "SB1",
-        "name": "Smalblaar 1 (SB1)",
-        "river": "Smalblaar",
-        "enabled": True,
-        "lower_pin": [-33.7200, 19.1670],   # Hotel boundary fence
-        "upper_pin": [-33.7230, 19.1585],   # Picnic site
-        "mid_pin": [-33.7215, 19.1630],     # Willow pool
-        "meeting_point": "Picnic site pull-off",
-        "notes": "Productive long glides and pocket water."
-    },
-    {
-        "id": "SB2",
-        "code": "SB2",
-        "name": "Smalblaar 2 (SB2)",
-        "river": "Smalblaar",
-        "enabled": True,
-        "lower_pin": [-33.7230, 19.1585],   # Picnic site
-        "upper_pin": [-33.7260, 19.1495],   # Boundary fence
-        "mid_pin": [-33.7245, 19.1540],     # Granite run
-        "meeting_point": "Picnic site parking",
-        "notes": "Fast broken water and deep corner pools."
-    },
-    {
-        "id": "SB3",
-        "code": "SB3",
-        "name": "Smalblaar 3 (SB3)",
-        "river": "Smalblaar",
-        "enabled": True,
-        "lower_pin": [-33.7260, 19.1495],   # Boundary fence
-        "upper_pin": [-33.7290, 19.1405],   # Python pool
-        "mid_pin": [-33.7275, 19.1450],     # Mid channel
-        "meeting_point": "N1 emergency telephone layby 3",
-        "notes": "Challenging technical water with overhanging vegetation."
-    },
-    {
-        "id": "SB4",
-        "code": "SB4",
-        "name": "Smalblaar 4 (SB4)",
-        "river": "Smalblaar",
-        "enabled": True,
-        "lower_pin": [-33.7290, 19.1405],   # Python pool
-        "upper_pin": [-33.7320, 19.1310],   # Elandspad bridge
-        "mid_pin": [-33.7305, 19.1360],     # Donkergat
-        "meeting_point": "Donkergat pull-off",
-        "notes": "Varied water with boulder gardens."
     },
     {
         "id": "SB5",
@@ -122,11 +62,59 @@ CPS_BEATS_DATA: List[Dict[str, Any]] = [
         "name": "Smalblaar 5 (SB5)",
         "river": "Smalblaar",
         "enabled": True,
-        "lower_pin": [-33.7320, 19.1310],   # Elandspad bridge
-        "upper_pin": [-33.7340, 19.1225],   # Viaduct weir
-        "mid_pin": [-33.7330, 19.1270],     # Bridge pools
+        "lower_pin": [-33.7295, 19.1320],   # Elandspad Bridge & CPS Parking
+        "upper_pin": [-33.7319, 19.1141],   # Junction Pool
+        "mid_pin": [-33.7305, 19.1270],     # Bridge pools
         "meeting_point": "CPS Elandspad parking lot",
         "notes": "Directly accessible from official CPS parking."
+    },
+    {
+        "id": "SB4",
+        "code": "SB4",
+        "name": "Smalblaar 4 (SB4)",
+        "river": "Smalblaar",
+        "enabled": True,
+        "lower_pin": [-33.7272, 19.1415],   # Python pool
+        "upper_pin": [-33.7295, 19.1320],   # Elandspad bridge
+        "mid_pin": [-33.7285, 19.1370],     # Donkergat
+        "meeting_point": "Donkergat pull-off",
+        "notes": "Varied water with boulder gardens."
+    },
+    {
+        "id": "SB3",
+        "code": "SB3",
+        "name": "Smalblaar 3 (SB3)",
+        "river": "Smalblaar",
+        "enabled": True,
+        "lower_pin": [-33.7235, 19.1530],   # Boundary fence
+        "upper_pin": [-33.7272, 19.1415],   # Python pool
+        "mid_pin": [-33.7258, 19.1470],     # Mid channel
+        "meeting_point": "N1 emergency telephone layby 3",
+        "notes": "Challenging technical water with overhanging vegetation."
+    },
+    {
+        "id": "SB2",
+        "code": "SB2",
+        "name": "Smalblaar 2 (SB2)",
+        "river": "Smalblaar",
+        "enabled": True,
+        "lower_pin": [-33.7190, 19.1655],   # Picnic site
+        "upper_pin": [-33.7235, 19.1530],   # Boundary fence
+        "mid_pin": [-33.7212, 19.1590],     # Granite run
+        "meeting_point": "Picnic site parking",
+        "notes": "Fast broken water and deep corner pools."
+    },
+    {
+        "id": "SB1",
+        "code": "SB1",
+        "name": "Smalblaar 1 (SB1)",
+        "river": "Smalblaar",
+        "enabled": True,
+        "lower_pin": [-33.7150, 19.1740],   # Hotel boundary fence
+        "upper_pin": [-33.7190, 19.1655],   # Picnic site
+        "mid_pin": [-33.7170, 19.1700],     # Willow pool
+        "meeting_point": "Picnic site pull-off",
+        "notes": "Productive long glides and pocket water."
     },
     {
         "id": "Hotel Beat",
@@ -134,9 +122,9 @@ CPS_BEATS_DATA: List[Dict[str, Any]] = [
         "name": "Smalblaar Hotel Beat",
         "river": "Smalblaar",
         "enabled": True,
-        "lower_pin": [-33.7160, 19.1750],   # Lower weir
-        "upper_pin": [-33.7200, 19.1670],   # Hotel upper boundary
-        "mid_pin": [-33.7180, 19.1710],     # Lodge terrace pool
+        "lower_pin": [-33.7125, 19.1800],   # Lower weir
+        "upper_pin": [-33.7150, 19.1740],   # Hotel upper boundary
+        "mid_pin": [-33.7138, 19.1770],     # Lodge terrace pool
         "meeting_point": "Du Kloof Lodge guest parking",
         "notes": "Historic beat opposite the old hotel."
     },
@@ -146,9 +134,9 @@ CPS_BEATS_DATA: List[Dict[str, Any]] = [
         "name": "Transport Upper",
         "river": "Smalblaar",
         "enabled": True,
-        "lower_pin": [-33.7120, 19.1825],   # Transport bridge
-        "upper_pin": [-33.7160, 19.1750],   # Lower weir
-        "mid_pin": [-33.7140, 19.1790],     # Island run
+        "lower_pin": [-33.7085, 19.1895],   # Transport bridge
+        "upper_pin": [-33.7125, 19.1800],   # Lower weir
+        "mid_pin": [-33.7105, 19.1845],     # Island run
         "meeting_point": "Transport bridge parking",
         "notes": "Upper section of Molenaars Transport reserve."
     },
@@ -158,59 +146,114 @@ CPS_BEATS_DATA: List[Dict[str, Any]] = [
         "name": "Transport Lower",
         "river": "Smalblaar",
         "enabled": True,
-        "lower_pin": [-33.7050, 19.1960],   # Lower reserve line
-        "upper_pin": [-33.7085, 19.1895],   # Farm fence
-        "mid_pin": [-33.7065, 19.1930],     # S-bend pool
-        "meeting_point": "Lower Farm gate layby",
-        "notes": "Lower boundary beat with broad runs."
+        "lower_pin": [-33.7040, 19.2000],   # Farm Boundary
+        "upper_pin": [-33.7085, 19.1895],   # Transport Bridge
+        "mid_pin": [-33.7065, 19.1945],     # Klip river confluence
+        "meeting_point": "Farm gate boundary on N1",
+        "notes": "Lower pastoral reach of the Molenaars."
+    },
+    {
+        "id": "Transport",
+        "code": "Transport",
+        "name": "Transport Beat",
+        "river": "Smalblaar",
+        "enabled": True,
+        "lower_pin": [-33.7040, 19.2000],   # Farm Boundary
+        "upper_pin": [-33.7085, 19.1895],   # Transport Bridge
+        "mid_pin": [-33.7065, 19.1945],     # Mid rapids
+        "meeting_point": "Transport Bridge layby on N1",
+        "notes": "Classic riffles and runs below Du Kloof Lodge."
     }
 ]
 
-# River vectors for artistic map rendering
+# River vectors for artistic map rendering following natural riverbed curves
 RIVER_PATHS = {
     "Smalblaar": [
-        [-33.7340, 19.1225],
+        [-33.7346, 19.1030],
+        [-33.7342, 19.1065],
+        [-33.7335, 19.1090],
+        [-33.7330, 19.1105],
+        [-33.7323, 19.1125],
         [-33.7319, 19.1141],
-        [-33.7320, 19.1310],
-        [-33.7290, 19.1405],
-        [-33.7260, 19.1495],
-        [-33.7230, 19.1585],
-        [-33.7200, 19.1670],
-        [-33.7160, 19.1750],
-        [-33.7120, 19.1825],
+        [-33.7315, 19.1180],
+        [-33.7312, 19.1220],
+        [-33.7305, 19.1270],
+        [-33.7298, 19.1305],
+        [-33.7295, 19.1320],
+        [-33.7290, 19.1345],
+        [-33.7285, 19.1370],
+        [-33.7278, 19.1395],
+        [-33.7272, 19.1415],
+        [-33.7265, 19.1440],
+        [-33.7258, 19.1470],
+        [-33.7248, 19.1500],
+        [-33.7235, 19.1530],
+        [-33.7225, 19.1560],
+        [-33.7212, 19.1590],
+        [-33.7200, 19.1625],
+        [-33.7190, 19.1655],
+        [-33.7180, 19.1680],
+        [-33.7170, 19.1700],
+        [-33.7160, 19.1720],
+        [-33.7150, 19.1740],
+        [-33.7142, 19.1758],
+        [-33.7138, 19.1770],
+        [-33.7130, 19.1785],
+        [-33.7125, 19.1800],
+        [-33.7115, 19.1820],
+        [-33.7105, 19.1845],
+        [-33.7095, 19.1870],
         [-33.7085, 19.1895],
-        [-33.7050, 19.1960]
+        [-33.7075, 19.1920],
+        [-33.7065, 19.1945],
+        [-33.7052, 19.1975],
+        [-33.7040, 19.2000],
+        [-33.7025, 19.2040],
+        [-33.7005, 19.2085],
+        [-33.6985, 19.2140],
+        [-33.6970, 19.2195],
+        [-33.6960, 19.2245]
     ],
     "Elandspad": [
         [-33.7319, 19.1141],
-        [-33.7352, 19.1129],
-        [-33.7385, 19.1118],
-        [-33.7420, 19.1105],
-        [-33.7455, 19.1092],
-        [-33.7492, 19.1078],
-        [-33.7530, 19.1065]
+        [-33.7335, 19.1145],
+        [-33.7350, 19.1150],
+        [-33.7360, 19.1152],
+        [-33.7375, 19.1156],
+        [-33.7390, 19.1160],
+        [-33.7405, 19.1162],
+        [-33.7420, 19.1164],
+        [-33.7440, 19.1168],
+        [-33.7460, 19.1172],
+        [-33.7480, 19.1175],
+        [-33.7500, 19.1182],
+        [-33.7520, 19.1188],
+        [-33.7540, 19.1192],
+        [-33.7565, 19.1195],
+        [-33.7585, 19.1200],
+        [-33.7610, 19.1205]
     ]
 }
 
 TRAIL_PATHS = {
     "Elandspad River Path": [
-        [-33.7320, 19.1310],
-        [-33.7325, 19.1220],
+        [-33.7295, 19.1320],
+        [-33.7310, 19.1220],
         [-33.7319, 19.1141],
-        [-33.7350, 19.1132],
-        [-33.7385, 19.1120],
-        [-33.7450, 19.1095],
-        [-33.7525, 19.1068]
+        [-33.7350, 19.1145],
+        [-33.7405, 19.1160],
+        [-33.7460, 19.1170],
+        [-33.7520, 19.1185],
+        [-33.7610, 19.1200]
     ],
     "Smalblaar Angler Trail": [
-        [-33.7320, 19.1310],
-        [-33.7292, 19.1400],
-        [-33.7262, 19.1490],
-        [-33.7232, 19.1580],
-        [-33.7202, 19.1665],
-        [-33.7162, 19.1745],
-        [-33.7122, 19.1820],
-        [-33.7086, 19.1890]
+        [-33.7295, 19.1320],
+        [-33.7275, 19.1410],
+        [-33.7240, 19.1520],
+        [-33.7195, 19.1650],
+        [-33.7155, 19.1735],
+        [-33.7130, 19.1795],
+        [-33.7090, 19.1890]
     ]
 }
 

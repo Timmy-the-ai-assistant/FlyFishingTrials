@@ -48,12 +48,12 @@
               19.1141
             ],
             "upper_pin": [
-              -33.734,
-              19.1225
+              -33.7342,
+              19.1065
             ],
             "mid_pin": [
               -33.733,
-              19.118
+              19.1105
             ],
             "meeting_point": "Tunnel East Portal Parking / Junction Path",
             "notes": "Upper Smalblaar beat from Junction pool up to tunnel weir."
@@ -69,12 +69,12 @@
               19.1141
             ],
             "upper_pin": [
-              -33.7385,
-              19.1118
+              -33.7405,
+              19.1162
             ],
             "mid_pin": [
-              -33.7352,
-              19.1129
+              -33.736,
+              19.1152
             ],
             "meeting_point": "Junction Pool trail head",
             "notes": "Kloof canyon stream, crystal clear water with pocket pools."
@@ -86,16 +86,16 @@
             "river": "Elandspad",
             "enabled": true,
             "lower_pin": [
-              -33.7385,
-              19.1118
+              -33.7405,
+              19.1162
             ],
             "upper_pin": [
-              -33.7455,
-              19.1092
+              -33.752,
+              19.1188
             ],
             "mid_pin": [
-              -33.742,
-              19.1105
+              -33.746,
+              19.1172
             ],
             "meeting_point": "Fisherman's Cave trail",
             "notes": "Middle Elandspad through pristine mountain gorge."
@@ -107,16 +107,16 @@
             "river": "Elandspad",
             "enabled": true,
             "lower_pin": [
-              -33.7455,
-              19.1092
+              -33.752,
+              19.1188
             ],
             "upper_pin": [
-              -33.753,
-              19.1065
+              -33.761,
+              19.1205
             ],
             "mid_pin": [
-              -33.7492,
-              19.1078
+              -33.7565,
+              19.1195
             ],
             "meeting_point": "Star beat rock shelter",
             "notes": "Wild upper gorge with deep plunge pools."
@@ -128,16 +128,16 @@
             "river": "Smalblaar",
             "enabled": true,
             "lower_pin": [
+              -33.704,
+              19.2
+            ],
+            "upper_pin": [
               -33.7085,
               19.1895
             ],
-            "upper_pin": [
-              -33.712,
-              19.1825
-            ],
             "mid_pin": [
-              -33.71,
-              19.186
+              -33.7065,
+              19.1945
             ],
             "meeting_point": "Transport Bridge layby on N1",
             "notes": "Classic riffles and runs below Du Kloof Lodge."
@@ -149,16 +149,16 @@
             "river": "Smalblaar",
             "enabled": true,
             "lower_pin": [
-              -33.72,
-              19.167
+              -33.715,
+              19.174
             ],
             "upper_pin": [
-              -33.723,
-              19.1585
+              -33.719,
+              19.1655
             ],
             "mid_pin": [
-              -33.7215,
-              19.163
+              -33.717,
+              19.17
             ],
             "meeting_point": "Picnic site pull-off",
             "notes": "Productive long glides and pocket water."
@@ -170,16 +170,16 @@
             "river": "Smalblaar",
             "enabled": true,
             "lower_pin": [
-              -33.723,
-              19.1585
+              -33.719,
+              19.1655
             ],
             "upper_pin": [
-              -33.726,
-              19.1495
+              -33.7235,
+              19.153
             ],
             "mid_pin": [
-              -33.7245,
-              19.154
+              -33.7212,
+              19.159
             ],
             "meeting_point": "Picnic site parking",
             "notes": "Fast broken water and deep corner pools."
@@ -191,16 +191,16 @@
             "river": "Smalblaar",
             "enabled": true,
             "lower_pin": [
-              -33.726,
-              19.1495
+              -33.7235,
+              19.153
             ],
             "upper_pin": [
-              -33.729,
-              19.1405
+              -33.7272,
+              19.1415
             ],
             "mid_pin": [
-              -33.7275,
-              19.145
+              -33.7258,
+              19.147
             ],
             "meeting_point": "N1 emergency telephone layby 3",
             "notes": "Challenging technical water with overhanging vegetation."
@@ -212,16 +212,16 @@
             "river": "Smalblaar",
             "enabled": true,
             "lower_pin": [
-              -33.729,
-              19.1405
+              -33.7272,
+              19.1415
             ],
             "upper_pin": [
-              -33.732,
-              19.131
+              -33.7295,
+              19.132
             ],
             "mid_pin": [
-              -33.7305,
-              19.136
+              -33.7285,
+              19.137
             ],
             "meeting_point": "Donkergat pull-off",
             "notes": "Varied water with boulder gardens."
@@ -233,15 +233,15 @@
             "river": "Smalblaar",
             "enabled": true,
             "lower_pin": [
-              -33.732,
-              19.131
+              -33.7295,
+              19.132
             ],
             "upper_pin": [
-              -33.734,
-              19.1225
+              -33.7319,
+              19.1141
             ],
             "mid_pin": [
-              -33.733,
+              -33.7305,
               19.127
             ],
             "meeting_point": "CPS Elandspad parking lot",
@@ -254,16 +254,16 @@
             "river": "Smalblaar",
             "enabled": true,
             "lower_pin": [
-              -33.716,
-              19.175
+              -33.7125,
+              19.18
             ],
             "upper_pin": [
-              -33.72,
-              19.167
+              -33.715,
+              19.174
             ],
             "mid_pin": [
-              -33.718,
-              19.171
+              -33.7138,
+              19.177
             ],
             "meeting_point": "Du Kloof Lodge guest parking",
             "notes": "Historic beat opposite the old hotel."
@@ -275,16 +275,16 @@
             "river": "Smalblaar",
             "enabled": true,
             "lower_pin": [
-              -33.712,
-              19.1825
+              -33.7085,
+              19.1895
             ],
             "upper_pin": [
-              -33.716,
-              19.175
+              -33.7125,
+              19.18
             ],
             "mid_pin": [
-              -33.714,
-              19.179
+              -33.7105,
+              19.1845
             ],
             "meeting_point": "Transport bridge parking",
             "notes": "Upper section of Molenaars Transport reserve."
@@ -296,8 +296,8 @@
             "river": "Smalblaar",
             "enabled": true,
             "lower_pin": [
-              -33.705,
-              19.196
+              -33.704,
+              19.2
             ],
             "upper_pin": [
               -33.7085,
@@ -305,9 +305,9 @@
             ],
             "mid_pin": [
               -33.7065,
-              19.193
+              19.1945
             ],
-            "meeting_point": "Lower Farm gate layby",
+            "meeting_point": "Farm gate boundary on N1",
             "notes": "Lower boundary beat with broad runs."
           }
         ],
@@ -323,12 +323,12 @@
               19.1141
             ],
             "upper_pin": [
-              -33.734,
-              19.1225
+              -33.7342,
+              19.1065
             ],
             "mid_pin": [
               -33.733,
-              19.118
+              19.1105
             ],
             "meeting_point": "Tunnel East Portal Parking / Junction Path",
             "notes": "Upper Smalblaar beat from Junction pool up to tunnel weir."
@@ -344,12 +344,12 @@
               19.1141
             ],
             "upper_pin": [
-              -33.7385,
-              19.1118
+              -33.7405,
+              19.1162
             ],
             "mid_pin": [
-              -33.7352,
-              19.1129
+              -33.736,
+              19.1152
             ],
             "meeting_point": "Junction Pool trail head",
             "notes": "Kloof canyon stream, crystal clear water with pocket pools."
@@ -361,16 +361,16 @@
             "river": "Smalblaar",
             "enabled": true,
             "lower_pin": [
+              -33.704,
+              19.2
+            ],
+            "upper_pin": [
               -33.7085,
               19.1895
             ],
-            "upper_pin": [
-              -33.712,
-              19.1825
-            ],
             "mid_pin": [
-              -33.71,
-              19.186
+              -33.7065,
+              19.1945
             ],
             "meeting_point": "Transport Bridge layby on N1",
             "notes": "Classic riffles and runs below Du Kloof Lodge."
@@ -382,16 +382,16 @@
             "river": "Elandspad",
             "enabled": true,
             "lower_pin": [
-              -33.7385,
-              19.1118
+              -33.7405,
+              19.1162
             ],
             "upper_pin": [
-              -33.7455,
-              19.1092
+              -33.752,
+              19.1188
             ],
             "mid_pin": [
-              -33.742,
-              19.1105
+              -33.746,
+              19.1172
             ],
             "meeting_point": "Fisherman's Cave trail",
             "notes": "Middle Elandspad through pristine mountain gorge."
@@ -403,16 +403,16 @@
             "river": "Smalblaar",
             "enabled": true,
             "lower_pin": [
-              -33.72,
-              19.167
+              -33.715,
+              19.174
             ],
             "upper_pin": [
-              -33.723,
-              19.1585
+              -33.719,
+              19.1655
             ],
             "mid_pin": [
-              -33.7215,
-              19.163
+              -33.717,
+              19.17
             ],
             "meeting_point": "Picnic site pull-off",
             "notes": "Productive long glides and pocket water."
@@ -3012,12 +3012,12 @@
               19.1141
             ],
             "upper_pin": [
-              -33.734,
-              19.1225
+              -33.7342,
+              19.1065
             ],
             "mid_pin": [
               -33.733,
-              19.118
+              19.1105
             ],
             "meeting_point": "Tunnel East Portal Parking / Junction Path",
             "notes": "Upper Smalblaar beat from Junction pool up to tunnel weir."
@@ -3033,12 +3033,12 @@
               19.1141
             ],
             "upper_pin": [
-              -33.7385,
-              19.1118
+              -33.7405,
+              19.1162
             ],
             "mid_pin": [
-              -33.7352,
-              19.1129
+              -33.736,
+              19.1152
             ],
             "meeting_point": "Junction Pool trail head",
             "notes": "Kloof canyon stream, crystal clear water with pocket pools."
@@ -3050,16 +3050,16 @@
             "river": "Elandspad",
             "enabled": true,
             "lower_pin": [
-              -33.7385,
-              19.1118
+              -33.7405,
+              19.1162
             ],
             "upper_pin": [
-              -33.7455,
-              19.1092
+              -33.752,
+              19.1188
             ],
             "mid_pin": [
-              -33.742,
-              19.1105
+              -33.746,
+              19.1172
             ],
             "meeting_point": "Fisherman's Cave trail",
             "notes": "Middle Elandspad through pristine mountain gorge."
@@ -3071,16 +3071,16 @@
             "river": "Elandspad",
             "enabled": true,
             "lower_pin": [
-              -33.7455,
-              19.1092
+              -33.752,
+              19.1188
             ],
             "upper_pin": [
-              -33.753,
-              19.1065
+              -33.761,
+              19.1205
             ],
             "mid_pin": [
-              -33.7492,
-              19.1078
+              -33.7565,
+              19.1195
             ],
             "meeting_point": "Star beat rock shelter",
             "notes": "Wild upper gorge with deep plunge pools."
@@ -3092,16 +3092,16 @@
             "river": "Smalblaar",
             "enabled": true,
             "lower_pin": [
+              -33.704,
+              19.2
+            ],
+            "upper_pin": [
               -33.7085,
               19.1895
             ],
-            "upper_pin": [
-              -33.712,
-              19.1825
-            ],
             "mid_pin": [
-              -33.71,
-              19.186
+              -33.7065,
+              19.1945
             ],
             "meeting_point": "Transport Bridge layby on N1",
             "notes": "Classic riffles and runs below Du Kloof Lodge."
@@ -3113,16 +3113,16 @@
             "river": "Smalblaar",
             "enabled": true,
             "lower_pin": [
-              -33.72,
-              19.167
+              -33.715,
+              19.174
             ],
             "upper_pin": [
-              -33.723,
-              19.1585
+              -33.719,
+              19.1655
             ],
             "mid_pin": [
-              -33.7215,
-              19.163
+              -33.717,
+              19.17
             ],
             "meeting_point": "Picnic site pull-off",
             "notes": "Productive long glides and pocket water."
@@ -3134,16 +3134,16 @@
             "river": "Smalblaar",
             "enabled": true,
             "lower_pin": [
-              -33.723,
-              19.1585
+              -33.719,
+              19.1655
             ],
             "upper_pin": [
-              -33.726,
-              19.1495
+              -33.7235,
+              19.153
             ],
             "mid_pin": [
-              -33.7245,
-              19.154
+              -33.7212,
+              19.159
             ],
             "meeting_point": "Picnic site parking",
             "notes": "Fast broken water and deep corner pools."
@@ -3155,16 +3155,16 @@
             "river": "Smalblaar",
             "enabled": true,
             "lower_pin": [
-              -33.726,
-              19.1495
+              -33.7235,
+              19.153
             ],
             "upper_pin": [
-              -33.729,
-              19.1405
+              -33.7272,
+              19.1415
             ],
             "mid_pin": [
-              -33.7275,
-              19.145
+              -33.7258,
+              19.147
             ],
             "meeting_point": "N1 emergency telephone layby 3",
             "notes": "Challenging technical water with overhanging vegetation."
@@ -3176,16 +3176,16 @@
             "river": "Smalblaar",
             "enabled": true,
             "lower_pin": [
-              -33.729,
-              19.1405
+              -33.7272,
+              19.1415
             ],
             "upper_pin": [
-              -33.732,
-              19.131
+              -33.7295,
+              19.132
             ],
             "mid_pin": [
-              -33.7305,
-              19.136
+              -33.7285,
+              19.137
             ],
             "meeting_point": "Donkergat pull-off",
             "notes": "Varied water with boulder gardens."
@@ -3197,15 +3197,15 @@
             "river": "Smalblaar",
             "enabled": true,
             "lower_pin": [
-              -33.732,
-              19.131
+              -33.7295,
+              19.132
             ],
             "upper_pin": [
-              -33.734,
-              19.1225
+              -33.7319,
+              19.1141
             ],
             "mid_pin": [
-              -33.733,
+              -33.7305,
               19.127
             ],
             "meeting_point": "CPS Elandspad parking lot",
@@ -3218,16 +3218,16 @@
             "river": "Smalblaar",
             "enabled": true,
             "lower_pin": [
-              -33.716,
-              19.175
+              -33.7125,
+              19.18
             ],
             "upper_pin": [
-              -33.72,
-              19.167
+              -33.715,
+              19.174
             ],
             "mid_pin": [
-              -33.718,
-              19.171
+              -33.7138,
+              19.177
             ],
             "meeting_point": "Du Kloof Lodge guest parking",
             "notes": "Historic beat opposite the old hotel."
@@ -3239,16 +3239,16 @@
             "river": "Smalblaar",
             "enabled": true,
             "lower_pin": [
-              -33.712,
-              19.1825
+              -33.7085,
+              19.1895
             ],
             "upper_pin": [
-              -33.716,
-              19.175
+              -33.7125,
+              19.18
             ],
             "mid_pin": [
-              -33.714,
-              19.179
+              -33.7105,
+              19.1845
             ],
             "meeting_point": "Transport bridge parking",
             "notes": "Upper section of Molenaars Transport reserve."
@@ -3260,8 +3260,8 @@
             "river": "Smalblaar",
             "enabled": true,
             "lower_pin": [
-              -33.705,
-              19.196
+              -33.704,
+              19.2
             ],
             "upper_pin": [
               -33.7085,
@@ -3269,9 +3269,9 @@
             ],
             "mid_pin": [
               -33.7065,
-              19.193
+              19.1945
             ],
-            "meeting_point": "Lower Farm gate layby",
+            "meeting_point": "Farm gate boundary on N1",
             "notes": "Lower boundary beat with broad runs."
           }
         ],
@@ -3287,12 +3287,12 @@
               19.1141
             ],
             "upper_pin": [
-              -33.734,
-              19.1225
+              -33.7342,
+              19.1065
             ],
             "mid_pin": [
               -33.733,
-              19.118
+              19.1105
             ],
             "meeting_point": "Tunnel East Portal Parking / Junction Path",
             "notes": "Upper Smalblaar beat from Junction pool up to tunnel weir."
@@ -3308,12 +3308,12 @@
               19.1141
             ],
             "upper_pin": [
-              -33.7385,
-              19.1118
+              -33.7405,
+              19.1162
             ],
             "mid_pin": [
-              -33.7352,
-              19.1129
+              -33.736,
+              19.1152
             ],
             "meeting_point": "Junction Pool trail head",
             "notes": "Kloof canyon stream, crystal clear water with pocket pools."
@@ -3325,16 +3325,16 @@
             "river": "Smalblaar",
             "enabled": true,
             "lower_pin": [
+              -33.704,
+              19.2
+            ],
+            "upper_pin": [
               -33.7085,
               19.1895
             ],
-            "upper_pin": [
-              -33.712,
-              19.1825
-            ],
             "mid_pin": [
-              -33.71,
-              19.186
+              -33.7065,
+              19.1945
             ],
             "meeting_point": "Transport Bridge layby on N1",
             "notes": "Classic riffles and runs below Du Kloof Lodge."
@@ -3346,16 +3346,16 @@
             "river": "Elandspad",
             "enabled": true,
             "lower_pin": [
-              -33.7385,
-              19.1118
+              -33.7405,
+              19.1162
             ],
             "upper_pin": [
-              -33.7455,
-              19.1092
+              -33.752,
+              19.1188
             ],
             "mid_pin": [
-              -33.742,
-              19.1105
+              -33.746,
+              19.1172
             ],
             "meeting_point": "Fisherman's Cave trail",
             "notes": "Middle Elandspad through pristine mountain gorge."
@@ -3367,16 +3367,16 @@
             "river": "Smalblaar",
             "enabled": true,
             "lower_pin": [
-              -33.72,
-              19.167
+              -33.715,
+              19.174
             ],
             "upper_pin": [
-              -33.723,
-              19.1585
+              -33.719,
+              19.1655
             ],
             "mid_pin": [
-              -33.7215,
-              19.163
+              -33.717,
+              19.17
             ],
             "meeting_point": "Picnic site pull-off",
             "notes": "Productive long glides and pocket water."
@@ -5976,12 +5976,12 @@
               19.1141
             ],
             "upper_pin": [
-              -33.734,
-              19.1225
+              -33.7342,
+              19.1065
             ],
             "mid_pin": [
               -33.733,
-              19.118
+              19.1105
             ],
             "meeting_point": "Tunnel East Portal Parking / Junction Path",
             "notes": "Upper Smalblaar beat from Junction pool up to tunnel weir."
@@ -5997,12 +5997,12 @@
               19.1141
             ],
             "upper_pin": [
-              -33.7385,
-              19.1118
+              -33.7405,
+              19.1162
             ],
             "mid_pin": [
-              -33.7352,
-              19.1129
+              -33.736,
+              19.1152
             ],
             "meeting_point": "Junction Pool trail head",
             "notes": "Kloof canyon stream, crystal clear water with pocket pools."
@@ -6014,16 +6014,16 @@
             "river": "Elandspad",
             "enabled": true,
             "lower_pin": [
-              -33.7385,
-              19.1118
+              -33.7405,
+              19.1162
             ],
             "upper_pin": [
-              -33.7455,
-              19.1092
+              -33.752,
+              19.1188
             ],
             "mid_pin": [
-              -33.742,
-              19.1105
+              -33.746,
+              19.1172
             ],
             "meeting_point": "Fisherman's Cave trail",
             "notes": "Middle Elandspad through pristine mountain gorge."
@@ -6035,16 +6035,16 @@
             "river": "Elandspad",
             "enabled": true,
             "lower_pin": [
-              -33.7455,
-              19.1092
+              -33.752,
+              19.1188
             ],
             "upper_pin": [
-              -33.753,
-              19.1065
+              -33.761,
+              19.1205
             ],
             "mid_pin": [
-              -33.7492,
-              19.1078
+              -33.7565,
+              19.1195
             ],
             "meeting_point": "Star beat rock shelter",
             "notes": "Wild upper gorge with deep plunge pools."
@@ -6056,16 +6056,16 @@
             "river": "Smalblaar",
             "enabled": true,
             "lower_pin": [
+              -33.704,
+              19.2
+            ],
+            "upper_pin": [
               -33.7085,
               19.1895
             ],
-            "upper_pin": [
-              -33.712,
-              19.1825
-            ],
             "mid_pin": [
-              -33.71,
-              19.186
+              -33.7065,
+              19.1945
             ],
             "meeting_point": "Transport Bridge layby on N1",
             "notes": "Classic riffles and runs below Du Kloof Lodge."
@@ -6077,16 +6077,16 @@
             "river": "Smalblaar",
             "enabled": true,
             "lower_pin": [
-              -33.72,
-              19.167
+              -33.715,
+              19.174
             ],
             "upper_pin": [
-              -33.723,
-              19.1585
+              -33.719,
+              19.1655
             ],
             "mid_pin": [
-              -33.7215,
-              19.163
+              -33.717,
+              19.17
             ],
             "meeting_point": "Picnic site pull-off",
             "notes": "Productive long glides and pocket water."
@@ -6098,16 +6098,16 @@
             "river": "Smalblaar",
             "enabled": true,
             "lower_pin": [
-              -33.723,
-              19.1585
+              -33.719,
+              19.1655
             ],
             "upper_pin": [
-              -33.726,
-              19.1495
+              -33.7235,
+              19.153
             ],
             "mid_pin": [
-              -33.7245,
-              19.154
+              -33.7212,
+              19.159
             ],
             "meeting_point": "Picnic site parking",
             "notes": "Fast broken water and deep corner pools."
@@ -6119,16 +6119,16 @@
             "river": "Smalblaar",
             "enabled": true,
             "lower_pin": [
-              -33.726,
-              19.1495
+              -33.7235,
+              19.153
             ],
             "upper_pin": [
-              -33.729,
-              19.1405
+              -33.7272,
+              19.1415
             ],
             "mid_pin": [
-              -33.7275,
-              19.145
+              -33.7258,
+              19.147
             ],
             "meeting_point": "N1 emergency telephone layby 3",
             "notes": "Challenging technical water with overhanging vegetation."
@@ -6140,16 +6140,16 @@
             "river": "Smalblaar",
             "enabled": true,
             "lower_pin": [
-              -33.729,
-              19.1405
+              -33.7272,
+              19.1415
             ],
             "upper_pin": [
-              -33.732,
-              19.131
+              -33.7295,
+              19.132
             ],
             "mid_pin": [
-              -33.7305,
-              19.136
+              -33.7285,
+              19.137
             ],
             "meeting_point": "Donkergat pull-off",
             "notes": "Varied water with boulder gardens."
@@ -6161,15 +6161,15 @@
             "river": "Smalblaar",
             "enabled": true,
             "lower_pin": [
-              -33.732,
-              19.131
+              -33.7295,
+              19.132
             ],
             "upper_pin": [
-              -33.734,
-              19.1225
+              -33.7319,
+              19.1141
             ],
             "mid_pin": [
-              -33.733,
+              -33.7305,
               19.127
             ],
             "meeting_point": "CPS Elandspad parking lot",
@@ -6182,16 +6182,16 @@
             "river": "Smalblaar",
             "enabled": true,
             "lower_pin": [
-              -33.716,
-              19.175
+              -33.7125,
+              19.18
             ],
             "upper_pin": [
-              -33.72,
-              19.167
+              -33.715,
+              19.174
             ],
             "mid_pin": [
-              -33.718,
-              19.171
+              -33.7138,
+              19.177
             ],
             "meeting_point": "Du Kloof Lodge guest parking",
             "notes": "Historic beat opposite the old hotel."
@@ -6203,16 +6203,16 @@
             "river": "Smalblaar",
             "enabled": true,
             "lower_pin": [
-              -33.712,
-              19.1825
+              -33.7085,
+              19.1895
             ],
             "upper_pin": [
-              -33.716,
-              19.175
+              -33.7125,
+              19.18
             ],
             "mid_pin": [
-              -33.714,
-              19.179
+              -33.7105,
+              19.1845
             ],
             "meeting_point": "Transport bridge parking",
             "notes": "Upper section of Molenaars Transport reserve."
@@ -6224,8 +6224,8 @@
             "river": "Smalblaar",
             "enabled": true,
             "lower_pin": [
-              -33.705,
-              19.196
+              -33.704,
+              19.2
             ],
             "upper_pin": [
               -33.7085,
@@ -6233,9 +6233,9 @@
             ],
             "mid_pin": [
               -33.7065,
-              19.193
+              19.1945
             ],
-            "meeting_point": "Lower Farm gate layby",
+            "meeting_point": "Farm gate boundary on N1",
             "notes": "Lower boundary beat with broad runs."
           }
         ],
@@ -6251,12 +6251,12 @@
               19.1141
             ],
             "upper_pin": [
-              -33.734,
-              19.1225
+              -33.7342,
+              19.1065
             ],
             "mid_pin": [
               -33.733,
-              19.118
+              19.1105
             ],
             "meeting_point": "Tunnel East Portal Parking / Junction Path",
             "notes": "Upper Smalblaar beat from Junction pool up to tunnel weir."
@@ -6272,12 +6272,12 @@
               19.1141
             ],
             "upper_pin": [
-              -33.7385,
-              19.1118
+              -33.7405,
+              19.1162
             ],
             "mid_pin": [
-              -33.7352,
-              19.1129
+              -33.736,
+              19.1152
             ],
             "meeting_point": "Junction Pool trail head",
             "notes": "Kloof canyon stream, crystal clear water with pocket pools."
@@ -6289,16 +6289,16 @@
             "river": "Smalblaar",
             "enabled": true,
             "lower_pin": [
+              -33.704,
+              19.2
+            ],
+            "upper_pin": [
               -33.7085,
               19.1895
             ],
-            "upper_pin": [
-              -33.712,
-              19.1825
-            ],
             "mid_pin": [
-              -33.71,
-              19.186
+              -33.7065,
+              19.1945
             ],
             "meeting_point": "Transport Bridge layby on N1",
             "notes": "Classic riffles and runs below Du Kloof Lodge."
@@ -6310,16 +6310,16 @@
             "river": "Elandspad",
             "enabled": true,
             "lower_pin": [
-              -33.7385,
-              19.1118
+              -33.7405,
+              19.1162
             ],
             "upper_pin": [
-              -33.7455,
-              19.1092
+              -33.752,
+              19.1188
             ],
             "mid_pin": [
-              -33.742,
-              19.1105
+              -33.746,
+              19.1172
             ],
             "meeting_point": "Fisherman's Cave trail",
             "notes": "Middle Elandspad through pristine mountain gorge."
@@ -6331,16 +6331,16 @@
             "river": "Smalblaar",
             "enabled": true,
             "lower_pin": [
-              -33.72,
-              19.167
+              -33.715,
+              19.174
             ],
             "upper_pin": [
-              -33.723,
-              19.1585
+              -33.719,
+              19.1655
             ],
             "mid_pin": [
-              -33.7215,
-              19.163
+              -33.717,
+              19.17
             ],
             "meeting_point": "Picnic site pull-off",
             "notes": "Productive long glides and pocket water."
@@ -8931,12 +8931,12 @@
         19.1141
       ],
       "upper_pin": [
-        -33.734,
-        19.1225
+        -33.7342,
+        19.1065
       ],
       "mid_pin": [
         -33.733,
-        19.118
+        19.1105
       ],
       "meeting_point": "Tunnel East Portal Parking / Junction Path",
       "notes": "Upper Smalblaar beat from Junction pool up to tunnel weir."
@@ -8952,12 +8952,12 @@
         19.1141
       ],
       "upper_pin": [
-        -33.7385,
-        19.1118
+        -33.7405,
+        19.1162
       ],
       "mid_pin": [
-        -33.7352,
-        19.1129
+        -33.736,
+        19.1152
       ],
       "meeting_point": "Junction Pool trail head",
       "notes": "Kloof canyon stream, crystal clear water with pocket pools."
@@ -8969,16 +8969,16 @@
       "river": "Elandspad",
       "enabled": true,
       "lower_pin": [
-        -33.7385,
-        19.1118
+        -33.7405,
+        19.1162
       ],
       "upper_pin": [
-        -33.7455,
-        19.1092
+        -33.752,
+        19.1188
       ],
       "mid_pin": [
-        -33.742,
-        19.1105
+        -33.746,
+        19.1172
       ],
       "meeting_point": "Fisherman's Cave trail",
       "notes": "Middle Elandspad through pristine mountain gorge."
@@ -8990,16 +8990,16 @@
       "river": "Elandspad",
       "enabled": true,
       "lower_pin": [
-        -33.7455,
-        19.1092
+        -33.752,
+        19.1188
       ],
       "upper_pin": [
-        -33.753,
-        19.1065
+        -33.761,
+        19.1205
       ],
       "mid_pin": [
-        -33.7492,
-        19.1078
+        -33.7565,
+        19.1195
       ],
       "meeting_point": "Star beat rock shelter",
       "notes": "Wild upper gorge with deep plunge pools."
@@ -9011,16 +9011,16 @@
       "river": "Smalblaar",
       "enabled": true,
       "lower_pin": [
+        -33.704,
+        19.2
+      ],
+      "upper_pin": [
         -33.7085,
         19.1895
       ],
-      "upper_pin": [
-        -33.712,
-        19.1825
-      ],
       "mid_pin": [
-        -33.71,
-        19.186
+        -33.7065,
+        19.1945
       ],
       "meeting_point": "Transport Bridge layby on N1",
       "notes": "Classic riffles and runs below Du Kloof Lodge."
@@ -9032,16 +9032,16 @@
       "river": "Smalblaar",
       "enabled": true,
       "lower_pin": [
-        -33.72,
-        19.167
+        -33.715,
+        19.174
       ],
       "upper_pin": [
-        -33.723,
-        19.1585
+        -33.719,
+        19.1655
       ],
       "mid_pin": [
-        -33.7215,
-        19.163
+        -33.717,
+        19.17
       ],
       "meeting_point": "Picnic site pull-off",
       "notes": "Productive long glides and pocket water."
@@ -9053,16 +9053,16 @@
       "river": "Smalblaar",
       "enabled": true,
       "lower_pin": [
-        -33.723,
-        19.1585
+        -33.719,
+        19.1655
       ],
       "upper_pin": [
-        -33.726,
-        19.1495
+        -33.7235,
+        19.153
       ],
       "mid_pin": [
-        -33.7245,
-        19.154
+        -33.7212,
+        19.159
       ],
       "meeting_point": "Picnic site parking",
       "notes": "Fast broken water and deep corner pools."
@@ -9074,16 +9074,16 @@
       "river": "Smalblaar",
       "enabled": true,
       "lower_pin": [
-        -33.726,
-        19.1495
+        -33.7235,
+        19.153
       ],
       "upper_pin": [
-        -33.729,
-        19.1405
+        -33.7272,
+        19.1415
       ],
       "mid_pin": [
-        -33.7275,
-        19.145
+        -33.7258,
+        19.147
       ],
       "meeting_point": "N1 emergency telephone layby 3",
       "notes": "Challenging technical water with overhanging vegetation."
@@ -9095,16 +9095,16 @@
       "river": "Smalblaar",
       "enabled": true,
       "lower_pin": [
-        -33.729,
-        19.1405
+        -33.7272,
+        19.1415
       ],
       "upper_pin": [
-        -33.732,
-        19.131
+        -33.7295,
+        19.132
       ],
       "mid_pin": [
-        -33.7305,
-        19.136
+        -33.7285,
+        19.137
       ],
       "meeting_point": "Donkergat pull-off",
       "notes": "Varied water with boulder gardens."
@@ -9116,15 +9116,15 @@
       "river": "Smalblaar",
       "enabled": true,
       "lower_pin": [
-        -33.732,
-        19.131
+        -33.7295,
+        19.132
       ],
       "upper_pin": [
-        -33.734,
-        19.1225
+        -33.7319,
+        19.1141
       ],
       "mid_pin": [
-        -33.733,
+        -33.7305,
         19.127
       ],
       "meeting_point": "CPS Elandspad parking lot",
@@ -9137,16 +9137,16 @@
       "river": "Smalblaar",
       "enabled": true,
       "lower_pin": [
-        -33.716,
-        19.175
+        -33.7125,
+        19.18
       ],
       "upper_pin": [
-        -33.72,
-        19.167
+        -33.715,
+        19.174
       ],
       "mid_pin": [
-        -33.718,
-        19.171
+        -33.7138,
+        19.177
       ],
       "meeting_point": "Du Kloof Lodge guest parking",
       "notes": "Historic beat opposite the old hotel."
@@ -9158,16 +9158,16 @@
       "river": "Smalblaar",
       "enabled": true,
       "lower_pin": [
-        -33.712,
-        19.1825
+        -33.7085,
+        19.1895
       ],
       "upper_pin": [
-        -33.716,
-        19.175
+        -33.7125,
+        19.18
       ],
       "mid_pin": [
-        -33.714,
-        19.179
+        -33.7105,
+        19.1845
       ],
       "meeting_point": "Transport bridge parking",
       "notes": "Upper section of Molenaars Transport reserve."
@@ -9179,8 +9179,8 @@
       "river": "Smalblaar",
       "enabled": true,
       "lower_pin": [
-        -33.705,
-        19.196
+        -33.704,
+        19.2
       ],
       "upper_pin": [
         -33.7085,
@@ -9188,9 +9188,9 @@
       ],
       "mid_pin": [
         -33.7065,
-        19.193
+        19.1945
       ],
-      "meeting_point": "Lower Farm gate layby",
+      "meeting_point": "Farm gate boundary on N1",
       "notes": "Lower boundary beat with broad runs."
     }
   ],
@@ -9206,12 +9206,12 @@
         19.1141
       ],
       "upper_pin": [
-        -33.734,
-        19.1225
+        -33.7342,
+        19.1065
       ],
       "mid_pin": [
         -33.733,
-        19.118
+        19.1105
       ],
       "meeting_point": "Tunnel East Portal Parking / Junction Path",
       "notes": "Upper Smalblaar beat from Junction pool up to tunnel weir."
@@ -9227,12 +9227,12 @@
         19.1141
       ],
       "upper_pin": [
-        -33.7385,
-        19.1118
+        -33.7405,
+        19.1162
       ],
       "mid_pin": [
-        -33.7352,
-        19.1129
+        -33.736,
+        19.1152
       ],
       "meeting_point": "Junction Pool trail head",
       "notes": "Kloof canyon stream, crystal clear water with pocket pools."
@@ -9244,16 +9244,16 @@
       "river": "Smalblaar",
       "enabled": true,
       "lower_pin": [
+        -33.704,
+        19.2
+      ],
+      "upper_pin": [
         -33.7085,
         19.1895
       ],
-      "upper_pin": [
-        -33.712,
-        19.1825
-      ],
       "mid_pin": [
-        -33.71,
-        19.186
+        -33.7065,
+        19.1945
       ],
       "meeting_point": "Transport Bridge layby on N1",
       "notes": "Classic riffles and runs below Du Kloof Lodge."
@@ -9265,16 +9265,16 @@
       "river": "Elandspad",
       "enabled": true,
       "lower_pin": [
-        -33.7385,
-        19.1118
+        -33.7405,
+        19.1162
       ],
       "upper_pin": [
-        -33.7455,
-        19.1092
+        -33.752,
+        19.1188
       ],
       "mid_pin": [
-        -33.742,
-        19.1105
+        -33.746,
+        19.1172
       ],
       "meeting_point": "Fisherman's Cave trail",
       "notes": "Middle Elandspad through pristine mountain gorge."
@@ -9286,16 +9286,16 @@
       "river": "Smalblaar",
       "enabled": true,
       "lower_pin": [
-        -33.72,
-        19.167
+        -33.715,
+        19.174
       ],
       "upper_pin": [
-        -33.723,
-        19.1585
+        -33.719,
+        19.1655
       ],
       "mid_pin": [
-        -33.7215,
-        19.163
+        -33.717,
+        19.17
       ],
       "meeting_point": "Picnic site pull-off",
       "notes": "Productive long glides and pocket water."
