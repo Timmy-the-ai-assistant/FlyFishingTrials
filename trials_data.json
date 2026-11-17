@@ -2962,6 +2962,228 @@
             "type": "SYSTEM",
             "message": "Autumn Trial 2026 A initialized with 11 anglers and 3 A-Team members across 4 sessions."
           }
+        ],
+        "leaderboard": [
+          {
+            "rank": 1,
+            "name": "James",
+            "angler": "James",
+            "is_a_team": true,
+            "s1_pts": 0.0,
+            "s2_pts": 0.0,
+            "s3_pts": 0.0,
+            "s4_pts": 0.0,
+            "total_points": 0.0,
+            "total_fish": 0,
+            "blanks": 0,
+            "matches_played": 0,
+            "session_points": {
+              "1": 0.0,
+              "2": 0.0,
+              "3": 0.0,
+              "4": 0.0
+            }
+          },
+          {
+            "rank": 2,
+            "name": "Barry",
+            "angler": "Barry",
+            "is_a_team": true,
+            "s1_pts": 0.0,
+            "s2_pts": 0.0,
+            "s3_pts": 0.0,
+            "s4_pts": 0.0,
+            "total_points": 0.0,
+            "total_fish": 0,
+            "blanks": 0,
+            "matches_played": 0,
+            "session_points": {
+              "1": 0.0,
+              "2": 0.0,
+              "3": 0.0,
+              "4": 0.0
+            }
+          },
+          {
+            "rank": 3,
+            "name": "Daniel",
+            "angler": "Daniel",
+            "is_a_team": true,
+            "s1_pts": 0.0,
+            "s2_pts": 0.0,
+            "s3_pts": 0.0,
+            "s4_pts": 0.0,
+            "total_points": 0.0,
+            "total_fish": 0,
+            "blanks": 0,
+            "matches_played": 0,
+            "session_points": {
+              "1": 0.0,
+              "2": 0.0,
+              "3": 0.0,
+              "4": 0.0
+            }
+          },
+          {
+            "rank": 4,
+            "name": "Garth",
+            "angler": "Garth",
+            "is_a_team": false,
+            "s1_pts": 0.0,
+            "s2_pts": 0.0,
+            "s3_pts": 0.0,
+            "s4_pts": 0.0,
+            "total_points": 0.0,
+            "total_fish": 0,
+            "blanks": 0,
+            "matches_played": 0,
+            "session_points": {
+              "1": 0.0,
+              "2": 0.0,
+              "3": 0.0,
+              "4": 0.0
+            }
+          },
+          {
+            "rank": 5,
+            "name": "Dale",
+            "angler": "Dale",
+            "is_a_team": false,
+            "s1_pts": 0.0,
+            "s2_pts": 0.0,
+            "s3_pts": 0.0,
+            "s4_pts": 0.0,
+            "total_points": 0.0,
+            "total_fish": 0,
+            "blanks": 0,
+            "matches_played": 0,
+            "session_points": {
+              "1": 0.0,
+              "2": 0.0,
+              "3": 0.0,
+              "4": 0.0
+            }
+          },
+          {
+            "rank": 6,
+            "name": "Dylan",
+            "angler": "Dylan",
+            "is_a_team": false,
+            "s1_pts": 0.0,
+            "s2_pts": 0.0,
+            "s3_pts": 0.0,
+            "s4_pts": 0.0,
+            "total_points": 0.0,
+            "total_fish": 0,
+            "blanks": 0,
+            "matches_played": 0,
+            "session_points": {
+              "1": 0.0,
+              "2": 0.0,
+              "3": 0.0,
+              "4": 0.0
+            }
+          },
+          {
+            "rank": 7,
+            "name": "Ian",
+            "angler": "Ian",
+            "is_a_team": false,
+            "s1_pts": 0.0,
+            "s2_pts": 0.0,
+            "s3_pts": 0.0,
+            "s4_pts": 0.0,
+            "total_points": 0.0,
+            "total_fish": 0,
+            "blanks": 0,
+            "matches_played": 0,
+            "session_points": {
+              "1": 0.0,
+              "2": 0.0,
+              "3": 0.0,
+              "4": 0.0
+            }
+          },
+          {
+            "rank": 8,
+            "name": "Malcolm",
+            "angler": "Malcolm",
+            "is_a_team": false,
+            "s1_pts": 0.0,
+            "s2_pts": 0.0,
+            "s3_pts": 0.0,
+            "s4_pts": 0.0,
+            "total_points": 0.0,
+            "total_fish": 0,
+            "blanks": 0,
+            "matches_played": 0,
+            "session_points": {
+              "1": 0.0,
+              "2": 0.0,
+              "3": 0.0,
+              "4": 0.0
+            }
+          },
+          {
+            "rank": 9,
+            "name": "Ryan",
+            "angler": "Ryan",
+            "is_a_team": false,
+            "s1_pts": 0.0,
+            "s2_pts": 0.0,
+            "s3_pts": 0.0,
+            "s4_pts": 0.0,
+            "total_points": 0.0,
+            "total_fish": 0,
+            "blanks": 0,
+            "matches_played": 0,
+            "session_points": {
+              "1": 0.0,
+              "2": 0.0,
+              "3": 0.0,
+              "4": 0.0
+            }
+          },
+          {
+            "rank": 10,
+            "name": "Gary",
+            "angler": "Gary",
+            "is_a_team": false,
+            "s1_pts": 0.0,
+            "s2_pts": 0.0,
+            "s3_pts": 0.0,
+            "s4_pts": 0.0,
+            "total_points": 0.0,
+            "total_fish": 0,
+            "blanks": 0,
+            "matches_played": 0,
+            "session_points": {
+              "1": 0.0,
+              "2": 0.0,
+              "3": 0.0,
+              "4": 0.0
+            }
+          },
+          {
+            "rank": 11,
+            "name": "Michelle",
+            "angler": "Michelle",
+            "is_a_team": false,
+            "s1_pts": 0.0,
+            "s2_pts": 0.0,
+            "s3_pts": 0.0,
+            "s4_pts": 0.0,
+            "total_points": 0.0,
+            "total_fish": 0,
+            "blanks": 0,
+            "matches_played": 0,
+            "session_points": {
+              "1": 0.0,
+              "2": 0.0,
+              "3": 0.0,
+              "4": 0.0
+            }
+          }
         ]
       }
     },
@@ -5926,6 +6148,228 @@
             "type": "SYSTEM",
             "message": "Spring Trial 2026 A initialized with 11 anglers and 3 A-Team members across 4 sessions."
           }
+        ],
+        "leaderboard": [
+          {
+            "rank": 1,
+            "name": "James",
+            "angler": "James",
+            "is_a_team": true,
+            "s1_pts": 0.0,
+            "s2_pts": 0.0,
+            "s3_pts": 0.0,
+            "s4_pts": 0.0,
+            "total_points": 0.0,
+            "total_fish": 0,
+            "blanks": 0,
+            "matches_played": 0,
+            "session_points": {
+              "1": 0.0,
+              "2": 0.0,
+              "3": 0.0,
+              "4": 0.0
+            }
+          },
+          {
+            "rank": 2,
+            "name": "Barry",
+            "angler": "Barry",
+            "is_a_team": true,
+            "s1_pts": 0.0,
+            "s2_pts": 0.0,
+            "s3_pts": 0.0,
+            "s4_pts": 0.0,
+            "total_points": 0.0,
+            "total_fish": 0,
+            "blanks": 0,
+            "matches_played": 0,
+            "session_points": {
+              "1": 0.0,
+              "2": 0.0,
+              "3": 0.0,
+              "4": 0.0
+            }
+          },
+          {
+            "rank": 3,
+            "name": "Daniel",
+            "angler": "Daniel",
+            "is_a_team": true,
+            "s1_pts": 0.0,
+            "s2_pts": 0.0,
+            "s3_pts": 0.0,
+            "s4_pts": 0.0,
+            "total_points": 0.0,
+            "total_fish": 0,
+            "blanks": 0,
+            "matches_played": 0,
+            "session_points": {
+              "1": 0.0,
+              "2": 0.0,
+              "3": 0.0,
+              "4": 0.0
+            }
+          },
+          {
+            "rank": 4,
+            "name": "Garth",
+            "angler": "Garth",
+            "is_a_team": false,
+            "s1_pts": 0.0,
+            "s2_pts": 0.0,
+            "s3_pts": 0.0,
+            "s4_pts": 0.0,
+            "total_points": 0.0,
+            "total_fish": 0,
+            "blanks": 0,
+            "matches_played": 0,
+            "session_points": {
+              "1": 0.0,
+              "2": 0.0,
+              "3": 0.0,
+              "4": 0.0
+            }
+          },
+          {
+            "rank": 5,
+            "name": "Dale",
+            "angler": "Dale",
+            "is_a_team": false,
+            "s1_pts": 0.0,
+            "s2_pts": 0.0,
+            "s3_pts": 0.0,
+            "s4_pts": 0.0,
+            "total_points": 0.0,
+            "total_fish": 0,
+            "blanks": 0,
+            "matches_played": 0,
+            "session_points": {
+              "1": 0.0,
+              "2": 0.0,
+              "3": 0.0,
+              "4": 0.0
+            }
+          },
+          {
+            "rank": 6,
+            "name": "Dylan",
+            "angler": "Dylan",
+            "is_a_team": false,
+            "s1_pts": 0.0,
+            "s2_pts": 0.0,
+            "s3_pts": 0.0,
+            "s4_pts": 0.0,
+            "total_points": 0.0,
+            "total_fish": 0,
+            "blanks": 0,
+            "matches_played": 0,
+            "session_points": {
+              "1": 0.0,
+              "2": 0.0,
+              "3": 0.0,
+              "4": 0.0
+            }
+          },
+          {
+            "rank": 7,
+            "name": "Ian",
+            "angler": "Ian",
+            "is_a_team": false,
+            "s1_pts": 0.0,
+            "s2_pts": 0.0,
+            "s3_pts": 0.0,
+            "s4_pts": 0.0,
+            "total_points": 0.0,
+            "total_fish": 0,
+            "blanks": 0,
+            "matches_played": 0,
+            "session_points": {
+              "1": 0.0,
+              "2": 0.0,
+              "3": 0.0,
+              "4": 0.0
+            }
+          },
+          {
+            "rank": 8,
+            "name": "Malcolm",
+            "angler": "Malcolm",
+            "is_a_team": false,
+            "s1_pts": 0.0,
+            "s2_pts": 0.0,
+            "s3_pts": 0.0,
+            "s4_pts": 0.0,
+            "total_points": 0.0,
+            "total_fish": 0,
+            "blanks": 0,
+            "matches_played": 0,
+            "session_points": {
+              "1": 0.0,
+              "2": 0.0,
+              "3": 0.0,
+              "4": 0.0
+            }
+          },
+          {
+            "rank": 9,
+            "name": "Ryan",
+            "angler": "Ryan",
+            "is_a_team": false,
+            "s1_pts": 0.0,
+            "s2_pts": 0.0,
+            "s3_pts": 0.0,
+            "s4_pts": 0.0,
+            "total_points": 0.0,
+            "total_fish": 0,
+            "blanks": 0,
+            "matches_played": 0,
+            "session_points": {
+              "1": 0.0,
+              "2": 0.0,
+              "3": 0.0,
+              "4": 0.0
+            }
+          },
+          {
+            "rank": 10,
+            "name": "Gary",
+            "angler": "Gary",
+            "is_a_team": false,
+            "s1_pts": 0.0,
+            "s2_pts": 0.0,
+            "s3_pts": 0.0,
+            "s4_pts": 0.0,
+            "total_points": 0.0,
+            "total_fish": 0,
+            "blanks": 0,
+            "matches_played": 0,
+            "session_points": {
+              "1": 0.0,
+              "2": 0.0,
+              "3": 0.0,
+              "4": 0.0
+            }
+          },
+          {
+            "rank": 11,
+            "name": "Michelle",
+            "angler": "Michelle",
+            "is_a_team": false,
+            "s1_pts": 0.0,
+            "s2_pts": 0.0,
+            "s3_pts": 0.0,
+            "s4_pts": 0.0,
+            "total_points": 0.0,
+            "total_fish": 0,
+            "blanks": 0,
+            "matches_played": 0,
+            "session_points": {
+              "1": 0.0,
+              "2": 0.0,
+              "3": 0.0,
+              "4": 0.0
+            }
+          }
         ]
       }
     },
@@ -8889,6 +9333,228 @@
             "timestamp": "2026-11-17T19:32:07.658786",
             "type": "SYSTEM",
             "message": "Stillwater Trial 2026 A initialized with 11 anglers and 3 A-Team members across 4 sessions."
+          }
+        ],
+        "leaderboard": [
+          {
+            "rank": 1,
+            "name": "James",
+            "angler": "James",
+            "is_a_team": true,
+            "s1_pts": 0.0,
+            "s2_pts": 0.0,
+            "s3_pts": 0.0,
+            "s4_pts": 0.0,
+            "total_points": 0.0,
+            "total_fish": 0,
+            "blanks": 0,
+            "matches_played": 0,
+            "session_points": {
+              "1": 0.0,
+              "2": 0.0,
+              "3": 0.0,
+              "4": 0.0
+            }
+          },
+          {
+            "rank": 2,
+            "name": "Barry",
+            "angler": "Barry",
+            "is_a_team": true,
+            "s1_pts": 0.0,
+            "s2_pts": 0.0,
+            "s3_pts": 0.0,
+            "s4_pts": 0.0,
+            "total_points": 0.0,
+            "total_fish": 0,
+            "blanks": 0,
+            "matches_played": 0,
+            "session_points": {
+              "1": 0.0,
+              "2": 0.0,
+              "3": 0.0,
+              "4": 0.0
+            }
+          },
+          {
+            "rank": 3,
+            "name": "Daniel",
+            "angler": "Daniel",
+            "is_a_team": true,
+            "s1_pts": 0.0,
+            "s2_pts": 0.0,
+            "s3_pts": 0.0,
+            "s4_pts": 0.0,
+            "total_points": 0.0,
+            "total_fish": 0,
+            "blanks": 0,
+            "matches_played": 0,
+            "session_points": {
+              "1": 0.0,
+              "2": 0.0,
+              "3": 0.0,
+              "4": 0.0
+            }
+          },
+          {
+            "rank": 4,
+            "name": "Garth",
+            "angler": "Garth",
+            "is_a_team": false,
+            "s1_pts": 0.0,
+            "s2_pts": 0.0,
+            "s3_pts": 0.0,
+            "s4_pts": 0.0,
+            "total_points": 0.0,
+            "total_fish": 0,
+            "blanks": 0,
+            "matches_played": 0,
+            "session_points": {
+              "1": 0.0,
+              "2": 0.0,
+              "3": 0.0,
+              "4": 0.0
+            }
+          },
+          {
+            "rank": 5,
+            "name": "Dale",
+            "angler": "Dale",
+            "is_a_team": false,
+            "s1_pts": 0.0,
+            "s2_pts": 0.0,
+            "s3_pts": 0.0,
+            "s4_pts": 0.0,
+            "total_points": 0.0,
+            "total_fish": 0,
+            "blanks": 0,
+            "matches_played": 0,
+            "session_points": {
+              "1": 0.0,
+              "2": 0.0,
+              "3": 0.0,
+              "4": 0.0
+            }
+          },
+          {
+            "rank": 6,
+            "name": "Dylan",
+            "angler": "Dylan",
+            "is_a_team": false,
+            "s1_pts": 0.0,
+            "s2_pts": 0.0,
+            "s3_pts": 0.0,
+            "s4_pts": 0.0,
+            "total_points": 0.0,
+            "total_fish": 0,
+            "blanks": 0,
+            "matches_played": 0,
+            "session_points": {
+              "1": 0.0,
+              "2": 0.0,
+              "3": 0.0,
+              "4": 0.0
+            }
+          },
+          {
+            "rank": 7,
+            "name": "Ian",
+            "angler": "Ian",
+            "is_a_team": false,
+            "s1_pts": 0.0,
+            "s2_pts": 0.0,
+            "s3_pts": 0.0,
+            "s4_pts": 0.0,
+            "total_points": 0.0,
+            "total_fish": 0,
+            "blanks": 0,
+            "matches_played": 0,
+            "session_points": {
+              "1": 0.0,
+              "2": 0.0,
+              "3": 0.0,
+              "4": 0.0
+            }
+          },
+          {
+            "rank": 8,
+            "name": "Malcolm",
+            "angler": "Malcolm",
+            "is_a_team": false,
+            "s1_pts": 0.0,
+            "s2_pts": 0.0,
+            "s3_pts": 0.0,
+            "s4_pts": 0.0,
+            "total_points": 0.0,
+            "total_fish": 0,
+            "blanks": 0,
+            "matches_played": 0,
+            "session_points": {
+              "1": 0.0,
+              "2": 0.0,
+              "3": 0.0,
+              "4": 0.0
+            }
+          },
+          {
+            "rank": 9,
+            "name": "Ryan",
+            "angler": "Ryan",
+            "is_a_team": false,
+            "s1_pts": 0.0,
+            "s2_pts": 0.0,
+            "s3_pts": 0.0,
+            "s4_pts": 0.0,
+            "total_points": 0.0,
+            "total_fish": 0,
+            "blanks": 0,
+            "matches_played": 0,
+            "session_points": {
+              "1": 0.0,
+              "2": 0.0,
+              "3": 0.0,
+              "4": 0.0
+            }
+          },
+          {
+            "rank": 10,
+            "name": "Gary",
+            "angler": "Gary",
+            "is_a_team": false,
+            "s1_pts": 0.0,
+            "s2_pts": 0.0,
+            "s3_pts": 0.0,
+            "s4_pts": 0.0,
+            "total_points": 0.0,
+            "total_fish": 0,
+            "blanks": 0,
+            "matches_played": 0,
+            "session_points": {
+              "1": 0.0,
+              "2": 0.0,
+              "3": 0.0,
+              "4": 0.0
+            }
+          },
+          {
+            "rank": 11,
+            "name": "Michelle",
+            "angler": "Michelle",
+            "is_a_team": false,
+            "s1_pts": 0.0,
+            "s2_pts": 0.0,
+            "s3_pts": 0.0,
+            "s4_pts": 0.0,
+            "total_points": 0.0,
+            "total_fish": 0,
+            "blanks": 0,
+            "matches_played": 0,
+            "session_points": {
+              "1": 0.0,
+              "2": 0.0,
+              "3": 0.0,
+              "4": 0.0
+            }
           }
         ]
       }

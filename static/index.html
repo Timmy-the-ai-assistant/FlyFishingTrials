@@ -132,14 +132,27 @@
     </div>
   </nav>
 
-  <!-- Top 4-Session Visual Pin Tracker -->
+  <!-- Top 4-Session Visual Pin Tracker with Trial & Angler Selectors -->
   <div class="top-tracker-bar">
     <div class="container tracker-flex">
-      <div class="tracker-left">
+      <div class="tracker-left" style="display:flex; align-items:center; gap:0.6rem; flex-wrap:wrap;">
         <span class="tracker-title">📍 <strong>Where Am I Fishing?</strong></span>
-        <select id="topAnglerSelector" class="form-select tracker-select" onchange="onTopAnglerSelected()">
-          <option value="">Select your name to track 4 sessions with color-coded pins...</option>
-        </select>
+        
+        <!-- Dropdown 1: Select Official Trial -->
+        <div style="display:flex; align-items:center; gap:0.35rem;">
+          <span style="font-size:0.8rem; color:#94a3b8; font-weight:600;">Trial:</span>
+          <select id="trialSelector" class="form-select tracker-select" onchange="onTrialSelected(this.value)" style="min-width: 200px; font-weight: 600;">
+            <option value="">Loading Trials...</option>
+          </select>
+        </div>
+
+        <!-- Dropdown 2: Select Competitor / Angler -->
+        <div style="display:flex; align-items:center; gap:0.35rem;">
+          <span style="font-size:0.8rem; color:#94a3b8; font-weight:600;">Angler:</span>
+          <select id="topAnglerSelector" class="form-select tracker-select" onchange="onTopAnglerSelected()" style="min-width: 250px;">
+            <option value="">Select your name to track 4 sessions...</option>
+          </select>
+        </div>
       </div>
       <div id="quickSessionPills" class="session-pills-row hidden">
         <span class="sess-pill pill-s1" id="pillS1" title="Session 1: Sat AM">🟡 S1: -</span>

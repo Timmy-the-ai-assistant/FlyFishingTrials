@@ -91,6 +91,23 @@ function getFullState() {
   const tData = (trial && trial.tournament_data) || {};
   const st = trial ? computeTrialStatus(trial.start_date, trial.end_date) : {};
 
+  let lb = tData.leaderboard || [];
+  if (lb.length === 0 && tData.anglers && tData.anglers.length > 0) {
+    const aSet = new Set(tData.a_team_anglers || []);
+    lb = tData.anglers.map((a, i) => ({
+      rank: i + 1,
+      name: a,
+      angler: a,
+      is_a_team: aSet.has(a),
+      s1_pts: 0, s2_pts: 0, s3_pts: 0, s4_pts: 0,
+      total_points: 0,
+      total_fish: 0,
+      blanks: 0,
+      matches_played: 0,
+      session_points: { 1: 0, 2: 0, 3: 0, 4: 0 }
+    }));
+  }
+
   return {
     tournament_name: trial ? trial.name : (tData.tournament_name || "Autumn Trial 2026 A"),
     venue: tData.venue || "Cape Piscatorial Society - Smalblaar & Elandspad",
@@ -104,7 +121,7 @@ function getFullState() {
     angler_schedule: tData.angler_schedule || {},
     three_way_counts: tData.three_way_counts || {},
     sessions: tData.sessions || [],
-    leaderboard: tData.leaderboard || [],
+    leaderboard: lb,
     activity_log: tData.activity_log || [],
     stats: {
       total_matches: 0,
@@ -420,13 +437,15 @@ function generateEdgeSchedule(anglers, aTeamAnglers = [], availableBeats = []) {
   const aSet = new Set(cleanATeam);
   const leaderboard = anglers.map((a, i) => ({
     rank: i + 1,
+    name: a,
     angler: a,
     is_a_team: aSet.has(a),
     s1_pts: 0, s2_pts: 0, s3_pts: 0, s4_pts: 0,
     total_points: 0,
     total_fish: 0,
     blanks: 0,
-    matches_played: 0
+    matches_played: 0,
+    session_points: { 1: 0, 2: 0, 3: 0, 4: 0 }
   }));
 
   return {

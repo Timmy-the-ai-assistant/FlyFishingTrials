@@ -182,7 +182,8 @@ function renderLeaderboard() {
       : `<span class="text-muted">0</span>`;
 
     const aTeamList = tournamentState.a_team_anglers || [];
-    const isA = row.is_a_team || aTeamList.includes(row.name);
+    const anglerName = row.angler || row.name || '';
+    const isA = row.is_a_team || aTeamList.includes(anglerName);
     const aTeamBadge = isA 
       ? `<span class="ateam-badge-mini" title="A-Team Seeded Angler">⭐ A-Team</span>` 
       : '';
@@ -192,7 +193,7 @@ function renderLeaderboard() {
         <td><span class="rank-badge ${rankBadgeClass}">${rank}</span></td>
         <td>
           <div style="display:flex; align-items:center; gap:0.5rem;">
-            <strong>${escapeHtml(row.name)}</strong>
+            <strong>${escapeHtml(anglerName)}</strong>
             ${aTeamBadge}
           </div>
         </td>
@@ -1526,15 +1527,20 @@ const TRAIL_PATHS_CLIENT = {
 // Render Top Angler Dropdown
 function renderTopAnglerDropdown() {
   const sel = document.getElementById('topAnglerSelector');
-  if (!sel || !tournamentState || !tournamentState.anglers) return;
+  if (!sel) return;
+  const anglers = (tournamentState && tournamentState.anglers) || [];
+  if (anglers.length === 0) {
+    sel.innerHTML = '<option value="">No anglers in this trial yet</option>';
+    return;
+  }
 
-  const currentVal = sel.value;
-  let html = '<option value="">Select your name to track 4 sessions with color-coded pins...</option>';
+  const currentVal = sel.value || selectedTrackingAngler || "";
+  let html = '<option value="">Select your name to track 4 sessions...</option>';
 
-  const aTeamSet = new Set(tournamentState.a_team_anglers || []);
-  tournamentState.anglers.forEach(a => {
+  const aTeamSet = new Set((tournamentState && tournamentState.a_team_anglers) || []);
+  anglers.forEach(a => {
     const isA = aTeamSet.has(a);
-    html += `<option value="${escapeHtml(a)}" ${a === currentVal ? 'selected' : ''}>${escapeHtml(a)} ${isA ? '[A-Team]' : ''}</option>`;
+    html += `<option value="${escapeHtml(a)}" ${a === currentVal ? 'selected' : ''}>${escapeHtml(a)} ${isA ? '⭐ [A-Team]' : ''}</option>`;
   });
 
   sel.innerHTML = html;
@@ -2351,52 +2357,62 @@ function renderTrialBar() {
     titleEl.textContent = trialInfo.name;
   }
 
-  // Dropdown selector
-  const selectEl = document.getElementById("trialSelect");
-  if (selectEl && allTrials.length > 0) {
-    selectEl.innerHTML = "";
-    const inSession = allTrials.filter(t => t.status === "IN_SESSION");
-    const upcoming = allTrials.filter(t => t.status === "UPCOMING");
-    const past = allTrials.filter(t => t.status === "PAST");
+  // Dropdown selectors (Top Trial Bar & Where Am I Fishing Tracker)
+  const trialDropdowns = [
+    document.getElementById("trialSelect"),
+    document.getElementById("trialSelector")
+  ].filter(Boolean);
 
-    if (inSession.length > 0) {
-      const grp = document.createElement("optgroup");
-      grp.label = "🟢 Active Trial in Session";
-      inSession.forEach(t => {
-        const opt = document.createElement("option");
-        opt.value = t.id;
-        opt.textContent = `${t.name} (${t.date_range_label || t.start_date})`;
-        if (t.id === trialInfo.id) opt.selected = true;
-        grp.appendChild(opt);
-      });
-      selectEl.appendChild(grp);
-    }
+  if (trialDropdowns.length > 0 && allTrials.length > 0) {
+    trialDropdowns.forEach(selectEl => {
+      selectEl.innerHTML = "";
+      const inSession = allTrials.filter(t => t.status === "IN_SESSION");
+      const upcoming = allTrials.filter(t => t.status === "UPCOMING");
+      const past = allTrials.filter(t => t.status === "PAST");
 
-    if (upcoming.length > 0) {
-      const grp = document.createElement("optgroup");
-      grp.label = "📅 Upcoming Trials";
-      upcoming.forEach(t => {
-        const opt = document.createElement("option");
-        opt.value = t.id;
-        opt.textContent = `${t.name} (${t.date_range_label || t.start_date})`;
-        if (t.id === trialInfo.id) opt.selected = true;
-        grp.appendChild(opt);
-      });
-      selectEl.appendChild(grp);
-    }
+      if (inSession.length > 0) {
+        const grp = document.createElement("optgroup");
+        grp.label = "🟢 Active Trial in Session";
+        inSession.forEach(t => {
+          const opt = document.createElement("option");
+          opt.value = t.id;
+          opt.textContent = `${t.name} (${t.date_range_label || t.start_date})`;
+          if (t.id === trialInfo.id) opt.selected = true;
+          grp.appendChild(opt);
+        });
+        selectEl.appendChild(grp);
+      }
 
-    if (past.length > 0) {
-      const grp = document.createElement("optgroup");
-      grp.label = "🏁 Past Events Archive";
-      past.forEach(t => {
-        const opt = document.createElement("option");
-        opt.value = t.id;
-        opt.textContent = `${t.name} (${t.date_range_label || t.end_date})`;
-        if (t.id === trialInfo.id) opt.selected = true;
-        grp.appendChild(opt);
-      });
-      selectEl.appendChild(grp);
-    }
+      if (upcoming.length > 0) {
+        const grp = document.createElement("optgroup");
+        grp.label = "📅 Upcoming Trials";
+        upcoming.forEach(t => {
+          const opt = document.createElement("option");
+          opt.value = t.id;
+          opt.textContent = `${t.name} (${t.date_range_label || t.start_date})`;
+          if (t.id === trialInfo.id) opt.selected = true;
+          grp.appendChild(opt);
+        });
+        selectEl.appendChild(grp);
+      }
+
+      if (past.length > 0) {
+        const grp = document.createElement("optgroup");
+        grp.label = "🏁 Past Events Archive";
+        past.forEach(t => {
+          const opt = document.createElement("option");
+          opt.value = t.id;
+          opt.textContent = `${t.name} (${t.date_range_label || t.end_date})`;
+          if (t.id === trialInfo.id) opt.selected = true;
+          grp.appendChild(opt);
+        });
+        selectEl.appendChild(grp);
+      }
+
+      if (trialInfo.id) {
+        selectEl.value = trialInfo.id;
+      }
+    });
   }
 
   // Status badge
@@ -2456,7 +2472,19 @@ async function onTrialSelected(trialId) {
     const data = await res.json();
     if (data.success && data.state) {
       tournamentState = data.state;
+      // Reset selected angler and hide quick pills/itinerary card
+      selectedTrackingAngler = "";
+      const topAnglerSel = document.getElementById('topAnglerSelector');
+      if (topAnglerSel) topAnglerSel.value = "";
+      const pillsRow = document.getElementById('quickSessionPills');
+      const card = document.getElementById('anglerItineraryCard');
+      if (pillsRow) pillsRow.classList.add('hidden');
+      if (card) card.classList.add('hidden');
+      
       renderAll();
+      if (typeof updateMapPins === 'function') {
+        updateMapPins();
+      }
     } else {
       alert(`Error switching trial: ${data.error || "Unknown error"}`);
     }
