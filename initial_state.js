@@ -258,32 +258,6 @@ export const INITIAL_STATE = {
             "travel_time": 15
           },
           {
-            "id": "EP1",
-            "code": "EP1",
-            "name": "EP1",
-            "river": "Elands Pad",
-            "enabled": true,
-            "sat_available": true,
-            "sat_sessions": 2,
-            "sun_available": true,
-            "sun_sessions": 2,
-            "usage_mode": "double",
-            "lower_pin": [
-              -33.7319,
-              19.1141
-            ],
-            "mid_pin": [
-              -33.736,
-              19.1152
-            ],
-            "upper_pin": [
-              -33.7405,
-              19.1162
-            ],
-            "meeting_point": "Junction Pool trail head",
-            "travel_time": 15
-          },
-          {
             "id": "EP2",
             "code": "EP2",
             "name": "EP2",
@@ -333,32 +307,6 @@ export const INITIAL_STATE = {
               19.1205
             ],
             "meeting_point": "Star beat rock shelter",
-            "travel_time": 30
-          },
-          {
-            "id": "EP4",
-            "code": "EP4",
-            "name": "EP4",
-            "river": "Elands Pad",
-            "enabled": true,
-            "sat_available": true,
-            "sat_sessions": 1,
-            "sun_available": true,
-            "sun_sessions": 1,
-            "usage_mode": "single",
-            "lower_pin": [
-              -33.761,
-              19.1205
-            ],
-            "mid_pin": [
-              -33.765,
-              19.1215
-            ],
-            "upper_pin": [
-              -33.77,
-              19.123
-            ],
-            "meeting_point": "Kraalstroom gorge access",
             "travel_time": 30
           },
           {
@@ -604,8 +552,8 @@ export const INITIAL_STATE = {
                 "meeting_point": "Tunnel East Portal Parking / Junction Path",
                 "travel_time": 15,
                 "anglers": [
-                  "Garth",
-                  "Barry"
+                  "Dale",
+                  "Garth"
                 ],
                 "stayer": null,
                 "status": "UNREPORTED",
@@ -640,8 +588,8 @@ export const INITIAL_STATE = {
                 "meeting_point": "CPS Elandspad parking lot",
                 "travel_time": 15,
                 "anglers": [
-                  "Michelle",
-                  "Dale"
+                  "Barry",
+                  "Daniel"
                 ],
                 "stayer": null,
                 "status": "UNREPORTED",
@@ -676,8 +624,8 @@ export const INITIAL_STATE = {
                 "meeting_point": "N1 emergency telephone layby 3",
                 "travel_time": 15,
                 "anglers": [
-                  "James",
-                  "Daniel"
+                  "Michelle",
+                  "Ryan"
                 ],
                 "stayer": null,
                 "status": "UNREPORTED",
@@ -693,6 +641,42 @@ export const INITIAL_STATE = {
                 "is_bye": false,
                 "beat_number": 4,
                 "beat": 4,
+                "beat_id": "SB2",
+                "beat_code": "SB2",
+                "beat_name": "SB2",
+                "river": "Small Blaar",
+                "lower_pin": [
+                  -33.719,
+                  19.1655
+                ],
+                "mid_pin": [
+                  -33.7212,
+                  19.159
+                ],
+                "upper_pin": [
+                  -33.7235,
+                  19.153
+                ],
+                "meeting_point": "Picnic site parking",
+                "travel_time": 15,
+                "anglers": [
+                  "James",
+                  "Dylan"
+                ],
+                "stayer": null,
+                "status": "UNREPORTED",
+                "submissions": {},
+                "official_scores": {},
+                "calculated_points": {}
+              },
+              {
+                "match_id": "S1_M5",
+                "match_number": 5,
+                "match_type": "1v1",
+                "is_solo": false,
+                "is_bye": false,
+                "beat_number": 5,
+                "beat": 5,
                 "beat_id": "EP2",
                 "beat_code": "EP2",
                 "beat_name": "EP2",
@@ -713,7 +697,7 @@ export const INITIAL_STATE = {
                 "travel_time": 30,
                 "anglers": [
                   "Malcolm",
-                  "Ryan"
+                  "Ian"
                 ],
                 "stayer": null,
                 "status": "UNREPORTED",
@@ -722,13 +706,13 @@ export const INITIAL_STATE = {
                 "calculated_points": {}
               },
               {
-                "match_id": "S1_M5",
-                "match_number": 5,
-                "match_type": "1v1",
-                "is_solo": false,
-                "is_bye": false,
-                "beat_number": 5,
-                "beat": 5,
+                "match_id": "S1_M6",
+                "match_number": 6,
+                "match_type": "BYE",
+                "is_solo": true,
+                "is_bye": true,
+                "beat_number": 6,
+                "beat": 6,
                 "beat_id": "EP3",
                 "beat_code": "EP3",
                 "beat_name": "EP3",
@@ -747,42 +731,6 @@ export const INITIAL_STATE = {
                 ],
                 "meeting_point": "Star beat rock shelter",
                 "travel_time": 30,
-                "anglers": [
-                  "Ian",
-                  "Dylan"
-                ],
-                "stayer": null,
-                "status": "UNREPORTED",
-                "submissions": {},
-                "official_scores": {},
-                "calculated_points": {}
-              },
-              {
-                "match_id": "S1_M6",
-                "match_number": 6,
-                "match_type": "BYE",
-                "is_solo": true,
-                "is_bye": true,
-                "beat_number": 6,
-                "beat": 6,
-                "beat_id": "EP1",
-                "beat_code": "EP1",
-                "beat_name": "EP1",
-                "river": "Elands Pad",
-                "lower_pin": [
-                  -33.7319,
-                  19.1141
-                ],
-                "mid_pin": [
-                  -33.736,
-                  19.1152
-                ],
-                "upper_pin": [
-                  -33.7405,
-                  19.1162
-                ],
-                "meeting_point": "Junction Pool trail head",
-                "travel_time": 15,
                 "anglers": [
                   "Garrett"
                 ],
@@ -831,8 +779,8 @@ export const INITIAL_STATE = {
                 "meeting_point": "Tunnel East Portal Parking / Junction Path",
                 "travel_time": 15,
                 "anglers": [
-                  "Dylan",
-                  "Garth"
+                  "Garth",
+                  "Ian"
                 ],
                 "stayer": "Garth",
                 "status": "UNREPORTED",
@@ -867,10 +815,10 @@ export const INITIAL_STATE = {
                 "meeting_point": "CPS Elandspad parking lot",
                 "travel_time": 15,
                 "anglers": [
-                  "Malcolm",
-                  "Michelle"
+                  "James",
+                  "Barry"
                 ],
-                "stayer": "Michelle",
+                "stayer": "Barry",
                 "status": "UNREPORTED",
                 "submissions": {},
                 "official_scores": {},
@@ -903,10 +851,10 @@ export const INITIAL_STATE = {
                 "meeting_point": "N1 emergency telephone layby 3",
                 "travel_time": 15,
                 "anglers": [
-                  "James",
-                  "Ryan"
+                  "Malcolm",
+                  "Michelle"
                 ],
-                "stayer": "James",
+                "stayer": "Michelle",
                 "status": "UNREPORTED",
                 "submissions": {},
                 "official_scores": {},
@@ -920,78 +868,6 @@ export const INITIAL_STATE = {
                 "is_bye": false,
                 "beat_number": 4,
                 "beat": 4,
-                "beat_id": "SB(HOTEL)",
-                "beat_code": "SB(HOTEL)",
-                "beat_name": "SB(HOTEL)",
-                "river": "Small Blaar",
-                "lower_pin": [
-                  -33.7125,
-                  19.18
-                ],
-                "mid_pin": [
-                  -33.7138,
-                  19.177
-                ],
-                "upper_pin": [
-                  -33.715,
-                  19.174
-                ],
-                "meeting_point": "Du Kloof Lodge guest parking",
-                "travel_time": 15,
-                "anglers": [
-                  "Ian",
-                  "Daniel"
-                ],
-                "stayer": null,
-                "status": "UNREPORTED",
-                "submissions": {},
-                "official_scores": {},
-                "calculated_points": {}
-              },
-              {
-                "match_id": "S2_M5",
-                "match_number": 5,
-                "match_type": "1v1",
-                "is_solo": false,
-                "is_bye": false,
-                "beat_number": 5,
-                "beat": 5,
-                "beat_id": "SB1",
-                "beat_code": "SB1",
-                "beat_name": "SB1",
-                "river": "Small Blaar",
-                "lower_pin": [
-                  -33.715,
-                  19.174
-                ],
-                "mid_pin": [
-                  -33.717,
-                  19.17
-                ],
-                "upper_pin": [
-                  -33.719,
-                  19.1655
-                ],
-                "meeting_point": "Picnic site pull-off",
-                "travel_time": 15,
-                "anglers": [
-                  "Barry",
-                  "Dale"
-                ],
-                "stayer": null,
-                "status": "UNREPORTED",
-                "submissions": {},
-                "official_scores": {},
-                "calculated_points": {}
-              },
-              {
-                "match_id": "S2_M6",
-                "match_number": 6,
-                "match_type": "BYE",
-                "is_solo": true,
-                "is_bye": true,
-                "beat_number": 6,
-                "beat": 6,
                 "beat_id": "SB2",
                 "beat_code": "SB2",
                 "beat_name": "SB2",
@@ -1011,10 +887,82 @@ export const INITIAL_STATE = {
                 "meeting_point": "Picnic site parking",
                 "travel_time": 15,
                 "anglers": [
+                  "Ryan",
+                  "Dylan"
+                ],
+                "stayer": "Dylan",
+                "status": "UNREPORTED",
+                "submissions": {},
+                "official_scores": {},
+                "calculated_points": {}
+              },
+              {
+                "match_id": "S2_M5",
+                "match_number": 5,
+                "match_type": "BYE",
+                "is_solo": true,
+                "is_bye": true,
+                "beat_number": 5,
+                "beat": 5,
+                "beat_id": "SB(HOTEL)",
+                "beat_code": "SB(HOTEL)",
+                "beat_name": "SB(HOTEL)",
+                "river": "Small Blaar",
+                "lower_pin": [
+                  -33.7125,
+                  19.18
+                ],
+                "mid_pin": [
+                  -33.7138,
+                  19.177
+                ],
+                "upper_pin": [
+                  -33.715,
+                  19.174
+                ],
+                "meeting_point": "Du Kloof Lodge guest parking",
+                "travel_time": 15,
+                "anglers": [
                   "Garrett"
                 ],
                 "stayer": null,
                 "status": "BYE",
+                "submissions": {},
+                "official_scores": {},
+                "calculated_points": {}
+              },
+              {
+                "match_id": "S2_M6",
+                "match_number": 6,
+                "match_type": "1v1",
+                "is_solo": false,
+                "is_bye": false,
+                "beat_number": 6,
+                "beat": 6,
+                "beat_id": "SB1",
+                "beat_code": "SB1",
+                "beat_name": "SB1",
+                "river": "Small Blaar",
+                "lower_pin": [
+                  -33.715,
+                  19.174
+                ],
+                "mid_pin": [
+                  -33.717,
+                  19.17
+                ],
+                "upper_pin": [
+                  -33.719,
+                  19.1655
+                ],
+                "meeting_point": "Picnic site pull-off",
+                "travel_time": 15,
+                "anglers": [
+                  "Dale",
+                  "Daniel"
+                ],
+                "stayer": null,
+                "status": "UNREPORTED",
                 "submissions": {},
                 "official_scores": {},
                 "calculated_points": {}
@@ -1058,8 +1006,8 @@ export const INITIAL_STATE = {
                 "meeting_point": "Tunnel East Portal Parking / Junction Path",
                 "travel_time": 15,
                 "anglers": [
-                  "Michelle",
-                  "Barry"
+                  "Daniel",
+                  "Garrett"
                 ],
                 "stayer": null,
                 "status": "UNREPORTED",
@@ -1094,7 +1042,7 @@ export const INITIAL_STATE = {
                 "meeting_point": "CPS Elandspad parking lot",
                 "travel_time": 15,
                 "anglers": [
-                  "Daniel",
+                  "Dylan",
                   "Garth"
                 ],
                 "stayer": null,
@@ -1130,8 +1078,8 @@ export const INITIAL_STATE = {
                 "meeting_point": "N1 emergency telephone layby 3",
                 "travel_time": 15,
                 "anglers": [
-                  "Malcolm",
-                  "Dale"
+                  "Dale",
+                  "Ian"
                 ],
                 "stayer": null,
                 "status": "UNREPORTED",
@@ -1147,6 +1095,42 @@ export const INITIAL_STATE = {
                 "is_bye": false,
                 "beat_number": 4,
                 "beat": 4,
+                "beat_id": "SB2",
+                "beat_code": "SB2",
+                "beat_name": "SB2",
+                "river": "Small Blaar",
+                "lower_pin": [
+                  -33.719,
+                  19.1655
+                ],
+                "mid_pin": [
+                  -33.7212,
+                  19.159
+                ],
+                "upper_pin": [
+                  -33.7235,
+                  19.153
+                ],
+                "meeting_point": "Picnic site parking",
+                "travel_time": 15,
+                "anglers": [
+                  "Barry",
+                  "Michelle"
+                ],
+                "stayer": null,
+                "status": "UNREPORTED",
+                "submissions": {},
+                "official_scores": {},
+                "calculated_points": {}
+              },
+              {
+                "match_id": "S3_M5",
+                "match_number": 5,
+                "match_type": "1v1",
+                "is_solo": false,
+                "is_bye": false,
+                "beat_number": 5,
+                "beat": 5,
                 "beat_id": "EP2",
                 "beat_code": "EP2",
                 "beat_name": "EP2",
@@ -1166,8 +1150,8 @@ export const INITIAL_STATE = {
                 "meeting_point": "Fisherman's Cave trail",
                 "travel_time": 30,
                 "anglers": [
-                  "Ryan",
-                  "Ian"
+                  "Malcolm",
+                  "Ryan"
                 ],
                 "stayer": null,
                 "status": "UNREPORTED",
@@ -1176,13 +1160,13 @@ export const INITIAL_STATE = {
                 "calculated_points": {}
               },
               {
-                "match_id": "S3_M5",
-                "match_number": 5,
-                "match_type": "1v1",
-                "is_solo": false,
-                "is_bye": false,
-                "beat_number": 5,
-                "beat": 5,
+                "match_id": "S3_M6",
+                "match_number": 6,
+                "match_type": "BYE",
+                "is_solo": true,
+                "is_bye": true,
+                "beat_number": 6,
+                "beat": 6,
                 "beat_id": "EP3",
                 "beat_code": "EP3",
                 "beat_name": "EP3",
@@ -1201,42 +1185,6 @@ export const INITIAL_STATE = {
                 ],
                 "meeting_point": "Star beat rock shelter",
                 "travel_time": 30,
-                "anglers": [
-                  "Garrett",
-                  "Dylan"
-                ],
-                "stayer": null,
-                "status": "UNREPORTED",
-                "submissions": {},
-                "official_scores": {},
-                "calculated_points": {}
-              },
-              {
-                "match_id": "S3_M6",
-                "match_number": 6,
-                "match_type": "BYE",
-                "is_solo": true,
-                "is_bye": true,
-                "beat_number": 6,
-                "beat": 6,
-                "beat_id": "EP1",
-                "beat_code": "EP1",
-                "beat_name": "EP1",
-                "river": "Elands Pad",
-                "lower_pin": [
-                  -33.7319,
-                  19.1141
-                ],
-                "mid_pin": [
-                  -33.736,
-                  19.1152
-                ],
-                "upper_pin": [
-                  -33.7405,
-                  19.1162
-                ],
-                "meeting_point": "Junction Pool trail head",
-                "travel_time": 15,
                 "anglers": [
                   "James"
                 ],
@@ -1285,10 +1233,10 @@ export const INITIAL_STATE = {
                 "meeting_point": "Tunnel East Portal Parking / Junction Path",
                 "travel_time": 15,
                 "anglers": [
-                  "Michelle",
-                  "Dylan"
+                  "Daniel",
+                  "Ryan"
                 ],
-                "stayer": "Michelle",
+                "stayer": "Daniel",
                 "status": "UNREPORTED",
                 "submissions": {},
                 "official_scores": {},
@@ -1321,10 +1269,10 @@ export const INITIAL_STATE = {
                 "meeting_point": "CPS Elandspad parking lot",
                 "travel_time": 15,
                 "anglers": [
-                  "Garth",
-                  "Ryan"
+                  "Garrett",
+                  "Dylan"
                 ],
-                "stayer": "Garth",
+                "stayer": "Dylan",
                 "status": "UNREPORTED",
                 "submissions": {},
                 "official_scores": {},
@@ -1357,10 +1305,10 @@ export const INITIAL_STATE = {
                 "meeting_point": "N1 emergency telephone layby 3",
                 "travel_time": 15,
                 "anglers": [
-                  "Malcolm",
-                  "Ian"
+                  "Dale",
+                  "Malcolm"
                 ],
-                "stayer": "Malcolm",
+                "stayer": "Dale",
                 "status": "UNREPORTED",
                 "submissions": {},
                 "official_scores": {},
@@ -1374,78 +1322,6 @@ export const INITIAL_STATE = {
                 "is_bye": false,
                 "beat_number": 4,
                 "beat": 4,
-                "beat_id": "SB(HOTEL)",
-                "beat_code": "SB(HOTEL)",
-                "beat_name": "SB(HOTEL)",
-                "river": "Small Blaar",
-                "lower_pin": [
-                  -33.7125,
-                  19.18
-                ],
-                "mid_pin": [
-                  -33.7138,
-                  19.177
-                ],
-                "upper_pin": [
-                  -33.715,
-                  19.174
-                ],
-                "meeting_point": "Du Kloof Lodge guest parking",
-                "travel_time": 15,
-                "anglers": [
-                  "Barry",
-                  "Garrett"
-                ],
-                "stayer": null,
-                "status": "UNREPORTED",
-                "submissions": {},
-                "official_scores": {},
-                "calculated_points": {}
-              },
-              {
-                "match_id": "S4_M5",
-                "match_number": 5,
-                "match_type": "1v1",
-                "is_solo": false,
-                "is_bye": false,
-                "beat_number": 5,
-                "beat": 5,
-                "beat_id": "SB1",
-                "beat_code": "SB1",
-                "beat_name": "SB1",
-                "river": "Small Blaar",
-                "lower_pin": [
-                  -33.715,
-                  19.174
-                ],
-                "mid_pin": [
-                  -33.717,
-                  19.17
-                ],
-                "upper_pin": [
-                  -33.719,
-                  19.1655
-                ],
-                "meeting_point": "Picnic site pull-off",
-                "travel_time": 15,
-                "anglers": [
-                  "Dale",
-                  "Daniel"
-                ],
-                "stayer": null,
-                "status": "UNREPORTED",
-                "submissions": {},
-                "official_scores": {},
-                "calculated_points": {}
-              },
-              {
-                "match_id": "S4_M6",
-                "match_number": 6,
-                "match_type": "BYE",
-                "is_solo": true,
-                "is_bye": true,
-                "beat_number": 6,
-                "beat": 6,
                 "beat_id": "SB2",
                 "beat_code": "SB2",
                 "beat_name": "SB2",
@@ -1465,10 +1341,82 @@ export const INITIAL_STATE = {
                 "meeting_point": "Picnic site parking",
                 "travel_time": 15,
                 "anglers": [
+                  "Barry",
+                  "Garth"
+                ],
+                "stayer": "Barry",
+                "status": "UNREPORTED",
+                "submissions": {},
+                "official_scores": {},
+                "calculated_points": {}
+              },
+              {
+                "match_id": "S4_M5",
+                "match_number": 5,
+                "match_type": "BYE",
+                "is_solo": true,
+                "is_bye": true,
+                "beat_number": 5,
+                "beat": 5,
+                "beat_id": "SB(HOTEL)",
+                "beat_code": "SB(HOTEL)",
+                "beat_name": "SB(HOTEL)",
+                "river": "Small Blaar",
+                "lower_pin": [
+                  -33.7125,
+                  19.18
+                ],
+                "mid_pin": [
+                  -33.7138,
+                  19.177
+                ],
+                "upper_pin": [
+                  -33.715,
+                  19.174
+                ],
+                "meeting_point": "Du Kloof Lodge guest parking",
+                "travel_time": 15,
+                "anglers": [
                   "James"
                 ],
                 "stayer": null,
                 "status": "BYE",
+                "submissions": {},
+                "official_scores": {},
+                "calculated_points": {}
+              },
+              {
+                "match_id": "S4_M6",
+                "match_number": 6,
+                "match_type": "1v1",
+                "is_solo": false,
+                "is_bye": false,
+                "beat_number": 6,
+                "beat": 6,
+                "beat_id": "SB1",
+                "beat_code": "SB1",
+                "beat_name": "SB1",
+                "river": "Small Blaar",
+                "lower_pin": [
+                  -33.715,
+                  19.174
+                ],
+                "mid_pin": [
+                  -33.717,
+                  19.17
+                ],
+                "upper_pin": [
+                  -33.719,
+                  19.1655
+                ],
+                "meeting_point": "Picnic site pull-off",
+                "travel_time": 15,
+                "anglers": [
+                  "Ian",
+                  "Michelle"
+                ],
+                "stayer": null,
+                "status": "UNREPORTED",
                 "submissions": {},
                 "official_scores": {},
                 "calculated_points": {}
@@ -1969,33 +1917,6 @@ export const INITIAL_STATE = {
             "travel_time": 15
           },
           {
-            "id": "EP1",
-            "code": "EP1",
-            "name": "EP1",
-            "river": "Elands Pad",
-            "enabled": true,
-            "sat_available": true,
-            "sat_sessions": 2,
-            "sun_available": true,
-            "sun_sessions": 2,
-            "usage_mode": "double",
-            "lower_pin": [
-              -33.7319,
-              19.1141
-            ],
-            "mid_pin": [
-              -33.736,
-              19.1152
-            ],
-            "upper_pin": [
-              -33.7405,
-              19.1162
-            ],
-            "meeting_point": "Junction Pool trail head",
-            "notes": "Kloof canyon stream, crystal clear water with pocket pools.",
-            "travel_time": 15
-          },
-          {
             "id": "EP2",
             "code": "EP2",
             "name": "EP2",
@@ -2047,33 +1968,6 @@ export const INITIAL_STATE = {
             ],
             "meeting_point": "Star beat rock shelter",
             "notes": "Wild upper canyon gorge with deep plunge pools. Sensitive upper beat.",
-            "travel_time": 30
-          },
-          {
-            "id": "EP4",
-            "code": "EP4",
-            "name": "EP4",
-            "river": "Elands Pad",
-            "enabled": true,
-            "sat_available": true,
-            "sat_sessions": 1,
-            "sun_available": true,
-            "sun_sessions": 1,
-            "usage_mode": "single",
-            "lower_pin": [
-              -33.761,
-              19.1205
-            ],
-            "mid_pin": [
-              -33.765,
-              19.1212
-            ],
-            "upper_pin": [
-              -33.769,
-              19.122
-            ],
-            "meeting_point": "Kraalstroom trail / Upper gorge",
-            "notes": "Upper cascades and remote gorge.",
             "travel_time": 30
           },
           {
@@ -2152,27 +2046,6 @@ export const INITIAL_STATE = {
             ],
             "meeting_point": "Tunnel East Portal Parking / Junction Path",
             "notes": "Upper Smalblaar beat from Junction pool up to tunnel weir."
-          },
-          {
-            "id": "EP1",
-            "code": "EP1",
-            "name": "Elandspad 1 (EP1)",
-            "river": "Elands Pad",
-            "enabled": true,
-            "lower_pin": [
-              -33.7319,
-              19.1141
-            ],
-            "upper_pin": [
-              -33.7405,
-              19.1162
-            ],
-            "mid_pin": [
-              -33.736,
-              19.1152
-            ],
-            "meeting_point": "Junction Pool trail head",
-            "notes": "Kloof canyon stream, crystal clear water with pocket pools."
           },
           {
             "id": "Transport",
@@ -2289,7 +2162,7 @@ export const INITIAL_STATE = {
                 "meeting_point": "Tunnel East Portal Parking / Junction Path",
                 "travel_time": 15,
                 "anglers": [
-                  "Garrett",
+                  "Daniel",
                   "Garth"
                 ],
                 "stayer": null,
@@ -2325,8 +2198,8 @@ export const INITIAL_STATE = {
                 "meeting_point": "CPS Elandspad parking lot",
                 "travel_time": 15,
                 "anglers": [
-                  "Ian",
-                  "Daniel"
+                  "James",
+                  "Barry"
                 ],
                 "stayer": null,
                 "status": "UNREPORTED",
@@ -2361,8 +2234,8 @@ export const INITIAL_STATE = {
                 "meeting_point": "N1 emergency telephone layby 3",
                 "travel_time": 15,
                 "anglers": [
-                  "Dale",
-                  "Barry"
+                  "Malcolm",
+                  "Dale"
                 ],
                 "stayer": null,
                 "status": "UNREPORTED",
@@ -2378,6 +2251,42 @@ export const INITIAL_STATE = {
                 "is_bye": false,
                 "beat_number": 4,
                 "beat": 4,
+                "beat_id": "SB2",
+                "beat_code": "SB2",
+                "beat_name": "SB2",
+                "river": "Small Blaar",
+                "lower_pin": [
+                  -33.719,
+                  19.1655
+                ],
+                "mid_pin": [
+                  -33.7212,
+                  19.159
+                ],
+                "upper_pin": [
+                  -33.7235,
+                  19.153
+                ],
+                "meeting_point": "Picnic site parking",
+                "travel_time": 15,
+                "anglers": [
+                  "Michelle",
+                  "Ryan"
+                ],
+                "stayer": null,
+                "status": "UNREPORTED",
+                "submissions": {},
+                "official_scores": {},
+                "calculated_points": {}
+              },
+              {
+                "match_id": "S1_M5",
+                "match_number": 5,
+                "match_type": "1v1",
+                "is_solo": false,
+                "is_bye": false,
+                "beat_number": 5,
+                "beat": 5,
                 "beat_id": "EP2",
                 "beat_code": "EP2",
                 "beat_name": "EP2",
@@ -2397,8 +2306,8 @@ export const INITIAL_STATE = {
                 "meeting_point": "Fisherman's Cave trail",
                 "travel_time": 30,
                 "anglers": [
-                  "Malcolm",
-                  "Dylan"
+                  "Dylan",
+                  "Garrett"
                 ],
                 "stayer": null,
                 "status": "UNREPORTED",
@@ -2407,13 +2316,13 @@ export const INITIAL_STATE = {
                 "calculated_points": {}
               },
               {
-                "match_id": "S1_M5",
-                "match_number": 5,
-                "match_type": "1v1",
-                "is_solo": false,
-                "is_bye": false,
-                "beat_number": 5,
-                "beat": 5,
+                "match_id": "S1_M6",
+                "match_number": 6,
+                "match_type": "BYE",
+                "is_solo": true,
+                "is_bye": true,
+                "beat_number": 6,
+                "beat": 6,
                 "beat_id": "EP3",
                 "beat_code": "EP3",
                 "beat_name": "EP3",
@@ -2433,43 +2342,7 @@ export const INITIAL_STATE = {
                 "meeting_point": "Star beat rock shelter",
                 "travel_time": 30,
                 "anglers": [
-                  "Ryan",
-                  "Michelle"
-                ],
-                "stayer": null,
-                "status": "UNREPORTED",
-                "submissions": {},
-                "official_scores": {},
-                "calculated_points": {}
-              },
-              {
-                "match_id": "S1_M6",
-                "match_number": 6,
-                "match_type": "BYE",
-                "is_solo": true,
-                "is_bye": true,
-                "beat_number": 6,
-                "beat": 6,
-                "beat_id": "EP1",
-                "beat_code": "EP1",
-                "beat_name": "EP1",
-                "river": "Elands Pad",
-                "lower_pin": [
-                  -33.7319,
-                  19.1141
-                ],
-                "mid_pin": [
-                  -33.736,
-                  19.1152
-                ],
-                "upper_pin": [
-                  -33.7405,
-                  19.1162
-                ],
-                "meeting_point": "Junction Pool trail head",
-                "travel_time": 15,
-                "anglers": [
-                  "James"
+                  "Ian"
                 ],
                 "stayer": null,
                 "status": "BYE",
@@ -2516,10 +2389,10 @@ export const INITIAL_STATE = {
                 "meeting_point": "Tunnel East Portal Parking / Junction Path",
                 "travel_time": 15,
                 "anglers": [
-                  "Barry",
-                  "Garth"
+                  "Daniel",
+                  "Dale"
                 ],
-                "stayer": "Garth",
+                "stayer": "Daniel",
                 "status": "UNREPORTED",
                 "submissions": {},
                 "official_scores": {},
@@ -2553,9 +2426,9 @@ export const INITIAL_STATE = {
                 "travel_time": 15,
                 "anglers": [
                   "Dylan",
-                  "Ian"
+                  "James"
                 ],
-                "stayer": "Ian",
+                "stayer": "James",
                 "status": "UNREPORTED",
                 "submissions": {},
                 "official_scores": {},
@@ -2588,10 +2461,10 @@ export const INITIAL_STATE = {
                 "meeting_point": "N1 emergency telephone layby 3",
                 "travel_time": 15,
                 "anglers": [
-                  "James",
-                  "Dale"
+                  "Ryan",
+                  "Ian"
                 ],
-                "stayer": "Dale",
+                "stayer": null,
                 "status": "UNREPORTED",
                 "submissions": {},
                 "official_scores": {},
@@ -2605,78 +2478,6 @@ export const INITIAL_STATE = {
                 "is_bye": false,
                 "beat_number": 4,
                 "beat": 4,
-                "beat_id": "SB(HOTEL)",
-                "beat_code": "SB(HOTEL)",
-                "beat_name": "SB(HOTEL)",
-                "river": "Small Blaar",
-                "lower_pin": [
-                  -33.7125,
-                  19.18
-                ],
-                "mid_pin": [
-                  -33.7138,
-                  19.177
-                ],
-                "upper_pin": [
-                  -33.715,
-                  19.174
-                ],
-                "meeting_point": "Du Kloof Lodge guest parking",
-                "travel_time": 15,
-                "anglers": [
-                  "Ryan",
-                  "Daniel"
-                ],
-                "stayer": null,
-                "status": "UNREPORTED",
-                "submissions": {},
-                "official_scores": {},
-                "calculated_points": {}
-              },
-              {
-                "match_id": "S2_M5",
-                "match_number": 5,
-                "match_type": "1v1",
-                "is_solo": false,
-                "is_bye": false,
-                "beat_number": 5,
-                "beat": 5,
-                "beat_id": "SB1",
-                "beat_code": "SB1",
-                "beat_name": "SB1",
-                "river": "Small Blaar",
-                "lower_pin": [
-                  -33.715,
-                  19.174
-                ],
-                "mid_pin": [
-                  -33.717,
-                  19.17
-                ],
-                "upper_pin": [
-                  -33.719,
-                  19.1655
-                ],
-                "meeting_point": "Picnic site pull-off",
-                "travel_time": 15,
-                "anglers": [
-                  "Michelle",
-                  "Malcolm"
-                ],
-                "stayer": null,
-                "status": "UNREPORTED",
-                "submissions": {},
-                "official_scores": {},
-                "calculated_points": {}
-              },
-              {
-                "match_id": "S2_M6",
-                "match_number": 6,
-                "match_type": "BYE",
-                "is_solo": true,
-                "is_bye": true,
-                "beat_number": 6,
-                "beat": 6,
                 "beat_id": "SB2",
                 "beat_code": "SB2",
                 "beat_name": "SB2",
@@ -2696,7 +2497,79 @@ export const INITIAL_STATE = {
                 "meeting_point": "Picnic site parking",
                 "travel_time": 15,
                 "anglers": [
+                  "Michelle",
                   "Garrett"
+                ],
+                "stayer": "Michelle",
+                "status": "UNREPORTED",
+                "submissions": {},
+                "official_scores": {},
+                "calculated_points": {}
+              },
+              {
+                "match_id": "S2_M5",
+                "match_number": 5,
+                "match_type": "1v1",
+                "is_solo": false,
+                "is_bye": false,
+                "beat_number": 5,
+                "beat": 5,
+                "beat_id": "SB(HOTEL)",
+                "beat_code": "SB(HOTEL)",
+                "beat_name": "SB(HOTEL)",
+                "river": "Small Blaar",
+                "lower_pin": [
+                  -33.7125,
+                  19.18
+                ],
+                "mid_pin": [
+                  -33.7138,
+                  19.177
+                ],
+                "upper_pin": [
+                  -33.715,
+                  19.174
+                ],
+                "meeting_point": "Du Kloof Lodge guest parking",
+                "travel_time": 15,
+                "anglers": [
+                  "Barry",
+                  "Garth"
+                ],
+                "stayer": null,
+                "status": "UNREPORTED",
+                "submissions": {},
+                "official_scores": {},
+                "calculated_points": {}
+              },
+              {
+                "match_id": "S2_M6",
+                "match_number": 6,
+                "match_type": "BYE",
+                "is_solo": true,
+                "is_bye": true,
+                "beat_number": 6,
+                "beat": 6,
+                "beat_id": "SB1",
+                "beat_code": "SB1",
+                "beat_name": "SB1",
+                "river": "Small Blaar",
+                "lower_pin": [
+                  -33.715,
+                  19.174
+                ],
+                "mid_pin": [
+                  -33.717,
+                  19.17
+                ],
+                "upper_pin": [
+                  -33.719,
+                  19.1655
+                ],
+                "meeting_point": "Picnic site pull-off",
+                "travel_time": 15,
+                "anglers": [
+                  "Malcolm"
                 ],
                 "stayer": null,
                 "status": "BYE",
@@ -2743,7 +2616,7 @@ export const INITIAL_STATE = {
                 "meeting_point": "Tunnel East Portal Parking / Junction Path",
                 "travel_time": 15,
                 "anglers": [
-                  "James",
+                  "Garrett",
                   "Barry"
                 ],
                 "stayer": null,
@@ -2779,8 +2652,8 @@ export const INITIAL_STATE = {
                 "meeting_point": "CPS Elandspad parking lot",
                 "travel_time": 15,
                 "anglers": [
-                  "Daniel",
-                  "Garth"
+                  "Michelle",
+                  "Dale"
                 ],
                 "stayer": null,
                 "status": "UNREPORTED",
@@ -2815,8 +2688,8 @@ export const INITIAL_STATE = {
                 "meeting_point": "N1 emergency telephone layby 3",
                 "travel_time": 15,
                 "anglers": [
-                  "Dylan",
-                  "Dale"
+                  "Garth",
+                  "Ian"
                 ],
                 "stayer": null,
                 "status": "UNREPORTED",
@@ -2832,6 +2705,42 @@ export const INITIAL_STATE = {
                 "is_bye": false,
                 "beat_number": 4,
                 "beat": 4,
+                "beat_id": "SB2",
+                "beat_code": "SB2",
+                "beat_name": "SB2",
+                "river": "Small Blaar",
+                "lower_pin": [
+                  -33.719,
+                  19.1655
+                ],
+                "mid_pin": [
+                  -33.7212,
+                  19.159
+                ],
+                "upper_pin": [
+                  -33.7235,
+                  19.153
+                ],
+                "meeting_point": "Picnic site parking",
+                "travel_time": 15,
+                "anglers": [
+                  "James",
+                  "Daniel"
+                ],
+                "stayer": null,
+                "status": "UNREPORTED",
+                "submissions": {},
+                "official_scores": {},
+                "calculated_points": {}
+              },
+              {
+                "match_id": "S3_M5",
+                "match_number": 5,
+                "match_type": "1v1",
+                "is_solo": false,
+                "is_bye": false,
+                "beat_number": 5,
+                "beat": 5,
                 "beat_id": "EP2",
                 "beat_code": "EP2",
                 "beat_name": "EP2",
@@ -2851,8 +2760,8 @@ export const INITIAL_STATE = {
                 "meeting_point": "Fisherman's Cave trail",
                 "travel_time": 30,
                 "anglers": [
-                  "Ryan",
-                  "Garrett"
+                  "Malcolm",
+                  "Dylan"
                 ],
                 "stayer": null,
                 "status": "UNREPORTED",
@@ -2861,13 +2770,13 @@ export const INITIAL_STATE = {
                 "calculated_points": {}
               },
               {
-                "match_id": "S3_M5",
-                "match_number": 5,
-                "match_type": "1v1",
-                "is_solo": false,
-                "is_bye": false,
-                "beat_number": 5,
-                "beat": 5,
+                "match_id": "S3_M6",
+                "match_number": 6,
+                "match_type": "BYE",
+                "is_solo": true,
+                "is_bye": true,
+                "beat_number": 6,
+                "beat": 6,
                 "beat_id": "EP3",
                 "beat_code": "EP3",
                 "beat_name": "EP3",
@@ -2887,43 +2796,7 @@ export const INITIAL_STATE = {
                 "meeting_point": "Star beat rock shelter",
                 "travel_time": 30,
                 "anglers": [
-                  "Ian",
-                  "Michelle"
-                ],
-                "stayer": null,
-                "status": "UNREPORTED",
-                "submissions": {},
-                "official_scores": {},
-                "calculated_points": {}
-              },
-              {
-                "match_id": "S3_M6",
-                "match_number": 6,
-                "match_type": "BYE",
-                "is_solo": true,
-                "is_bye": true,
-                "beat_number": 6,
-                "beat": 6,
-                "beat_id": "EP1",
-                "beat_code": "EP1",
-                "beat_name": "EP1",
-                "river": "Elands Pad",
-                "lower_pin": [
-                  -33.7319,
-                  19.1141
-                ],
-                "mid_pin": [
-                  -33.736,
-                  19.1152
-                ],
-                "upper_pin": [
-                  -33.7405,
-                  19.1162
-                ],
-                "meeting_point": "Junction Pool trail head",
-                "travel_time": 15,
-                "anglers": [
-                  "Malcolm"
+                  "Ryan"
                 ],
                 "stayer": null,
                 "status": "BYE",
@@ -2970,10 +2843,10 @@ export const INITIAL_STATE = {
                 "meeting_point": "Tunnel East Portal Parking / Junction Path",
                 "travel_time": 15,
                 "anglers": [
-                  "Garrett",
-                  "Barry"
+                  "James",
+                  "Garrett"
                 ],
-                "stayer": "Barry",
+                "stayer": "Garrett",
                 "status": "UNREPORTED",
                 "submissions": {},
                 "official_scores": {},
@@ -3006,10 +2879,10 @@ export const INITIAL_STATE = {
                 "meeting_point": "CPS Elandspad parking lot",
                 "travel_time": 15,
                 "anglers": [
-                  "Michelle",
-                  "Garth"
+                  "Dale",
+                  "Barry"
                 ],
-                "stayer": "Garth",
+                "stayer": "Dale",
                 "status": "UNREPORTED",
                 "submissions": {},
                 "official_scores": {},
@@ -3042,10 +2915,10 @@ export const INITIAL_STATE = {
                 "meeting_point": "N1 emergency telephone layby 3",
                 "travel_time": 15,
                 "anglers": [
-                  "James",
-                  "Dylan"
+                  "Garth",
+                  "Malcolm"
                 ],
-                "stayer": "Dylan",
+                "stayer": "Garth",
                 "status": "UNREPORTED",
                 "submissions": {},
                 "official_scores": {},
@@ -3059,6 +2932,42 @@ export const INITIAL_STATE = {
                 "is_bye": false,
                 "beat_number": 4,
                 "beat": 4,
+                "beat_id": "SB2",
+                "beat_code": "SB2",
+                "beat_name": "SB2",
+                "river": "Small Blaar",
+                "lower_pin": [
+                  -33.719,
+                  19.1655
+                ],
+                "mid_pin": [
+                  -33.7212,
+                  19.159
+                ],
+                "upper_pin": [
+                  -33.7235,
+                  19.153
+                ],
+                "meeting_point": "Picnic site parking",
+                "travel_time": 15,
+                "anglers": [
+                  "Ian",
+                  "Daniel"
+                ],
+                "stayer": "Daniel",
+                "status": "UNREPORTED",
+                "submissions": {},
+                "official_scores": {},
+                "calculated_points": {}
+              },
+              {
+                "match_id": "S4_M5",
+                "match_number": 5,
+                "match_type": "1v1",
+                "is_solo": false,
+                "is_bye": false,
+                "beat_number": 5,
+                "beat": 5,
                 "beat_id": "SB(HOTEL)",
                 "beat_code": "SB(HOTEL)",
                 "beat_name": "SB(HOTEL)",
@@ -3079,7 +2988,7 @@ export const INITIAL_STATE = {
                 "travel_time": 15,
                 "anglers": [
                   "Ryan",
-                  "Malcolm"
+                  "Dylan"
                 ],
                 "stayer": null,
                 "status": "UNREPORTED",
@@ -3088,13 +2997,13 @@ export const INITIAL_STATE = {
                 "calculated_points": {}
               },
               {
-                "match_id": "S4_M5",
-                "match_number": 5,
+                "match_id": "S4_M6",
+                "match_number": 6,
                 "match_type": "BYE",
                 "is_solo": true,
                 "is_bye": true,
-                "beat_number": 5,
-                "beat": 5,
+                "beat_number": 6,
+                "beat": 6,
                 "beat_id": "SB1",
                 "beat_code": "SB1",
                 "beat_name": "SB1",
@@ -3114,46 +3023,10 @@ export const INITIAL_STATE = {
                 "meeting_point": "Picnic site pull-off",
                 "travel_time": 15,
                 "anglers": [
-                  "Ian"
+                  "Michelle"
                 ],
                 "stayer": null,
                 "status": "BYE",
-                "submissions": {},
-                "official_scores": {},
-                "calculated_points": {}
-              },
-              {
-                "match_id": "S4_M6",
-                "match_number": 6,
-                "match_type": "1v1",
-                "is_solo": false,
-                "is_bye": false,
-                "beat_number": 6,
-                "beat": 6,
-                "beat_id": "SB2",
-                "beat_code": "SB2",
-                "beat_name": "SB2",
-                "river": "Small Blaar",
-                "lower_pin": [
-                  -33.719,
-                  19.1655
-                ],
-                "mid_pin": [
-                  -33.7212,
-                  19.159
-                ],
-                "upper_pin": [
-                  -33.7235,
-                  19.153
-                ],
-                "meeting_point": "Picnic site parking",
-                "travel_time": 15,
-                "anglers": [
-                  "Dale",
-                  "Daniel"
-                ],
-                "stayer": null,
-                "status": "UNREPORTED",
                 "submissions": {},
                 "official_scores": {},
                 "calculated_points": {}
@@ -3647,33 +3520,6 @@ export const INITIAL_STATE = {
             "travel_time": 15
           },
           {
-            "id": "EP1",
-            "code": "EP1",
-            "name": "EP1",
-            "river": "Elands Pad",
-            "enabled": true,
-            "sat_available": true,
-            "sat_sessions": 2,
-            "sun_available": true,
-            "sun_sessions": 2,
-            "usage_mode": "double",
-            "lower_pin": [
-              -33.7319,
-              19.1141
-            ],
-            "mid_pin": [
-              -33.736,
-              19.1152
-            ],
-            "upper_pin": [
-              -33.7405,
-              19.1162
-            ],
-            "meeting_point": "Junction Pool trail head",
-            "notes": "Kloof canyon stream, crystal clear water with pocket pools.",
-            "travel_time": 15
-          },
-          {
             "id": "EP2",
             "code": "EP2",
             "name": "EP2",
@@ -3725,33 +3571,6 @@ export const INITIAL_STATE = {
             ],
             "meeting_point": "Star beat rock shelter",
             "notes": "Wild upper canyon gorge with deep plunge pools. Sensitive upper beat.",
-            "travel_time": 30
-          },
-          {
-            "id": "EP4",
-            "code": "EP4",
-            "name": "EP4",
-            "river": "Elands Pad",
-            "enabled": true,
-            "sat_available": true,
-            "sat_sessions": 1,
-            "sun_available": true,
-            "sun_sessions": 1,
-            "usage_mode": "single",
-            "lower_pin": [
-              -33.761,
-              19.1205
-            ],
-            "mid_pin": [
-              -33.765,
-              19.1212
-            ],
-            "upper_pin": [
-              -33.769,
-              19.122
-            ],
-            "meeting_point": "Kraalstroom trail / Upper gorge",
-            "notes": "Upper cascades and remote gorge.",
             "travel_time": 30
           },
           {
@@ -3830,27 +3649,6 @@ export const INITIAL_STATE = {
             ],
             "meeting_point": "Tunnel East Portal Parking / Junction Path",
             "notes": "Upper Smalblaar beat from Junction pool up to tunnel weir."
-          },
-          {
-            "id": "EP1",
-            "code": "EP1",
-            "name": "Elandspad 1 (EP1)",
-            "river": "Elands Pad",
-            "enabled": true,
-            "lower_pin": [
-              -33.7319,
-              19.1141
-            ],
-            "upper_pin": [
-              -33.7405,
-              19.1162
-            ],
-            "mid_pin": [
-              -33.736,
-              19.1152
-            ],
-            "meeting_point": "Junction Pool trail head",
-            "notes": "Kloof canyon stream, crystal clear water with pocket pools."
           },
           {
             "id": "Transport",
@@ -3967,8 +3765,8 @@ export const INITIAL_STATE = {
                 "meeting_point": "Tunnel East Portal Parking / Junction Path",
                 "travel_time": 15,
                 "anglers": [
-                  "Dale",
-                  "Daniel"
+                  "James",
+                  "Barry"
                 ],
                 "stayer": null,
                 "status": "UNREPORTED",
@@ -4003,8 +3801,8 @@ export const INITIAL_STATE = {
                 "meeting_point": "CPS Elandspad parking lot",
                 "travel_time": 15,
                 "anglers": [
-                  "Ian",
-                  "Barry"
+                  "Malcolm",
+                  "Daniel"
                 ],
                 "stayer": null,
                 "status": "UNREPORTED",
@@ -4039,8 +3837,8 @@ export const INITIAL_STATE = {
                 "meeting_point": "N1 emergency telephone layby 3",
                 "travel_time": 15,
                 "anglers": [
-                  "Michelle",
-                  "Garth"
+                  "Garth",
+                  "Dale"
                 ],
                 "stayer": null,
                 "status": "UNREPORTED",
@@ -4056,6 +3854,42 @@ export const INITIAL_STATE = {
                 "is_bye": false,
                 "beat_number": 4,
                 "beat": 4,
+                "beat_id": "SB2",
+                "beat_code": "SB2",
+                "beat_name": "SB2",
+                "river": "Small Blaar",
+                "lower_pin": [
+                  -33.719,
+                  19.1655
+                ],
+                "mid_pin": [
+                  -33.7212,
+                  19.159
+                ],
+                "upper_pin": [
+                  -33.7235,
+                  19.153
+                ],
+                "meeting_point": "Picnic site parking",
+                "travel_time": 15,
+                "anglers": [
+                  "Ryan",
+                  "Dylan"
+                ],
+                "stayer": null,
+                "status": "UNREPORTED",
+                "submissions": {},
+                "official_scores": {},
+                "calculated_points": {}
+              },
+              {
+                "match_id": "S1_M5",
+                "match_number": 5,
+                "match_type": "1v1",
+                "is_solo": false,
+                "is_bye": false,
+                "beat_number": 5,
+                "beat": 5,
                 "beat_id": "EP2",
                 "beat_code": "EP2",
                 "beat_name": "EP2",
@@ -4075,8 +3909,8 @@ export const INITIAL_STATE = {
                 "meeting_point": "Fisherman's Cave trail",
                 "travel_time": 30,
                 "anglers": [
-                  "Garrett",
-                  "Malcolm"
+                  "Michelle",
+                  "Garrett"
                 ],
                 "stayer": null,
                 "status": "UNREPORTED",
@@ -4085,13 +3919,13 @@ export const INITIAL_STATE = {
                 "calculated_points": {}
               },
               {
-                "match_id": "S1_M5",
-                "match_number": 5,
-                "match_type": "1v1",
-                "is_solo": false,
-                "is_bye": false,
-                "beat_number": 5,
-                "beat": 5,
+                "match_id": "S1_M6",
+                "match_number": 6,
+                "match_type": "BYE",
+                "is_solo": true,
+                "is_bye": true,
+                "beat_number": 6,
+                "beat": 6,
                 "beat_id": "EP3",
                 "beat_code": "EP3",
                 "beat_name": "EP3",
@@ -4111,43 +3945,7 @@ export const INITIAL_STATE = {
                 "meeting_point": "Star beat rock shelter",
                 "travel_time": 30,
                 "anglers": [
-                  "James",
-                  "Ryan"
-                ],
-                "stayer": null,
-                "status": "UNREPORTED",
-                "submissions": {},
-                "official_scores": {},
-                "calculated_points": {}
-              },
-              {
-                "match_id": "S1_M6",
-                "match_number": 6,
-                "match_type": "BYE",
-                "is_solo": true,
-                "is_bye": true,
-                "beat_number": 6,
-                "beat": 6,
-                "beat_id": "EP1",
-                "beat_code": "EP1",
-                "beat_name": "EP1",
-                "river": "Elands Pad",
-                "lower_pin": [
-                  -33.7319,
-                  19.1141
-                ],
-                "mid_pin": [
-                  -33.736,
-                  19.1152
-                ],
-                "upper_pin": [
-                  -33.7405,
-                  19.1162
-                ],
-                "meeting_point": "Junction Pool trail head",
-                "travel_time": 15,
-                "anglers": [
-                  "Dylan"
+                  "Ian"
                 ],
                 "stayer": null,
                 "status": "BYE",
@@ -4194,10 +3992,10 @@ export const INITIAL_STATE = {
                 "meeting_point": "Tunnel East Portal Parking / Junction Path",
                 "travel_time": 15,
                 "anglers": [
-                  "Ian",
-                  "Dale"
+                  "James",
+                  "Dylan"
                 ],
-                "stayer": "Dale",
+                "stayer": "James",
                 "status": "UNREPORTED",
                 "submissions": {},
                 "official_scores": {},
@@ -4230,10 +4028,10 @@ export const INITIAL_STATE = {
                 "meeting_point": "CPS Elandspad parking lot",
                 "travel_time": 15,
                 "anglers": [
-                  "Daniel",
-                  "Barry"
+                  "Malcolm",
+                  "Garth"
                 ],
-                "stayer": "Barry",
+                "stayer": "Malcolm",
                 "status": "UNREPORTED",
                 "submissions": {},
                 "official_scores": {},
@@ -4266,10 +4064,10 @@ export const INITIAL_STATE = {
                 "meeting_point": "N1 emergency telephone layby 3",
                 "travel_time": 15,
                 "anglers": [
-                  "Ryan",
-                  "Michelle"
+                  "Dale",
+                  "Barry"
                 ],
-                "stayer": "Michelle",
+                "stayer": "Dale",
                 "status": "UNREPORTED",
                 "submissions": {},
                 "official_scores": {},
@@ -4283,78 +4081,6 @@ export const INITIAL_STATE = {
                 "is_bye": false,
                 "beat_number": 4,
                 "beat": 4,
-                "beat_id": "SB(HOTEL)",
-                "beat_code": "SB(HOTEL)",
-                "beat_name": "SB(HOTEL)",
-                "river": "Small Blaar",
-                "lower_pin": [
-                  -33.7125,
-                  19.18
-                ],
-                "mid_pin": [
-                  -33.7138,
-                  19.177
-                ],
-                "upper_pin": [
-                  -33.715,
-                  19.174
-                ],
-                "meeting_point": "Du Kloof Lodge guest parking",
-                "travel_time": 15,
-                "anglers": [
-                  "Malcolm",
-                  "Garth"
-                ],
-                "stayer": null,
-                "status": "UNREPORTED",
-                "submissions": {},
-                "official_scores": {},
-                "calculated_points": {}
-              },
-              {
-                "match_id": "S2_M5",
-                "match_number": 5,
-                "match_type": "1v1",
-                "is_solo": false,
-                "is_bye": false,
-                "beat_number": 5,
-                "beat": 5,
-                "beat_id": "SB1",
-                "beat_code": "SB1",
-                "beat_name": "SB1",
-                "river": "Small Blaar",
-                "lower_pin": [
-                  -33.715,
-                  19.174
-                ],
-                "mid_pin": [
-                  -33.717,
-                  19.17
-                ],
-                "upper_pin": [
-                  -33.719,
-                  19.1655
-                ],
-                "meeting_point": "Picnic site pull-off",
-                "travel_time": 15,
-                "anglers": [
-                  "Garrett",
-                  "Dylan"
-                ],
-                "stayer": null,
-                "status": "UNREPORTED",
-                "submissions": {},
-                "official_scores": {},
-                "calculated_points": {}
-              },
-              {
-                "match_id": "S2_M6",
-                "match_number": 6,
-                "match_type": "BYE",
-                "is_solo": true,
-                "is_bye": true,
-                "beat_number": 6,
-                "beat": 6,
                 "beat_id": "SB2",
                 "beat_code": "SB2",
                 "beat_name": "SB2",
@@ -4374,7 +4100,79 @@ export const INITIAL_STATE = {
                 "meeting_point": "Picnic site parking",
                 "travel_time": 15,
                 "anglers": [
-                  "James"
+                  "Ryan",
+                  "Daniel"
+                ],
+                "stayer": "Ryan",
+                "status": "UNREPORTED",
+                "submissions": {},
+                "official_scores": {},
+                "calculated_points": {}
+              },
+              {
+                "match_id": "S2_M5",
+                "match_number": 5,
+                "match_type": "1v1",
+                "is_solo": false,
+                "is_bye": false,
+                "beat_number": 5,
+                "beat": 5,
+                "beat_id": "SB(HOTEL)",
+                "beat_code": "SB(HOTEL)",
+                "beat_name": "SB(HOTEL)",
+                "river": "Small Blaar",
+                "lower_pin": [
+                  -33.7125,
+                  19.18
+                ],
+                "mid_pin": [
+                  -33.7138,
+                  19.177
+                ],
+                "upper_pin": [
+                  -33.715,
+                  19.174
+                ],
+                "meeting_point": "Du Kloof Lodge guest parking",
+                "travel_time": 15,
+                "anglers": [
+                  "Ian",
+                  "Michelle"
+                ],
+                "stayer": null,
+                "status": "UNREPORTED",
+                "submissions": {},
+                "official_scores": {},
+                "calculated_points": {}
+              },
+              {
+                "match_id": "S2_M6",
+                "match_number": 6,
+                "match_type": "BYE",
+                "is_solo": true,
+                "is_bye": true,
+                "beat_number": 6,
+                "beat": 6,
+                "beat_id": "SB1",
+                "beat_code": "SB1",
+                "beat_name": "SB1",
+                "river": "Small Blaar",
+                "lower_pin": [
+                  -33.715,
+                  19.174
+                ],
+                "mid_pin": [
+                  -33.717,
+                  19.17
+                ],
+                "upper_pin": [
+                  -33.719,
+                  19.1655
+                ],
+                "meeting_point": "Picnic site pull-off",
+                "travel_time": 15,
+                "anglers": [
+                  "Garrett"
                 ],
                 "stayer": null,
                 "status": "BYE",
@@ -4421,8 +4219,8 @@ export const INITIAL_STATE = {
                 "meeting_point": "Tunnel East Portal Parking / Junction Path",
                 "travel_time": 15,
                 "anglers": [
-                  "James",
-                  "Barry"
+                  "Ian",
+                  "Dale"
                 ],
                 "stayer": null,
                 "status": "UNREPORTED",
@@ -4457,8 +4255,8 @@ export const INITIAL_STATE = {
                 "meeting_point": "CPS Elandspad parking lot",
                 "travel_time": 15,
                 "anglers": [
-                  "Garth",
-                  "Dale"
+                  "Ryan",
+                  "Barry"
                 ],
                 "stayer": null,
                 "status": "UNREPORTED",
@@ -4493,8 +4291,8 @@ export const INITIAL_STATE = {
                 "meeting_point": "N1 emergency telephone layby 3",
                 "travel_time": 15,
                 "anglers": [
-                  "Ian",
-                  "Michelle"
+                  "Daniel",
+                  "Garth"
                 ],
                 "stayer": null,
                 "status": "UNREPORTED",
@@ -4510,6 +4308,42 @@ export const INITIAL_STATE = {
                 "is_bye": false,
                 "beat_number": 4,
                 "beat": 4,
+                "beat_id": "SB2",
+                "beat_code": "SB2",
+                "beat_name": "SB2",
+                "river": "Small Blaar",
+                "lower_pin": [
+                  -33.719,
+                  19.1655
+                ],
+                "mid_pin": [
+                  -33.7212,
+                  19.159
+                ],
+                "upper_pin": [
+                  -33.7235,
+                  19.153
+                ],
+                "meeting_point": "Picnic site parking",
+                "travel_time": 15,
+                "anglers": [
+                  "James",
+                  "Garrett"
+                ],
+                "stayer": null,
+                "status": "UNREPORTED",
+                "submissions": {},
+                "official_scores": {},
+                "calculated_points": {}
+              },
+              {
+                "match_id": "S3_M5",
+                "match_number": 5,
+                "match_type": "1v1",
+                "is_solo": false,
+                "is_bye": false,
+                "beat_number": 5,
+                "beat": 5,
                 "beat_id": "EP2",
                 "beat_code": "EP2",
                 "beat_name": "EP2",
@@ -4529,8 +4363,8 @@ export const INITIAL_STATE = {
                 "meeting_point": "Fisherman's Cave trail",
                 "travel_time": 30,
                 "anglers": [
-                  "Dylan",
-                  "Malcolm"
+                  "Malcolm",
+                  "Dylan"
                 ],
                 "stayer": null,
                 "status": "UNREPORTED",
@@ -4539,13 +4373,13 @@ export const INITIAL_STATE = {
                 "calculated_points": {}
               },
               {
-                "match_id": "S3_M5",
-                "match_number": 5,
-                "match_type": "1v1",
-                "is_solo": false,
-                "is_bye": false,
-                "beat_number": 5,
-                "beat": 5,
+                "match_id": "S3_M6",
+                "match_number": 6,
+                "match_type": "BYE",
+                "is_solo": true,
+                "is_bye": true,
+                "beat_number": 6,
+                "beat": 6,
                 "beat_id": "EP3",
                 "beat_code": "EP3",
                 "beat_name": "EP3",
@@ -4565,43 +4399,7 @@ export const INITIAL_STATE = {
                 "meeting_point": "Star beat rock shelter",
                 "travel_time": 30,
                 "anglers": [
-                  "Garrett",
-                  "Daniel"
-                ],
-                "stayer": null,
-                "status": "UNREPORTED",
-                "submissions": {},
-                "official_scores": {},
-                "calculated_points": {}
-              },
-              {
-                "match_id": "S3_M6",
-                "match_number": 6,
-                "match_type": "BYE",
-                "is_solo": true,
-                "is_bye": true,
-                "beat_number": 6,
-                "beat": 6,
-                "beat_id": "EP1",
-                "beat_code": "EP1",
-                "beat_name": "EP1",
-                "river": "Elands Pad",
-                "lower_pin": [
-                  -33.7319,
-                  19.1141
-                ],
-                "mid_pin": [
-                  -33.736,
-                  19.1152
-                ],
-                "upper_pin": [
-                  -33.7405,
-                  19.1162
-                ],
-                "meeting_point": "Junction Pool trail head",
-                "travel_time": 15,
-                "anglers": [
-                  "Ryan"
+                  "Michelle"
                 ],
                 "stayer": null,
                 "status": "BYE",
@@ -4648,10 +4446,10 @@ export const INITIAL_STATE = {
                 "meeting_point": "Tunnel East Portal Parking / Junction Path",
                 "travel_time": 15,
                 "anglers": [
-                  "James",
-                  "Daniel"
+                  "Michelle",
+                  "Dale"
                 ],
-                "stayer": "James",
+                "stayer": "Dale",
                 "status": "UNREPORTED",
                 "submissions": {},
                 "official_scores": {},
@@ -4684,10 +4482,10 @@ export const INITIAL_STATE = {
                 "meeting_point": "CPS Elandspad parking lot",
                 "travel_time": 15,
                 "anglers": [
-                  "Barry",
-                  "Garth"
+                  "Ryan",
+                  "Ian"
                 ],
-                "stayer": "Garth",
+                "stayer": "Ryan",
                 "status": "UNREPORTED",
                 "submissions": {},
                 "official_scores": {},
@@ -4720,10 +4518,10 @@ export const INITIAL_STATE = {
                 "meeting_point": "N1 emergency telephone layby 3",
                 "travel_time": 15,
                 "anglers": [
-                  "Ian",
-                  "Malcolm"
+                  "Daniel",
+                  "Barry"
                 ],
-                "stayer": "Ian",
+                "stayer": "Daniel",
                 "status": "UNREPORTED",
                 "submissions": {},
                 "official_scores": {},
@@ -4737,77 +4535,6 @@ export const INITIAL_STATE = {
                 "is_bye": false,
                 "beat_number": 4,
                 "beat": 4,
-                "beat_id": "SB(HOTEL)",
-                "beat_code": "SB(HOTEL)",
-                "beat_name": "SB(HOTEL)",
-                "river": "Small Blaar",
-                "lower_pin": [
-                  -33.7125,
-                  19.18
-                ],
-                "mid_pin": [
-                  -33.7138,
-                  19.177
-                ],
-                "upper_pin": [
-                  -33.715,
-                  19.174
-                ],
-                "meeting_point": "Du Kloof Lodge guest parking",
-                "travel_time": 15,
-                "anglers": [
-                  "Michelle",
-                  "Dylan"
-                ],
-                "stayer": null,
-                "status": "UNREPORTED",
-                "submissions": {},
-                "official_scores": {},
-                "calculated_points": {}
-              },
-              {
-                "match_id": "S4_M5",
-                "match_number": 5,
-                "match_type": "BYE",
-                "is_solo": true,
-                "is_bye": true,
-                "beat_number": 5,
-                "beat": 5,
-                "beat_id": "SB1",
-                "beat_code": "SB1",
-                "beat_name": "SB1",
-                "river": "Small Blaar",
-                "lower_pin": [
-                  -33.715,
-                  19.174
-                ],
-                "mid_pin": [
-                  -33.717,
-                  19.17
-                ],
-                "upper_pin": [
-                  -33.719,
-                  19.1655
-                ],
-                "meeting_point": "Picnic site pull-off",
-                "travel_time": 15,
-                "anglers": [
-                  "Garrett"
-                ],
-                "stayer": null,
-                "status": "BYE",
-                "submissions": {},
-                "official_scores": {},
-                "calculated_points": {}
-              },
-              {
-                "match_id": "S4_M6",
-                "match_number": 6,
-                "match_type": "1v1",
-                "is_solo": false,
-                "is_bye": false,
-                "beat_number": 6,
-                "beat": 6,
                 "beat_id": "SB2",
                 "beat_code": "SB2",
                 "beat_name": "SB2",
@@ -4827,8 +4554,79 @@ export const INITIAL_STATE = {
                 "meeting_point": "Picnic site parking",
                 "travel_time": 15,
                 "anglers": [
-                  "Dale",
-                  "Ryan"
+                  "James",
+                  "Malcolm"
+                ],
+                "stayer": "James",
+                "status": "UNREPORTED",
+                "submissions": {},
+                "official_scores": {},
+                "calculated_points": {}
+              },
+              {
+                "match_id": "S4_M5",
+                "match_number": 5,
+                "match_type": "BYE",
+                "is_solo": true,
+                "is_bye": true,
+                "beat_number": 5,
+                "beat": 5,
+                "beat_id": "SB(HOTEL)",
+                "beat_code": "SB(HOTEL)",
+                "beat_name": "SB(HOTEL)",
+                "river": "Small Blaar",
+                "lower_pin": [
+                  -33.7125,
+                  19.18
+                ],
+                "mid_pin": [
+                  -33.7138,
+                  19.177
+                ],
+                "upper_pin": [
+                  -33.715,
+                  19.174
+                ],
+                "meeting_point": "Du Kloof Lodge guest parking",
+                "travel_time": 15,
+                "anglers": [
+                  "Dylan"
+                ],
+                "stayer": null,
+                "status": "BYE",
+                "submissions": {},
+                "official_scores": {},
+                "calculated_points": {}
+              },
+              {
+                "match_id": "S4_M6",
+                "match_number": 6,
+                "match_type": "1v1",
+                "is_solo": false,
+                "is_bye": false,
+                "beat_number": 6,
+                "beat": 6,
+                "beat_id": "SB1",
+                "beat_code": "SB1",
+                "beat_name": "SB1",
+                "river": "Small Blaar",
+                "lower_pin": [
+                  -33.715,
+                  19.174
+                ],
+                "mid_pin": [
+                  -33.717,
+                  19.17
+                ],
+                "upper_pin": [
+                  -33.719,
+                  19.1655
+                ],
+                "meeting_point": "Picnic site pull-off",
+                "travel_time": 15,
+                "anglers": [
+                  "Garth",
+                  "Garrett"
                 ],
                 "stayer": null,
                 "status": "UNREPORTED",
@@ -5308,32 +5106,6 @@ export const INITIAL_STATE = {
       "travel_time": 15
     },
     {
-      "id": "EP1",
-      "code": "EP1",
-      "name": "EP1",
-      "river": "Elands Pad",
-      "enabled": true,
-      "sat_available": true,
-      "sat_sessions": 2,
-      "sun_available": true,
-      "sun_sessions": 2,
-      "usage_mode": "double",
-      "lower_pin": [
-        -33.7319,
-        19.1141
-      ],
-      "mid_pin": [
-        -33.736,
-        19.1152
-      ],
-      "upper_pin": [
-        -33.7405,
-        19.1162
-      ],
-      "meeting_point": "Junction Pool trail head",
-      "travel_time": 15
-    },
-    {
       "id": "EP2",
       "code": "EP2",
       "name": "EP2",
@@ -5383,32 +5155,6 @@ export const INITIAL_STATE = {
         19.1205
       ],
       "meeting_point": "Star beat rock shelter",
-      "travel_time": 30
-    },
-    {
-      "id": "EP4",
-      "code": "EP4",
-      "name": "EP4",
-      "river": "Elands Pad",
-      "enabled": true,
-      "sat_available": true,
-      "sat_sessions": 1,
-      "sun_available": true,
-      "sun_sessions": 1,
-      "usage_mode": "single",
-      "lower_pin": [
-        -33.761,
-        19.1205
-      ],
-      "mid_pin": [
-        -33.765,
-        19.1215
-      ],
-      "upper_pin": [
-        -33.77,
-        19.123
-      ],
-      "meeting_point": "Kraalstroom gorge access",
       "travel_time": 30
     },
     {
@@ -5667,8 +5413,8 @@ export const INITIAL_STATE = {
           "meeting_point": "Tunnel East Portal Parking / Junction Path",
           "travel_time": 15,
           "anglers": [
-            "Garth",
-            "Barry"
+            "Dale",
+            "Garth"
           ],
           "stayer": null,
           "status": "UNREPORTED",
@@ -5703,8 +5449,8 @@ export const INITIAL_STATE = {
           "meeting_point": "CPS Elandspad parking lot",
           "travel_time": 15,
           "anglers": [
-            "Michelle",
-            "Dale"
+            "Barry",
+            "Daniel"
           ],
           "stayer": null,
           "status": "UNREPORTED",
@@ -5739,8 +5485,8 @@ export const INITIAL_STATE = {
           "meeting_point": "N1 emergency telephone layby 3",
           "travel_time": 15,
           "anglers": [
-            "James",
-            "Daniel"
+            "Michelle",
+            "Ryan"
           ],
           "stayer": null,
           "status": "UNREPORTED",
@@ -5756,6 +5502,42 @@ export const INITIAL_STATE = {
           "is_bye": false,
           "beat_number": 4,
           "beat": 4,
+          "beat_id": "SB2",
+          "beat_code": "SB2",
+          "beat_name": "SB2",
+          "river": "Small Blaar",
+          "lower_pin": [
+            -33.719,
+            19.1655
+          ],
+          "mid_pin": [
+            -33.7212,
+            19.159
+          ],
+          "upper_pin": [
+            -33.7235,
+            19.153
+          ],
+          "meeting_point": "Picnic site parking",
+          "travel_time": 15,
+          "anglers": [
+            "James",
+            "Dylan"
+          ],
+          "stayer": null,
+          "status": "UNREPORTED",
+          "submissions": {},
+          "official_scores": {},
+          "calculated_points": {}
+        },
+        {
+          "match_id": "S1_M5",
+          "match_number": 5,
+          "match_type": "1v1",
+          "is_solo": false,
+          "is_bye": false,
+          "beat_number": 5,
+          "beat": 5,
           "beat_id": "EP2",
           "beat_code": "EP2",
           "beat_name": "EP2",
@@ -5776,7 +5558,7 @@ export const INITIAL_STATE = {
           "travel_time": 30,
           "anglers": [
             "Malcolm",
-            "Ryan"
+            "Ian"
           ],
           "stayer": null,
           "status": "UNREPORTED",
@@ -5785,13 +5567,13 @@ export const INITIAL_STATE = {
           "calculated_points": {}
         },
         {
-          "match_id": "S1_M5",
-          "match_number": 5,
-          "match_type": "1v1",
-          "is_solo": false,
-          "is_bye": false,
-          "beat_number": 5,
-          "beat": 5,
+          "match_id": "S1_M6",
+          "match_number": 6,
+          "match_type": "BYE",
+          "is_solo": true,
+          "is_bye": true,
+          "beat_number": 6,
+          "beat": 6,
           "beat_id": "EP3",
           "beat_code": "EP3",
           "beat_name": "EP3",
@@ -5810,42 +5592,6 @@ export const INITIAL_STATE = {
           ],
           "meeting_point": "Star beat rock shelter",
           "travel_time": 30,
-          "anglers": [
-            "Ian",
-            "Dylan"
-          ],
-          "stayer": null,
-          "status": "UNREPORTED",
-          "submissions": {},
-          "official_scores": {},
-          "calculated_points": {}
-        },
-        {
-          "match_id": "S1_M6",
-          "match_number": 6,
-          "match_type": "BYE",
-          "is_solo": true,
-          "is_bye": true,
-          "beat_number": 6,
-          "beat": 6,
-          "beat_id": "EP1",
-          "beat_code": "EP1",
-          "beat_name": "EP1",
-          "river": "Elands Pad",
-          "lower_pin": [
-            -33.7319,
-            19.1141
-          ],
-          "mid_pin": [
-            -33.736,
-            19.1152
-          ],
-          "upper_pin": [
-            -33.7405,
-            19.1162
-          ],
-          "meeting_point": "Junction Pool trail head",
-          "travel_time": 15,
           "anglers": [
             "Garrett"
           ],
@@ -5894,8 +5640,8 @@ export const INITIAL_STATE = {
           "meeting_point": "Tunnel East Portal Parking / Junction Path",
           "travel_time": 15,
           "anglers": [
-            "Dylan",
-            "Garth"
+            "Garth",
+            "Ian"
           ],
           "stayer": "Garth",
           "status": "UNREPORTED",
@@ -5930,10 +5676,10 @@ export const INITIAL_STATE = {
           "meeting_point": "CPS Elandspad parking lot",
           "travel_time": 15,
           "anglers": [
-            "Malcolm",
-            "Michelle"
+            "James",
+            "Barry"
           ],
-          "stayer": "Michelle",
+          "stayer": "Barry",
           "status": "UNREPORTED",
           "submissions": {},
           "official_scores": {},
@@ -5966,10 +5712,10 @@ export const INITIAL_STATE = {
           "meeting_point": "N1 emergency telephone layby 3",
           "travel_time": 15,
           "anglers": [
-            "James",
-            "Ryan"
+            "Malcolm",
+            "Michelle"
           ],
-          "stayer": "James",
+          "stayer": "Michelle",
           "status": "UNREPORTED",
           "submissions": {},
           "official_scores": {},
@@ -5983,78 +5729,6 @@ export const INITIAL_STATE = {
           "is_bye": false,
           "beat_number": 4,
           "beat": 4,
-          "beat_id": "SB(HOTEL)",
-          "beat_code": "SB(HOTEL)",
-          "beat_name": "SB(HOTEL)",
-          "river": "Small Blaar",
-          "lower_pin": [
-            -33.7125,
-            19.18
-          ],
-          "mid_pin": [
-            -33.7138,
-            19.177
-          ],
-          "upper_pin": [
-            -33.715,
-            19.174
-          ],
-          "meeting_point": "Du Kloof Lodge guest parking",
-          "travel_time": 15,
-          "anglers": [
-            "Ian",
-            "Daniel"
-          ],
-          "stayer": null,
-          "status": "UNREPORTED",
-          "submissions": {},
-          "official_scores": {},
-          "calculated_points": {}
-        },
-        {
-          "match_id": "S2_M5",
-          "match_number": 5,
-          "match_type": "1v1",
-          "is_solo": false,
-          "is_bye": false,
-          "beat_number": 5,
-          "beat": 5,
-          "beat_id": "SB1",
-          "beat_code": "SB1",
-          "beat_name": "SB1",
-          "river": "Small Blaar",
-          "lower_pin": [
-            -33.715,
-            19.174
-          ],
-          "mid_pin": [
-            -33.717,
-            19.17
-          ],
-          "upper_pin": [
-            -33.719,
-            19.1655
-          ],
-          "meeting_point": "Picnic site pull-off",
-          "travel_time": 15,
-          "anglers": [
-            "Barry",
-            "Dale"
-          ],
-          "stayer": null,
-          "status": "UNREPORTED",
-          "submissions": {},
-          "official_scores": {},
-          "calculated_points": {}
-        },
-        {
-          "match_id": "S2_M6",
-          "match_number": 6,
-          "match_type": "BYE",
-          "is_solo": true,
-          "is_bye": true,
-          "beat_number": 6,
-          "beat": 6,
           "beat_id": "SB2",
           "beat_code": "SB2",
           "beat_name": "SB2",
@@ -6074,10 +5748,82 @@ export const INITIAL_STATE = {
           "meeting_point": "Picnic site parking",
           "travel_time": 15,
           "anglers": [
+            "Ryan",
+            "Dylan"
+          ],
+          "stayer": "Dylan",
+          "status": "UNREPORTED",
+          "submissions": {},
+          "official_scores": {},
+          "calculated_points": {}
+        },
+        {
+          "match_id": "S2_M5",
+          "match_number": 5,
+          "match_type": "BYE",
+          "is_solo": true,
+          "is_bye": true,
+          "beat_number": 5,
+          "beat": 5,
+          "beat_id": "SB(HOTEL)",
+          "beat_code": "SB(HOTEL)",
+          "beat_name": "SB(HOTEL)",
+          "river": "Small Blaar",
+          "lower_pin": [
+            -33.7125,
+            19.18
+          ],
+          "mid_pin": [
+            -33.7138,
+            19.177
+          ],
+          "upper_pin": [
+            -33.715,
+            19.174
+          ],
+          "meeting_point": "Du Kloof Lodge guest parking",
+          "travel_time": 15,
+          "anglers": [
             "Garrett"
           ],
           "stayer": null,
           "status": "BYE",
+          "submissions": {},
+          "official_scores": {},
+          "calculated_points": {}
+        },
+        {
+          "match_id": "S2_M6",
+          "match_number": 6,
+          "match_type": "1v1",
+          "is_solo": false,
+          "is_bye": false,
+          "beat_number": 6,
+          "beat": 6,
+          "beat_id": "SB1",
+          "beat_code": "SB1",
+          "beat_name": "SB1",
+          "river": "Small Blaar",
+          "lower_pin": [
+            -33.715,
+            19.174
+          ],
+          "mid_pin": [
+            -33.717,
+            19.17
+          ],
+          "upper_pin": [
+            -33.719,
+            19.1655
+          ],
+          "meeting_point": "Picnic site pull-off",
+          "travel_time": 15,
+          "anglers": [
+            "Dale",
+            "Daniel"
+          ],
+          "stayer": null,
+          "status": "UNREPORTED",
           "submissions": {},
           "official_scores": {},
           "calculated_points": {}
@@ -6121,8 +5867,8 @@ export const INITIAL_STATE = {
           "meeting_point": "Tunnel East Portal Parking / Junction Path",
           "travel_time": 15,
           "anglers": [
-            "Michelle",
-            "Barry"
+            "Daniel",
+            "Garrett"
           ],
           "stayer": null,
           "status": "UNREPORTED",
@@ -6157,7 +5903,7 @@ export const INITIAL_STATE = {
           "meeting_point": "CPS Elandspad parking lot",
           "travel_time": 15,
           "anglers": [
-            "Daniel",
+            "Dylan",
             "Garth"
           ],
           "stayer": null,
@@ -6193,8 +5939,8 @@ export const INITIAL_STATE = {
           "meeting_point": "N1 emergency telephone layby 3",
           "travel_time": 15,
           "anglers": [
-            "Malcolm",
-            "Dale"
+            "Dale",
+            "Ian"
           ],
           "stayer": null,
           "status": "UNREPORTED",
@@ -6210,6 +5956,42 @@ export const INITIAL_STATE = {
           "is_bye": false,
           "beat_number": 4,
           "beat": 4,
+          "beat_id": "SB2",
+          "beat_code": "SB2",
+          "beat_name": "SB2",
+          "river": "Small Blaar",
+          "lower_pin": [
+            -33.719,
+            19.1655
+          ],
+          "mid_pin": [
+            -33.7212,
+            19.159
+          ],
+          "upper_pin": [
+            -33.7235,
+            19.153
+          ],
+          "meeting_point": "Picnic site parking",
+          "travel_time": 15,
+          "anglers": [
+            "Barry",
+            "Michelle"
+          ],
+          "stayer": null,
+          "status": "UNREPORTED",
+          "submissions": {},
+          "official_scores": {},
+          "calculated_points": {}
+        },
+        {
+          "match_id": "S3_M5",
+          "match_number": 5,
+          "match_type": "1v1",
+          "is_solo": false,
+          "is_bye": false,
+          "beat_number": 5,
+          "beat": 5,
           "beat_id": "EP2",
           "beat_code": "EP2",
           "beat_name": "EP2",
@@ -6229,8 +6011,8 @@ export const INITIAL_STATE = {
           "meeting_point": "Fisherman's Cave trail",
           "travel_time": 30,
           "anglers": [
-            "Ryan",
-            "Ian"
+            "Malcolm",
+            "Ryan"
           ],
           "stayer": null,
           "status": "UNREPORTED",
@@ -6239,13 +6021,13 @@ export const INITIAL_STATE = {
           "calculated_points": {}
         },
         {
-          "match_id": "S3_M5",
-          "match_number": 5,
-          "match_type": "1v1",
-          "is_solo": false,
-          "is_bye": false,
-          "beat_number": 5,
-          "beat": 5,
+          "match_id": "S3_M6",
+          "match_number": 6,
+          "match_type": "BYE",
+          "is_solo": true,
+          "is_bye": true,
+          "beat_number": 6,
+          "beat": 6,
           "beat_id": "EP3",
           "beat_code": "EP3",
           "beat_name": "EP3",
@@ -6264,42 +6046,6 @@ export const INITIAL_STATE = {
           ],
           "meeting_point": "Star beat rock shelter",
           "travel_time": 30,
-          "anglers": [
-            "Garrett",
-            "Dylan"
-          ],
-          "stayer": null,
-          "status": "UNREPORTED",
-          "submissions": {},
-          "official_scores": {},
-          "calculated_points": {}
-        },
-        {
-          "match_id": "S3_M6",
-          "match_number": 6,
-          "match_type": "BYE",
-          "is_solo": true,
-          "is_bye": true,
-          "beat_number": 6,
-          "beat": 6,
-          "beat_id": "EP1",
-          "beat_code": "EP1",
-          "beat_name": "EP1",
-          "river": "Elands Pad",
-          "lower_pin": [
-            -33.7319,
-            19.1141
-          ],
-          "mid_pin": [
-            -33.736,
-            19.1152
-          ],
-          "upper_pin": [
-            -33.7405,
-            19.1162
-          ],
-          "meeting_point": "Junction Pool trail head",
-          "travel_time": 15,
           "anglers": [
             "James"
           ],
@@ -6348,10 +6094,10 @@ export const INITIAL_STATE = {
           "meeting_point": "Tunnel East Portal Parking / Junction Path",
           "travel_time": 15,
           "anglers": [
-            "Michelle",
-            "Dylan"
+            "Daniel",
+            "Ryan"
           ],
-          "stayer": "Michelle",
+          "stayer": "Daniel",
           "status": "UNREPORTED",
           "submissions": {},
           "official_scores": {},
@@ -6384,10 +6130,10 @@ export const INITIAL_STATE = {
           "meeting_point": "CPS Elandspad parking lot",
           "travel_time": 15,
           "anglers": [
-            "Garth",
-            "Ryan"
+            "Garrett",
+            "Dylan"
           ],
-          "stayer": "Garth",
+          "stayer": "Dylan",
           "status": "UNREPORTED",
           "submissions": {},
           "official_scores": {},
@@ -6420,10 +6166,10 @@ export const INITIAL_STATE = {
           "meeting_point": "N1 emergency telephone layby 3",
           "travel_time": 15,
           "anglers": [
-            "Malcolm",
-            "Ian"
+            "Dale",
+            "Malcolm"
           ],
-          "stayer": "Malcolm",
+          "stayer": "Dale",
           "status": "UNREPORTED",
           "submissions": {},
           "official_scores": {},
@@ -6437,78 +6183,6 @@ export const INITIAL_STATE = {
           "is_bye": false,
           "beat_number": 4,
           "beat": 4,
-          "beat_id": "SB(HOTEL)",
-          "beat_code": "SB(HOTEL)",
-          "beat_name": "SB(HOTEL)",
-          "river": "Small Blaar",
-          "lower_pin": [
-            -33.7125,
-            19.18
-          ],
-          "mid_pin": [
-            -33.7138,
-            19.177
-          ],
-          "upper_pin": [
-            -33.715,
-            19.174
-          ],
-          "meeting_point": "Du Kloof Lodge guest parking",
-          "travel_time": 15,
-          "anglers": [
-            "Barry",
-            "Garrett"
-          ],
-          "stayer": null,
-          "status": "UNREPORTED",
-          "submissions": {},
-          "official_scores": {},
-          "calculated_points": {}
-        },
-        {
-          "match_id": "S4_M5",
-          "match_number": 5,
-          "match_type": "1v1",
-          "is_solo": false,
-          "is_bye": false,
-          "beat_number": 5,
-          "beat": 5,
-          "beat_id": "SB1",
-          "beat_code": "SB1",
-          "beat_name": "SB1",
-          "river": "Small Blaar",
-          "lower_pin": [
-            -33.715,
-            19.174
-          ],
-          "mid_pin": [
-            -33.717,
-            19.17
-          ],
-          "upper_pin": [
-            -33.719,
-            19.1655
-          ],
-          "meeting_point": "Picnic site pull-off",
-          "travel_time": 15,
-          "anglers": [
-            "Dale",
-            "Daniel"
-          ],
-          "stayer": null,
-          "status": "UNREPORTED",
-          "submissions": {},
-          "official_scores": {},
-          "calculated_points": {}
-        },
-        {
-          "match_id": "S4_M6",
-          "match_number": 6,
-          "match_type": "BYE",
-          "is_solo": true,
-          "is_bye": true,
-          "beat_number": 6,
-          "beat": 6,
           "beat_id": "SB2",
           "beat_code": "SB2",
           "beat_name": "SB2",
@@ -6528,10 +6202,82 @@ export const INITIAL_STATE = {
           "meeting_point": "Picnic site parking",
           "travel_time": 15,
           "anglers": [
+            "Barry",
+            "Garth"
+          ],
+          "stayer": "Barry",
+          "status": "UNREPORTED",
+          "submissions": {},
+          "official_scores": {},
+          "calculated_points": {}
+        },
+        {
+          "match_id": "S4_M5",
+          "match_number": 5,
+          "match_type": "BYE",
+          "is_solo": true,
+          "is_bye": true,
+          "beat_number": 5,
+          "beat": 5,
+          "beat_id": "SB(HOTEL)",
+          "beat_code": "SB(HOTEL)",
+          "beat_name": "SB(HOTEL)",
+          "river": "Small Blaar",
+          "lower_pin": [
+            -33.7125,
+            19.18
+          ],
+          "mid_pin": [
+            -33.7138,
+            19.177
+          ],
+          "upper_pin": [
+            -33.715,
+            19.174
+          ],
+          "meeting_point": "Du Kloof Lodge guest parking",
+          "travel_time": 15,
+          "anglers": [
             "James"
           ],
           "stayer": null,
           "status": "BYE",
+          "submissions": {},
+          "official_scores": {},
+          "calculated_points": {}
+        },
+        {
+          "match_id": "S4_M6",
+          "match_number": 6,
+          "match_type": "1v1",
+          "is_solo": false,
+          "is_bye": false,
+          "beat_number": 6,
+          "beat": 6,
+          "beat_id": "SB1",
+          "beat_code": "SB1",
+          "beat_name": "SB1",
+          "river": "Small Blaar",
+          "lower_pin": [
+            -33.715,
+            19.174
+          ],
+          "mid_pin": [
+            -33.717,
+            19.17
+          ],
+          "upper_pin": [
+            -33.719,
+            19.1655
+          ],
+          "meeting_point": "Picnic site pull-off",
+          "travel_time": 15,
+          "anglers": [
+            "Ian",
+            "Michelle"
+          ],
+          "stayer": null,
+          "status": "UNREPORTED",
           "submissions": {},
           "official_scores": {},
           "calculated_points": {}

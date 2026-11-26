@@ -1,4 +1,4 @@
-const APP_VERSION = "v2.5.0";
+const APP_VERSION = "v2.5.1";
 /**
  * WP Fly Fishing Trials - Cloudflare Edge Worker
  * Full Edge-native API engine with zero cold starts and instant response times.
@@ -166,15 +166,13 @@ const DEFAULT_CPS_BEATS = [
   { id: "SB6", code: "SB6", name: "SB6", river: "Small Blaar", enabled: true, sat_available: true, sat_sessions: 2, sun_available: true, sun_sessions: 2, usage_mode: "double", travel_time: 15, lower_pin: [-33.7319, 19.1141], mid_pin: [-33.7330, 19.1105], upper_pin: [-33.7342, 19.1065], meeting_point: "Tunnel East Portal Parking / Junction Path" },
   { id: "SB(HOTEL)", code: "SB(HOTEL)", name: "SB(HOTEL)", river: "Small Blaar", enabled: true, sat_available: true, sat_sessions: 1, sun_available: true, sun_sessions: 1, usage_mode: "single", travel_time: 15, lower_pin: [-33.7125, 19.1800], mid_pin: [-33.7138, 19.1770], upper_pin: [-33.7150, 19.1740], meeting_point: "Du Kloof Lodge guest parking" },
   { id: "SB(TRANSPORT)", code: "SB(TRANSPORT)", name: "SB(TRANSPORT)", river: "Small Blaar", enabled: true, sat_available: true, sat_sessions: 2, sun_available: true, sun_sessions: 2, usage_mode: "double", travel_time: 15, lower_pin: [-33.7085, 19.1895], mid_pin: [-33.7105, 19.1845], upper_pin: [-33.7125, 19.1800], meeting_point: "Transport bridge parking" },
-  { id: "EP1", code: "EP1", name: "EP1", river: "Elands Pad", enabled: true, sat_available: true, sat_sessions: 2, sun_available: true, sun_sessions: 2, usage_mode: "double", travel_time: 15, lower_pin: [-33.7319, 19.1141], mid_pin: [-33.7360, 19.1152], upper_pin: [-33.7405, 19.1162], meeting_point: "Junction Pool trail head" },
   { id: "EP2", code: "EP2", name: "EP2", river: "Elands Pad", enabled: true, sat_available: true, sat_sessions: 2, sun_available: true, sun_sessions: 2, usage_mode: "double", travel_time: 30, lower_pin: [-33.7405, 19.1162], mid_pin: [-33.7460, 19.1172], upper_pin: [-33.7520, 19.1188], meeting_point: "Fisherman's Cave trail" },
   { id: "EP3", code: "EP3", name: "EP3", river: "Elands Pad", enabled: true, sat_available: true, sat_sessions: 1, sun_available: true, sun_sessions: 1, usage_mode: "single", travel_time: 30, lower_pin: [-33.7520, 19.1188], mid_pin: [-33.7565, 19.1195], upper_pin: [-33.7610, 19.1205], meeting_point: "Star beat rock shelter" },
-  { id: "EP4", code: "EP4", name: "EP4", river: "Elands Pad", enabled: true, sat_available: true, sat_sessions: 1, sun_available: true, sun_sessions: 1, usage_mode: "single", travel_time: 30, lower_pin: [-33.7610, 19.1205], mid_pin: [-33.7650, 19.1215], upper_pin: [-33.7700, 19.1230], meeting_point: "Kraalstroom gorge access" },
   { id: "MOLENAARS(UPPER)", code: "MOLENAARS(UPPER)", name: "MOLENAARS(UPPER)", river: "Small Blaar", enabled: true, sat_available: true, sat_sessions: 2, sun_available: true, sun_sessions: 2, usage_mode: "double", travel_time: 15, lower_pin: [-33.7040, 19.2000], mid_pin: [-33.7065, 19.1945], upper_pin: [-33.7085, 19.1895], meeting_point: "Upper Molenaars turn-off" },
   { id: "MOLENAARS(LOWER)", code: "MOLENAARS(LOWER)", name: "MOLENAARS(LOWER)", river: "Small Blaar", enabled: true, sat_available: true, sat_sessions: 2, sun_available: true, sun_sessions: 2, usage_mode: "double", travel_time: 15, lower_pin: [-33.6980, 19.2150], mid_pin: [-33.7010, 19.2075], upper_pin: [-33.7040, 19.2000], meeting_point: "Lower Molenaars boundary" }
 ];
 
-function generateEdgeSchedule(anglers, aTeamAnglers = [], availableBeats = [], anglerAvailability = {}) {
+function generateEdgeScheduleInternal(anglers, aTeamAnglers = [], availableBeats = [], anglerAvailability = {}) {
   const N = anglers.length;
   if (N < 2) throw new Error("At least 2 anglers required for fly fishing trials.");
 
@@ -406,13 +404,13 @@ function generateEdgeSchedule(anglers, aTeamAnglers = [], availableBeats = [], a
   const isSb = b => !isEp(b);
 
   // CPS Catch Ranking & River Strategy:
-  // Morning: Elands Pad (EP2, EP3, EP1, EP4) + Upper Small Blaar (SB6, SB5, SB3, SB2, SB1, SB(HOTEL))
+  // Morning: Elands Pad (EP2, EP3) + Upper Small Blaar (SB6, SB5, SB3, SB2, SB1, SB(HOTEL))
   // Afternoon: Best Small Blaar (SB(HOTEL), SB6, SB1, SB3, SB2, SB5, SB4, SB(TRANSPORT))
   const BEAT_PRIORITY_MORNING = [
-    'EP2', 'EP3', 'EP1', 'SB6', 'SB5', 'SB3', 'SB2', 'SB1', 'SB(HOTEL)', 'EP4', 'SB4', 'SB(TRANSPORT)', 'MOLENAARS(UPPER)', 'MOLENAARS(LOWER)'
+    'EP2', 'EP3', 'SB6', 'SB5', 'SB3', 'SB2', 'SB1', 'SB(HOTEL)', 'SB4', 'SB(TRANSPORT)', 'MOLENAARS(UPPER)', 'MOLENAARS(LOWER)'
   ];
   const BEAT_PRIORITY_AFTERNOON = [
-    'SB(HOTEL)', 'SB6', 'SB1', 'SB3', 'SB2', 'SB5', 'SB4', 'SB(TRANSPORT)', 'EP1', 'EP2', 'EP3', 'EP4', 'MOLENAARS(UPPER)', 'MOLENAARS(LOWER)'
+    'SB(HOTEL)', 'SB6', 'SB1', 'SB3', 'SB2', 'SB5', 'SB4', 'SB(TRANSPORT)', 'EP2', 'EP3', 'MOLENAARS(UPPER)', 'MOLENAARS(LOWER)'
   ];
 
   function getPriorityScore(beat, prioList) {
@@ -765,6 +763,42 @@ function generateEdgeSchedule(anglers, aTeamAnglers = [], availableBeats = [], a
     threeWayCounts: finalThreeWayCounts,
     numBeats: maxBeatsNeeded
   };
+}
+
+function generateEdgeSchedule(anglers, aTeamAnglers = [], availableBeats = [], anglerAvailability = {}) {
+  let bestResult = null;
+  for (let cycle = 0; cycle < 50; cycle++) {
+    const sched = generateEdgeScheduleInternal(anglers, aTeamAnglers, availableBeats, anglerAvailability);
+    
+    // Check max beat repeat count across all 4 sessions (Rule: <= 2 times per beat)
+    const counts = {};
+    anglers.forEach(a => { counts[a] = {}; });
+    sched.sessions.forEach(s => {
+      s.matches.forEach(m => {
+        const b = m.beat_code || m.beat_id;
+        m.anglers.forEach(a => {
+          counts[a][b] = (counts[a][b] || 0) + 1;
+        });
+      });
+    });
+
+    let hasViolation = false;
+    for (const a of anglers) {
+      for (const b in counts[a]) {
+        if (counts[a][b] > 2) {
+          hasViolation = true;
+          break;
+        }
+      }
+      if (hasViolation) break;
+    }
+
+    if (!hasViolation) {
+      return sched;
+    }
+    bestResult = sched;
+  }
+  return bestResult;
 }
 
 

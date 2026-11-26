@@ -1,4 +1,4 @@
-const APP_VERSION = "v2.5.0";
+const APP_VERSION = "v2.5.1";
 /**
  * Fly Fishing Trials - Real-Time Frontend Application
  * Handles live polling, dual-submission Google-form verification,
@@ -2016,9 +2016,37 @@ function openParameterAuditModal() {
   }
   const zeroExtremeTransitions = extremeTransitions.length === 0;
 
+  // Parameter 9: Beat Repetition Limit (No angler fishes any beat > 2 times)
+  const anglerBeatCounts = {};
+  anglers.forEach(a => { anglerBeatCounts[a] = {}; });
+  sessions.forEach(s => {
+    (s.matches || []).forEach(m => {
+      const bCode = m.beat_code || m.beat_id;
+      if (bCode) {
+        (m.anglers || []).forEach(a => {
+          if (anglerBeatCounts[a]) {
+            anglerBeatCounts[a][bCode] = (anglerBeatCounts[a][bCode] || 0) + 1;
+          }
+        });
+      }
+    });
+  });
+
+  let maxBeatRepeat = 0;
+  const beatRepeatViolations = [];
+  anglers.forEach(a => {
+    Object.entries(anglerBeatCounts[a] || {}).forEach(([b, c]) => {
+      if (c > maxBeatRepeat) maxBeatRepeat = c;
+      if (c > 2) {
+        beatRepeatViolations.push(`${a} on ${b} (${c}x)`);
+      }
+    });
+  });
+  const isBeatRepeatCompliant = (maxBeatRepeat <= 2);
+
   // Overall status rating
   let statusBadgeHtml = '';
-  if (hasZeroRepeats && aTeamPass && challengersFacingAtLeast1 === challengers.length && beatUsageCompliant) {
+  if (hasZeroRepeats && aTeamPass && challengersFacingAtLeast1 === challengers.length && beatUsageCompliant && isBeatRepeatCompliant) {
     statusBadgeHtml = `<span class="badge badge-success" style="background:#059669; color:#fff; padding:0.4rem 0.8rem; border-radius:20px; font-weight:700;">✅ ALL PARAMETERS SATISFIED (OPTIMAL)</span>`;
   } else if (hasZeroRepeats && challengersFacingAtLeast1 === challengers.length) {
     statusBadgeHtml = `<span class="badge badge-info" style="background:#0284c7; color:#fff; padding:0.4rem 0.8rem; border-radius:20px; font-weight:700;">✓ VALID & ACCEPTABLE FIELD</span>`;
@@ -2320,12 +2348,61 @@ function openParameterAuditModal() {
         <div style="background:rgba(56,189,248,0.1); border:1px solid rgba(56,189,248,0.25); border-radius:6px; padding:0.75rem;">
           <div style="font-weight:700; color:#38bdf8; margin-bottom:0.35rem;">🌊 River Progression:</div>
           <div class="text-xs" style="line-height:1.5;">
-            <div>• <strong>Morning:</strong> Starts on Elandspad (EP1, EP2, EP3) &amp; upper Small Blaar (SB6, SB5, SB3).</div>
+            <div>• <strong>Morning:</strong> Starts on Elandspad (EP2, EP3) &amp; upper Small Blaar (SB6, SB5, SB3).</div>
             <div>• <strong>Afternoon:</strong> Moves onto top Small Blaar beats (SB(HOTEL), SB6, SB1, SB3, SB2, SB5).</div>
             <div>• <strong>Shared Double Beats:</strong> SB6, SB5, SB3 reused with waiting stayers (0m transition).</div>
           </div>
         </div>
       </div>
+    </div>
+
+        <!-- Parameter 9 Card: Beat Repetition Limit (Max 2 Times per Beat) -->
+    <div class="card mb-3" style="background:var(--bg-secondary); border:1px solid var(--border); border-radius:8px; padding:1rem;">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem; flex-wrap:wrap; gap:0.4rem;">
+        <h4 style="margin:0;">9. Beat Repetition Limit (Maximum 2 Times Per Beat)</h4>
+        <span class="status-badge ${isBeatRepeatCompliant ? 'badge-in-session' : 'badge-past'}">
+          ${isBeatRepeatCompliant ? `✅ Passed (Max Repeat: ${maxBeatRepeat}x)` : `❌ Violation (> 2x Detected)`}
+        </span>
+      </div>
+      <p class="text-sm text-muted" style="margin:0 0 0.75rem 0;">
+        Rule: No competitor is permitted to fish the exact same beat more than twice across all 4 sessions (e.g. at most 2 sessions on any beat, such as morning + afternoon stayer).
+      </p>
+      <div class="text-xs mb-2">
+        ${isBeatRepeatCompliant 
+          ? '<span style="color:#10b981; font-weight:700;">✅ Perfect Compliance: Zero anglers exceed the 2-session limit on any beat.</span>'
+          : `<span style="color:#ef4444; font-weight:700;">⚠️ Violations: ${beatRepeatViolations.join(', ')}</span>`
+        }
+      </div>
+      <table class="table text-xs" style="width:100%; border-collapse:collapse;">
+        <thead>
+          <tr style="border-bottom:1px solid var(--border); text-align:left;">
+            <th style="padding:0.35rem;">Angler</th>
+            <th style="padding:0.35rem;">Beats Fished (Sessions Count)</th>
+            <th style="padding:0.35rem;">Max Repeat</th>
+            <th style="padding:0.35rem;">Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${anglers.map(a => {
+            const bMap = anglerBeatCounts[a] || {};
+            const entries = Object.entries(bMap);
+            const aMax = entries.length > 0 ? Math.max(...entries.map(([_, c]) => c)) : 0;
+            const bListStr = entries.map(([b, c]) => `<strong>${escapeHtml(b)}</strong> (${c}x)`).join(', ') || 'None';
+            return `
+              <tr style="border-bottom:1px solid rgba(255,255,255,0.05);">
+                <td style="padding:0.35rem;"><strong>${escapeHtml(a)}</strong></td>
+                <td style="padding:0.35rem;">${bListStr}</td>
+                <td style="padding:0.35rem; font-weight:700; color:${aMax <= 2 ? '#34d399' : '#ef4444'};">${aMax}x</td>
+                <td style="padding:0.35rem;">
+                  ${aMax <= 2 
+                    ? '<span style="color:#10b981; font-weight:600;">✅ Compliant</span>' 
+                    : '<span style="color:#ef4444; font-weight:700;">❌ Exceeds 2x</span>'}
+                </td>
+              </tr>
+            `;
+          }).join('')}
+        </tbody>
+      </table>
     </div>
 
     <!-- Parameter 8 Card: Travel Time & Transition Balance Audit -->
@@ -3360,7 +3437,7 @@ async function openBeatsManagerModal() {
     const res = await fetch('/api/beats');
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     const data = await res.json();
-    currentEditingBeatsList = data.beats || (tournamentState && tournamentState.beats) || [];
+    currentEditingBeatsList = (data.beats || (tournamentState && tournamentState.beats) || []).filter(b => (b.id !== 'EP1' && b.id !== 'EP4' && b.code !== 'EP1' && b.code !== 'EP4'));
     renderBeatsManagerTable();
   } catch (err) {
     if (tournamentState && tournamentState.beats && tournamentState.beats.length > 0) {

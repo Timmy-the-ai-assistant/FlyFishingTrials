@@ -153,24 +153,6 @@ CPS_BEATS_DATA: List[Dict[str, Any]] = [
         "notes": "Upper section of Molenaars Transport reserve."
     },
     {
-        "id": "EP1",
-        "code": "EP1",
-        "name": "EP1",
-        "river": "Elands Pad",
-        "enabled": True,
-        "sat_available": True,
-        "sat_sessions": 2,
-        "sun_available": True,
-        "sun_sessions": 2,
-        "usage_mode": "double",
-        "travel_time": 15,
-        "lower_pin": [-33.7319, 19.1141],
-        "mid_pin": [-33.7360, 19.1152],
-        "upper_pin": [-33.7405, 19.1162],
-        "meeting_point": "Junction Pool trail head",
-        "notes": "Kloof canyon stream, crystal clear water with pocket pools."
-    },
-    {
         "id": "EP2",
         "code": "EP2",
         "name": "EP2",
@@ -205,24 +187,6 @@ CPS_BEATS_DATA: List[Dict[str, Any]] = [
         "upper_pin": [-33.7610, 19.1205],
         "meeting_point": "Star beat rock shelter",
         "notes": "Wild upper canyon gorge with deep plunge pools. Sensitive upper beat."
-    },
-    {
-        "id": "EP4",
-        "code": "EP4",
-        "name": "EP4",
-        "river": "Elands Pad",
-        "enabled": True,
-        "sat_available": True,
-        "sat_sessions": 1,
-        "sun_available": True,
-        "sun_sessions": 1,
-        "usage_mode": "single",
-        "travel_time": 30,
-        "lower_pin": [-33.7610, 19.1205],
-        "mid_pin": [-33.7650, 19.1212],
-        "upper_pin": [-33.7690, 19.1220],
-        "meeting_point": "Kraalstroom trail / Upper gorge",
-        "notes": "Upper cascades and remote gorge."
     },
     {
         "id": "MOLENAARS(UPPER)",
