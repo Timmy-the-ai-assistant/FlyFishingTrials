@@ -1,0 +1,5 @@
+# Change Control Register (CCR)
+
+| CCN ID | Release Version | Date | Author | Change Reason / Description | Files Modified | Test Verification | Sign-off Status |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| **CCN-0001** | v2.5.0 | 2026-11-26 | James_themac | 1. Renamed "A-Team" to "Top 8 Anglers" across UI, headers, and audit checks.<br>2. Implemented CPS beat minimization: morning starts on Elands Pad (EP1-3) & SB6, afternoon on top Small Blaar beats (SB(HOTEL), SB6, SB1, SB3, SB2, SB5). Only 9 beats used; 5 returned to CPS (SB4, SB(TRANSPORT), EP4, Molenaars Upper & Lower).<br>3. Configured travel times per beat (EP2: 30m, EP3: 30m, EP1: 15m, Small Blaar: 15m) with editable dropdown in beat manager and travel pills.<br>4. Added Parameter 7 (CPS Beat Minimization) & Parameter 8 (Travel Time & Transition Balance) to audit modal. | `worker.js`, `static/app.js`, `static/index.html`, `beats_catalog.py`, `database.py`, `scheduler.py`, `trials_data.json`, `initial_state.js` | Simulated 4 sessions via Node & Python; verified 9 beats used, 5 returned, travel times balanced (60-90 min), 0 extreme jumps; JS syntax verified. | **APPROVED** |

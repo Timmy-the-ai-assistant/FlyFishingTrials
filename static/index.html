@@ -80,11 +80,11 @@
           <img src="disa_logo.png" alt="WP Disa" class="disa-logo-img">
         </div>
         <div>
-          <h1 id="tournamentTitle">Fly Fishing Trials 2026</h1>
+          <h1 id="tournamentTitle">Fly Fishing Trials 2026 <span class="badge" style="font-size:0.75rem; background:rgba(59,130,246,0.2); color:#60a5fa; border:1px solid rgba(59,130,246,0.3); border-radius:4px; margin-left:0.4rem; vertical-align:middle;">v2.5.0</span></h1>
           <div class="sub-meta">
             <span id="tournamentVenue" class="meta-tag">Championship Beats</span>
             <span id="anglerCountTag" class="meta-tag tag-accent">9 Anglers</span>
-            <span id="aTeamCountTag" class="meta-tag tag-ateam hidden">3 A-Team</span>
+            <span id="aTeamCountTag" class="meta-tag tag-ateam hidden">4 Top 8</span>
             <span id="formatTag" class="meta-tag tag-format">Odd: 1v1v1 + 1v1</span>
             <span id="sessionsTag" class="meta-tag">4 Sessions</span>
           </div>
@@ -527,21 +527,21 @@
             <small class="form-hint" id="anglerValidationHint">9 anglers entered.</small>
           </div>
 
-          <!-- Interactive A-Team Member Designation -->
+          <!-- Interactive Top 8 Angler Designation -->
           <div class="form-group mt-3" style="background: var(--bg-primary); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 1rem;">
             <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.4rem; flex-wrap:wrap; gap:0.5rem;">
-              <label style="margin-bottom:0;"><strong>⭐ Mark A-Team Members:</strong></label>
+              <label style="margin-bottom:0;"><strong>⭐ Mark Top 8 Anglers:</strong></label>
               <div style="display:flex; gap:0.4rem; align-items:center; flex-wrap:wrap;">
                 <button type="button" class="btn btn-sm btn-primary" onclick="saveAteamSelectionOnly()" style="background:#059669; border-color:#059669; font-weight:700; display:flex; align-items:center; gap:0.35rem;" title="Save marked A-Team members for this trial">
-                  💾 Save A-Team
+                  💾 Save Top 8
                 </button>
-                <button type="button" class="btn btn-sm btn-outline" onclick="selectTopNAteam(3)">Top 3 A-Team</button>
-                <button type="button" class="btn btn-sm btn-outline" onclick="selectTopNAteam(4)">Top 4 A-Team</button>
-                <button type="button" class="btn btn-sm btn-outline" onclick="clearAteamSelection()">Clear A-Team</button>
+                <button type="button" class="btn btn-sm btn-outline" onclick="selectTopNAteam(4)">Top 4</button>
+                <button type="button" class="btn btn-sm btn-outline" onclick="selectTopNAteam(8)">Top 8</button>
+                <button type="button" class="btn btn-sm btn-outline" onclick="clearAteamSelection()">Clear Top 8</button>
               </div>
             </div>
             <p class="form-hint" style="color: var(--text-muted); margin-bottom: 0.75rem;">
-              Mark who of the anglers provided are in the <strong>A-team</strong>. The randomiser guarantees each A-Team member faces fellow A-Team members <strong>twice</strong>, and has <strong>two normal matches</strong> against challengers. Every challenger will face at least one A-Team member.
+              Mark who of the anglers provided are in the <strong>Top 8 Anglers</strong>. The randomiser guarantees each Top 8 member faces fellow Top 8 members <strong>twice</strong>, and has <strong>two normal matches</strong> against challengers. Every challenger will face at least one Top 8 member.
             </p>
             <div id="ateamChecklistContainer" class="ateam-checklist-grid">
               <!-- Dynamically populated from names -->
@@ -549,7 +549,7 @@
             <div style="display:flex; justify-content:space-between; align-items:center; margin-top:0.75rem; flex-wrap:wrap; gap:0.5rem; padding-top:0.5rem; border-top:1px solid rgba(255,255,255,0.06);">
               <div id="ateamValidationSummary" class="text-sm"></div>
               <button type="button" class="btn btn-sm btn-primary" onclick="saveAteamSelectionOnly()" style="background:#059669; border-color:#059669; font-weight:700; padding:0.35rem 0.9rem;" title="Save marked A-Team members for this trial">
-                💾 Save A-Team Members
+                💾 Save Top 8 Members
               </button>
             </div>
           </div>
@@ -611,10 +611,10 @@
               🎲 Randomize & Start New Tournament
             </button>
             <button type="button" class="btn btn-primary" onclick="saveAteamSelectionAndRedraw()" title="Save marked A-Team members and redo draw with optimal parameters">
-              💾 Save A-Team & Re-Randomize Draw
+              💾 Save Top 8 & Re-Randomize Draw
             </button>
             <button type="button" class="btn btn-outline" onclick="saveAteamSelectionOnly()" title="Update A-Team designations without resetting draw">
-              ⭐ Save A-Team Designation Only
+              ⭐ Save Top 8 Designation Only
             </button>
             <button type="button" class="btn btn-outline-info" onclick="openParameterAuditModal()">
               🔍 Check Draw Parameters
@@ -754,6 +754,7 @@
                 <th>Lower Pin [Lat, Lng]</th>
                 <th>Mid Pin [Lat, Lng]</th>
                 <th>Upper Pin [Lat, Lng]</th>
+                <th>Travel Time</th>
                 <th>Meeting Point</th>
                 <th>Action</th>
               </tr>
@@ -1004,7 +1005,7 @@
       <div class="modal-header">
         <div>
           <h3>🔍 Tournament Draw Parameters & Fairness Audit</h3>
-          <p class="text-muted text-sm">Automated evaluation of opponent uniqueness, A-Team 1v1 clashes, and challenger exposure.</p>
+          <p class="text-muted text-sm">Automated evaluation of opponent uniqueness, Top 8 1v1 clashes, challenger exposure, beat stayers, CPS beat minimization, and travel balancing.</p>
         </div>
         <button class="modal-close" onclick="closeParameterAuditModal()">&times;</button>
       </div>

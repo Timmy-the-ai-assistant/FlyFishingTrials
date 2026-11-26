@@ -1,4 +1,4 @@
-// Auto-generated initial state from trials_data.json
+// Auto-generated default initial state for Cloudflare Worker & offline simulation
 export const INITIAL_STATE = {
   "active_trial_id": "autumn_trial_2026_a",
   "trials": [
@@ -72,7 +72,8 @@ export const INITIAL_STATE = {
               -33.719,
               19.1655
             ],
-            "meeting_point": "Picnic site pull-off"
+            "meeting_point": "Picnic site pull-off",
+            "travel_time": 15
           },
           {
             "id": "SB2",
@@ -97,7 +98,8 @@ export const INITIAL_STATE = {
               -33.7235,
               19.153
             ],
-            "meeting_point": "Picnic site parking"
+            "meeting_point": "Picnic site parking",
+            "travel_time": 15
           },
           {
             "id": "SB3",
@@ -122,7 +124,8 @@ export const INITIAL_STATE = {
               -33.7272,
               19.1415
             ],
-            "meeting_point": "N1 emergency telephone layby 3"
+            "meeting_point": "N1 emergency telephone layby 3",
+            "travel_time": 15
           },
           {
             "id": "SB4",
@@ -147,7 +150,8 @@ export const INITIAL_STATE = {
               -33.7295,
               19.132
             ],
-            "meeting_point": "Donkergat pull-off"
+            "meeting_point": "Donkergat pull-off",
+            "travel_time": 15
           },
           {
             "id": "SB5",
@@ -172,7 +176,8 @@ export const INITIAL_STATE = {
               -33.7319,
               19.1141
             ],
-            "meeting_point": "CPS Elandspad parking lot"
+            "meeting_point": "CPS Elandspad parking lot",
+            "travel_time": 15
           },
           {
             "id": "SB6",
@@ -197,7 +202,8 @@ export const INITIAL_STATE = {
               -33.7342,
               19.1065
             ],
-            "meeting_point": "Tunnel East Portal Parking / Junction Path"
+            "meeting_point": "Tunnel East Portal Parking / Junction Path",
+            "travel_time": 15
           },
           {
             "id": "SB(HOTEL)",
@@ -222,7 +228,8 @@ export const INITIAL_STATE = {
               -33.715,
               19.174
             ],
-            "meeting_point": "Du Kloof Lodge guest parking"
+            "meeting_point": "Du Kloof Lodge guest parking",
+            "travel_time": 15
           },
           {
             "id": "SB(TRANSPORT)",
@@ -247,7 +254,8 @@ export const INITIAL_STATE = {
               -33.7125,
               19.18
             ],
-            "meeting_point": "Transport bridge parking"
+            "meeting_point": "Transport bridge parking",
+            "travel_time": 15
           },
           {
             "id": "EP1",
@@ -272,7 +280,8 @@ export const INITIAL_STATE = {
               -33.7405,
               19.1162
             ],
-            "meeting_point": "Junction Pool trail head"
+            "meeting_point": "Junction Pool trail head",
+            "travel_time": 15
           },
           {
             "id": "EP2",
@@ -297,7 +306,8 @@ export const INITIAL_STATE = {
               -33.752,
               19.1188
             ],
-            "meeting_point": "Fisherman's Cave trail"
+            "meeting_point": "Fisherman's Cave trail",
+            "travel_time": 30
           },
           {
             "id": "EP3",
@@ -322,7 +332,8 @@ export const INITIAL_STATE = {
               -33.761,
               19.1205
             ],
-            "meeting_point": "Star beat rock shelter"
+            "meeting_point": "Star beat rock shelter",
+            "travel_time": 30
           },
           {
             "id": "EP4",
@@ -347,7 +358,8 @@ export const INITIAL_STATE = {
               -33.77,
               19.123
             ],
-            "meeting_point": "Kraalstroom gorge access"
+            "meeting_point": "Kraalstroom gorge access",
+            "travel_time": 30
           },
           {
             "id": "MOLENAARS(UPPER)",
@@ -372,7 +384,8 @@ export const INITIAL_STATE = {
               -33.7085,
               19.1895
             ],
-            "meeting_point": "Upper Molenaars turn-off"
+            "meeting_point": "Upper Molenaars turn-off",
+            "travel_time": 15
           },
           {
             "id": "MOLENAARS(LOWER)",
@@ -397,7 +410,8 @@ export const INITIAL_STATE = {
               -33.704,
               19.2
             ],
-            "meeting_point": "Lower Molenaars boundary"
+            "meeting_point": "Lower Molenaars boundary",
+            "travel_time": 15
           }
         ],
         "selected_beats": [
@@ -571,25 +585,26 @@ export const INITIAL_STATE = {
                 "is_bye": false,
                 "beat_number": 1,
                 "beat": 1,
-                "beat_id": "SB1",
-                "beat_code": "SB1",
-                "beat_name": "SB1",
+                "beat_id": "SB6",
+                "beat_code": "SB6",
+                "beat_name": "SB6",
                 "river": "Small Blaar",
                 "lower_pin": [
-                  -33.715,
-                  19.174
+                  -33.7319,
+                  19.1141
                 ],
                 "mid_pin": [
-                  -33.717,
-                  19.17
+                  -33.733,
+                  19.1105
                 ],
                 "upper_pin": [
-                  -33.719,
-                  19.1655
+                  -33.7342,
+                  19.1065
                 ],
-                "meeting_point": "Picnic site pull-off",
+                "meeting_point": "Tunnel East Portal Parking / Junction Path",
+                "travel_time": 15,
                 "anglers": [
-                  "Dale",
+                  "Garth",
                   "Barry"
                 ],
                 "stayer": null,
@@ -606,26 +621,27 @@ export const INITIAL_STATE = {
                 "is_bye": false,
                 "beat_number": 2,
                 "beat": 2,
-                "beat_id": "EP1",
-                "beat_code": "EP1",
-                "beat_name": "EP1",
-                "river": "Elands Pad",
+                "beat_id": "SB5",
+                "beat_code": "SB5",
+                "beat_name": "SB5",
+                "river": "Small Blaar",
                 "lower_pin": [
+                  -33.7295,
+                  19.132
+                ],
+                "mid_pin": [
+                  -33.7305,
+                  19.127
+                ],
+                "upper_pin": [
                   -33.7319,
                   19.1141
                 ],
-                "mid_pin": [
-                  -33.736,
-                  19.1152
-                ],
-                "upper_pin": [
-                  -33.7405,
-                  19.1162
-                ],
-                "meeting_point": "Junction Pool trail head",
+                "meeting_point": "CPS Elandspad parking lot",
+                "travel_time": 15,
                 "anglers": [
-                  "Daniel",
-                  "Garth"
+                  "Michelle",
+                  "Dale"
                 ],
                 "stayer": null,
                 "status": "UNREPORTED",
@@ -641,26 +657,27 @@ export const INITIAL_STATE = {
                 "is_bye": false,
                 "beat_number": 3,
                 "beat": 3,
-                "beat_id": "SB2",
-                "beat_code": "SB2",
-                "beat_name": "SB2",
+                "beat_id": "SB3",
+                "beat_code": "SB3",
+                "beat_name": "SB3",
                 "river": "Small Blaar",
                 "lower_pin": [
-                  -33.719,
-                  19.1655
-                ],
-                "mid_pin": [
-                  -33.7212,
-                  19.159
-                ],
-                "upper_pin": [
                   -33.7235,
                   19.153
                 ],
-                "meeting_point": "Picnic site parking",
+                "mid_pin": [
+                  -33.7258,
+                  19.147
+                ],
+                "upper_pin": [
+                  -33.7272,
+                  19.1415
+                ],
+                "meeting_point": "N1 emergency telephone layby 3",
+                "travel_time": 15,
                 "anglers": [
                   "James",
-                  "Malcolm"
+                  "Daniel"
                 ],
                 "stayer": null,
                 "status": "UNREPORTED",
@@ -693,9 +710,10 @@ export const INITIAL_STATE = {
                   19.1188
                 ],
                 "meeting_point": "Fisherman's Cave trail",
+                "travel_time": 30,
                 "anglers": [
-                  "Michelle",
-                  "Ian"
+                  "Malcolm",
+                  "Ryan"
                 ],
                 "stayer": null,
                 "status": "UNREPORTED",
@@ -711,41 +729,6 @@ export const INITIAL_STATE = {
                 "is_bye": false,
                 "beat_number": 5,
                 "beat": 5,
-                "beat_id": "SB3",
-                "beat_code": "SB3",
-                "beat_name": "SB3",
-                "river": "Small Blaar",
-                "lower_pin": [
-                  -33.7235,
-                  19.153
-                ],
-                "mid_pin": [
-                  -33.7258,
-                  19.147
-                ],
-                "upper_pin": [
-                  -33.7272,
-                  19.1415
-                ],
-                "meeting_point": "N1 emergency telephone layby 3",
-                "anglers": [
-                  "Ryan",
-                  "Dylan"
-                ],
-                "stayer": null,
-                "status": "UNREPORTED",
-                "submissions": {},
-                "official_scores": {},
-                "calculated_points": {}
-              },
-              {
-                "match_id": "S1_M6",
-                "match_number": 6,
-                "match_type": "BYE",
-                "is_solo": true,
-                "is_bye": true,
-                "beat_number": 6,
-                "beat": 6,
                 "beat_id": "EP3",
                 "beat_code": "EP3",
                 "beat_name": "EP3",
@@ -763,6 +746,43 @@ export const INITIAL_STATE = {
                   19.1205
                 ],
                 "meeting_point": "Star beat rock shelter",
+                "travel_time": 30,
+                "anglers": [
+                  "Ian",
+                  "Dylan"
+                ],
+                "stayer": null,
+                "status": "UNREPORTED",
+                "submissions": {},
+                "official_scores": {},
+                "calculated_points": {}
+              },
+              {
+                "match_id": "S1_M6",
+                "match_number": 6,
+                "match_type": "BYE",
+                "is_solo": true,
+                "is_bye": true,
+                "beat_number": 6,
+                "beat": 6,
+                "beat_id": "EP1",
+                "beat_code": "EP1",
+                "beat_name": "EP1",
+                "river": "Elands Pad",
+                "lower_pin": [
+                  -33.7319,
+                  19.1141
+                ],
+                "mid_pin": [
+                  -33.736,
+                  19.1152
+                ],
+                "upper_pin": [
+                  -33.7405,
+                  19.1162
+                ],
+                "meeting_point": "Junction Pool trail head",
+                "travel_time": 15,
                 "anglers": [
                   "Garrett"
                 ],
@@ -792,28 +812,29 @@ export const INITIAL_STATE = {
                 "is_bye": false,
                 "beat_number": 1,
                 "beat": 1,
-                "beat_id": "SB1",
-                "beat_code": "SB1",
-                "beat_name": "SB1",
+                "beat_id": "SB6",
+                "beat_code": "SB6",
+                "beat_name": "SB6",
                 "river": "Small Blaar",
                 "lower_pin": [
-                  -33.715,
-                  19.174
+                  -33.7319,
+                  19.1141
                 ],
                 "mid_pin": [
-                  -33.717,
-                  19.17
+                  -33.733,
+                  19.1105
                 ],
                 "upper_pin": [
-                  -33.719,
-                  19.1655
+                  -33.7342,
+                  19.1065
                 ],
-                "meeting_point": "Picnic site pull-off",
+                "meeting_point": "Tunnel East Portal Parking / Junction Path",
+                "travel_time": 15,
                 "anglers": [
-                  "Garth",
-                  "Dale"
+                  "Dylan",
+                  "Garth"
                 ],
-                "stayer": "Dale",
+                "stayer": "Garth",
                 "status": "UNREPORTED",
                 "submissions": {},
                 "official_scores": {},
@@ -827,28 +848,29 @@ export const INITIAL_STATE = {
                 "is_bye": false,
                 "beat_number": 2,
                 "beat": 2,
-                "beat_id": "EP1",
-                "beat_code": "EP1",
-                "beat_name": "EP1",
-                "river": "Elands Pad",
+                "beat_id": "SB5",
+                "beat_code": "SB5",
+                "beat_name": "SB5",
+                "river": "Small Blaar",
                 "lower_pin": [
+                  -33.7295,
+                  19.132
+                ],
+                "mid_pin": [
+                  -33.7305,
+                  19.127
+                ],
+                "upper_pin": [
                   -33.7319,
                   19.1141
                 ],
-                "mid_pin": [
-                  -33.736,
-                  19.1152
-                ],
-                "upper_pin": [
-                  -33.7405,
-                  19.1162
-                ],
-                "meeting_point": "Junction Pool trail head",
+                "meeting_point": "CPS Elandspad parking lot",
+                "travel_time": 15,
                 "anglers": [
-                  "Barry",
-                  "Daniel"
+                  "Malcolm",
+                  "Michelle"
                 ],
-                "stayer": "Daniel",
+                "stayer": "Michelle",
                 "status": "UNREPORTED",
                 "submissions": {},
                 "official_scores": {},
@@ -862,23 +884,24 @@ export const INITIAL_STATE = {
                 "is_bye": false,
                 "beat_number": 3,
                 "beat": 3,
-                "beat_id": "SB2",
-                "beat_code": "SB2",
-                "beat_name": "SB2",
+                "beat_id": "SB3",
+                "beat_code": "SB3",
+                "beat_name": "SB3",
                 "river": "Small Blaar",
                 "lower_pin": [
-                  -33.719,
-                  19.1655
-                ],
-                "mid_pin": [
-                  -33.7212,
-                  19.159
-                ],
-                "upper_pin": [
                   -33.7235,
                   19.153
                 ],
-                "meeting_point": "Picnic site parking",
+                "mid_pin": [
+                  -33.7258,
+                  19.147
+                ],
+                "upper_pin": [
+                  -33.7272,
+                  19.1415
+                ],
+                "meeting_point": "N1 emergency telephone layby 3",
+                "travel_time": 15,
                 "anglers": [
                   "James",
                   "Ryan"
@@ -897,28 +920,29 @@ export const INITIAL_STATE = {
                 "is_bye": false,
                 "beat_number": 4,
                 "beat": 4,
-                "beat_id": "EP2",
-                "beat_code": "EP2",
-                "beat_name": "EP2",
-                "river": "Elands Pad",
+                "beat_id": "SB(HOTEL)",
+                "beat_code": "SB(HOTEL)",
+                "beat_name": "SB(HOTEL)",
+                "river": "Small Blaar",
                 "lower_pin": [
-                  -33.7405,
-                  19.1162
+                  -33.7125,
+                  19.18
                 ],
                 "mid_pin": [
-                  -33.746,
-                  19.1172
+                  -33.7138,
+                  19.177
                 ],
                 "upper_pin": [
-                  -33.752,
-                  19.1188
+                  -33.715,
+                  19.174
                 ],
-                "meeting_point": "Fisherman's Cave trail",
+                "meeting_point": "Du Kloof Lodge guest parking",
+                "travel_time": 15,
                 "anglers": [
-                  "Malcolm",
-                  "Michelle"
+                  "Ian",
+                  "Daniel"
                 ],
-                "stayer": "Michelle",
+                "stayer": null,
                 "status": "UNREPORTED",
                 "submissions": {},
                 "official_scores": {},
@@ -932,28 +956,29 @@ export const INITIAL_STATE = {
                 "is_bye": false,
                 "beat_number": 5,
                 "beat": 5,
-                "beat_id": "SB3",
-                "beat_code": "SB3",
-                "beat_name": "SB3",
+                "beat_id": "SB1",
+                "beat_code": "SB1",
+                "beat_name": "SB1",
                 "river": "Small Blaar",
                 "lower_pin": [
-                  -33.7235,
-                  19.153
+                  -33.715,
+                  19.174
                 ],
                 "mid_pin": [
-                  -33.7258,
-                  19.147
+                  -33.717,
+                  19.17
                 ],
                 "upper_pin": [
-                  -33.7272,
-                  19.1415
+                  -33.719,
+                  19.1655
                 ],
-                "meeting_point": "N1 emergency telephone layby 3",
+                "meeting_point": "Picnic site pull-off",
+                "travel_time": 15,
                 "anglers": [
-                  "Dylan",
-                  "Ian"
+                  "Barry",
+                  "Dale"
                 ],
-                "stayer": "Dylan",
+                "stayer": null,
                 "status": "UNREPORTED",
                 "submissions": {},
                 "official_scores": {},
@@ -967,23 +992,24 @@ export const INITIAL_STATE = {
                 "is_bye": true,
                 "beat_number": 6,
                 "beat": 6,
-                "beat_id": "SB4",
-                "beat_code": "SB4",
-                "beat_name": "SB4",
+                "beat_id": "SB2",
+                "beat_code": "SB2",
+                "beat_name": "SB2",
                 "river": "Small Blaar",
                 "lower_pin": [
-                  -33.7272,
-                  19.1415
+                  -33.719,
+                  19.1655
                 ],
                 "mid_pin": [
-                  -33.7285,
-                  19.137
+                  -33.7212,
+                  19.159
                 ],
                 "upper_pin": [
-                  -33.7295,
-                  19.132
+                  -33.7235,
+                  19.153
                 ],
-                "meeting_point": "Donkergat pull-off",
+                "meeting_point": "Picnic site parking",
+                "travel_time": 15,
                 "anglers": [
                   "Garrett"
                 ],
@@ -1013,26 +1039,27 @@ export const INITIAL_STATE = {
                 "is_bye": false,
                 "beat_number": 1,
                 "beat": 1,
-                "beat_id": "SB1",
-                "beat_code": "SB1",
-                "beat_name": "SB1",
+                "beat_id": "SB6",
+                "beat_code": "SB6",
+                "beat_name": "SB6",
                 "river": "Small Blaar",
                 "lower_pin": [
-                  -33.715,
-                  19.174
+                  -33.7319,
+                  19.1141
                 ],
                 "mid_pin": [
-                  -33.717,
-                  19.17
+                  -33.733,
+                  19.1105
                 ],
                 "upper_pin": [
-                  -33.719,
-                  19.1655
+                  -33.7342,
+                  19.1065
                 ],
-                "meeting_point": "Picnic site pull-off",
+                "meeting_point": "Tunnel East Portal Parking / Junction Path",
+                "travel_time": 15,
                 "anglers": [
-                  "Ian",
-                  "Daniel"
+                  "Michelle",
+                  "Barry"
                 ],
                 "stayer": null,
                 "status": "UNREPORTED",
@@ -1048,25 +1075,26 @@ export const INITIAL_STATE = {
                 "is_bye": false,
                 "beat_number": 2,
                 "beat": 2,
-                "beat_id": "EP1",
-                "beat_code": "EP1",
-                "beat_name": "EP1",
-                "river": "Elands Pad",
+                "beat_id": "SB5",
+                "beat_code": "SB5",
+                "beat_name": "SB5",
+                "river": "Small Blaar",
                 "lower_pin": [
+                  -33.7295,
+                  19.132
+                ],
+                "mid_pin": [
+                  -33.7305,
+                  19.127
+                ],
+                "upper_pin": [
                   -33.7319,
                   19.1141
                 ],
-                "mid_pin": [
-                  -33.736,
-                  19.1152
-                ],
-                "upper_pin": [
-                  -33.7405,
-                  19.1162
-                ],
-                "meeting_point": "Junction Pool trail head",
+                "meeting_point": "CPS Elandspad parking lot",
+                "travel_time": 15,
                 "anglers": [
-                  "Ryan",
+                  "Daniel",
                   "Garth"
                 ],
                 "stayer": null,
@@ -1083,25 +1111,26 @@ export const INITIAL_STATE = {
                 "is_bye": false,
                 "beat_number": 3,
                 "beat": 3,
-                "beat_id": "SB2",
-                "beat_code": "SB2",
-                "beat_name": "SB2",
+                "beat_id": "SB3",
+                "beat_code": "SB3",
+                "beat_name": "SB3",
                 "river": "Small Blaar",
                 "lower_pin": [
-                  -33.719,
-                  19.1655
-                ],
-                "mid_pin": [
-                  -33.7212,
-                  19.159
-                ],
-                "upper_pin": [
                   -33.7235,
                   19.153
                 ],
-                "meeting_point": "Picnic site parking",
+                "mid_pin": [
+                  -33.7258,
+                  19.147
+                ],
+                "upper_pin": [
+                  -33.7272,
+                  19.1415
+                ],
+                "meeting_point": "N1 emergency telephone layby 3",
+                "travel_time": 15,
                 "anglers": [
-                  "Dylan",
+                  "Malcolm",
                   "Dale"
                 ],
                 "stayer": null,
@@ -1135,9 +1164,10 @@ export const INITIAL_STATE = {
                   19.1188
                 ],
                 "meeting_point": "Fisherman's Cave trail",
+                "travel_time": 30,
                 "anglers": [
-                  "Michelle",
-                  "Barry"
+                  "Ryan",
+                  "Ian"
                 ],
                 "stayer": null,
                 "status": "UNREPORTED",
@@ -1153,41 +1183,6 @@ export const INITIAL_STATE = {
                 "is_bye": false,
                 "beat_number": 5,
                 "beat": 5,
-                "beat_id": "SB3",
-                "beat_code": "SB3",
-                "beat_name": "SB3",
-                "river": "Small Blaar",
-                "lower_pin": [
-                  -33.7235,
-                  19.153
-                ],
-                "mid_pin": [
-                  -33.7258,
-                  19.147
-                ],
-                "upper_pin": [
-                  -33.7272,
-                  19.1415
-                ],
-                "meeting_point": "N1 emergency telephone layby 3",
-                "anglers": [
-                  "Garrett",
-                  "Malcolm"
-                ],
-                "stayer": null,
-                "status": "UNREPORTED",
-                "submissions": {},
-                "official_scores": {},
-                "calculated_points": {}
-              },
-              {
-                "match_id": "S3_M6",
-                "match_number": 6,
-                "match_type": "BYE",
-                "is_solo": true,
-                "is_bye": true,
-                "beat_number": 6,
-                "beat": 6,
                 "beat_id": "EP3",
                 "beat_code": "EP3",
                 "beat_name": "EP3",
@@ -1205,6 +1200,43 @@ export const INITIAL_STATE = {
                   19.1205
                 ],
                 "meeting_point": "Star beat rock shelter",
+                "travel_time": 30,
+                "anglers": [
+                  "Garrett",
+                  "Dylan"
+                ],
+                "stayer": null,
+                "status": "UNREPORTED",
+                "submissions": {},
+                "official_scores": {},
+                "calculated_points": {}
+              },
+              {
+                "match_id": "S3_M6",
+                "match_number": 6,
+                "match_type": "BYE",
+                "is_solo": true,
+                "is_bye": true,
+                "beat_number": 6,
+                "beat": 6,
+                "beat_id": "EP1",
+                "beat_code": "EP1",
+                "beat_name": "EP1",
+                "river": "Elands Pad",
+                "lower_pin": [
+                  -33.7319,
+                  19.1141
+                ],
+                "mid_pin": [
+                  -33.736,
+                  19.1152
+                ],
+                "upper_pin": [
+                  -33.7405,
+                  19.1162
+                ],
+                "meeting_point": "Junction Pool trail head",
+                "travel_time": 15,
                 "anglers": [
                   "James"
                 ],
@@ -1234,28 +1266,29 @@ export const INITIAL_STATE = {
                 "is_bye": false,
                 "beat_number": 1,
                 "beat": 1,
-                "beat_id": "SB1",
-                "beat_code": "SB1",
-                "beat_name": "SB1",
+                "beat_id": "SB6",
+                "beat_code": "SB6",
+                "beat_name": "SB6",
                 "river": "Small Blaar",
                 "lower_pin": [
-                  -33.715,
-                  19.174
+                  -33.7319,
+                  19.1141
                 ],
                 "mid_pin": [
-                  -33.717,
-                  19.17
+                  -33.733,
+                  19.1105
                 ],
                 "upper_pin": [
-                  -33.719,
-                  19.1655
+                  -33.7342,
+                  19.1065
                 ],
-                "meeting_point": "Picnic site pull-off",
+                "meeting_point": "Tunnel East Portal Parking / Junction Path",
+                "travel_time": 15,
                 "anglers": [
-                  "Ian",
-                  "Garth"
+                  "Michelle",
+                  "Dylan"
                 ],
-                "stayer": "Ian",
+                "stayer": "Michelle",
                 "status": "UNREPORTED",
                 "submissions": {},
                 "official_scores": {},
@@ -1269,28 +1302,29 @@ export const INITIAL_STATE = {
                 "is_bye": false,
                 "beat_number": 2,
                 "beat": 2,
-                "beat_id": "EP1",
-                "beat_code": "EP1",
-                "beat_name": "EP1",
-                "river": "Elands Pad",
+                "beat_id": "SB5",
+                "beat_code": "SB5",
+                "beat_name": "SB5",
+                "river": "Small Blaar",
                 "lower_pin": [
+                  -33.7295,
+                  19.132
+                ],
+                "mid_pin": [
+                  -33.7305,
+                  19.127
+                ],
+                "upper_pin": [
                   -33.7319,
                   19.1141
                 ],
-                "mid_pin": [
-                  -33.736,
-                  19.1152
-                ],
-                "upper_pin": [
-                  -33.7405,
-                  19.1162
-                ],
-                "meeting_point": "Junction Pool trail head",
+                "meeting_point": "CPS Elandspad parking lot",
+                "travel_time": 15,
                 "anglers": [
-                  "Ryan",
-                  "Garrett"
+                  "Garth",
+                  "Ryan"
                 ],
-                "stayer": "Ryan",
+                "stayer": "Garth",
                 "status": "UNREPORTED",
                 "submissions": {},
                 "official_scores": {},
@@ -1304,76 +1338,6 @@ export const INITIAL_STATE = {
                 "is_bye": false,
                 "beat_number": 3,
                 "beat": 3,
-                "beat_id": "SB2",
-                "beat_code": "SB2",
-                "beat_name": "SB2",
-                "river": "Small Blaar",
-                "lower_pin": [
-                  -33.719,
-                  19.1655
-                ],
-                "mid_pin": [
-                  -33.7212,
-                  19.159
-                ],
-                "upper_pin": [
-                  -33.7235,
-                  19.153
-                ],
-                "meeting_point": "Picnic site parking",
-                "anglers": [
-                  "Dylan",
-                  "Barry"
-                ],
-                "stayer": "Dylan",
-                "status": "UNREPORTED",
-                "submissions": {},
-                "official_scores": {},
-                "calculated_points": {}
-              },
-              {
-                "match_id": "S4_M4",
-                "match_number": 4,
-                "match_type": "1v1",
-                "is_solo": false,
-                "is_bye": false,
-                "beat_number": 4,
-                "beat": 4,
-                "beat_id": "EP2",
-                "beat_code": "EP2",
-                "beat_name": "EP2",
-                "river": "Elands Pad",
-                "lower_pin": [
-                  -33.7405,
-                  19.1162
-                ],
-                "mid_pin": [
-                  -33.746,
-                  19.1172
-                ],
-                "upper_pin": [
-                  -33.752,
-                  19.1188
-                ],
-                "meeting_point": "Fisherman's Cave trail",
-                "anglers": [
-                  "Michelle",
-                  "Dale"
-                ],
-                "stayer": "Michelle",
-                "status": "UNREPORTED",
-                "submissions": {},
-                "official_scores": {},
-                "calculated_points": {}
-              },
-              {
-                "match_id": "S4_M5",
-                "match_number": 5,
-                "match_type": "1v1",
-                "is_solo": false,
-                "is_bye": false,
-                "beat_number": 5,
-                "beat": 5,
                 "beat_id": "SB3",
                 "beat_code": "SB3",
                 "beat_name": "SB3",
@@ -1391,11 +1355,84 @@ export const INITIAL_STATE = {
                   19.1415
                 ],
                 "meeting_point": "N1 emergency telephone layby 3",
+                "travel_time": 15,
                 "anglers": [
                   "Malcolm",
-                  "Daniel"
+                  "Ian"
                 ],
                 "stayer": "Malcolm",
+                "status": "UNREPORTED",
+                "submissions": {},
+                "official_scores": {},
+                "calculated_points": {}
+              },
+              {
+                "match_id": "S4_M4",
+                "match_number": 4,
+                "match_type": "1v1",
+                "is_solo": false,
+                "is_bye": false,
+                "beat_number": 4,
+                "beat": 4,
+                "beat_id": "SB(HOTEL)",
+                "beat_code": "SB(HOTEL)",
+                "beat_name": "SB(HOTEL)",
+                "river": "Small Blaar",
+                "lower_pin": [
+                  -33.7125,
+                  19.18
+                ],
+                "mid_pin": [
+                  -33.7138,
+                  19.177
+                ],
+                "upper_pin": [
+                  -33.715,
+                  19.174
+                ],
+                "meeting_point": "Du Kloof Lodge guest parking",
+                "travel_time": 15,
+                "anglers": [
+                  "Barry",
+                  "Garrett"
+                ],
+                "stayer": null,
+                "status": "UNREPORTED",
+                "submissions": {},
+                "official_scores": {},
+                "calculated_points": {}
+              },
+              {
+                "match_id": "S4_M5",
+                "match_number": 5,
+                "match_type": "1v1",
+                "is_solo": false,
+                "is_bye": false,
+                "beat_number": 5,
+                "beat": 5,
+                "beat_id": "SB1",
+                "beat_code": "SB1",
+                "beat_name": "SB1",
+                "river": "Small Blaar",
+                "lower_pin": [
+                  -33.715,
+                  19.174
+                ],
+                "mid_pin": [
+                  -33.717,
+                  19.17
+                ],
+                "upper_pin": [
+                  -33.719,
+                  19.1655
+                ],
+                "meeting_point": "Picnic site pull-off",
+                "travel_time": 15,
+                "anglers": [
+                  "Dale",
+                  "Daniel"
+                ],
+                "stayer": null,
                 "status": "UNREPORTED",
                 "submissions": {},
                 "official_scores": {},
@@ -1409,23 +1446,24 @@ export const INITIAL_STATE = {
                 "is_bye": true,
                 "beat_number": 6,
                 "beat": 6,
-                "beat_id": "SB4",
-                "beat_code": "SB4",
-                "beat_name": "SB4",
+                "beat_id": "SB2",
+                "beat_code": "SB2",
+                "beat_name": "SB2",
                 "river": "Small Blaar",
                 "lower_pin": [
-                  -33.7272,
-                  19.1415
+                  -33.719,
+                  19.1655
                 ],
                 "mid_pin": [
-                  -33.7285,
-                  19.137
+                  -33.7212,
+                  19.159
                 ],
                 "upper_pin": [
-                  -33.7295,
-                  19.132
+                  -33.7235,
+                  19.153
                 ],
-                "meeting_point": "Donkergat pull-off",
+                "meeting_point": "Picnic site parking",
+                "travel_time": 15,
                 "anglers": [
                   "James"
                 ],
@@ -1438,1654 +1476,6 @@ export const INITIAL_STATE = {
             ]
           }
         ],
-        "angler_schedule": {
-          "James": [
-            {
-              "session_id": 1,
-              "session_name": "Saturday Morning",
-              "session_short": "Sat AM",
-              "day": "Saturday",
-              "time": "Morning",
-              "beat_number": 3,
-              "beat": 3,
-              "beat_id": "SB2",
-              "beat_code": "SB2",
-              "beat_name": "SB2",
-              "river": "Small Blaar",
-              "meeting_point": "Picnic site parking",
-              "match_type": "1v1",
-              "is_solo": false,
-              "opponents": [
-                "Malcolm"
-              ],
-              "is_stayer": false,
-              "section": "First Half (Lower Section)",
-              "pin": [
-                -33.719,
-                19.1655
-              ],
-              "lower_pin": [
-                -33.719,
-                19.1655
-              ],
-              "mid_pin": [
-                -33.7212,
-                19.159
-              ],
-              "upper_pin": [
-                -33.7235,
-                19.153
-              ]
-            },
-            {
-              "session_id": 2,
-              "session_name": "Saturday Afternoon",
-              "session_short": "Sat PM",
-              "day": "Saturday",
-              "time": "Afternoon",
-              "beat_number": 3,
-              "beat": 3,
-              "beat_id": "SB2",
-              "beat_code": "SB2",
-              "beat_name": "SB2",
-              "river": "Small Blaar",
-              "meeting_point": "Picnic site parking",
-              "match_type": "1v1",
-              "is_solo": false,
-              "opponents": [
-                "Ryan"
-              ],
-              "is_stayer": true,
-              "section": "Second Half (Upper Section)",
-              "pin": [
-                -33.7212,
-                19.159
-              ],
-              "lower_pin": [
-                -33.719,
-                19.1655
-              ],
-              "mid_pin": [
-                -33.7212,
-                19.159
-              ],
-              "upper_pin": [
-                -33.7235,
-                19.153
-              ]
-            },
-            {
-              "session_id": 3,
-              "session_name": "Sunday Morning",
-              "session_short": "Sun AM",
-              "day": "Sunday",
-              "time": "Morning",
-              "beat_number": 6,
-              "beat": 6,
-              "beat_id": "EP3",
-              "beat_code": "EP3",
-              "beat_name": "EP3",
-              "river": "Elands Pad",
-              "meeting_point": "Star beat rock shelter",
-              "match_type": "BYE",
-              "is_solo": true,
-              "is_bye": true,
-              "opponents": [],
-              "is_stayer": false,
-              "section": "Full Beat (Issued Bye)",
-              "pin": [
-                -33.752,
-                19.1188
-              ],
-              "lower_pin": [
-                -33.752,
-                19.1188
-              ],
-              "mid_pin": [
-                -33.7565,
-                19.1195
-              ],
-              "upper_pin": [
-                -33.761,
-                19.1205
-              ]
-            },
-            {
-              "session_id": 4,
-              "session_name": "Sunday Afternoon",
-              "session_short": "Sun PM",
-              "day": "Sunday",
-              "time": "Afternoon",
-              "beat_number": 6,
-              "beat": 6,
-              "beat_id": "SB4",
-              "beat_code": "SB4",
-              "beat_name": "SB4",
-              "river": "Small Blaar",
-              "meeting_point": "Donkergat pull-off",
-              "match_type": "BYE",
-              "is_solo": true,
-              "is_bye": true,
-              "opponents": [],
-              "is_stayer": false,
-              "section": "Full Beat (Issued Bye)",
-              "pin": [
-                -33.7272,
-                19.1415
-              ],
-              "lower_pin": [
-                -33.7272,
-                19.1415
-              ],
-              "mid_pin": [
-                -33.7285,
-                19.137
-              ],
-              "upper_pin": [
-                -33.7295,
-                19.132
-              ]
-            }
-          ],
-          "Barry": [
-            {
-              "session_id": 1,
-              "session_name": "Saturday Morning",
-              "session_short": "Sat AM",
-              "day": "Saturday",
-              "time": "Morning",
-              "beat_number": 1,
-              "beat": 1,
-              "beat_id": "SB1",
-              "beat_code": "SB1",
-              "beat_name": "SB1",
-              "river": "Small Blaar",
-              "meeting_point": "Picnic site pull-off",
-              "match_type": "1v1",
-              "is_solo": false,
-              "opponents": [
-                "Dale"
-              ],
-              "is_stayer": false,
-              "section": "First Half (Lower Section)",
-              "pin": [
-                -33.715,
-                19.174
-              ],
-              "lower_pin": [
-                -33.715,
-                19.174
-              ],
-              "mid_pin": [
-                -33.717,
-                19.17
-              ],
-              "upper_pin": [
-                -33.719,
-                19.1655
-              ]
-            },
-            {
-              "session_id": 2,
-              "session_name": "Saturday Afternoon",
-              "session_short": "Sat PM",
-              "day": "Saturday",
-              "time": "Afternoon",
-              "beat_number": 2,
-              "beat": 2,
-              "beat_id": "EP1",
-              "beat_code": "EP1",
-              "beat_name": "EP1",
-              "river": "Elands Pad",
-              "meeting_point": "Junction Pool trail head",
-              "match_type": "1v1",
-              "is_solo": false,
-              "opponents": [
-                "Daniel"
-              ],
-              "is_stayer": false,
-              "section": "First Half (Lower Section)",
-              "pin": [
-                -33.7319,
-                19.1141
-              ],
-              "lower_pin": [
-                -33.7319,
-                19.1141
-              ],
-              "mid_pin": [
-                -33.736,
-                19.1152
-              ],
-              "upper_pin": [
-                -33.7405,
-                19.1162
-              ]
-            },
-            {
-              "session_id": 3,
-              "session_name": "Sunday Morning",
-              "session_short": "Sun AM",
-              "day": "Sunday",
-              "time": "Morning",
-              "beat_number": 4,
-              "beat": 4,
-              "beat_id": "EP2",
-              "beat_code": "EP2",
-              "beat_name": "EP2",
-              "river": "Elands Pad",
-              "meeting_point": "Fisherman's Cave trail",
-              "match_type": "1v1",
-              "is_solo": false,
-              "opponents": [
-                "Michelle"
-              ],
-              "is_stayer": false,
-              "section": "First Half (Lower Section)",
-              "pin": [
-                -33.7405,
-                19.1162
-              ],
-              "lower_pin": [
-                -33.7405,
-                19.1162
-              ],
-              "mid_pin": [
-                -33.746,
-                19.1172
-              ],
-              "upper_pin": [
-                -33.752,
-                19.1188
-              ]
-            },
-            {
-              "session_id": 4,
-              "session_name": "Sunday Afternoon",
-              "session_short": "Sun PM",
-              "day": "Sunday",
-              "time": "Afternoon",
-              "beat_number": 3,
-              "beat": 3,
-              "beat_id": "SB2",
-              "beat_code": "SB2",
-              "beat_name": "SB2",
-              "river": "Small Blaar",
-              "meeting_point": "Picnic site parking",
-              "match_type": "1v1",
-              "is_solo": false,
-              "opponents": [
-                "Dylan"
-              ],
-              "is_stayer": false,
-              "section": "First Half (Lower Section)",
-              "pin": [
-                -33.719,
-                19.1655
-              ],
-              "lower_pin": [
-                -33.719,
-                19.1655
-              ],
-              "mid_pin": [
-                -33.7212,
-                19.159
-              ],
-              "upper_pin": [
-                -33.7235,
-                19.153
-              ]
-            }
-          ],
-          "Daniel": [
-            {
-              "session_id": 1,
-              "session_name": "Saturday Morning",
-              "session_short": "Sat AM",
-              "day": "Saturday",
-              "time": "Morning",
-              "beat_number": 2,
-              "beat": 2,
-              "beat_id": "EP1",
-              "beat_code": "EP1",
-              "beat_name": "EP1",
-              "river": "Elands Pad",
-              "meeting_point": "Junction Pool trail head",
-              "match_type": "1v1",
-              "is_solo": false,
-              "opponents": [
-                "Garth"
-              ],
-              "is_stayer": false,
-              "section": "First Half (Lower Section)",
-              "pin": [
-                -33.7319,
-                19.1141
-              ],
-              "lower_pin": [
-                -33.7319,
-                19.1141
-              ],
-              "mid_pin": [
-                -33.736,
-                19.1152
-              ],
-              "upper_pin": [
-                -33.7405,
-                19.1162
-              ]
-            },
-            {
-              "session_id": 2,
-              "session_name": "Saturday Afternoon",
-              "session_short": "Sat PM",
-              "day": "Saturday",
-              "time": "Afternoon",
-              "beat_number": 2,
-              "beat": 2,
-              "beat_id": "EP1",
-              "beat_code": "EP1",
-              "beat_name": "EP1",
-              "river": "Elands Pad",
-              "meeting_point": "Junction Pool trail head",
-              "match_type": "1v1",
-              "is_solo": false,
-              "opponents": [
-                "Barry"
-              ],
-              "is_stayer": true,
-              "section": "Second Half (Upper Section)",
-              "pin": [
-                -33.736,
-                19.1152
-              ],
-              "lower_pin": [
-                -33.7319,
-                19.1141
-              ],
-              "mid_pin": [
-                -33.736,
-                19.1152
-              ],
-              "upper_pin": [
-                -33.7405,
-                19.1162
-              ]
-            },
-            {
-              "session_id": 3,
-              "session_name": "Sunday Morning",
-              "session_short": "Sun AM",
-              "day": "Sunday",
-              "time": "Morning",
-              "beat_number": 1,
-              "beat": 1,
-              "beat_id": "SB1",
-              "beat_code": "SB1",
-              "beat_name": "SB1",
-              "river": "Small Blaar",
-              "meeting_point": "Picnic site pull-off",
-              "match_type": "1v1",
-              "is_solo": false,
-              "opponents": [
-                "Ian"
-              ],
-              "is_stayer": false,
-              "section": "First Half (Lower Section)",
-              "pin": [
-                -33.715,
-                19.174
-              ],
-              "lower_pin": [
-                -33.715,
-                19.174
-              ],
-              "mid_pin": [
-                -33.717,
-                19.17
-              ],
-              "upper_pin": [
-                -33.719,
-                19.1655
-              ]
-            },
-            {
-              "session_id": 4,
-              "session_name": "Sunday Afternoon",
-              "session_short": "Sun PM",
-              "day": "Sunday",
-              "time": "Afternoon",
-              "beat_number": 5,
-              "beat": 5,
-              "beat_id": "SB3",
-              "beat_code": "SB3",
-              "beat_name": "SB3",
-              "river": "Small Blaar",
-              "meeting_point": "N1 emergency telephone layby 3",
-              "match_type": "1v1",
-              "is_solo": false,
-              "opponents": [
-                "Malcolm"
-              ],
-              "is_stayer": false,
-              "section": "First Half (Lower Section)",
-              "pin": [
-                -33.7235,
-                19.153
-              ],
-              "lower_pin": [
-                -33.7235,
-                19.153
-              ],
-              "mid_pin": [
-                -33.7258,
-                19.147
-              ],
-              "upper_pin": [
-                -33.7272,
-                19.1415
-              ]
-            }
-          ],
-          "Garth": [
-            {
-              "session_id": 1,
-              "session_name": "Saturday Morning",
-              "session_short": "Sat AM",
-              "day": "Saturday",
-              "time": "Morning",
-              "beat_number": 2,
-              "beat": 2,
-              "beat_id": "EP1",
-              "beat_code": "EP1",
-              "beat_name": "EP1",
-              "river": "Elands Pad",
-              "meeting_point": "Junction Pool trail head",
-              "match_type": "1v1",
-              "is_solo": false,
-              "opponents": [
-                "Daniel"
-              ],
-              "is_stayer": false,
-              "section": "First Half (Lower Section)",
-              "pin": [
-                -33.7319,
-                19.1141
-              ],
-              "lower_pin": [
-                -33.7319,
-                19.1141
-              ],
-              "mid_pin": [
-                -33.736,
-                19.1152
-              ],
-              "upper_pin": [
-                -33.7405,
-                19.1162
-              ]
-            },
-            {
-              "session_id": 2,
-              "session_name": "Saturday Afternoon",
-              "session_short": "Sat PM",
-              "day": "Saturday",
-              "time": "Afternoon",
-              "beat_number": 1,
-              "beat": 1,
-              "beat_id": "SB1",
-              "beat_code": "SB1",
-              "beat_name": "SB1",
-              "river": "Small Blaar",
-              "meeting_point": "Picnic site pull-off",
-              "match_type": "1v1",
-              "is_solo": false,
-              "opponents": [
-                "Dale"
-              ],
-              "is_stayer": false,
-              "section": "First Half (Lower Section)",
-              "pin": [
-                -33.715,
-                19.174
-              ],
-              "lower_pin": [
-                -33.715,
-                19.174
-              ],
-              "mid_pin": [
-                -33.717,
-                19.17
-              ],
-              "upper_pin": [
-                -33.719,
-                19.1655
-              ]
-            },
-            {
-              "session_id": 3,
-              "session_name": "Sunday Morning",
-              "session_short": "Sun AM",
-              "day": "Sunday",
-              "time": "Morning",
-              "beat_number": 2,
-              "beat": 2,
-              "beat_id": "EP1",
-              "beat_code": "EP1",
-              "beat_name": "EP1",
-              "river": "Elands Pad",
-              "meeting_point": "Junction Pool trail head",
-              "match_type": "1v1",
-              "is_solo": false,
-              "opponents": [
-                "Ryan"
-              ],
-              "is_stayer": false,
-              "section": "First Half (Lower Section)",
-              "pin": [
-                -33.7319,
-                19.1141
-              ],
-              "lower_pin": [
-                -33.7319,
-                19.1141
-              ],
-              "mid_pin": [
-                -33.736,
-                19.1152
-              ],
-              "upper_pin": [
-                -33.7405,
-                19.1162
-              ]
-            },
-            {
-              "session_id": 4,
-              "session_name": "Sunday Afternoon",
-              "session_short": "Sun PM",
-              "day": "Sunday",
-              "time": "Afternoon",
-              "beat_number": 1,
-              "beat": 1,
-              "beat_id": "SB1",
-              "beat_code": "SB1",
-              "beat_name": "SB1",
-              "river": "Small Blaar",
-              "meeting_point": "Picnic site pull-off",
-              "match_type": "1v1",
-              "is_solo": false,
-              "opponents": [
-                "Ian"
-              ],
-              "is_stayer": false,
-              "section": "First Half (Lower Section)",
-              "pin": [
-                -33.715,
-                19.174
-              ],
-              "lower_pin": [
-                -33.715,
-                19.174
-              ],
-              "mid_pin": [
-                -33.717,
-                19.17
-              ],
-              "upper_pin": [
-                -33.719,
-                19.1655
-              ]
-            }
-          ],
-          "Dale": [
-            {
-              "session_id": 1,
-              "session_name": "Saturday Morning",
-              "session_short": "Sat AM",
-              "day": "Saturday",
-              "time": "Morning",
-              "beat_number": 1,
-              "beat": 1,
-              "beat_id": "SB1",
-              "beat_code": "SB1",
-              "beat_name": "SB1",
-              "river": "Small Blaar",
-              "meeting_point": "Picnic site pull-off",
-              "match_type": "1v1",
-              "is_solo": false,
-              "opponents": [
-                "Barry"
-              ],
-              "is_stayer": false,
-              "section": "First Half (Lower Section)",
-              "pin": [
-                -33.715,
-                19.174
-              ],
-              "lower_pin": [
-                -33.715,
-                19.174
-              ],
-              "mid_pin": [
-                -33.717,
-                19.17
-              ],
-              "upper_pin": [
-                -33.719,
-                19.1655
-              ]
-            },
-            {
-              "session_id": 2,
-              "session_name": "Saturday Afternoon",
-              "session_short": "Sat PM",
-              "day": "Saturday",
-              "time": "Afternoon",
-              "beat_number": 1,
-              "beat": 1,
-              "beat_id": "SB1",
-              "beat_code": "SB1",
-              "beat_name": "SB1",
-              "river": "Small Blaar",
-              "meeting_point": "Picnic site pull-off",
-              "match_type": "1v1",
-              "is_solo": false,
-              "opponents": [
-                "Garth"
-              ],
-              "is_stayer": true,
-              "section": "Second Half (Upper Section)",
-              "pin": [
-                -33.717,
-                19.17
-              ],
-              "lower_pin": [
-                -33.715,
-                19.174
-              ],
-              "mid_pin": [
-                -33.717,
-                19.17
-              ],
-              "upper_pin": [
-                -33.719,
-                19.1655
-              ]
-            },
-            {
-              "session_id": 3,
-              "session_name": "Sunday Morning",
-              "session_short": "Sun AM",
-              "day": "Sunday",
-              "time": "Morning",
-              "beat_number": 3,
-              "beat": 3,
-              "beat_id": "SB2",
-              "beat_code": "SB2",
-              "beat_name": "SB2",
-              "river": "Small Blaar",
-              "meeting_point": "Picnic site parking",
-              "match_type": "1v1",
-              "is_solo": false,
-              "opponents": [
-                "Dylan"
-              ],
-              "is_stayer": false,
-              "section": "First Half (Lower Section)",
-              "pin": [
-                -33.719,
-                19.1655
-              ],
-              "lower_pin": [
-                -33.719,
-                19.1655
-              ],
-              "mid_pin": [
-                -33.7212,
-                19.159
-              ],
-              "upper_pin": [
-                -33.7235,
-                19.153
-              ]
-            },
-            {
-              "session_id": 4,
-              "session_name": "Sunday Afternoon",
-              "session_short": "Sun PM",
-              "day": "Sunday",
-              "time": "Afternoon",
-              "beat_number": 4,
-              "beat": 4,
-              "beat_id": "EP2",
-              "beat_code": "EP2",
-              "beat_name": "EP2",
-              "river": "Elands Pad",
-              "meeting_point": "Fisherman's Cave trail",
-              "match_type": "1v1",
-              "is_solo": false,
-              "opponents": [
-                "Michelle"
-              ],
-              "is_stayer": false,
-              "section": "First Half (Lower Section)",
-              "pin": [
-                -33.7405,
-                19.1162
-              ],
-              "lower_pin": [
-                -33.7405,
-                19.1162
-              ],
-              "mid_pin": [
-                -33.746,
-                19.1172
-              ],
-              "upper_pin": [
-                -33.752,
-                19.1188
-              ]
-            }
-          ],
-          "Dylan": [
-            {
-              "session_id": 1,
-              "session_name": "Saturday Morning",
-              "session_short": "Sat AM",
-              "day": "Saturday",
-              "time": "Morning",
-              "beat_number": 5,
-              "beat": 5,
-              "beat_id": "SB3",
-              "beat_code": "SB3",
-              "beat_name": "SB3",
-              "river": "Small Blaar",
-              "meeting_point": "N1 emergency telephone layby 3",
-              "match_type": "1v1",
-              "is_solo": false,
-              "opponents": [
-                "Ryan"
-              ],
-              "is_stayer": false,
-              "section": "First Half (Lower Section)",
-              "pin": [
-                -33.7235,
-                19.153
-              ],
-              "lower_pin": [
-                -33.7235,
-                19.153
-              ],
-              "mid_pin": [
-                -33.7258,
-                19.147
-              ],
-              "upper_pin": [
-                -33.7272,
-                19.1415
-              ]
-            },
-            {
-              "session_id": 2,
-              "session_name": "Saturday Afternoon",
-              "session_short": "Sat PM",
-              "day": "Saturday",
-              "time": "Afternoon",
-              "beat_number": 5,
-              "beat": 5,
-              "beat_id": "SB3",
-              "beat_code": "SB3",
-              "beat_name": "SB3",
-              "river": "Small Blaar",
-              "meeting_point": "N1 emergency telephone layby 3",
-              "match_type": "1v1",
-              "is_solo": false,
-              "opponents": [
-                "Ian"
-              ],
-              "is_stayer": true,
-              "section": "Second Half (Upper Section)",
-              "pin": [
-                -33.7258,
-                19.147
-              ],
-              "lower_pin": [
-                -33.7235,
-                19.153
-              ],
-              "mid_pin": [
-                -33.7258,
-                19.147
-              ],
-              "upper_pin": [
-                -33.7272,
-                19.1415
-              ]
-            },
-            {
-              "session_id": 3,
-              "session_name": "Sunday Morning",
-              "session_short": "Sun AM",
-              "day": "Sunday",
-              "time": "Morning",
-              "beat_number": 3,
-              "beat": 3,
-              "beat_id": "SB2",
-              "beat_code": "SB2",
-              "beat_name": "SB2",
-              "river": "Small Blaar",
-              "meeting_point": "Picnic site parking",
-              "match_type": "1v1",
-              "is_solo": false,
-              "opponents": [
-                "Dale"
-              ],
-              "is_stayer": false,
-              "section": "First Half (Lower Section)",
-              "pin": [
-                -33.719,
-                19.1655
-              ],
-              "lower_pin": [
-                -33.719,
-                19.1655
-              ],
-              "mid_pin": [
-                -33.7212,
-                19.159
-              ],
-              "upper_pin": [
-                -33.7235,
-                19.153
-              ]
-            },
-            {
-              "session_id": 4,
-              "session_name": "Sunday Afternoon",
-              "session_short": "Sun PM",
-              "day": "Sunday",
-              "time": "Afternoon",
-              "beat_number": 3,
-              "beat": 3,
-              "beat_id": "SB2",
-              "beat_code": "SB2",
-              "beat_name": "SB2",
-              "river": "Small Blaar",
-              "meeting_point": "Picnic site parking",
-              "match_type": "1v1",
-              "is_solo": false,
-              "opponents": [
-                "Barry"
-              ],
-              "is_stayer": true,
-              "section": "Second Half (Upper Section)",
-              "pin": [
-                -33.7212,
-                19.159
-              ],
-              "lower_pin": [
-                -33.719,
-                19.1655
-              ],
-              "mid_pin": [
-                -33.7212,
-                19.159
-              ],
-              "upper_pin": [
-                -33.7235,
-                19.153
-              ]
-            }
-          ],
-          "Ian": [
-            {
-              "session_id": 1,
-              "session_name": "Saturday Morning",
-              "session_short": "Sat AM",
-              "day": "Saturday",
-              "time": "Morning",
-              "beat_number": 4,
-              "beat": 4,
-              "beat_id": "EP2",
-              "beat_code": "EP2",
-              "beat_name": "EP2",
-              "river": "Elands Pad",
-              "meeting_point": "Fisherman's Cave trail",
-              "match_type": "1v1",
-              "is_solo": false,
-              "opponents": [
-                "Michelle"
-              ],
-              "is_stayer": false,
-              "section": "First Half (Lower Section)",
-              "pin": [
-                -33.7405,
-                19.1162
-              ],
-              "lower_pin": [
-                -33.7405,
-                19.1162
-              ],
-              "mid_pin": [
-                -33.746,
-                19.1172
-              ],
-              "upper_pin": [
-                -33.752,
-                19.1188
-              ]
-            },
-            {
-              "session_id": 2,
-              "session_name": "Saturday Afternoon",
-              "session_short": "Sat PM",
-              "day": "Saturday",
-              "time": "Afternoon",
-              "beat_number": 5,
-              "beat": 5,
-              "beat_id": "SB3",
-              "beat_code": "SB3",
-              "beat_name": "SB3",
-              "river": "Small Blaar",
-              "meeting_point": "N1 emergency telephone layby 3",
-              "match_type": "1v1",
-              "is_solo": false,
-              "opponents": [
-                "Dylan"
-              ],
-              "is_stayer": false,
-              "section": "First Half (Lower Section)",
-              "pin": [
-                -33.7235,
-                19.153
-              ],
-              "lower_pin": [
-                -33.7235,
-                19.153
-              ],
-              "mid_pin": [
-                -33.7258,
-                19.147
-              ],
-              "upper_pin": [
-                -33.7272,
-                19.1415
-              ]
-            },
-            {
-              "session_id": 3,
-              "session_name": "Sunday Morning",
-              "session_short": "Sun AM",
-              "day": "Sunday",
-              "time": "Morning",
-              "beat_number": 1,
-              "beat": 1,
-              "beat_id": "SB1",
-              "beat_code": "SB1",
-              "beat_name": "SB1",
-              "river": "Small Blaar",
-              "meeting_point": "Picnic site pull-off",
-              "match_type": "1v1",
-              "is_solo": false,
-              "opponents": [
-                "Daniel"
-              ],
-              "is_stayer": false,
-              "section": "First Half (Lower Section)",
-              "pin": [
-                -33.715,
-                19.174
-              ],
-              "lower_pin": [
-                -33.715,
-                19.174
-              ],
-              "mid_pin": [
-                -33.717,
-                19.17
-              ],
-              "upper_pin": [
-                -33.719,
-                19.1655
-              ]
-            },
-            {
-              "session_id": 4,
-              "session_name": "Sunday Afternoon",
-              "session_short": "Sun PM",
-              "day": "Sunday",
-              "time": "Afternoon",
-              "beat_number": 1,
-              "beat": 1,
-              "beat_id": "SB1",
-              "beat_code": "SB1",
-              "beat_name": "SB1",
-              "river": "Small Blaar",
-              "meeting_point": "Picnic site pull-off",
-              "match_type": "1v1",
-              "is_solo": false,
-              "opponents": [
-                "Garth"
-              ],
-              "is_stayer": true,
-              "section": "Second Half (Upper Section)",
-              "pin": [
-                -33.717,
-                19.17
-              ],
-              "lower_pin": [
-                -33.715,
-                19.174
-              ],
-              "mid_pin": [
-                -33.717,
-                19.17
-              ],
-              "upper_pin": [
-                -33.719,
-                19.1655
-              ]
-            }
-          ],
-          "Malcolm": [
-            {
-              "session_id": 1,
-              "session_name": "Saturday Morning",
-              "session_short": "Sat AM",
-              "day": "Saturday",
-              "time": "Morning",
-              "beat_number": 3,
-              "beat": 3,
-              "beat_id": "SB2",
-              "beat_code": "SB2",
-              "beat_name": "SB2",
-              "river": "Small Blaar",
-              "meeting_point": "Picnic site parking",
-              "match_type": "1v1",
-              "is_solo": false,
-              "opponents": [
-                "James"
-              ],
-              "is_stayer": false,
-              "section": "First Half (Lower Section)",
-              "pin": [
-                -33.719,
-                19.1655
-              ],
-              "lower_pin": [
-                -33.719,
-                19.1655
-              ],
-              "mid_pin": [
-                -33.7212,
-                19.159
-              ],
-              "upper_pin": [
-                -33.7235,
-                19.153
-              ]
-            },
-            {
-              "session_id": 2,
-              "session_name": "Saturday Afternoon",
-              "session_short": "Sat PM",
-              "day": "Saturday",
-              "time": "Afternoon",
-              "beat_number": 4,
-              "beat": 4,
-              "beat_id": "EP2",
-              "beat_code": "EP2",
-              "beat_name": "EP2",
-              "river": "Elands Pad",
-              "meeting_point": "Fisherman's Cave trail",
-              "match_type": "1v1",
-              "is_solo": false,
-              "opponents": [
-                "Michelle"
-              ],
-              "is_stayer": false,
-              "section": "First Half (Lower Section)",
-              "pin": [
-                -33.7405,
-                19.1162
-              ],
-              "lower_pin": [
-                -33.7405,
-                19.1162
-              ],
-              "mid_pin": [
-                -33.746,
-                19.1172
-              ],
-              "upper_pin": [
-                -33.752,
-                19.1188
-              ]
-            },
-            {
-              "session_id": 3,
-              "session_name": "Sunday Morning",
-              "session_short": "Sun AM",
-              "day": "Sunday",
-              "time": "Morning",
-              "beat_number": 5,
-              "beat": 5,
-              "beat_id": "SB3",
-              "beat_code": "SB3",
-              "beat_name": "SB3",
-              "river": "Small Blaar",
-              "meeting_point": "N1 emergency telephone layby 3",
-              "match_type": "1v1",
-              "is_solo": false,
-              "opponents": [
-                "Garrett"
-              ],
-              "is_stayer": false,
-              "section": "First Half (Lower Section)",
-              "pin": [
-                -33.7235,
-                19.153
-              ],
-              "lower_pin": [
-                -33.7235,
-                19.153
-              ],
-              "mid_pin": [
-                -33.7258,
-                19.147
-              ],
-              "upper_pin": [
-                -33.7272,
-                19.1415
-              ]
-            },
-            {
-              "session_id": 4,
-              "session_name": "Sunday Afternoon",
-              "session_short": "Sun PM",
-              "day": "Sunday",
-              "time": "Afternoon",
-              "beat_number": 5,
-              "beat": 5,
-              "beat_id": "SB3",
-              "beat_code": "SB3",
-              "beat_name": "SB3",
-              "river": "Small Blaar",
-              "meeting_point": "N1 emergency telephone layby 3",
-              "match_type": "1v1",
-              "is_solo": false,
-              "opponents": [
-                "Daniel"
-              ],
-              "is_stayer": true,
-              "section": "Second Half (Upper Section)",
-              "pin": [
-                -33.7258,
-                19.147
-              ],
-              "lower_pin": [
-                -33.7235,
-                19.153
-              ],
-              "mid_pin": [
-                -33.7258,
-                19.147
-              ],
-              "upper_pin": [
-                -33.7272,
-                19.1415
-              ]
-            }
-          ],
-          "Ryan": [
-            {
-              "session_id": 1,
-              "session_name": "Saturday Morning",
-              "session_short": "Sat AM",
-              "day": "Saturday",
-              "time": "Morning",
-              "beat_number": 5,
-              "beat": 5,
-              "beat_id": "SB3",
-              "beat_code": "SB3",
-              "beat_name": "SB3",
-              "river": "Small Blaar",
-              "meeting_point": "N1 emergency telephone layby 3",
-              "match_type": "1v1",
-              "is_solo": false,
-              "opponents": [
-                "Dylan"
-              ],
-              "is_stayer": false,
-              "section": "First Half (Lower Section)",
-              "pin": [
-                -33.7235,
-                19.153
-              ],
-              "lower_pin": [
-                -33.7235,
-                19.153
-              ],
-              "mid_pin": [
-                -33.7258,
-                19.147
-              ],
-              "upper_pin": [
-                -33.7272,
-                19.1415
-              ]
-            },
-            {
-              "session_id": 2,
-              "session_name": "Saturday Afternoon",
-              "session_short": "Sat PM",
-              "day": "Saturday",
-              "time": "Afternoon",
-              "beat_number": 3,
-              "beat": 3,
-              "beat_id": "SB2",
-              "beat_code": "SB2",
-              "beat_name": "SB2",
-              "river": "Small Blaar",
-              "meeting_point": "Picnic site parking",
-              "match_type": "1v1",
-              "is_solo": false,
-              "opponents": [
-                "James"
-              ],
-              "is_stayer": false,
-              "section": "First Half (Lower Section)",
-              "pin": [
-                -33.719,
-                19.1655
-              ],
-              "lower_pin": [
-                -33.719,
-                19.1655
-              ],
-              "mid_pin": [
-                -33.7212,
-                19.159
-              ],
-              "upper_pin": [
-                -33.7235,
-                19.153
-              ]
-            },
-            {
-              "session_id": 3,
-              "session_name": "Sunday Morning",
-              "session_short": "Sun AM",
-              "day": "Sunday",
-              "time": "Morning",
-              "beat_number": 2,
-              "beat": 2,
-              "beat_id": "EP1",
-              "beat_code": "EP1",
-              "beat_name": "EP1",
-              "river": "Elands Pad",
-              "meeting_point": "Junction Pool trail head",
-              "match_type": "1v1",
-              "is_solo": false,
-              "opponents": [
-                "Garth"
-              ],
-              "is_stayer": false,
-              "section": "First Half (Lower Section)",
-              "pin": [
-                -33.7319,
-                19.1141
-              ],
-              "lower_pin": [
-                -33.7319,
-                19.1141
-              ],
-              "mid_pin": [
-                -33.736,
-                19.1152
-              ],
-              "upper_pin": [
-                -33.7405,
-                19.1162
-              ]
-            },
-            {
-              "session_id": 4,
-              "session_name": "Sunday Afternoon",
-              "session_short": "Sun PM",
-              "day": "Sunday",
-              "time": "Afternoon",
-              "beat_number": 2,
-              "beat": 2,
-              "beat_id": "EP1",
-              "beat_code": "EP1",
-              "beat_name": "EP1",
-              "river": "Elands Pad",
-              "meeting_point": "Junction Pool trail head",
-              "match_type": "1v1",
-              "is_solo": false,
-              "opponents": [
-                "Garrett"
-              ],
-              "is_stayer": true,
-              "section": "Second Half (Upper Section)",
-              "pin": [
-                -33.736,
-                19.1152
-              ],
-              "lower_pin": [
-                -33.7319,
-                19.1141
-              ],
-              "mid_pin": [
-                -33.736,
-                19.1152
-              ],
-              "upper_pin": [
-                -33.7405,
-                19.1162
-              ]
-            }
-          ],
-          "Garrett": [
-            {
-              "session_id": 1,
-              "session_name": "Saturday Morning",
-              "session_short": "Sat AM",
-              "day": "Saturday",
-              "time": "Morning",
-              "beat_number": 6,
-              "beat": 6,
-              "beat_id": "EP3",
-              "beat_code": "EP3",
-              "beat_name": "EP3",
-              "river": "Elands Pad",
-              "meeting_point": "Star beat rock shelter",
-              "match_type": "BYE",
-              "is_solo": true,
-              "is_bye": true,
-              "opponents": [],
-              "is_stayer": false,
-              "section": "Full Beat (Issued Bye)",
-              "pin": [
-                -33.752,
-                19.1188
-              ],
-              "lower_pin": [
-                -33.752,
-                19.1188
-              ],
-              "mid_pin": [
-                -33.7565,
-                19.1195
-              ],
-              "upper_pin": [
-                -33.761,
-                19.1205
-              ]
-            },
-            {
-              "session_id": 2,
-              "session_name": "Saturday Afternoon",
-              "session_short": "Sat PM",
-              "day": "Saturday",
-              "time": "Afternoon",
-              "beat_number": 6,
-              "beat": 6,
-              "beat_id": "SB4",
-              "beat_code": "SB4",
-              "beat_name": "SB4",
-              "river": "Small Blaar",
-              "meeting_point": "Donkergat pull-off",
-              "match_type": "BYE",
-              "is_solo": true,
-              "is_bye": true,
-              "opponents": [],
-              "is_stayer": false,
-              "section": "Full Beat (Issued Bye)",
-              "pin": [
-                -33.7272,
-                19.1415
-              ],
-              "lower_pin": [
-                -33.7272,
-                19.1415
-              ],
-              "mid_pin": [
-                -33.7285,
-                19.137
-              ],
-              "upper_pin": [
-                -33.7295,
-                19.132
-              ]
-            },
-            {
-              "session_id": 3,
-              "session_name": "Sunday Morning",
-              "session_short": "Sun AM",
-              "day": "Sunday",
-              "time": "Morning",
-              "beat_number": 5,
-              "beat": 5,
-              "beat_id": "SB3",
-              "beat_code": "SB3",
-              "beat_name": "SB3",
-              "river": "Small Blaar",
-              "meeting_point": "N1 emergency telephone layby 3",
-              "match_type": "1v1",
-              "is_solo": false,
-              "opponents": [
-                "Malcolm"
-              ],
-              "is_stayer": false,
-              "section": "First Half (Lower Section)",
-              "pin": [
-                -33.7235,
-                19.153
-              ],
-              "lower_pin": [
-                -33.7235,
-                19.153
-              ],
-              "mid_pin": [
-                -33.7258,
-                19.147
-              ],
-              "upper_pin": [
-                -33.7272,
-                19.1415
-              ]
-            },
-            {
-              "session_id": 4,
-              "session_name": "Sunday Afternoon",
-              "session_short": "Sun PM",
-              "day": "Sunday",
-              "time": "Afternoon",
-              "beat_number": 2,
-              "beat": 2,
-              "beat_id": "EP1",
-              "beat_code": "EP1",
-              "beat_name": "EP1",
-              "river": "Elands Pad",
-              "meeting_point": "Junction Pool trail head",
-              "match_type": "1v1",
-              "is_solo": false,
-              "opponents": [
-                "Ryan"
-              ],
-              "is_stayer": false,
-              "section": "First Half (Lower Section)",
-              "pin": [
-                -33.7319,
-                19.1141
-              ],
-              "lower_pin": [
-                -33.7319,
-                19.1141
-              ],
-              "mid_pin": [
-                -33.736,
-                19.1152
-              ],
-              "upper_pin": [
-                -33.7405,
-                19.1162
-              ]
-            }
-          ],
-          "Michelle": [
-            {
-              "session_id": 1,
-              "session_name": "Saturday Morning",
-              "session_short": "Sat AM",
-              "day": "Saturday",
-              "time": "Morning",
-              "beat_number": 4,
-              "beat": 4,
-              "beat_id": "EP2",
-              "beat_code": "EP2",
-              "beat_name": "EP2",
-              "river": "Elands Pad",
-              "meeting_point": "Fisherman's Cave trail",
-              "match_type": "1v1",
-              "is_solo": false,
-              "opponents": [
-                "Ian"
-              ],
-              "is_stayer": false,
-              "section": "First Half (Lower Section)",
-              "pin": [
-                -33.7405,
-                19.1162
-              ],
-              "lower_pin": [
-                -33.7405,
-                19.1162
-              ],
-              "mid_pin": [
-                -33.746,
-                19.1172
-              ],
-              "upper_pin": [
-                -33.752,
-                19.1188
-              ]
-            },
-            {
-              "session_id": 2,
-              "session_name": "Saturday Afternoon",
-              "session_short": "Sat PM",
-              "day": "Saturday",
-              "time": "Afternoon",
-              "beat_number": 4,
-              "beat": 4,
-              "beat_id": "EP2",
-              "beat_code": "EP2",
-              "beat_name": "EP2",
-              "river": "Elands Pad",
-              "meeting_point": "Fisherman's Cave trail",
-              "match_type": "1v1",
-              "is_solo": false,
-              "opponents": [
-                "Malcolm"
-              ],
-              "is_stayer": true,
-              "section": "Second Half (Upper Section)",
-              "pin": [
-                -33.746,
-                19.1172
-              ],
-              "lower_pin": [
-                -33.7405,
-                19.1162
-              ],
-              "mid_pin": [
-                -33.746,
-                19.1172
-              ],
-              "upper_pin": [
-                -33.752,
-                19.1188
-              ]
-            },
-            {
-              "session_id": 3,
-              "session_name": "Sunday Morning",
-              "session_short": "Sun AM",
-              "day": "Sunday",
-              "time": "Morning",
-              "beat_number": 4,
-              "beat": 4,
-              "beat_id": "EP2",
-              "beat_code": "EP2",
-              "beat_name": "EP2",
-              "river": "Elands Pad",
-              "meeting_point": "Fisherman's Cave trail",
-              "match_type": "1v1",
-              "is_solo": false,
-              "opponents": [
-                "Barry"
-              ],
-              "is_stayer": false,
-              "section": "First Half (Lower Section)",
-              "pin": [
-                -33.7405,
-                19.1162
-              ],
-              "lower_pin": [
-                -33.7405,
-                19.1162
-              ],
-              "mid_pin": [
-                -33.746,
-                19.1172
-              ],
-              "upper_pin": [
-                -33.752,
-                19.1188
-              ]
-            },
-            {
-              "session_id": 4,
-              "session_name": "Sunday Afternoon",
-              "session_short": "Sun PM",
-              "day": "Sunday",
-              "time": "Afternoon",
-              "beat_number": 4,
-              "beat": 4,
-              "beat_id": "EP2",
-              "beat_code": "EP2",
-              "beat_name": "EP2",
-              "river": "Elands Pad",
-              "meeting_point": "Fisherman's Cave trail",
-              "match_type": "1v1",
-              "is_solo": false,
-              "opponents": [
-                "Dale"
-              ],
-              "is_stayer": true,
-              "section": "Second Half (Upper Section)",
-              "pin": [
-                -33.746,
-                19.1172
-              ],
-              "lower_pin": [
-                -33.7405,
-                19.1162
-              ],
-              "mid_pin": [
-                -33.746,
-                19.1172
-              ],
-              "upper_pin": [
-                -33.752,
-                19.1188
-              ]
-            }
-          ]
-        },
         "leaderboard": [
           {
             "rank": 1,
@@ -3360,7 +1750,7 @@ export const INITIAL_STATE = {
           "Dale"
         ],
         "num_a_team": 4,
-        "num_beats": 5,
+        "num_beats": 6,
         "beats": [
           {
             "id": "SB1",
@@ -3386,7 +1776,8 @@ export const INITIAL_STATE = {
               19.1655
             ],
             "meeting_point": "Picnic site pull-off",
-            "notes": "Productive long glides and pocket water."
+            "notes": "Productive long glides and pocket water.",
+            "travel_time": 15
           },
           {
             "id": "SB2",
@@ -3412,7 +1803,8 @@ export const INITIAL_STATE = {
               19.153
             ],
             "meeting_point": "Picnic site parking",
-            "notes": "Fast broken water and deep corner pools."
+            "notes": "Fast broken water and deep corner pools.",
+            "travel_time": 15
           },
           {
             "id": "SB3",
@@ -3438,7 +1830,8 @@ export const INITIAL_STATE = {
               19.1415
             ],
             "meeting_point": "N1 emergency telephone layby 3",
-            "notes": "Challenging technical water with overhanging vegetation."
+            "notes": "Challenging technical water with overhanging vegetation.",
+            "travel_time": 15
           },
           {
             "id": "SB4",
@@ -3464,7 +1857,8 @@ export const INITIAL_STATE = {
               19.132
             ],
             "meeting_point": "Donkergat pull-off",
-            "notes": "Varied water with boulder gardens."
+            "notes": "Varied water with boulder gardens.",
+            "travel_time": 15
           },
           {
             "id": "SB5",
@@ -3490,7 +1884,8 @@ export const INITIAL_STATE = {
               19.1141
             ],
             "meeting_point": "CPS Elandspad parking lot",
-            "notes": "Directly accessible from official CPS parking."
+            "notes": "Directly accessible from official CPS parking.",
+            "travel_time": 15
           },
           {
             "id": "SB6",
@@ -3516,7 +1911,8 @@ export const INITIAL_STATE = {
               19.1065
             ],
             "meeting_point": "Tunnel East Portal Parking / Junction Path",
-            "notes": "Upper Smalblaar beat from Junction pool up to tunnel weir."
+            "notes": "Upper Smalblaar beat from Junction pool up to tunnel weir.",
+            "travel_time": 15
           },
           {
             "id": "SB(HOTEL)",
@@ -3542,7 +1938,8 @@ export const INITIAL_STATE = {
               19.174
             ],
             "meeting_point": "Du Kloof Lodge guest parking",
-            "notes": "Historic beat opposite the old hotel. Single session limit per day."
+            "notes": "Historic beat opposite the old hotel. Single session limit per day.",
+            "travel_time": 15
           },
           {
             "id": "SB(TRANSPORT)",
@@ -3568,7 +1965,8 @@ export const INITIAL_STATE = {
               19.18
             ],
             "meeting_point": "Transport bridge parking",
-            "notes": "Upper section of Molenaars Transport reserve."
+            "notes": "Upper section of Molenaars Transport reserve.",
+            "travel_time": 15
           },
           {
             "id": "EP1",
@@ -3594,7 +1992,8 @@ export const INITIAL_STATE = {
               19.1162
             ],
             "meeting_point": "Junction Pool trail head",
-            "notes": "Kloof canyon stream, crystal clear water with pocket pools."
+            "notes": "Kloof canyon stream, crystal clear water with pocket pools.",
+            "travel_time": 15
           },
           {
             "id": "EP2",
@@ -3620,7 +2019,8 @@ export const INITIAL_STATE = {
               19.1188
             ],
             "meeting_point": "Fisherman's Cave trail",
-            "notes": "Middle Elandspad through pristine mountain gorge."
+            "notes": "Middle Elandspad through pristine mountain gorge.",
+            "travel_time": 30
           },
           {
             "id": "EP3",
@@ -3646,7 +2046,8 @@ export const INITIAL_STATE = {
               19.1205
             ],
             "meeting_point": "Star beat rock shelter",
-            "notes": "Wild upper canyon gorge with deep plunge pools. Sensitive upper beat."
+            "notes": "Wild upper canyon gorge with deep plunge pools. Sensitive upper beat.",
+            "travel_time": 30
           },
           {
             "id": "EP4",
@@ -3672,7 +2073,8 @@ export const INITIAL_STATE = {
               19.122
             ],
             "meeting_point": "Kraalstroom trail / Upper gorge",
-            "notes": "Upper cascades and remote gorge."
+            "notes": "Upper cascades and remote gorge.",
+            "travel_time": 30
           },
           {
             "id": "MOLENAARS(UPPER)",
@@ -3698,7 +2100,8 @@ export const INITIAL_STATE = {
               19.18
             ],
             "meeting_point": "Transport bridge parking",
-            "notes": "Upper section of Molenaars reserve."
+            "notes": "Upper section of Molenaars reserve.",
+            "travel_time": 15
           },
           {
             "id": "MOLENAARS(LOWER)",
@@ -3724,7 +2127,8 @@ export const INITIAL_STATE = {
               19.1895
             ],
             "meeting_point": "Farm gate boundary on N1",
-            "notes": "Lower pastoral reach of the Molenaars."
+            "notes": "Lower pastoral reach of the Molenaars.",
+            "travel_time": 15
           }
         ],
         "selected_beats": [
@@ -3834,1582 +2238,6 @@ export const INITIAL_STATE = {
             "notes": "Productive long glides and pocket water."
           }
         ],
-        "angler_schedule": {
-          "James": [
-            {
-              "session_id": 1,
-              "session_name": "Saturday Morning",
-              "session_short": "Sat AM",
-              "day": "Saturday",
-              "time": "Morning",
-              "beat_number": 5,
-              "beat_id": "SB1",
-              "beat_code": "SB1",
-              "beat_name": "Smalblaar 1 (SB1)",
-              "river": "Smalblaar",
-              "meeting_point": "Picnic site pull-off",
-              "match_type": "1v1",
-              "opponents": [
-                "Daniel"
-              ],
-              "is_stayer": false,
-              "section": "First Half (Lower Section)",
-              "pin": [
-                -33.72,
-                19.167
-              ],
-              "lower_pin": [
-                -33.72,
-                19.167
-              ],
-              "upper_pin": [
-                -33.723,
-                19.1585
-              ],
-              "mid_pin": [
-                -33.7215,
-                19.163
-              ]
-            },
-            {
-              "session_id": 2,
-              "session_name": "Saturday Afternoon",
-              "session_short": "Sat PM",
-              "day": "Saturday",
-              "time": "Afternoon",
-              "beat_number": 2,
-              "beat_id": "EP1",
-              "beat_code": "EP1",
-              "beat_name": "Elandspad 1 (EP1)",
-              "river": "Elandspad",
-              "meeting_point": "Junction Pool trail head",
-              "match_type": "1v1",
-              "opponents": [
-                "Malcolm"
-              ],
-              "is_stayer": false,
-              "section": "First Half (Lower Section)",
-              "pin": [
-                -33.7319,
-                19.1141
-              ],
-              "lower_pin": [
-                -33.7319,
-                19.1141
-              ],
-              "upper_pin": [
-                -33.7385,
-                19.1118
-              ],
-              "mid_pin": [
-                -33.7352,
-                19.1129
-              ]
-            },
-            {
-              "session_id": 3,
-              "session_name": "Sunday Morning",
-              "session_short": "Sun AM",
-              "day": "Sunday",
-              "time": "Morning",
-              "beat_number": 1,
-              "beat_id": "SB6",
-              "beat_code": "SB6",
-              "beat_name": "Smalblaar 6 (SB6)",
-              "river": "Smalblaar",
-              "meeting_point": "Tunnel East Portal Parking / Junction Path",
-              "match_type": "1v1",
-              "opponents": [
-                "Garrett"
-              ],
-              "is_stayer": false,
-              "section": "First Half (Lower Section)",
-              "pin": [
-                -33.7319,
-                19.1141
-              ],
-              "lower_pin": [
-                -33.7319,
-                19.1141
-              ],
-              "upper_pin": [
-                -33.734,
-                19.1225
-              ],
-              "mid_pin": [
-                -33.733,
-                19.118
-              ]
-            },
-            {
-              "session_id": 4,
-              "session_name": "Sunday Afternoon",
-              "session_short": "Sun PM",
-              "day": "Sunday",
-              "time": "Afternoon",
-              "beat_number": 1,
-              "beat_id": "SB6",
-              "beat_code": "SB6",
-              "beat_name": "Smalblaar 6 (SB6)",
-              "river": "Smalblaar",
-              "meeting_point": "Tunnel East Portal Parking / Junction Path",
-              "match_type": "1v1v1",
-              "opponents": [
-                "Barry",
-                "Michelle"
-              ],
-              "is_stayer": true,
-              "section": "Second Half (Upper Section)",
-              "pin": [
-                -33.733,
-                19.118
-              ],
-              "lower_pin": [
-                -33.7319,
-                19.1141
-              ],
-              "upper_pin": [
-                -33.734,
-                19.1225
-              ],
-              "mid_pin": [
-                -33.733,
-                19.118
-              ]
-            }
-          ],
-          "Barry": [
-            {
-              "session_id": 1,
-              "session_name": "Saturday Morning",
-              "session_short": "Sat AM",
-              "day": "Saturday",
-              "time": "Morning",
-              "beat_number": 1,
-              "beat_id": "SB6",
-              "beat_code": "SB6",
-              "beat_name": "Smalblaar 6 (SB6)",
-              "river": "Smalblaar",
-              "meeting_point": "Tunnel East Portal Parking / Junction Path",
-              "match_type": "1v1",
-              "opponents": [
-                "Dale"
-              ],
-              "is_stayer": false,
-              "section": "First Half (Lower Section)",
-              "pin": [
-                -33.7319,
-                19.1141
-              ],
-              "lower_pin": [
-                -33.7319,
-                19.1141
-              ],
-              "upper_pin": [
-                -33.734,
-                19.1225
-              ],
-              "mid_pin": [
-                -33.733,
-                19.118
-              ]
-            },
-            {
-              "session_id": 2,
-              "session_name": "Saturday Afternoon",
-              "session_short": "Sat PM",
-              "day": "Saturday",
-              "time": "Afternoon",
-              "beat_number": 4,
-              "beat_id": "EP2",
-              "beat_code": "EP2",
-              "beat_name": "Elandspad 2 (EP2)",
-              "river": "Elandspad",
-              "meeting_point": "Fisherman's Cave trail",
-              "match_type": "1v1",
-              "opponents": [
-                "Ian"
-              ],
-              "is_stayer": false,
-              "section": "First Half (Lower Section)",
-              "pin": [
-                -33.7385,
-                19.1118
-              ],
-              "lower_pin": [
-                -33.7385,
-                19.1118
-              ],
-              "upper_pin": [
-                -33.7455,
-                19.1092
-              ],
-              "mid_pin": [
-                -33.742,
-                19.1105
-              ]
-            },
-            {
-              "session_id": 3,
-              "session_name": "Sunday Morning",
-              "session_short": "Sun AM",
-              "day": "Sunday",
-              "time": "Morning",
-              "beat_number": 4,
-              "beat_id": "EP2",
-              "beat_code": "EP2",
-              "beat_name": "Elandspad 2 (EP2)",
-              "river": "Elandspad",
-              "meeting_point": "Fisherman's Cave trail",
-              "match_type": "1v1",
-              "opponents": [
-                "Daniel"
-              ],
-              "is_stayer": false,
-              "section": "First Half (Lower Section)",
-              "pin": [
-                -33.7385,
-                19.1118
-              ],
-              "lower_pin": [
-                -33.7385,
-                19.1118
-              ],
-              "upper_pin": [
-                -33.7455,
-                19.1092
-              ],
-              "mid_pin": [
-                -33.742,
-                19.1105
-              ]
-            },
-            {
-              "session_id": 4,
-              "session_name": "Sunday Afternoon",
-              "session_short": "Sun PM",
-              "day": "Sunday",
-              "time": "Afternoon",
-              "beat_number": 1,
-              "beat_id": "SB6",
-              "beat_code": "SB6",
-              "beat_name": "Smalblaar 6 (SB6)",
-              "river": "Smalblaar",
-              "meeting_point": "Tunnel East Portal Parking / Junction Path",
-              "match_type": "1v1v1",
-              "opponents": [
-                "James",
-                "Michelle"
-              ],
-              "is_stayer": false,
-              "section": "First Half (Lower Section)",
-              "pin": [
-                -33.7319,
-                19.1141
-              ],
-              "lower_pin": [
-                -33.7319,
-                19.1141
-              ],
-              "upper_pin": [
-                -33.734,
-                19.1225
-              ],
-              "mid_pin": [
-                -33.733,
-                19.118
-              ]
-            }
-          ],
-          "Daniel": [
-            {
-              "session_id": 1,
-              "session_name": "Saturday Morning",
-              "session_short": "Sat AM",
-              "day": "Saturday",
-              "time": "Morning",
-              "beat_number": 5,
-              "beat_id": "SB1",
-              "beat_code": "SB1",
-              "beat_name": "Smalblaar 1 (SB1)",
-              "river": "Smalblaar",
-              "meeting_point": "Picnic site pull-off",
-              "match_type": "1v1",
-              "opponents": [
-                "James"
-              ],
-              "is_stayer": false,
-              "section": "First Half (Lower Section)",
-              "pin": [
-                -33.72,
-                19.167
-              ],
-              "lower_pin": [
-                -33.72,
-                19.167
-              ],
-              "upper_pin": [
-                -33.723,
-                19.1585
-              ],
-              "mid_pin": [
-                -33.7215,
-                19.163
-              ]
-            },
-            {
-              "session_id": 2,
-              "session_name": "Saturday Afternoon",
-              "session_short": "Sat PM",
-              "day": "Saturday",
-              "time": "Afternoon",
-              "beat_number": 5,
-              "beat_id": "SB1",
-              "beat_code": "SB1",
-              "beat_name": "Smalblaar 1 (SB1)",
-              "river": "Smalblaar",
-              "meeting_point": "Picnic site pull-off",
-              "match_type": "1v1v1",
-              "opponents": [
-                "Ryan",
-                "Dylan"
-              ],
-              "is_stayer": true,
-              "section": "Second Half (Upper Section)",
-              "pin": [
-                -33.7215,
-                19.163
-              ],
-              "lower_pin": [
-                -33.72,
-                19.167
-              ],
-              "upper_pin": [
-                -33.723,
-                19.1585
-              ],
-              "mid_pin": [
-                -33.7215,
-                19.163
-              ]
-            },
-            {
-              "session_id": 3,
-              "session_name": "Sunday Morning",
-              "session_short": "Sun AM",
-              "day": "Sunday",
-              "time": "Morning",
-              "beat_number": 4,
-              "beat_id": "EP2",
-              "beat_code": "EP2",
-              "beat_name": "Elandspad 2 (EP2)",
-              "river": "Elandspad",
-              "meeting_point": "Fisherman's Cave trail",
-              "match_type": "1v1",
-              "opponents": [
-                "Barry"
-              ],
-              "is_stayer": false,
-              "section": "First Half (Lower Section)",
-              "pin": [
-                -33.7385,
-                19.1118
-              ],
-              "lower_pin": [
-                -33.7385,
-                19.1118
-              ],
-              "upper_pin": [
-                -33.7455,
-                19.1092
-              ],
-              "mid_pin": [
-                -33.742,
-                19.1105
-              ]
-            },
-            {
-              "session_id": 4,
-              "session_name": "Sunday Afternoon",
-              "session_short": "Sun PM",
-              "day": "Sunday",
-              "time": "Afternoon",
-              "beat_number": 4,
-              "beat_id": "EP2",
-              "beat_code": "EP2",
-              "beat_name": "Elandspad 2 (EP2)",
-              "river": "Elandspad",
-              "meeting_point": "Fisherman's Cave trail",
-              "match_type": "1v1",
-              "opponents": [
-                "Garth"
-              ],
-              "is_stayer": true,
-              "section": "Second Half (Upper Section)",
-              "pin": [
-                -33.742,
-                19.1105
-              ],
-              "lower_pin": [
-                -33.7385,
-                19.1118
-              ],
-              "upper_pin": [
-                -33.7455,
-                19.1092
-              ],
-              "mid_pin": [
-                -33.742,
-                19.1105
-              ]
-            }
-          ],
-          "Garth": [
-            {
-              "session_id": 1,
-              "session_name": "Saturday Morning",
-              "session_short": "Sat AM",
-              "day": "Saturday",
-              "time": "Morning",
-              "beat_number": 2,
-              "beat_id": "EP1",
-              "beat_code": "EP1",
-              "beat_name": "Elandspad 1 (EP1)",
-              "river": "Elandspad",
-              "meeting_point": "Junction Pool trail head",
-              "match_type": "1v1v1",
-              "opponents": [
-                "Malcolm",
-                "Garrett"
-              ],
-              "is_stayer": false,
-              "section": "First Half (Lower Section)",
-              "pin": [
-                -33.7319,
-                19.1141
-              ],
-              "lower_pin": [
-                -33.7319,
-                19.1141
-              ],
-              "upper_pin": [
-                -33.7385,
-                19.1118
-              ],
-              "mid_pin": [
-                -33.7352,
-                19.1129
-              ]
-            },
-            {
-              "session_id": 2,
-              "session_name": "Saturday Afternoon",
-              "session_short": "Sat PM",
-              "day": "Saturday",
-              "time": "Afternoon",
-              "beat_number": 3,
-              "beat_id": "Transport",
-              "beat_code": "Transport",
-              "beat_name": "Transport Beat",
-              "river": "Smalblaar",
-              "meeting_point": "Transport Bridge layby on N1",
-              "match_type": "1v1",
-              "opponents": [
-                "Michelle"
-              ],
-              "is_stayer": false,
-              "section": "First Half (Lower Section)",
-              "pin": [
-                -33.7085,
-                19.1895
-              ],
-              "lower_pin": [
-                -33.7085,
-                19.1895
-              ],
-              "upper_pin": [
-                -33.712,
-                19.1825
-              ],
-              "mid_pin": [
-                -33.71,
-                19.186
-              ]
-            },
-            {
-              "session_id": 3,
-              "session_name": "Sunday Morning",
-              "session_short": "Sun AM",
-              "day": "Sunday",
-              "time": "Morning",
-              "beat_number": 2,
-              "beat_id": "EP1",
-              "beat_code": "EP1",
-              "beat_name": "Elandspad 1 (EP1)",
-              "river": "Elandspad",
-              "meeting_point": "Junction Pool trail head",
-              "match_type": "1v1",
-              "opponents": [
-                "Ryan"
-              ],
-              "is_stayer": false,
-              "section": "First Half (Lower Section)",
-              "pin": [
-                -33.7319,
-                19.1141
-              ],
-              "lower_pin": [
-                -33.7319,
-                19.1141
-              ],
-              "upper_pin": [
-                -33.7385,
-                19.1118
-              ],
-              "mid_pin": [
-                -33.7352,
-                19.1129
-              ]
-            },
-            {
-              "session_id": 4,
-              "session_name": "Sunday Afternoon",
-              "session_short": "Sun PM",
-              "day": "Sunday",
-              "time": "Afternoon",
-              "beat_number": 4,
-              "beat_id": "EP2",
-              "beat_code": "EP2",
-              "beat_name": "Elandspad 2 (EP2)",
-              "river": "Elandspad",
-              "meeting_point": "Fisherman's Cave trail",
-              "match_type": "1v1",
-              "opponents": [
-                "Daniel"
-              ],
-              "is_stayer": false,
-              "section": "First Half (Lower Section)",
-              "pin": [
-                -33.7385,
-                19.1118
-              ],
-              "lower_pin": [
-                -33.7385,
-                19.1118
-              ],
-              "upper_pin": [
-                -33.7455,
-                19.1092
-              ],
-              "mid_pin": [
-                -33.742,
-                19.1105
-              ]
-            }
-          ],
-          "Dale": [
-            {
-              "session_id": 1,
-              "session_name": "Saturday Morning",
-              "session_short": "Sat AM",
-              "day": "Saturday",
-              "time": "Morning",
-              "beat_number": 1,
-              "beat_id": "SB6",
-              "beat_code": "SB6",
-              "beat_name": "Smalblaar 6 (SB6)",
-              "river": "Smalblaar",
-              "meeting_point": "Tunnel East Portal Parking / Junction Path",
-              "match_type": "1v1",
-              "opponents": [
-                "Barry"
-              ],
-              "is_stayer": false,
-              "section": "First Half (Lower Section)",
-              "pin": [
-                -33.7319,
-                19.1141
-              ],
-              "lower_pin": [
-                -33.7319,
-                19.1141
-              ],
-              "upper_pin": [
-                -33.734,
-                19.1225
-              ],
-              "mid_pin": [
-                -33.733,
-                19.118
-              ]
-            },
-            {
-              "session_id": 2,
-              "session_name": "Saturday Afternoon",
-              "session_short": "Sat PM",
-              "day": "Saturday",
-              "time": "Afternoon",
-              "beat_number": 1,
-              "beat_id": "SB6",
-              "beat_code": "SB6",
-              "beat_name": "Smalblaar 6 (SB6)",
-              "river": "Smalblaar",
-              "meeting_point": "Tunnel East Portal Parking / Junction Path",
-              "match_type": "1v1",
-              "opponents": [
-                "Garrett"
-              ],
-              "is_stayer": true,
-              "section": "Second Half (Upper Section)",
-              "pin": [
-                -33.733,
-                19.118
-              ],
-              "lower_pin": [
-                -33.7319,
-                19.1141
-              ],
-              "upper_pin": [
-                -33.734,
-                19.1225
-              ],
-              "mid_pin": [
-                -33.733,
-                19.118
-              ]
-            },
-            {
-              "session_id": 3,
-              "session_name": "Sunday Morning",
-              "session_short": "Sun AM",
-              "day": "Sunday",
-              "time": "Morning",
-              "beat_number": 5,
-              "beat_id": "SB1",
-              "beat_code": "SB1",
-              "beat_name": "Smalblaar 1 (SB1)",
-              "river": "Smalblaar",
-              "meeting_point": "Picnic site pull-off",
-              "match_type": "1v1v1",
-              "opponents": [
-                "Michelle",
-                "Ian"
-              ],
-              "is_stayer": false,
-              "section": "First Half (Lower Section)",
-              "pin": [
-                -33.72,
-                19.167
-              ],
-              "lower_pin": [
-                -33.72,
-                19.167
-              ],
-              "upper_pin": [
-                -33.723,
-                19.1585
-              ],
-              "mid_pin": [
-                -33.7215,
-                19.163
-              ]
-            },
-            {
-              "session_id": 4,
-              "session_name": "Sunday Afternoon",
-              "session_short": "Sun PM",
-              "day": "Sunday",
-              "time": "Afternoon",
-              "beat_number": 3,
-              "beat_id": "Transport",
-              "beat_code": "Transport",
-              "beat_name": "Transport Beat",
-              "river": "Smalblaar",
-              "meeting_point": "Transport Bridge layby on N1",
-              "match_type": "1v1",
-              "opponents": [
-                "Malcolm"
-              ],
-              "is_stayer": false,
-              "section": "First Half (Lower Section)",
-              "pin": [
-                -33.7085,
-                19.1895
-              ],
-              "lower_pin": [
-                -33.7085,
-                19.1895
-              ],
-              "upper_pin": [
-                -33.712,
-                19.1825
-              ],
-              "mid_pin": [
-                -33.71,
-                19.186
-              ]
-            }
-          ],
-          "Dylan": [
-            {
-              "session_id": 1,
-              "session_name": "Saturday Morning",
-              "session_short": "Sat AM",
-              "day": "Saturday",
-              "time": "Morning",
-              "beat_number": 3,
-              "beat_id": "Transport",
-              "beat_code": "Transport",
-              "beat_name": "Transport Beat",
-              "river": "Smalblaar",
-              "meeting_point": "Transport Bridge layby on N1",
-              "match_type": "1v1",
-              "opponents": [
-                "Michelle"
-              ],
-              "is_stayer": false,
-              "section": "First Half (Lower Section)",
-              "pin": [
-                -33.7085,
-                19.1895
-              ],
-              "lower_pin": [
-                -33.7085,
-                19.1895
-              ],
-              "upper_pin": [
-                -33.712,
-                19.1825
-              ],
-              "mid_pin": [
-                -33.71,
-                19.186
-              ]
-            },
-            {
-              "session_id": 2,
-              "session_name": "Saturday Afternoon",
-              "session_short": "Sat PM",
-              "day": "Saturday",
-              "time": "Afternoon",
-              "beat_number": 5,
-              "beat_id": "SB1",
-              "beat_code": "SB1",
-              "beat_name": "Smalblaar 1 (SB1)",
-              "river": "Smalblaar",
-              "meeting_point": "Picnic site pull-off",
-              "match_type": "1v1v1",
-              "opponents": [
-                "Ryan",
-                "Daniel"
-              ],
-              "is_stayer": false,
-              "section": "First Half (Lower Section)",
-              "pin": [
-                -33.72,
-                19.167
-              ],
-              "lower_pin": [
-                -33.72,
-                19.167
-              ],
-              "upper_pin": [
-                -33.723,
-                19.1585
-              ],
-              "mid_pin": [
-                -33.7215,
-                19.163
-              ]
-            },
-            {
-              "session_id": 3,
-              "session_name": "Sunday Morning",
-              "session_short": "Sun AM",
-              "day": "Sunday",
-              "time": "Morning",
-              "beat_number": 3,
-              "beat_id": "Transport",
-              "beat_code": "Transport",
-              "beat_name": "Transport Beat",
-              "river": "Smalblaar",
-              "meeting_point": "Transport Bridge layby on N1",
-              "match_type": "1v1",
-              "opponents": [
-                "Malcolm"
-              ],
-              "is_stayer": false,
-              "section": "First Half (Lower Section)",
-              "pin": [
-                -33.7085,
-                19.1895
-              ],
-              "lower_pin": [
-                -33.7085,
-                19.1895
-              ],
-              "upper_pin": [
-                -33.712,
-                19.1825
-              ],
-              "mid_pin": [
-                -33.71,
-                19.186
-              ]
-            },
-            {
-              "session_id": 4,
-              "session_name": "Sunday Afternoon",
-              "session_short": "Sun PM",
-              "day": "Sunday",
-              "time": "Afternoon",
-              "beat_number": 5,
-              "beat_id": "SB1",
-              "beat_code": "SB1",
-              "beat_name": "Smalblaar 1 (SB1)",
-              "river": "Smalblaar",
-              "meeting_point": "Picnic site pull-off",
-              "match_type": "1v1",
-              "opponents": [
-                "Ian"
-              ],
-              "is_stayer": false,
-              "section": "First Half (Lower Section)",
-              "pin": [
-                -33.72,
-                19.167
-              ],
-              "lower_pin": [
-                -33.72,
-                19.167
-              ],
-              "upper_pin": [
-                -33.723,
-                19.1585
-              ],
-              "mid_pin": [
-                -33.7215,
-                19.163
-              ]
-            }
-          ],
-          "Ian": [
-            {
-              "session_id": 1,
-              "session_name": "Saturday Morning",
-              "session_short": "Sat AM",
-              "day": "Saturday",
-              "time": "Morning",
-              "beat_number": 4,
-              "beat_id": "EP2",
-              "beat_code": "EP2",
-              "beat_name": "Elandspad 2 (EP2)",
-              "river": "Elandspad",
-              "meeting_point": "Fisherman's Cave trail",
-              "match_type": "1v1",
-              "opponents": [
-                "Ryan"
-              ],
-              "is_stayer": false,
-              "section": "First Half (Lower Section)",
-              "pin": [
-                -33.7385,
-                19.1118
-              ],
-              "lower_pin": [
-                -33.7385,
-                19.1118
-              ],
-              "upper_pin": [
-                -33.7455,
-                19.1092
-              ],
-              "mid_pin": [
-                -33.742,
-                19.1105
-              ]
-            },
-            {
-              "session_id": 2,
-              "session_name": "Saturday Afternoon",
-              "session_short": "Sat PM",
-              "day": "Saturday",
-              "time": "Afternoon",
-              "beat_number": 4,
-              "beat_id": "EP2",
-              "beat_code": "EP2",
-              "beat_name": "Elandspad 2 (EP2)",
-              "river": "Elandspad",
-              "meeting_point": "Fisherman's Cave trail",
-              "match_type": "1v1",
-              "opponents": [
-                "Barry"
-              ],
-              "is_stayer": true,
-              "section": "Second Half (Upper Section)",
-              "pin": [
-                -33.742,
-                19.1105
-              ],
-              "lower_pin": [
-                -33.7385,
-                19.1118
-              ],
-              "upper_pin": [
-                -33.7455,
-                19.1092
-              ],
-              "mid_pin": [
-                -33.742,
-                19.1105
-              ]
-            },
-            {
-              "session_id": 3,
-              "session_name": "Sunday Morning",
-              "session_short": "Sun AM",
-              "day": "Sunday",
-              "time": "Morning",
-              "beat_number": 5,
-              "beat_id": "SB1",
-              "beat_code": "SB1",
-              "beat_name": "Smalblaar 1 (SB1)",
-              "river": "Smalblaar",
-              "meeting_point": "Picnic site pull-off",
-              "match_type": "1v1v1",
-              "opponents": [
-                "Michelle",
-                "Dale"
-              ],
-              "is_stayer": false,
-              "section": "First Half (Lower Section)",
-              "pin": [
-                -33.72,
-                19.167
-              ],
-              "lower_pin": [
-                -33.72,
-                19.167
-              ],
-              "upper_pin": [
-                -33.723,
-                19.1585
-              ],
-              "mid_pin": [
-                -33.7215,
-                19.163
-              ]
-            },
-            {
-              "session_id": 4,
-              "session_name": "Sunday Afternoon",
-              "session_short": "Sun PM",
-              "day": "Sunday",
-              "time": "Afternoon",
-              "beat_number": 5,
-              "beat_id": "SB1",
-              "beat_code": "SB1",
-              "beat_name": "Smalblaar 1 (SB1)",
-              "river": "Smalblaar",
-              "meeting_point": "Picnic site pull-off",
-              "match_type": "1v1",
-              "opponents": [
-                "Dylan"
-              ],
-              "is_stayer": true,
-              "section": "Second Half (Upper Section)",
-              "pin": [
-                -33.7215,
-                19.163
-              ],
-              "lower_pin": [
-                -33.72,
-                19.167
-              ],
-              "upper_pin": [
-                -33.723,
-                19.1585
-              ],
-              "mid_pin": [
-                -33.7215,
-                19.163
-              ]
-            }
-          ],
-          "Malcolm": [
-            {
-              "session_id": 1,
-              "session_name": "Saturday Morning",
-              "session_short": "Sat AM",
-              "day": "Saturday",
-              "time": "Morning",
-              "beat_number": 2,
-              "beat_id": "EP1",
-              "beat_code": "EP1",
-              "beat_name": "Elandspad 1 (EP1)",
-              "river": "Elandspad",
-              "meeting_point": "Junction Pool trail head",
-              "match_type": "1v1v1",
-              "opponents": [
-                "Garrett",
-                "Garth"
-              ],
-              "is_stayer": false,
-              "section": "First Half (Lower Section)",
-              "pin": [
-                -33.7319,
-                19.1141
-              ],
-              "lower_pin": [
-                -33.7319,
-                19.1141
-              ],
-              "upper_pin": [
-                -33.7385,
-                19.1118
-              ],
-              "mid_pin": [
-                -33.7352,
-                19.1129
-              ]
-            },
-            {
-              "session_id": 2,
-              "session_name": "Saturday Afternoon",
-              "session_short": "Sat PM",
-              "day": "Saturday",
-              "time": "Afternoon",
-              "beat_number": 2,
-              "beat_id": "EP1",
-              "beat_code": "EP1",
-              "beat_name": "Elandspad 1 (EP1)",
-              "river": "Elandspad",
-              "meeting_point": "Junction Pool trail head",
-              "match_type": "1v1",
-              "opponents": [
-                "James"
-              ],
-              "is_stayer": true,
-              "section": "Second Half (Upper Section)",
-              "pin": [
-                -33.7352,
-                19.1129
-              ],
-              "lower_pin": [
-                -33.7319,
-                19.1141
-              ],
-              "upper_pin": [
-                -33.7385,
-                19.1118
-              ],
-              "mid_pin": [
-                -33.7352,
-                19.1129
-              ]
-            },
-            {
-              "session_id": 3,
-              "session_name": "Sunday Morning",
-              "session_short": "Sun AM",
-              "day": "Sunday",
-              "time": "Morning",
-              "beat_number": 3,
-              "beat_id": "Transport",
-              "beat_code": "Transport",
-              "beat_name": "Transport Beat",
-              "river": "Smalblaar",
-              "meeting_point": "Transport Bridge layby on N1",
-              "match_type": "1v1",
-              "opponents": [
-                "Dylan"
-              ],
-              "is_stayer": false,
-              "section": "First Half (Lower Section)",
-              "pin": [
-                -33.7085,
-                19.1895
-              ],
-              "lower_pin": [
-                -33.7085,
-                19.1895
-              ],
-              "upper_pin": [
-                -33.712,
-                19.1825
-              ],
-              "mid_pin": [
-                -33.71,
-                19.186
-              ]
-            },
-            {
-              "session_id": 4,
-              "session_name": "Sunday Afternoon",
-              "session_short": "Sun PM",
-              "day": "Sunday",
-              "time": "Afternoon",
-              "beat_number": 3,
-              "beat_id": "Transport",
-              "beat_code": "Transport",
-              "beat_name": "Transport Beat",
-              "river": "Smalblaar",
-              "meeting_point": "Transport Bridge layby on N1",
-              "match_type": "1v1",
-              "opponents": [
-                "Dale"
-              ],
-              "is_stayer": true,
-              "section": "Second Half (Upper Section)",
-              "pin": [
-                -33.71,
-                19.186
-              ],
-              "lower_pin": [
-                -33.7085,
-                19.1895
-              ],
-              "upper_pin": [
-                -33.712,
-                19.1825
-              ],
-              "mid_pin": [
-                -33.71,
-                19.186
-              ]
-            }
-          ],
-          "Ryan": [
-            {
-              "session_id": 1,
-              "session_name": "Saturday Morning",
-              "session_short": "Sat AM",
-              "day": "Saturday",
-              "time": "Morning",
-              "beat_number": 4,
-              "beat_id": "EP2",
-              "beat_code": "EP2",
-              "beat_name": "Elandspad 2 (EP2)",
-              "river": "Elandspad",
-              "meeting_point": "Fisherman's Cave trail",
-              "match_type": "1v1",
-              "opponents": [
-                "Ian"
-              ],
-              "is_stayer": false,
-              "section": "First Half (Lower Section)",
-              "pin": [
-                -33.7385,
-                19.1118
-              ],
-              "lower_pin": [
-                -33.7385,
-                19.1118
-              ],
-              "upper_pin": [
-                -33.7455,
-                19.1092
-              ],
-              "mid_pin": [
-                -33.742,
-                19.1105
-              ]
-            },
-            {
-              "session_id": 2,
-              "session_name": "Saturday Afternoon",
-              "session_short": "Sat PM",
-              "day": "Saturday",
-              "time": "Afternoon",
-              "beat_number": 5,
-              "beat_id": "SB1",
-              "beat_code": "SB1",
-              "beat_name": "Smalblaar 1 (SB1)",
-              "river": "Smalblaar",
-              "meeting_point": "Picnic site pull-off",
-              "match_type": "1v1v1",
-              "opponents": [
-                "Daniel",
-                "Dylan"
-              ],
-              "is_stayer": false,
-              "section": "First Half (Lower Section)",
-              "pin": [
-                -33.72,
-                19.167
-              ],
-              "lower_pin": [
-                -33.72,
-                19.167
-              ],
-              "upper_pin": [
-                -33.723,
-                19.1585
-              ],
-              "mid_pin": [
-                -33.7215,
-                19.163
-              ]
-            },
-            {
-              "session_id": 3,
-              "session_name": "Sunday Morning",
-              "session_short": "Sun AM",
-              "day": "Sunday",
-              "time": "Morning",
-              "beat_number": 2,
-              "beat_id": "EP1",
-              "beat_code": "EP1",
-              "beat_name": "Elandspad 1 (EP1)",
-              "river": "Elandspad",
-              "meeting_point": "Junction Pool trail head",
-              "match_type": "1v1",
-              "opponents": [
-                "Garth"
-              ],
-              "is_stayer": false,
-              "section": "First Half (Lower Section)",
-              "pin": [
-                -33.7319,
-                19.1141
-              ],
-              "lower_pin": [
-                -33.7319,
-                19.1141
-              ],
-              "upper_pin": [
-                -33.7385,
-                19.1118
-              ],
-              "mid_pin": [
-                -33.7352,
-                19.1129
-              ]
-            },
-            {
-              "session_id": 4,
-              "session_name": "Sunday Afternoon",
-              "session_short": "Sun PM",
-              "day": "Sunday",
-              "time": "Afternoon",
-              "beat_number": 2,
-              "beat_id": "EP1",
-              "beat_code": "EP1",
-              "beat_name": "Elandspad 1 (EP1)",
-              "river": "Elandspad",
-              "meeting_point": "Junction Pool trail head",
-              "match_type": "1v1",
-              "opponents": [
-                "Garrett"
-              ],
-              "is_stayer": true,
-              "section": "Second Half (Upper Section)",
-              "pin": [
-                -33.7352,
-                19.1129
-              ],
-              "lower_pin": [
-                -33.7319,
-                19.1141
-              ],
-              "upper_pin": [
-                -33.7385,
-                19.1118
-              ],
-              "mid_pin": [
-                -33.7352,
-                19.1129
-              ]
-            }
-          ],
-          "Garrett": [
-            {
-              "session_id": 1,
-              "session_name": "Saturday Morning",
-              "session_short": "Sat AM",
-              "day": "Saturday",
-              "time": "Morning",
-              "beat_number": 2,
-              "beat_id": "EP1",
-              "beat_code": "EP1",
-              "beat_name": "Elandspad 1 (EP1)",
-              "river": "Elandspad",
-              "meeting_point": "Junction Pool trail head",
-              "match_type": "1v1v1",
-              "opponents": [
-                "Malcolm",
-                "Garth"
-              ],
-              "is_stayer": false,
-              "section": "First Half (Lower Section)",
-              "pin": [
-                -33.7319,
-                19.1141
-              ],
-              "lower_pin": [
-                -33.7319,
-                19.1141
-              ],
-              "upper_pin": [
-                -33.7385,
-                19.1118
-              ],
-              "mid_pin": [
-                -33.7352,
-                19.1129
-              ]
-            },
-            {
-              "session_id": 2,
-              "session_name": "Saturday Afternoon",
-              "session_short": "Sat PM",
-              "day": "Saturday",
-              "time": "Afternoon",
-              "beat_number": 1,
-              "beat_id": "SB6",
-              "beat_code": "SB6",
-              "beat_name": "Smalblaar 6 (SB6)",
-              "river": "Smalblaar",
-              "meeting_point": "Tunnel East Portal Parking / Junction Path",
-              "match_type": "1v1",
-              "opponents": [
-                "Dale"
-              ],
-              "is_stayer": false,
-              "section": "First Half (Lower Section)",
-              "pin": [
-                -33.7319,
-                19.1141
-              ],
-              "lower_pin": [
-                -33.7319,
-                19.1141
-              ],
-              "upper_pin": [
-                -33.734,
-                19.1225
-              ],
-              "mid_pin": [
-                -33.733,
-                19.118
-              ]
-            },
-            {
-              "session_id": 3,
-              "session_name": "Sunday Morning",
-              "session_short": "Sun AM",
-              "day": "Sunday",
-              "time": "Morning",
-              "beat_number": 1,
-              "beat_id": "SB6",
-              "beat_code": "SB6",
-              "beat_name": "Smalblaar 6 (SB6)",
-              "river": "Smalblaar",
-              "meeting_point": "Tunnel East Portal Parking / Junction Path",
-              "match_type": "1v1",
-              "opponents": [
-                "James"
-              ],
-              "is_stayer": false,
-              "section": "First Half (Lower Section)",
-              "pin": [
-                -33.7319,
-                19.1141
-              ],
-              "lower_pin": [
-                -33.7319,
-                19.1141
-              ],
-              "upper_pin": [
-                -33.734,
-                19.1225
-              ],
-              "mid_pin": [
-                -33.733,
-                19.118
-              ]
-            },
-            {
-              "session_id": 4,
-              "session_name": "Sunday Afternoon",
-              "session_short": "Sun PM",
-              "day": "Sunday",
-              "time": "Afternoon",
-              "beat_number": 2,
-              "beat_id": "EP1",
-              "beat_code": "EP1",
-              "beat_name": "Elandspad 1 (EP1)",
-              "river": "Elandspad",
-              "meeting_point": "Junction Pool trail head",
-              "match_type": "1v1",
-              "opponents": [
-                "Ryan"
-              ],
-              "is_stayer": false,
-              "section": "First Half (Lower Section)",
-              "pin": [
-                -33.7319,
-                19.1141
-              ],
-              "lower_pin": [
-                -33.7319,
-                19.1141
-              ],
-              "upper_pin": [
-                -33.7385,
-                19.1118
-              ],
-              "mid_pin": [
-                -33.7352,
-                19.1129
-              ]
-            }
-          ],
-          "Michelle": [
-            {
-              "session_id": 1,
-              "session_name": "Saturday Morning",
-              "session_short": "Sat AM",
-              "day": "Saturday",
-              "time": "Morning",
-              "beat_number": 3,
-              "beat_id": "Transport",
-              "beat_code": "Transport",
-              "beat_name": "Transport Beat",
-              "river": "Smalblaar",
-              "meeting_point": "Transport Bridge layby on N1",
-              "match_type": "1v1",
-              "opponents": [
-                "Dylan"
-              ],
-              "is_stayer": false,
-              "section": "First Half (Lower Section)",
-              "pin": [
-                -33.7085,
-                19.1895
-              ],
-              "lower_pin": [
-                -33.7085,
-                19.1895
-              ],
-              "upper_pin": [
-                -33.712,
-                19.1825
-              ],
-              "mid_pin": [
-                -33.71,
-                19.186
-              ]
-            },
-            {
-              "session_id": 2,
-              "session_name": "Saturday Afternoon",
-              "session_short": "Sat PM",
-              "day": "Saturday",
-              "time": "Afternoon",
-              "beat_number": 3,
-              "beat_id": "Transport",
-              "beat_code": "Transport",
-              "beat_name": "Transport Beat",
-              "river": "Smalblaar",
-              "meeting_point": "Transport Bridge layby on N1",
-              "match_type": "1v1",
-              "opponents": [
-                "Garth"
-              ],
-              "is_stayer": true,
-              "section": "Second Half (Upper Section)",
-              "pin": [
-                -33.71,
-                19.186
-              ],
-              "lower_pin": [
-                -33.7085,
-                19.1895
-              ],
-              "upper_pin": [
-                -33.712,
-                19.1825
-              ],
-              "mid_pin": [
-                -33.71,
-                19.186
-              ]
-            },
-            {
-              "session_id": 3,
-              "session_name": "Sunday Morning",
-              "session_short": "Sun AM",
-              "day": "Sunday",
-              "time": "Morning",
-              "beat_number": 5,
-              "beat_id": "SB1",
-              "beat_code": "SB1",
-              "beat_name": "Smalblaar 1 (SB1)",
-              "river": "Smalblaar",
-              "meeting_point": "Picnic site pull-off",
-              "match_type": "1v1v1",
-              "opponents": [
-                "Ian",
-                "Dale"
-              ],
-              "is_stayer": false,
-              "section": "First Half (Lower Section)",
-              "pin": [
-                -33.72,
-                19.167
-              ],
-              "lower_pin": [
-                -33.72,
-                19.167
-              ],
-              "upper_pin": [
-                -33.723,
-                19.1585
-              ],
-              "mid_pin": [
-                -33.7215,
-                19.163
-              ]
-            },
-            {
-              "session_id": 4,
-              "session_name": "Sunday Afternoon",
-              "session_short": "Sun PM",
-              "day": "Sunday",
-              "time": "Afternoon",
-              "beat_number": 1,
-              "beat_id": "SB6",
-              "beat_code": "SB6",
-              "beat_name": "Smalblaar 6 (SB6)",
-              "river": "Smalblaar",
-              "meeting_point": "Tunnel East Portal Parking / Junction Path",
-              "match_type": "1v1v1",
-              "opponents": [
-                "Barry",
-                "James"
-              ],
-              "is_stayer": false,
-              "section": "First Half (Lower Section)",
-              "pin": [
-                -33.7319,
-                19.1141
-              ],
-              "lower_pin": [
-                -33.7319,
-                19.1141
-              ],
-              "upper_pin": [
-                -33.734,
-                19.1225
-              ],
-              "mid_pin": [
-                -33.733,
-                19.118
-              ]
-            }
-          ]
-        },
         "three_way_counts": {
           "James": 1,
           "Barry": 1,
@@ -5430,223 +2258,224 @@ export const INITIAL_STATE = {
             "session_short": "Sat AM",
             "day": "Saturday",
             "time": "Morning",
+            "time_slot": "Morning",
+            "is_saved": false,
+            "saved_at": null,
             "matches": [
               {
-                "match_id": "S1_B1",
-                "session_id": 1,
-                "beat": 1,
+                "match_id": "S1_M1",
+                "match_number": 1,
+                "match_type": "1v1",
+                "is_solo": false,
+                "is_bye": false,
                 "beat_number": 1,
+                "beat": 1,
                 "beat_id": "SB6",
                 "beat_code": "SB6",
-                "beat_name": "Smalblaar 6 (SB6)",
+                "beat_name": "SB6",
                 "river": "Small Blaar",
-                "meeting_point": "Tunnel East Portal Parking / Junction Path",
                 "lower_pin": [
                   -33.7319,
                   19.1141
                 ],
-                "upper_pin": [
-                  -33.734,
-                  19.1225
-                ],
                 "mid_pin": [
                   -33.733,
-                  19.118
+                  19.1105
                 ],
+                "upper_pin": [
+                  -33.7342,
+                  19.1065
+                ],
+                "meeting_point": "Tunnel East Portal Parking / Junction Path",
+                "travel_time": 15,
+                "anglers": [
+                  "Garrett",
+                  "Garth"
+                ],
+                "stayer": null,
+                "status": "UNREPORTED",
+                "submissions": {},
+                "official_scores": {},
+                "calculated_points": {}
+              },
+              {
+                "match_id": "S1_M2",
+                "match_number": 2,
                 "match_type": "1v1",
+                "is_solo": false,
+                "is_bye": false,
+                "beat_number": 2,
+                "beat": 2,
+                "beat_id": "SB5",
+                "beat_code": "SB5",
+                "beat_name": "SB5",
+                "river": "Small Blaar",
+                "lower_pin": [
+                  -33.7295,
+                  19.132
+                ],
+                "mid_pin": [
+                  -33.7305,
+                  19.127
+                ],
+                "upper_pin": [
+                  -33.7319,
+                  19.1141
+                ],
+                "meeting_point": "CPS Elandspad parking lot",
+                "travel_time": 15,
+                "anglers": [
+                  "Ian",
+                  "Daniel"
+                ],
+                "stayer": null,
+                "status": "UNREPORTED",
+                "submissions": {},
+                "official_scores": {},
+                "calculated_points": {}
+              },
+              {
+                "match_id": "S1_M3",
+                "match_number": 3,
+                "match_type": "1v1",
+                "is_solo": false,
+                "is_bye": false,
+                "beat_number": 3,
+                "beat": 3,
+                "beat_id": "SB3",
+                "beat_code": "SB3",
+                "beat_name": "SB3",
+                "river": "Small Blaar",
+                "lower_pin": [
+                  -33.7235,
+                  19.153
+                ],
+                "mid_pin": [
+                  -33.7258,
+                  19.147
+                ],
+                "upper_pin": [
+                  -33.7272,
+                  19.1415
+                ],
+                "meeting_point": "N1 emergency telephone layby 3",
+                "travel_time": 15,
                 "anglers": [
                   "Dale",
                   "Barry"
                 ],
-                "angler_indices": [
-                  4,
-                  1
-                ],
-                "stayers": [],
-                "movers": [],
-                "is_head_to_head_a_team": false,
-                "has_a_team_angler": true,
-                "a_team_competitors": [
-                  "Barry"
-                ],
+                "stayer": null,
                 "status": "UNREPORTED",
                 "submissions": {},
                 "official_scores": {},
-                "calculated_points": {},
-                "discrepancy_details": null
+                "calculated_points": {}
               },
               {
-                "match_id": "S1_B2",
-                "session_id": 1,
-                "beat": 2,
-                "beat_number": 2,
+                "match_id": "S1_M4",
+                "match_number": 4,
+                "match_type": "1v1",
+                "is_solo": false,
+                "is_bye": false,
+                "beat_number": 4,
+                "beat": 4,
+                "beat_id": "EP2",
+                "beat_code": "EP2",
+                "beat_name": "EP2",
+                "river": "Elands Pad",
+                "lower_pin": [
+                  -33.7405,
+                  19.1162
+                ],
+                "mid_pin": [
+                  -33.746,
+                  19.1172
+                ],
+                "upper_pin": [
+                  -33.752,
+                  19.1188
+                ],
+                "meeting_point": "Fisherman's Cave trail",
+                "travel_time": 30,
+                "anglers": [
+                  "Malcolm",
+                  "Dylan"
+                ],
+                "stayer": null,
+                "status": "UNREPORTED",
+                "submissions": {},
+                "official_scores": {},
+                "calculated_points": {}
+              },
+              {
+                "match_id": "S1_M5",
+                "match_number": 5,
+                "match_type": "1v1",
+                "is_solo": false,
+                "is_bye": false,
+                "beat_number": 5,
+                "beat": 5,
+                "beat_id": "EP3",
+                "beat_code": "EP3",
+                "beat_name": "EP3",
+                "river": "Elands Pad",
+                "lower_pin": [
+                  -33.752,
+                  19.1188
+                ],
+                "mid_pin": [
+                  -33.7565,
+                  19.1195
+                ],
+                "upper_pin": [
+                  -33.761,
+                  19.1205
+                ],
+                "meeting_point": "Star beat rock shelter",
+                "travel_time": 30,
+                "anglers": [
+                  "Ryan",
+                  "Michelle"
+                ],
+                "stayer": null,
+                "status": "UNREPORTED",
+                "submissions": {},
+                "official_scores": {},
+                "calculated_points": {}
+              },
+              {
+                "match_id": "S1_M6",
+                "match_number": 6,
+                "match_type": "BYE",
+                "is_solo": true,
+                "is_bye": true,
+                "beat_number": 6,
+                "beat": 6,
                 "beat_id": "EP1",
                 "beat_code": "EP1",
-                "beat_name": "Elandspad 1 (EP1)",
+                "beat_name": "EP1",
                 "river": "Elands Pad",
-                "meeting_point": "Junction Pool trail head",
                 "lower_pin": [
                   -33.7319,
                   19.1141
                 ],
-                "upper_pin": [
-                  -33.7385,
-                  19.1118
-                ],
                 "mid_pin": [
-                  -33.7352,
-                  19.1129
-                ],
-                "match_type": "1v1v1",
-                "anglers": [
-                  "Malcolm",
-                  "Garrett",
-                  "Garth"
-                ],
-                "angler_indices": [
-                  7,
-                  9,
-                  3
-                ],
-                "stayers": [],
-                "movers": [],
-                "is_head_to_head_a_team": false,
-                "has_a_team_angler": false,
-                "a_team_competitors": [],
-                "status": "UNREPORTED",
-                "submissions": {},
-                "official_scores": {},
-                "calculated_points": {},
-                "discrepancy_details": null
-              },
-              {
-                "match_id": "S1_B3",
-                "session_id": 1,
-                "beat": 3,
-                "beat_number": 3,
-                "beat_id": "Transport",
-                "beat_code": "Transport",
-                "beat_name": "Transport Beat",
-                "river": "Small Blaar",
-                "meeting_point": "Transport Bridge layby on N1",
-                "lower_pin": [
-                  -33.7085,
-                  19.1895
+                  -33.736,
+                  19.1152
                 ],
                 "upper_pin": [
-                  -33.712,
-                  19.1825
+                  -33.7405,
+                  19.1162
                 ],
-                "mid_pin": [
-                  -33.71,
-                  19.186
-                ],
-                "match_type": "1v1",
+                "meeting_point": "Junction Pool trail head",
+                "travel_time": 15,
                 "anglers": [
-                  "Dylan",
-                  "Michelle"
+                  "James"
                 ],
-                "angler_indices": [
-                  5,
-                  10
-                ],
-                "stayers": [],
-                "movers": [],
-                "is_head_to_head_a_team": false,
-                "has_a_team_angler": false,
-                "a_team_competitors": [],
-                "status": "UNREPORTED",
+                "stayer": null,
+                "status": "BYE",
                 "submissions": {},
                 "official_scores": {},
-                "calculated_points": {},
-                "discrepancy_details": null
-              },
-              {
-                "match_id": "S1_B4",
-                "session_id": 1,
-                "beat": 4,
-                "beat_number": 4,
-                "beat_id": "EP2",
-                "beat_code": "EP2",
-                "beat_name": "Elandspad 2 (EP2)",
-                "river": "Elands Pad",
-                "meeting_point": "Fisherman's Cave trail",
-                "lower_pin": [
-                  -33.7385,
-                  19.1118
-                ],
-                "upper_pin": [
-                  -33.7455,
-                  19.1092
-                ],
-                "mid_pin": [
-                  -33.742,
-                  19.1105
-                ],
-                "match_type": "1v1",
-                "anglers": [
-                  "Ryan",
-                  "Ian"
-                ],
-                "angler_indices": [
-                  8,
-                  6
-                ],
-                "stayers": [],
-                "movers": [],
-                "is_head_to_head_a_team": false,
-                "has_a_team_angler": false,
-                "a_team_competitors": [],
-                "status": "UNREPORTED",
-                "submissions": {},
-                "official_scores": {},
-                "calculated_points": {},
-                "discrepancy_details": null
-              },
-              {
-                "match_id": "S1_B5",
-                "session_id": 1,
-                "beat": 5,
-                "beat_number": 5,
-                "beat_id": "SB1",
-                "beat_code": "SB1",
-                "beat_name": "Smalblaar 1 (SB1)",
-                "river": "Small Blaar",
-                "meeting_point": "Picnic site pull-off",
-                "lower_pin": [
-                  -33.72,
-                  19.167
-                ],
-                "upper_pin": [
-                  -33.723,
-                  19.1585
-                ],
-                "mid_pin": [
-                  -33.7215,
-                  19.163
-                ],
-                "match_type": "1v1",
-                "anglers": [
-                  "James",
-                  "Daniel"
-                ],
-                "angler_indices": [
-                  0,
-                  2
-                ],
-                "stayers": [],
-                "movers": [],
-                "is_head_to_head_a_team": true,
-                "has_a_team_angler": true,
-                "a_team_competitors": [
-                  "James",
-                  "Daniel"
-                ],
-                "status": "UNREPORTED",
-                "submissions": {},
-                "official_scores": {},
-                "calculated_points": {},
-                "discrepancy_details": null
+                "calculated_points": {}
               }
             ]
           },
@@ -5656,245 +2485,224 @@ export const INITIAL_STATE = {
             "session_short": "Sat PM",
             "day": "Saturday",
             "time": "Afternoon",
+            "time_slot": "Afternoon",
+            "is_saved": false,
+            "saved_at": null,
             "matches": [
               {
-                "match_id": "S2_B1",
-                "session_id": 2,
-                "beat": 1,
+                "match_id": "S2_M1",
+                "match_number": 1,
+                "match_type": "1v1",
+                "is_solo": false,
+                "is_bye": false,
                 "beat_number": 1,
+                "beat": 1,
                 "beat_id": "SB6",
                 "beat_code": "SB6",
-                "beat_name": "Smalblaar 6 (SB6)",
+                "beat_name": "SB6",
                 "river": "Small Blaar",
-                "meeting_point": "Tunnel East Portal Parking / Junction Path",
                 "lower_pin": [
                   -33.7319,
                   19.1141
-                ],
-                "upper_pin": [
-                  -33.734,
-                  19.1225
                 ],
                 "mid_pin": [
                   -33.733,
-                  19.118
+                  19.1105
                 ],
-                "match_type": "1v1",
+                "upper_pin": [
+                  -33.7342,
+                  19.1065
+                ],
+                "meeting_point": "Tunnel East Portal Parking / Junction Path",
+                "travel_time": 15,
                 "anglers": [
-                  "Dale",
-                  "Garrett"
+                  "Barry",
+                  "Garth"
                 ],
-                "angler_indices": [
-                  4,
-                  9
-                ],
-                "stayers": [
-                  "Dale"
-                ],
-                "movers": [
-                  "Garrett"
-                ],
-                "is_head_to_head_a_team": false,
-                "has_a_team_angler": false,
-                "a_team_competitors": [],
+                "stayer": "Garth",
                 "status": "UNREPORTED",
                 "submissions": {},
                 "official_scores": {},
-                "calculated_points": {},
-                "discrepancy_details": null
+                "calculated_points": {}
               },
               {
-                "match_id": "S2_B2",
-                "session_id": 2,
-                "beat": 2,
+                "match_id": "S2_M2",
+                "match_number": 2,
+                "match_type": "1v1",
+                "is_solo": false,
+                "is_bye": false,
                 "beat_number": 2,
-                "beat_id": "EP1",
-                "beat_code": "EP1",
-                "beat_name": "Elandspad 1 (EP1)",
-                "river": "Elands Pad",
-                "meeting_point": "Junction Pool trail head",
+                "beat": 2,
+                "beat_id": "SB5",
+                "beat_code": "SB5",
+                "beat_name": "SB5",
+                "river": "Small Blaar",
                 "lower_pin": [
+                  -33.7295,
+                  19.132
+                ],
+                "mid_pin": [
+                  -33.7305,
+                  19.127
+                ],
+                "upper_pin": [
                   -33.7319,
                   19.1141
                 ],
-                "upper_pin": [
-                  -33.7385,
-                  19.1118
-                ],
-                "mid_pin": [
-                  -33.7352,
-                  19.1129
-                ],
-                "match_type": "1v1",
+                "meeting_point": "CPS Elandspad parking lot",
+                "travel_time": 15,
                 "anglers": [
-                  "Malcolm",
-                  "James"
-                ],
-                "angler_indices": [
-                  7,
-                  0
-                ],
-                "stayers": [
-                  "Malcolm"
-                ],
-                "movers": [
-                  "James"
-                ],
-                "is_head_to_head_a_team": false,
-                "has_a_team_angler": true,
-                "a_team_competitors": [
-                  "James"
-                ],
-                "status": "UNREPORTED",
-                "submissions": {},
-                "official_scores": {},
-                "calculated_points": {},
-                "discrepancy_details": null
-              },
-              {
-                "match_id": "S2_B3",
-                "session_id": 2,
-                "beat": 3,
-                "beat_number": 3,
-                "beat_id": "Transport",
-                "beat_code": "Transport",
-                "beat_name": "Transport Beat",
-                "river": "Small Blaar",
-                "meeting_point": "Transport Bridge layby on N1",
-                "lower_pin": [
-                  -33.7085,
-                  19.1895
-                ],
-                "upper_pin": [
-                  -33.712,
-                  19.1825
-                ],
-                "mid_pin": [
-                  -33.71,
-                  19.186
-                ],
-                "match_type": "1v1",
-                "anglers": [
-                  "Michelle",
-                  "Garth"
-                ],
-                "angler_indices": [
-                  10,
-                  3
-                ],
-                "stayers": [
-                  "Michelle"
-                ],
-                "movers": [
-                  "Garth"
-                ],
-                "is_head_to_head_a_team": false,
-                "has_a_team_angler": false,
-                "a_team_competitors": [],
-                "status": "UNREPORTED",
-                "submissions": {},
-                "official_scores": {},
-                "calculated_points": {},
-                "discrepancy_details": null
-              },
-              {
-                "match_id": "S2_B4",
-                "session_id": 2,
-                "beat": 4,
-                "beat_number": 4,
-                "beat_id": "EP2",
-                "beat_code": "EP2",
-                "beat_name": "Elandspad 2 (EP2)",
-                "river": "Elands Pad",
-                "meeting_point": "Fisherman's Cave trail",
-                "lower_pin": [
-                  -33.7385,
-                  19.1118
-                ],
-                "upper_pin": [
-                  -33.7455,
-                  19.1092
-                ],
-                "mid_pin": [
-                  -33.742,
-                  19.1105
-                ],
-                "match_type": "1v1",
-                "anglers": [
-                  "Ian",
-                  "Barry"
-                ],
-                "angler_indices": [
-                  6,
-                  1
-                ],
-                "stayers": [
+                  "Dylan",
                   "Ian"
                 ],
-                "movers": [
-                  "Barry"
-                ],
-                "is_head_to_head_a_team": false,
-                "has_a_team_angler": true,
-                "a_team_competitors": [
-                  "Barry"
-                ],
+                "stayer": "Ian",
                 "status": "UNREPORTED",
                 "submissions": {},
                 "official_scores": {},
-                "calculated_points": {},
-                "discrepancy_details": null
+                "calculated_points": {}
               },
               {
-                "match_id": "S2_B5",
-                "session_id": 2,
-                "beat": 5,
-                "beat_number": 5,
-                "beat_id": "SB1",
-                "beat_code": "SB1",
-                "beat_name": "Smalblaar 1 (SB1)",
+                "match_id": "S2_M3",
+                "match_number": 3,
+                "match_type": "1v1",
+                "is_solo": false,
+                "is_bye": false,
+                "beat_number": 3,
+                "beat": 3,
+                "beat_id": "SB3",
+                "beat_code": "SB3",
+                "beat_name": "SB3",
                 "river": "Small Blaar",
-                "meeting_point": "Picnic site pull-off",
                 "lower_pin": [
-                  -33.72,
-                  19.167
-                ],
-                "upper_pin": [
-                  -33.723,
-                  19.1585
+                  -33.7235,
+                  19.153
                 ],
                 "mid_pin": [
-                  -33.7215,
-                  19.163
+                  -33.7258,
+                  19.147
                 ],
-                "match_type": "1v1v1",
+                "upper_pin": [
+                  -33.7272,
+                  19.1415
+                ],
+                "meeting_point": "N1 emergency telephone layby 3",
+                "travel_time": 15,
                 "anglers": [
-                  "Ryan",
-                  "Daniel",
-                  "Dylan"
+                  "James",
+                  "Dale"
                 ],
-                "angler_indices": [
-                  8,
-                  2,
-                  5
-                ],
-                "stayers": [
-                  "Daniel"
-                ],
-                "movers": [
-                  "Ryan",
-                  "Dylan"
-                ],
-                "is_head_to_head_a_team": false,
-                "has_a_team_angler": true,
-                "a_team_competitors": [
-                  "Daniel"
-                ],
+                "stayer": "Dale",
                 "status": "UNREPORTED",
                 "submissions": {},
                 "official_scores": {},
-                "calculated_points": {},
-                "discrepancy_details": null
+                "calculated_points": {}
+              },
+              {
+                "match_id": "S2_M4",
+                "match_number": 4,
+                "match_type": "1v1",
+                "is_solo": false,
+                "is_bye": false,
+                "beat_number": 4,
+                "beat": 4,
+                "beat_id": "SB(HOTEL)",
+                "beat_code": "SB(HOTEL)",
+                "beat_name": "SB(HOTEL)",
+                "river": "Small Blaar",
+                "lower_pin": [
+                  -33.7125,
+                  19.18
+                ],
+                "mid_pin": [
+                  -33.7138,
+                  19.177
+                ],
+                "upper_pin": [
+                  -33.715,
+                  19.174
+                ],
+                "meeting_point": "Du Kloof Lodge guest parking",
+                "travel_time": 15,
+                "anglers": [
+                  "Ryan",
+                  "Daniel"
+                ],
+                "stayer": null,
+                "status": "UNREPORTED",
+                "submissions": {},
+                "official_scores": {},
+                "calculated_points": {}
+              },
+              {
+                "match_id": "S2_M5",
+                "match_number": 5,
+                "match_type": "1v1",
+                "is_solo": false,
+                "is_bye": false,
+                "beat_number": 5,
+                "beat": 5,
+                "beat_id": "SB1",
+                "beat_code": "SB1",
+                "beat_name": "SB1",
+                "river": "Small Blaar",
+                "lower_pin": [
+                  -33.715,
+                  19.174
+                ],
+                "mid_pin": [
+                  -33.717,
+                  19.17
+                ],
+                "upper_pin": [
+                  -33.719,
+                  19.1655
+                ],
+                "meeting_point": "Picnic site pull-off",
+                "travel_time": 15,
+                "anglers": [
+                  "Michelle",
+                  "Malcolm"
+                ],
+                "stayer": null,
+                "status": "UNREPORTED",
+                "submissions": {},
+                "official_scores": {},
+                "calculated_points": {}
+              },
+              {
+                "match_id": "S2_M6",
+                "match_number": 6,
+                "match_type": "BYE",
+                "is_solo": true,
+                "is_bye": true,
+                "beat_number": 6,
+                "beat": 6,
+                "beat_id": "SB2",
+                "beat_code": "SB2",
+                "beat_name": "SB2",
+                "river": "Small Blaar",
+                "lower_pin": [
+                  -33.719,
+                  19.1655
+                ],
+                "mid_pin": [
+                  -33.7212,
+                  19.159
+                ],
+                "upper_pin": [
+                  -33.7235,
+                  19.153
+                ],
+                "meeting_point": "Picnic site parking",
+                "travel_time": 15,
+                "anglers": [
+                  "Garrett"
+                ],
+                "stayer": null,
+                "status": "BYE",
+                "submissions": {},
+                "official_scores": {},
+                "calculated_points": {}
               }
             ]
           },
@@ -5904,223 +2712,224 @@ export const INITIAL_STATE = {
             "session_short": "Sun AM",
             "day": "Sunday",
             "time": "Morning",
+            "time_slot": "Morning",
+            "is_saved": false,
+            "saved_at": null,
             "matches": [
               {
-                "match_id": "S3_B1",
-                "session_id": 3,
-                "beat": 1,
+                "match_id": "S3_M1",
+                "match_number": 1,
+                "match_type": "1v1",
+                "is_solo": false,
+                "is_bye": false,
                 "beat_number": 1,
+                "beat": 1,
                 "beat_id": "SB6",
                 "beat_code": "SB6",
-                "beat_name": "Smalblaar 6 (SB6)",
+                "beat_name": "SB6",
                 "river": "Small Blaar",
-                "meeting_point": "Tunnel East Portal Parking / Junction Path",
                 "lower_pin": [
                   -33.7319,
                   19.1141
-                ],
-                "upper_pin": [
-                  -33.734,
-                  19.1225
                 ],
                 "mid_pin": [
                   -33.733,
-                  19.118
+                  19.1105
                 ],
-                "match_type": "1v1",
+                "upper_pin": [
+                  -33.7342,
+                  19.1065
+                ],
+                "meeting_point": "Tunnel East Portal Parking / Junction Path",
+                "travel_time": 15,
                 "anglers": [
-                  "Garrett",
-                  "James"
+                  "James",
+                  "Barry"
                 ],
-                "angler_indices": [
-                  9,
-                  0
-                ],
-                "stayers": [],
-                "movers": [],
-                "is_head_to_head_a_team": false,
-                "has_a_team_angler": true,
-                "a_team_competitors": [
-                  "James"
-                ],
+                "stayer": null,
                 "status": "UNREPORTED",
                 "submissions": {},
                 "official_scores": {},
-                "calculated_points": {},
-                "discrepancy_details": null
+                "calculated_points": {}
               },
               {
-                "match_id": "S3_B2",
-                "session_id": 3,
-                "beat": 2,
+                "match_id": "S3_M2",
+                "match_number": 2,
+                "match_type": "1v1",
+                "is_solo": false,
+                "is_bye": false,
                 "beat_number": 2,
+                "beat": 2,
+                "beat_id": "SB5",
+                "beat_code": "SB5",
+                "beat_name": "SB5",
+                "river": "Small Blaar",
+                "lower_pin": [
+                  -33.7295,
+                  19.132
+                ],
+                "mid_pin": [
+                  -33.7305,
+                  19.127
+                ],
+                "upper_pin": [
+                  -33.7319,
+                  19.1141
+                ],
+                "meeting_point": "CPS Elandspad parking lot",
+                "travel_time": 15,
+                "anglers": [
+                  "Daniel",
+                  "Garth"
+                ],
+                "stayer": null,
+                "status": "UNREPORTED",
+                "submissions": {},
+                "official_scores": {},
+                "calculated_points": {}
+              },
+              {
+                "match_id": "S3_M3",
+                "match_number": 3,
+                "match_type": "1v1",
+                "is_solo": false,
+                "is_bye": false,
+                "beat_number": 3,
+                "beat": 3,
+                "beat_id": "SB3",
+                "beat_code": "SB3",
+                "beat_name": "SB3",
+                "river": "Small Blaar",
+                "lower_pin": [
+                  -33.7235,
+                  19.153
+                ],
+                "mid_pin": [
+                  -33.7258,
+                  19.147
+                ],
+                "upper_pin": [
+                  -33.7272,
+                  19.1415
+                ],
+                "meeting_point": "N1 emergency telephone layby 3",
+                "travel_time": 15,
+                "anglers": [
+                  "Dylan",
+                  "Dale"
+                ],
+                "stayer": null,
+                "status": "UNREPORTED",
+                "submissions": {},
+                "official_scores": {},
+                "calculated_points": {}
+              },
+              {
+                "match_id": "S3_M4",
+                "match_number": 4,
+                "match_type": "1v1",
+                "is_solo": false,
+                "is_bye": false,
+                "beat_number": 4,
+                "beat": 4,
+                "beat_id": "EP2",
+                "beat_code": "EP2",
+                "beat_name": "EP2",
+                "river": "Elands Pad",
+                "lower_pin": [
+                  -33.7405,
+                  19.1162
+                ],
+                "mid_pin": [
+                  -33.746,
+                  19.1172
+                ],
+                "upper_pin": [
+                  -33.752,
+                  19.1188
+                ],
+                "meeting_point": "Fisherman's Cave trail",
+                "travel_time": 30,
+                "anglers": [
+                  "Ryan",
+                  "Garrett"
+                ],
+                "stayer": null,
+                "status": "UNREPORTED",
+                "submissions": {},
+                "official_scores": {},
+                "calculated_points": {}
+              },
+              {
+                "match_id": "S3_M5",
+                "match_number": 5,
+                "match_type": "1v1",
+                "is_solo": false,
+                "is_bye": false,
+                "beat_number": 5,
+                "beat": 5,
+                "beat_id": "EP3",
+                "beat_code": "EP3",
+                "beat_name": "EP3",
+                "river": "Elands Pad",
+                "lower_pin": [
+                  -33.752,
+                  19.1188
+                ],
+                "mid_pin": [
+                  -33.7565,
+                  19.1195
+                ],
+                "upper_pin": [
+                  -33.761,
+                  19.1205
+                ],
+                "meeting_point": "Star beat rock shelter",
+                "travel_time": 30,
+                "anglers": [
+                  "Ian",
+                  "Michelle"
+                ],
+                "stayer": null,
+                "status": "UNREPORTED",
+                "submissions": {},
+                "official_scores": {},
+                "calculated_points": {}
+              },
+              {
+                "match_id": "S3_M6",
+                "match_number": 6,
+                "match_type": "BYE",
+                "is_solo": true,
+                "is_bye": true,
+                "beat_number": 6,
+                "beat": 6,
                 "beat_id": "EP1",
                 "beat_code": "EP1",
-                "beat_name": "Elandspad 1 (EP1)",
+                "beat_name": "EP1",
                 "river": "Elands Pad",
-                "meeting_point": "Junction Pool trail head",
                 "lower_pin": [
                   -33.7319,
                   19.1141
                 ],
-                "upper_pin": [
-                  -33.7385,
-                  19.1118
-                ],
                 "mid_pin": [
-                  -33.7352,
-                  19.1129
-                ],
-                "match_type": "1v1",
-                "anglers": [
-                  "Garth",
-                  "Ryan"
-                ],
-                "angler_indices": [
-                  3,
-                  8
-                ],
-                "stayers": [],
-                "movers": [],
-                "is_head_to_head_a_team": false,
-                "has_a_team_angler": false,
-                "a_team_competitors": [],
-                "status": "UNREPORTED",
-                "submissions": {},
-                "official_scores": {},
-                "calculated_points": {},
-                "discrepancy_details": null
-              },
-              {
-                "match_id": "S3_B3",
-                "session_id": 3,
-                "beat": 3,
-                "beat_number": 3,
-                "beat_id": "Transport",
-                "beat_code": "Transport",
-                "beat_name": "Transport Beat",
-                "river": "Small Blaar",
-                "meeting_point": "Transport Bridge layby on N1",
-                "lower_pin": [
-                  -33.7085,
-                  19.1895
+                  -33.736,
+                  19.1152
                 ],
                 "upper_pin": [
-                  -33.712,
-                  19.1825
+                  -33.7405,
+                  19.1162
                 ],
-                "mid_pin": [
-                  -33.71,
-                  19.186
-                ],
-                "match_type": "1v1",
+                "meeting_point": "Junction Pool trail head",
+                "travel_time": 15,
                 "anglers": [
-                  "Dylan",
                   "Malcolm"
                 ],
-                "angler_indices": [
-                  5,
-                  7
-                ],
-                "stayers": [],
-                "movers": [],
-                "is_head_to_head_a_team": false,
-                "has_a_team_angler": false,
-                "a_team_competitors": [],
-                "status": "UNREPORTED",
+                "stayer": null,
+                "status": "BYE",
                 "submissions": {},
                 "official_scores": {},
-                "calculated_points": {},
-                "discrepancy_details": null
-              },
-              {
-                "match_id": "S3_B4",
-                "session_id": 3,
-                "beat": 4,
-                "beat_number": 4,
-                "beat_id": "EP2",
-                "beat_code": "EP2",
-                "beat_name": "Elandspad 2 (EP2)",
-                "river": "Elands Pad",
-                "meeting_point": "Fisherman's Cave trail",
-                "lower_pin": [
-                  -33.7385,
-                  19.1118
-                ],
-                "upper_pin": [
-                  -33.7455,
-                  19.1092
-                ],
-                "mid_pin": [
-                  -33.742,
-                  19.1105
-                ],
-                "match_type": "1v1",
-                "anglers": [
-                  "Daniel",
-                  "Barry"
-                ],
-                "angler_indices": [
-                  2,
-                  1
-                ],
-                "stayers": [],
-                "movers": [],
-                "is_head_to_head_a_team": true,
-                "has_a_team_angler": true,
-                "a_team_competitors": [
-                  "Daniel",
-                  "Barry"
-                ],
-                "status": "UNREPORTED",
-                "submissions": {},
-                "official_scores": {},
-                "calculated_points": {},
-                "discrepancy_details": null
-              },
-              {
-                "match_id": "S3_B5",
-                "session_id": 3,
-                "beat": 5,
-                "beat_number": 5,
-                "beat_id": "SB1",
-                "beat_code": "SB1",
-                "beat_name": "Smalblaar 1 (SB1)",
-                "river": "Small Blaar",
-                "meeting_point": "Picnic site pull-off",
-                "lower_pin": [
-                  -33.72,
-                  19.167
-                ],
-                "upper_pin": [
-                  -33.723,
-                  19.1585
-                ],
-                "mid_pin": [
-                  -33.7215,
-                  19.163
-                ],
-                "match_type": "1v1v1",
-                "anglers": [
-                  "Michelle",
-                  "Ian",
-                  "Dale"
-                ],
-                "angler_indices": [
-                  10,
-                  6,
-                  4
-                ],
-                "stayers": [],
-                "movers": [],
-                "is_head_to_head_a_team": false,
-                "has_a_team_angler": false,
-                "a_team_competitors": [],
-                "status": "UNREPORTED",
-                "submissions": {},
-                "official_scores": {},
-                "calculated_points": {},
-                "discrepancy_details": null
+                "calculated_points": {}
               }
             ]
           },
@@ -6130,244 +2939,224 @@ export const INITIAL_STATE = {
             "session_short": "Sun PM",
             "day": "Sunday",
             "time": "Afternoon",
+            "time_slot": "Afternoon",
+            "is_saved": false,
+            "saved_at": null,
             "matches": [
               {
-                "match_id": "S4_B1",
-                "session_id": 4,
-                "beat": 1,
+                "match_id": "S4_M1",
+                "match_number": 1,
+                "match_type": "1v1",
+                "is_solo": false,
+                "is_bye": false,
                 "beat_number": 1,
+                "beat": 1,
                 "beat_id": "SB6",
                 "beat_code": "SB6",
-                "beat_name": "Smalblaar 6 (SB6)",
+                "beat_name": "SB6",
                 "river": "Small Blaar",
-                "meeting_point": "Tunnel East Portal Parking / Junction Path",
                 "lower_pin": [
                   -33.7319,
                   19.1141
-                ],
-                "upper_pin": [
-                  -33.734,
-                  19.1225
                 ],
                 "mid_pin": [
                   -33.733,
-                  19.118
+                  19.1105
                 ],
-                "match_type": "1v1v1",
+                "upper_pin": [
+                  -33.7342,
+                  19.1065
+                ],
+                "meeting_point": "Tunnel East Portal Parking / Junction Path",
+                "travel_time": 15,
                 "anglers": [
-                  "Barry",
-                  "James",
-                  "Michelle"
+                  "Garrett",
+                  "Barry"
                 ],
-                "angler_indices": [
-                  1,
-                  0,
-                  10
-                ],
-                "stayers": [
-                  "James"
-                ],
-                "movers": [
-                  "Barry",
-                  "Michelle"
-                ],
-                "is_head_to_head_a_team": true,
-                "has_a_team_angler": true,
-                "a_team_competitors": [
-                  "Barry",
-                  "James"
-                ],
+                "stayer": "Barry",
                 "status": "UNREPORTED",
                 "submissions": {},
                 "official_scores": {},
-                "calculated_points": {},
-                "discrepancy_details": null
+                "calculated_points": {}
               },
               {
-                "match_id": "S4_B2",
-                "session_id": 4,
-                "beat": 2,
+                "match_id": "S4_M2",
+                "match_number": 2,
+                "match_type": "1v1",
+                "is_solo": false,
+                "is_bye": false,
                 "beat_number": 2,
-                "beat_id": "EP1",
-                "beat_code": "EP1",
-                "beat_name": "Elandspad 1 (EP1)",
-                "river": "Elands Pad",
-                "meeting_point": "Junction Pool trail head",
+                "beat": 2,
+                "beat_id": "SB5",
+                "beat_code": "SB5",
+                "beat_name": "SB5",
+                "river": "Small Blaar",
                 "lower_pin": [
+                  -33.7295,
+                  19.132
+                ],
+                "mid_pin": [
+                  -33.7305,
+                  19.127
+                ],
+                "upper_pin": [
                   -33.7319,
                   19.1141
                 ],
-                "upper_pin": [
-                  -33.7385,
-                  19.1118
+                "meeting_point": "CPS Elandspad parking lot",
+                "travel_time": 15,
+                "anglers": [
+                  "Michelle",
+                  "Garth"
+                ],
+                "stayer": "Garth",
+                "status": "UNREPORTED",
+                "submissions": {},
+                "official_scores": {},
+                "calculated_points": {}
+              },
+              {
+                "match_id": "S4_M3",
+                "match_number": 3,
+                "match_type": "1v1",
+                "is_solo": false,
+                "is_bye": false,
+                "beat_number": 3,
+                "beat": 3,
+                "beat_id": "SB3",
+                "beat_code": "SB3",
+                "beat_name": "SB3",
+                "river": "Small Blaar",
+                "lower_pin": [
+                  -33.7235,
+                  19.153
                 ],
                 "mid_pin": [
-                  -33.7352,
-                  19.1129
+                  -33.7258,
+                  19.147
                 ],
+                "upper_pin": [
+                  -33.7272,
+                  19.1415
+                ],
+                "meeting_point": "N1 emergency telephone layby 3",
+                "travel_time": 15,
+                "anglers": [
+                  "James",
+                  "Dylan"
+                ],
+                "stayer": "Dylan",
+                "status": "UNREPORTED",
+                "submissions": {},
+                "official_scores": {},
+                "calculated_points": {}
+              },
+              {
+                "match_id": "S4_M4",
+                "match_number": 4,
                 "match_type": "1v1",
+                "is_solo": false,
+                "is_bye": false,
+                "beat_number": 4,
+                "beat": 4,
+                "beat_id": "SB(HOTEL)",
+                "beat_code": "SB(HOTEL)",
+                "beat_name": "SB(HOTEL)",
+                "river": "Small Blaar",
+                "lower_pin": [
+                  -33.7125,
+                  19.18
+                ],
+                "mid_pin": [
+                  -33.7138,
+                  19.177
+                ],
+                "upper_pin": [
+                  -33.715,
+                  19.174
+                ],
+                "meeting_point": "Du Kloof Lodge guest parking",
+                "travel_time": 15,
                 "anglers": [
                   "Ryan",
-                  "Garrett"
-                ],
-                "angler_indices": [
-                  8,
-                  9
-                ],
-                "stayers": [
-                  "Ryan"
-                ],
-                "movers": [
-                  "Garrett"
-                ],
-                "is_head_to_head_a_team": false,
-                "has_a_team_angler": false,
-                "a_team_competitors": [],
-                "status": "UNREPORTED",
-                "submissions": {},
-                "official_scores": {},
-                "calculated_points": {},
-                "discrepancy_details": null
-              },
-              {
-                "match_id": "S4_B3",
-                "session_id": 4,
-                "beat": 3,
-                "beat_number": 3,
-                "beat_id": "Transport",
-                "beat_code": "Transport",
-                "beat_name": "Transport Beat",
-                "river": "Small Blaar",
-                "meeting_point": "Transport Bridge layby on N1",
-                "lower_pin": [
-                  -33.7085,
-                  19.1895
-                ],
-                "upper_pin": [
-                  -33.712,
-                  19.1825
-                ],
-                "mid_pin": [
-                  -33.71,
-                  19.186
-                ],
-                "match_type": "1v1",
-                "anglers": [
-                  "Dale",
                   "Malcolm"
                 ],
-                "angler_indices": [
-                  4,
-                  7
-                ],
-                "stayers": [
-                  "Malcolm"
-                ],
-                "movers": [
-                  "Dale"
-                ],
-                "is_head_to_head_a_team": false,
-                "has_a_team_angler": false,
-                "a_team_competitors": [],
+                "stayer": null,
                 "status": "UNREPORTED",
                 "submissions": {},
                 "official_scores": {},
-                "calculated_points": {},
-                "discrepancy_details": null
+                "calculated_points": {}
               },
               {
-                "match_id": "S4_B4",
-                "session_id": 4,
-                "beat": 4,
-                "beat_number": 4,
-                "beat_id": "EP2",
-                "beat_code": "EP2",
-                "beat_name": "Elandspad 2 (EP2)",
-                "river": "Elands Pad",
-                "meeting_point": "Fisherman's Cave trail",
-                "lower_pin": [
-                  -33.7385,
-                  19.1118
-                ],
-                "upper_pin": [
-                  -33.7455,
-                  19.1092
-                ],
-                "mid_pin": [
-                  -33.742,
-                  19.1105
-                ],
-                "match_type": "1v1",
-                "anglers": [
-                  "Daniel",
-                  "Garth"
-                ],
-                "angler_indices": [
-                  2,
-                  3
-                ],
-                "stayers": [
-                  "Daniel"
-                ],
-                "movers": [
-                  "Garth"
-                ],
-                "is_head_to_head_a_team": false,
-                "has_a_team_angler": true,
-                "a_team_competitors": [
-                  "Daniel"
-                ],
-                "status": "UNREPORTED",
-                "submissions": {},
-                "official_scores": {},
-                "calculated_points": {},
-                "discrepancy_details": null
-              },
-              {
-                "match_id": "S4_B5",
-                "session_id": 4,
-                "beat": 5,
+                "match_id": "S4_M5",
+                "match_number": 5,
+                "match_type": "BYE",
+                "is_solo": true,
+                "is_bye": true,
                 "beat_number": 5,
+                "beat": 5,
                 "beat_id": "SB1",
                 "beat_code": "SB1",
-                "beat_name": "Smalblaar 1 (SB1)",
+                "beat_name": "SB1",
                 "river": "Small Blaar",
-                "meeting_point": "Picnic site pull-off",
                 "lower_pin": [
-                  -33.72,
-                  19.167
-                ],
-                "upper_pin": [
-                  -33.723,
-                  19.1585
+                  -33.715,
+                  19.174
                 ],
                 "mid_pin": [
-                  -33.7215,
-                  19.163
+                  -33.717,
+                  19.17
                 ],
-                "match_type": "1v1",
+                "upper_pin": [
+                  -33.719,
+                  19.1655
+                ],
+                "meeting_point": "Picnic site pull-off",
+                "travel_time": 15,
                 "anglers": [
-                  "Ian",
-                  "Dylan"
-                ],
-                "angler_indices": [
-                  6,
-                  5
-                ],
-                "stayers": [
                   "Ian"
                 ],
-                "movers": [
-                  "Dylan"
+                "stayer": null,
+                "status": "BYE",
+                "submissions": {},
+                "official_scores": {},
+                "calculated_points": {}
+              },
+              {
+                "match_id": "S4_M6",
+                "match_number": 6,
+                "match_type": "1v1",
+                "is_solo": false,
+                "is_bye": false,
+                "beat_number": 6,
+                "beat": 6,
+                "beat_id": "SB2",
+                "beat_code": "SB2",
+                "beat_name": "SB2",
+                "river": "Small Blaar",
+                "lower_pin": [
+                  -33.719,
+                  19.1655
                 ],
-                "is_head_to_head_a_team": false,
-                "has_a_team_angler": false,
-                "a_team_competitors": [],
+                "mid_pin": [
+                  -33.7212,
+                  19.159
+                ],
+                "upper_pin": [
+                  -33.7235,
+                  19.153
+                ],
+                "meeting_point": "Picnic site parking",
+                "travel_time": 15,
+                "anglers": [
+                  "Dale",
+                  "Daniel"
+                ],
+                "stayer": null,
                 "status": "UNREPORTED",
                 "submissions": {},
                 "official_scores": {},
-                "calculated_points": {},
-                "discrepancy_details": null
+                "calculated_points": {}
               }
             ]
           }
@@ -6384,7 +3173,7 @@ export const INITIAL_STATE = {
             "rank": 1,
             "name": "James",
             "angler": "James",
-            "is_a_team": true,
+            "is_a_team": false,
             "s1_pts": 0,
             "s2_pts": 0,
             "s3_pts": 0,
@@ -6444,7 +3233,7 @@ export const INITIAL_STATE = {
             "rank": 4,
             "name": "Garth",
             "angler": "Garth",
-            "is_a_team": false,
+            "is_a_team": true,
             "s1_pts": 0,
             "s2_pts": 0,
             "s3_pts": 0,
@@ -6464,7 +3253,7 @@ export const INITIAL_STATE = {
             "rank": 5,
             "name": "Dale",
             "angler": "Dale",
-            "is_a_team": false,
+            "is_a_team": true,
             "s1_pts": 0,
             "s2_pts": 0,
             "s3_pts": 0,
@@ -6639,7 +3428,7 @@ export const INITIAL_STATE = {
           "Dale"
         ],
         "num_a_team": 4,
-        "num_beats": 5,
+        "num_beats": 6,
         "beats": [
           {
             "id": "SB1",
@@ -6665,7 +3454,8 @@ export const INITIAL_STATE = {
               19.1655
             ],
             "meeting_point": "Picnic site pull-off",
-            "notes": "Productive long glides and pocket water."
+            "notes": "Productive long glides and pocket water.",
+            "travel_time": 15
           },
           {
             "id": "SB2",
@@ -6691,7 +3481,8 @@ export const INITIAL_STATE = {
               19.153
             ],
             "meeting_point": "Picnic site parking",
-            "notes": "Fast broken water and deep corner pools."
+            "notes": "Fast broken water and deep corner pools.",
+            "travel_time": 15
           },
           {
             "id": "SB3",
@@ -6717,7 +3508,8 @@ export const INITIAL_STATE = {
               19.1415
             ],
             "meeting_point": "N1 emergency telephone layby 3",
-            "notes": "Challenging technical water with overhanging vegetation."
+            "notes": "Challenging technical water with overhanging vegetation.",
+            "travel_time": 15
           },
           {
             "id": "SB4",
@@ -6743,7 +3535,8 @@ export const INITIAL_STATE = {
               19.132
             ],
             "meeting_point": "Donkergat pull-off",
-            "notes": "Varied water with boulder gardens."
+            "notes": "Varied water with boulder gardens.",
+            "travel_time": 15
           },
           {
             "id": "SB5",
@@ -6769,7 +3562,8 @@ export const INITIAL_STATE = {
               19.1141
             ],
             "meeting_point": "CPS Elandspad parking lot",
-            "notes": "Directly accessible from official CPS parking."
+            "notes": "Directly accessible from official CPS parking.",
+            "travel_time": 15
           },
           {
             "id": "SB6",
@@ -6795,7 +3589,8 @@ export const INITIAL_STATE = {
               19.1065
             ],
             "meeting_point": "Tunnel East Portal Parking / Junction Path",
-            "notes": "Upper Smalblaar beat from Junction pool up to tunnel weir."
+            "notes": "Upper Smalblaar beat from Junction pool up to tunnel weir.",
+            "travel_time": 15
           },
           {
             "id": "SB(HOTEL)",
@@ -6821,7 +3616,8 @@ export const INITIAL_STATE = {
               19.174
             ],
             "meeting_point": "Du Kloof Lodge guest parking",
-            "notes": "Historic beat opposite the old hotel. Single session limit per day."
+            "notes": "Historic beat opposite the old hotel. Single session limit per day.",
+            "travel_time": 15
           },
           {
             "id": "SB(TRANSPORT)",
@@ -6847,7 +3643,8 @@ export const INITIAL_STATE = {
               19.18
             ],
             "meeting_point": "Transport bridge parking",
-            "notes": "Upper section of Molenaars Transport reserve."
+            "notes": "Upper section of Molenaars Transport reserve.",
+            "travel_time": 15
           },
           {
             "id": "EP1",
@@ -6873,7 +3670,8 @@ export const INITIAL_STATE = {
               19.1162
             ],
             "meeting_point": "Junction Pool trail head",
-            "notes": "Kloof canyon stream, crystal clear water with pocket pools."
+            "notes": "Kloof canyon stream, crystal clear water with pocket pools.",
+            "travel_time": 15
           },
           {
             "id": "EP2",
@@ -6899,7 +3697,8 @@ export const INITIAL_STATE = {
               19.1188
             ],
             "meeting_point": "Fisherman's Cave trail",
-            "notes": "Middle Elandspad through pristine mountain gorge."
+            "notes": "Middle Elandspad through pristine mountain gorge.",
+            "travel_time": 30
           },
           {
             "id": "EP3",
@@ -6925,7 +3724,8 @@ export const INITIAL_STATE = {
               19.1205
             ],
             "meeting_point": "Star beat rock shelter",
-            "notes": "Wild upper canyon gorge with deep plunge pools. Sensitive upper beat."
+            "notes": "Wild upper canyon gorge with deep plunge pools. Sensitive upper beat.",
+            "travel_time": 30
           },
           {
             "id": "EP4",
@@ -6951,7 +3751,8 @@ export const INITIAL_STATE = {
               19.122
             ],
             "meeting_point": "Kraalstroom trail / Upper gorge",
-            "notes": "Upper cascades and remote gorge."
+            "notes": "Upper cascades and remote gorge.",
+            "travel_time": 30
           },
           {
             "id": "MOLENAARS(UPPER)",
@@ -6977,7 +3778,8 @@ export const INITIAL_STATE = {
               19.18
             ],
             "meeting_point": "Transport bridge parking",
-            "notes": "Upper section of Molenaars reserve."
+            "notes": "Upper section of Molenaars reserve.",
+            "travel_time": 15
           },
           {
             "id": "MOLENAARS(LOWER)",
@@ -7003,7 +3805,8 @@ export const INITIAL_STATE = {
               19.1895
             ],
             "meeting_point": "Farm gate boundary on N1",
-            "notes": "Lower pastoral reach of the Molenaars."
+            "notes": "Lower pastoral reach of the Molenaars.",
+            "travel_time": 15
           }
         ],
         "selected_beats": [
@@ -7113,1582 +3916,6 @@ export const INITIAL_STATE = {
             "notes": "Productive long glides and pocket water."
           }
         ],
-        "angler_schedule": {
-          "James": [
-            {
-              "session_id": 1,
-              "session_name": "Saturday Morning",
-              "session_short": "Sat AM",
-              "day": "Saturday",
-              "time": "Morning",
-              "beat_number": 5,
-              "beat_id": "SB1",
-              "beat_code": "SB1",
-              "beat_name": "Smalblaar 1 (SB1)",
-              "river": "Smalblaar",
-              "meeting_point": "Picnic site pull-off",
-              "match_type": "1v1",
-              "opponents": [
-                "Daniel"
-              ],
-              "is_stayer": false,
-              "section": "First Half (Lower Section)",
-              "pin": [
-                -33.72,
-                19.167
-              ],
-              "lower_pin": [
-                -33.72,
-                19.167
-              ],
-              "upper_pin": [
-                -33.723,
-                19.1585
-              ],
-              "mid_pin": [
-                -33.7215,
-                19.163
-              ]
-            },
-            {
-              "session_id": 2,
-              "session_name": "Saturday Afternoon",
-              "session_short": "Sat PM",
-              "day": "Saturday",
-              "time": "Afternoon",
-              "beat_number": 2,
-              "beat_id": "EP1",
-              "beat_code": "EP1",
-              "beat_name": "Elandspad 1 (EP1)",
-              "river": "Elandspad",
-              "meeting_point": "Junction Pool trail head",
-              "match_type": "1v1",
-              "opponents": [
-                "Malcolm"
-              ],
-              "is_stayer": false,
-              "section": "First Half (Lower Section)",
-              "pin": [
-                -33.7319,
-                19.1141
-              ],
-              "lower_pin": [
-                -33.7319,
-                19.1141
-              ],
-              "upper_pin": [
-                -33.7385,
-                19.1118
-              ],
-              "mid_pin": [
-                -33.7352,
-                19.1129
-              ]
-            },
-            {
-              "session_id": 3,
-              "session_name": "Sunday Morning",
-              "session_short": "Sun AM",
-              "day": "Sunday",
-              "time": "Morning",
-              "beat_number": 1,
-              "beat_id": "SB6",
-              "beat_code": "SB6",
-              "beat_name": "Smalblaar 6 (SB6)",
-              "river": "Smalblaar",
-              "meeting_point": "Tunnel East Portal Parking / Junction Path",
-              "match_type": "1v1",
-              "opponents": [
-                "Garrett"
-              ],
-              "is_stayer": false,
-              "section": "First Half (Lower Section)",
-              "pin": [
-                -33.7319,
-                19.1141
-              ],
-              "lower_pin": [
-                -33.7319,
-                19.1141
-              ],
-              "upper_pin": [
-                -33.734,
-                19.1225
-              ],
-              "mid_pin": [
-                -33.733,
-                19.118
-              ]
-            },
-            {
-              "session_id": 4,
-              "session_name": "Sunday Afternoon",
-              "session_short": "Sun PM",
-              "day": "Sunday",
-              "time": "Afternoon",
-              "beat_number": 1,
-              "beat_id": "SB6",
-              "beat_code": "SB6",
-              "beat_name": "Smalblaar 6 (SB6)",
-              "river": "Smalblaar",
-              "meeting_point": "Tunnel East Portal Parking / Junction Path",
-              "match_type": "1v1v1",
-              "opponents": [
-                "Barry",
-                "Michelle"
-              ],
-              "is_stayer": true,
-              "section": "Second Half (Upper Section)",
-              "pin": [
-                -33.733,
-                19.118
-              ],
-              "lower_pin": [
-                -33.7319,
-                19.1141
-              ],
-              "upper_pin": [
-                -33.734,
-                19.1225
-              ],
-              "mid_pin": [
-                -33.733,
-                19.118
-              ]
-            }
-          ],
-          "Barry": [
-            {
-              "session_id": 1,
-              "session_name": "Saturday Morning",
-              "session_short": "Sat AM",
-              "day": "Saturday",
-              "time": "Morning",
-              "beat_number": 1,
-              "beat_id": "SB6",
-              "beat_code": "SB6",
-              "beat_name": "Smalblaar 6 (SB6)",
-              "river": "Smalblaar",
-              "meeting_point": "Tunnel East Portal Parking / Junction Path",
-              "match_type": "1v1",
-              "opponents": [
-                "Dale"
-              ],
-              "is_stayer": false,
-              "section": "First Half (Lower Section)",
-              "pin": [
-                -33.7319,
-                19.1141
-              ],
-              "lower_pin": [
-                -33.7319,
-                19.1141
-              ],
-              "upper_pin": [
-                -33.734,
-                19.1225
-              ],
-              "mid_pin": [
-                -33.733,
-                19.118
-              ]
-            },
-            {
-              "session_id": 2,
-              "session_name": "Saturday Afternoon",
-              "session_short": "Sat PM",
-              "day": "Saturday",
-              "time": "Afternoon",
-              "beat_number": 4,
-              "beat_id": "EP2",
-              "beat_code": "EP2",
-              "beat_name": "Elandspad 2 (EP2)",
-              "river": "Elandspad",
-              "meeting_point": "Fisherman's Cave trail",
-              "match_type": "1v1",
-              "opponents": [
-                "Ian"
-              ],
-              "is_stayer": false,
-              "section": "First Half (Lower Section)",
-              "pin": [
-                -33.7385,
-                19.1118
-              ],
-              "lower_pin": [
-                -33.7385,
-                19.1118
-              ],
-              "upper_pin": [
-                -33.7455,
-                19.1092
-              ],
-              "mid_pin": [
-                -33.742,
-                19.1105
-              ]
-            },
-            {
-              "session_id": 3,
-              "session_name": "Sunday Morning",
-              "session_short": "Sun AM",
-              "day": "Sunday",
-              "time": "Morning",
-              "beat_number": 4,
-              "beat_id": "EP2",
-              "beat_code": "EP2",
-              "beat_name": "Elandspad 2 (EP2)",
-              "river": "Elandspad",
-              "meeting_point": "Fisherman's Cave trail",
-              "match_type": "1v1",
-              "opponents": [
-                "Daniel"
-              ],
-              "is_stayer": false,
-              "section": "First Half (Lower Section)",
-              "pin": [
-                -33.7385,
-                19.1118
-              ],
-              "lower_pin": [
-                -33.7385,
-                19.1118
-              ],
-              "upper_pin": [
-                -33.7455,
-                19.1092
-              ],
-              "mid_pin": [
-                -33.742,
-                19.1105
-              ]
-            },
-            {
-              "session_id": 4,
-              "session_name": "Sunday Afternoon",
-              "session_short": "Sun PM",
-              "day": "Sunday",
-              "time": "Afternoon",
-              "beat_number": 1,
-              "beat_id": "SB6",
-              "beat_code": "SB6",
-              "beat_name": "Smalblaar 6 (SB6)",
-              "river": "Smalblaar",
-              "meeting_point": "Tunnel East Portal Parking / Junction Path",
-              "match_type": "1v1v1",
-              "opponents": [
-                "James",
-                "Michelle"
-              ],
-              "is_stayer": false,
-              "section": "First Half (Lower Section)",
-              "pin": [
-                -33.7319,
-                19.1141
-              ],
-              "lower_pin": [
-                -33.7319,
-                19.1141
-              ],
-              "upper_pin": [
-                -33.734,
-                19.1225
-              ],
-              "mid_pin": [
-                -33.733,
-                19.118
-              ]
-            }
-          ],
-          "Daniel": [
-            {
-              "session_id": 1,
-              "session_name": "Saturday Morning",
-              "session_short": "Sat AM",
-              "day": "Saturday",
-              "time": "Morning",
-              "beat_number": 5,
-              "beat_id": "SB1",
-              "beat_code": "SB1",
-              "beat_name": "Smalblaar 1 (SB1)",
-              "river": "Smalblaar",
-              "meeting_point": "Picnic site pull-off",
-              "match_type": "1v1",
-              "opponents": [
-                "James"
-              ],
-              "is_stayer": false,
-              "section": "First Half (Lower Section)",
-              "pin": [
-                -33.72,
-                19.167
-              ],
-              "lower_pin": [
-                -33.72,
-                19.167
-              ],
-              "upper_pin": [
-                -33.723,
-                19.1585
-              ],
-              "mid_pin": [
-                -33.7215,
-                19.163
-              ]
-            },
-            {
-              "session_id": 2,
-              "session_name": "Saturday Afternoon",
-              "session_short": "Sat PM",
-              "day": "Saturday",
-              "time": "Afternoon",
-              "beat_number": 5,
-              "beat_id": "SB1",
-              "beat_code": "SB1",
-              "beat_name": "Smalblaar 1 (SB1)",
-              "river": "Smalblaar",
-              "meeting_point": "Picnic site pull-off",
-              "match_type": "1v1v1",
-              "opponents": [
-                "Ryan",
-                "Dylan"
-              ],
-              "is_stayer": true,
-              "section": "Second Half (Upper Section)",
-              "pin": [
-                -33.7215,
-                19.163
-              ],
-              "lower_pin": [
-                -33.72,
-                19.167
-              ],
-              "upper_pin": [
-                -33.723,
-                19.1585
-              ],
-              "mid_pin": [
-                -33.7215,
-                19.163
-              ]
-            },
-            {
-              "session_id": 3,
-              "session_name": "Sunday Morning",
-              "session_short": "Sun AM",
-              "day": "Sunday",
-              "time": "Morning",
-              "beat_number": 4,
-              "beat_id": "EP2",
-              "beat_code": "EP2",
-              "beat_name": "Elandspad 2 (EP2)",
-              "river": "Elandspad",
-              "meeting_point": "Fisherman's Cave trail",
-              "match_type": "1v1",
-              "opponents": [
-                "Barry"
-              ],
-              "is_stayer": false,
-              "section": "First Half (Lower Section)",
-              "pin": [
-                -33.7385,
-                19.1118
-              ],
-              "lower_pin": [
-                -33.7385,
-                19.1118
-              ],
-              "upper_pin": [
-                -33.7455,
-                19.1092
-              ],
-              "mid_pin": [
-                -33.742,
-                19.1105
-              ]
-            },
-            {
-              "session_id": 4,
-              "session_name": "Sunday Afternoon",
-              "session_short": "Sun PM",
-              "day": "Sunday",
-              "time": "Afternoon",
-              "beat_number": 4,
-              "beat_id": "EP2",
-              "beat_code": "EP2",
-              "beat_name": "Elandspad 2 (EP2)",
-              "river": "Elandspad",
-              "meeting_point": "Fisherman's Cave trail",
-              "match_type": "1v1",
-              "opponents": [
-                "Garth"
-              ],
-              "is_stayer": true,
-              "section": "Second Half (Upper Section)",
-              "pin": [
-                -33.742,
-                19.1105
-              ],
-              "lower_pin": [
-                -33.7385,
-                19.1118
-              ],
-              "upper_pin": [
-                -33.7455,
-                19.1092
-              ],
-              "mid_pin": [
-                -33.742,
-                19.1105
-              ]
-            }
-          ],
-          "Garth": [
-            {
-              "session_id": 1,
-              "session_name": "Saturday Morning",
-              "session_short": "Sat AM",
-              "day": "Saturday",
-              "time": "Morning",
-              "beat_number": 2,
-              "beat_id": "EP1",
-              "beat_code": "EP1",
-              "beat_name": "Elandspad 1 (EP1)",
-              "river": "Elandspad",
-              "meeting_point": "Junction Pool trail head",
-              "match_type": "1v1v1",
-              "opponents": [
-                "Malcolm",
-                "Garrett"
-              ],
-              "is_stayer": false,
-              "section": "First Half (Lower Section)",
-              "pin": [
-                -33.7319,
-                19.1141
-              ],
-              "lower_pin": [
-                -33.7319,
-                19.1141
-              ],
-              "upper_pin": [
-                -33.7385,
-                19.1118
-              ],
-              "mid_pin": [
-                -33.7352,
-                19.1129
-              ]
-            },
-            {
-              "session_id": 2,
-              "session_name": "Saturday Afternoon",
-              "session_short": "Sat PM",
-              "day": "Saturday",
-              "time": "Afternoon",
-              "beat_number": 3,
-              "beat_id": "Transport",
-              "beat_code": "Transport",
-              "beat_name": "Transport Beat",
-              "river": "Smalblaar",
-              "meeting_point": "Transport Bridge layby on N1",
-              "match_type": "1v1",
-              "opponents": [
-                "Michelle"
-              ],
-              "is_stayer": false,
-              "section": "First Half (Lower Section)",
-              "pin": [
-                -33.7085,
-                19.1895
-              ],
-              "lower_pin": [
-                -33.7085,
-                19.1895
-              ],
-              "upper_pin": [
-                -33.712,
-                19.1825
-              ],
-              "mid_pin": [
-                -33.71,
-                19.186
-              ]
-            },
-            {
-              "session_id": 3,
-              "session_name": "Sunday Morning",
-              "session_short": "Sun AM",
-              "day": "Sunday",
-              "time": "Morning",
-              "beat_number": 2,
-              "beat_id": "EP1",
-              "beat_code": "EP1",
-              "beat_name": "Elandspad 1 (EP1)",
-              "river": "Elandspad",
-              "meeting_point": "Junction Pool trail head",
-              "match_type": "1v1",
-              "opponents": [
-                "Ryan"
-              ],
-              "is_stayer": false,
-              "section": "First Half (Lower Section)",
-              "pin": [
-                -33.7319,
-                19.1141
-              ],
-              "lower_pin": [
-                -33.7319,
-                19.1141
-              ],
-              "upper_pin": [
-                -33.7385,
-                19.1118
-              ],
-              "mid_pin": [
-                -33.7352,
-                19.1129
-              ]
-            },
-            {
-              "session_id": 4,
-              "session_name": "Sunday Afternoon",
-              "session_short": "Sun PM",
-              "day": "Sunday",
-              "time": "Afternoon",
-              "beat_number": 4,
-              "beat_id": "EP2",
-              "beat_code": "EP2",
-              "beat_name": "Elandspad 2 (EP2)",
-              "river": "Elandspad",
-              "meeting_point": "Fisherman's Cave trail",
-              "match_type": "1v1",
-              "opponents": [
-                "Daniel"
-              ],
-              "is_stayer": false,
-              "section": "First Half (Lower Section)",
-              "pin": [
-                -33.7385,
-                19.1118
-              ],
-              "lower_pin": [
-                -33.7385,
-                19.1118
-              ],
-              "upper_pin": [
-                -33.7455,
-                19.1092
-              ],
-              "mid_pin": [
-                -33.742,
-                19.1105
-              ]
-            }
-          ],
-          "Dale": [
-            {
-              "session_id": 1,
-              "session_name": "Saturday Morning",
-              "session_short": "Sat AM",
-              "day": "Saturday",
-              "time": "Morning",
-              "beat_number": 1,
-              "beat_id": "SB6",
-              "beat_code": "SB6",
-              "beat_name": "Smalblaar 6 (SB6)",
-              "river": "Smalblaar",
-              "meeting_point": "Tunnel East Portal Parking / Junction Path",
-              "match_type": "1v1",
-              "opponents": [
-                "Barry"
-              ],
-              "is_stayer": false,
-              "section": "First Half (Lower Section)",
-              "pin": [
-                -33.7319,
-                19.1141
-              ],
-              "lower_pin": [
-                -33.7319,
-                19.1141
-              ],
-              "upper_pin": [
-                -33.734,
-                19.1225
-              ],
-              "mid_pin": [
-                -33.733,
-                19.118
-              ]
-            },
-            {
-              "session_id": 2,
-              "session_name": "Saturday Afternoon",
-              "session_short": "Sat PM",
-              "day": "Saturday",
-              "time": "Afternoon",
-              "beat_number": 1,
-              "beat_id": "SB6",
-              "beat_code": "SB6",
-              "beat_name": "Smalblaar 6 (SB6)",
-              "river": "Smalblaar",
-              "meeting_point": "Tunnel East Portal Parking / Junction Path",
-              "match_type": "1v1",
-              "opponents": [
-                "Garrett"
-              ],
-              "is_stayer": true,
-              "section": "Second Half (Upper Section)",
-              "pin": [
-                -33.733,
-                19.118
-              ],
-              "lower_pin": [
-                -33.7319,
-                19.1141
-              ],
-              "upper_pin": [
-                -33.734,
-                19.1225
-              ],
-              "mid_pin": [
-                -33.733,
-                19.118
-              ]
-            },
-            {
-              "session_id": 3,
-              "session_name": "Sunday Morning",
-              "session_short": "Sun AM",
-              "day": "Sunday",
-              "time": "Morning",
-              "beat_number": 5,
-              "beat_id": "SB1",
-              "beat_code": "SB1",
-              "beat_name": "Smalblaar 1 (SB1)",
-              "river": "Smalblaar",
-              "meeting_point": "Picnic site pull-off",
-              "match_type": "1v1v1",
-              "opponents": [
-                "Michelle",
-                "Ian"
-              ],
-              "is_stayer": false,
-              "section": "First Half (Lower Section)",
-              "pin": [
-                -33.72,
-                19.167
-              ],
-              "lower_pin": [
-                -33.72,
-                19.167
-              ],
-              "upper_pin": [
-                -33.723,
-                19.1585
-              ],
-              "mid_pin": [
-                -33.7215,
-                19.163
-              ]
-            },
-            {
-              "session_id": 4,
-              "session_name": "Sunday Afternoon",
-              "session_short": "Sun PM",
-              "day": "Sunday",
-              "time": "Afternoon",
-              "beat_number": 3,
-              "beat_id": "Transport",
-              "beat_code": "Transport",
-              "beat_name": "Transport Beat",
-              "river": "Smalblaar",
-              "meeting_point": "Transport Bridge layby on N1",
-              "match_type": "1v1",
-              "opponents": [
-                "Malcolm"
-              ],
-              "is_stayer": false,
-              "section": "First Half (Lower Section)",
-              "pin": [
-                -33.7085,
-                19.1895
-              ],
-              "lower_pin": [
-                -33.7085,
-                19.1895
-              ],
-              "upper_pin": [
-                -33.712,
-                19.1825
-              ],
-              "mid_pin": [
-                -33.71,
-                19.186
-              ]
-            }
-          ],
-          "Dylan": [
-            {
-              "session_id": 1,
-              "session_name": "Saturday Morning",
-              "session_short": "Sat AM",
-              "day": "Saturday",
-              "time": "Morning",
-              "beat_number": 3,
-              "beat_id": "Transport",
-              "beat_code": "Transport",
-              "beat_name": "Transport Beat",
-              "river": "Smalblaar",
-              "meeting_point": "Transport Bridge layby on N1",
-              "match_type": "1v1",
-              "opponents": [
-                "Michelle"
-              ],
-              "is_stayer": false,
-              "section": "First Half (Lower Section)",
-              "pin": [
-                -33.7085,
-                19.1895
-              ],
-              "lower_pin": [
-                -33.7085,
-                19.1895
-              ],
-              "upper_pin": [
-                -33.712,
-                19.1825
-              ],
-              "mid_pin": [
-                -33.71,
-                19.186
-              ]
-            },
-            {
-              "session_id": 2,
-              "session_name": "Saturday Afternoon",
-              "session_short": "Sat PM",
-              "day": "Saturday",
-              "time": "Afternoon",
-              "beat_number": 5,
-              "beat_id": "SB1",
-              "beat_code": "SB1",
-              "beat_name": "Smalblaar 1 (SB1)",
-              "river": "Smalblaar",
-              "meeting_point": "Picnic site pull-off",
-              "match_type": "1v1v1",
-              "opponents": [
-                "Ryan",
-                "Daniel"
-              ],
-              "is_stayer": false,
-              "section": "First Half (Lower Section)",
-              "pin": [
-                -33.72,
-                19.167
-              ],
-              "lower_pin": [
-                -33.72,
-                19.167
-              ],
-              "upper_pin": [
-                -33.723,
-                19.1585
-              ],
-              "mid_pin": [
-                -33.7215,
-                19.163
-              ]
-            },
-            {
-              "session_id": 3,
-              "session_name": "Sunday Morning",
-              "session_short": "Sun AM",
-              "day": "Sunday",
-              "time": "Morning",
-              "beat_number": 3,
-              "beat_id": "Transport",
-              "beat_code": "Transport",
-              "beat_name": "Transport Beat",
-              "river": "Smalblaar",
-              "meeting_point": "Transport Bridge layby on N1",
-              "match_type": "1v1",
-              "opponents": [
-                "Malcolm"
-              ],
-              "is_stayer": false,
-              "section": "First Half (Lower Section)",
-              "pin": [
-                -33.7085,
-                19.1895
-              ],
-              "lower_pin": [
-                -33.7085,
-                19.1895
-              ],
-              "upper_pin": [
-                -33.712,
-                19.1825
-              ],
-              "mid_pin": [
-                -33.71,
-                19.186
-              ]
-            },
-            {
-              "session_id": 4,
-              "session_name": "Sunday Afternoon",
-              "session_short": "Sun PM",
-              "day": "Sunday",
-              "time": "Afternoon",
-              "beat_number": 5,
-              "beat_id": "SB1",
-              "beat_code": "SB1",
-              "beat_name": "Smalblaar 1 (SB1)",
-              "river": "Smalblaar",
-              "meeting_point": "Picnic site pull-off",
-              "match_type": "1v1",
-              "opponents": [
-                "Ian"
-              ],
-              "is_stayer": false,
-              "section": "First Half (Lower Section)",
-              "pin": [
-                -33.72,
-                19.167
-              ],
-              "lower_pin": [
-                -33.72,
-                19.167
-              ],
-              "upper_pin": [
-                -33.723,
-                19.1585
-              ],
-              "mid_pin": [
-                -33.7215,
-                19.163
-              ]
-            }
-          ],
-          "Ian": [
-            {
-              "session_id": 1,
-              "session_name": "Saturday Morning",
-              "session_short": "Sat AM",
-              "day": "Saturday",
-              "time": "Morning",
-              "beat_number": 4,
-              "beat_id": "EP2",
-              "beat_code": "EP2",
-              "beat_name": "Elandspad 2 (EP2)",
-              "river": "Elandspad",
-              "meeting_point": "Fisherman's Cave trail",
-              "match_type": "1v1",
-              "opponents": [
-                "Ryan"
-              ],
-              "is_stayer": false,
-              "section": "First Half (Lower Section)",
-              "pin": [
-                -33.7385,
-                19.1118
-              ],
-              "lower_pin": [
-                -33.7385,
-                19.1118
-              ],
-              "upper_pin": [
-                -33.7455,
-                19.1092
-              ],
-              "mid_pin": [
-                -33.742,
-                19.1105
-              ]
-            },
-            {
-              "session_id": 2,
-              "session_name": "Saturday Afternoon",
-              "session_short": "Sat PM",
-              "day": "Saturday",
-              "time": "Afternoon",
-              "beat_number": 4,
-              "beat_id": "EP2",
-              "beat_code": "EP2",
-              "beat_name": "Elandspad 2 (EP2)",
-              "river": "Elandspad",
-              "meeting_point": "Fisherman's Cave trail",
-              "match_type": "1v1",
-              "opponents": [
-                "Barry"
-              ],
-              "is_stayer": true,
-              "section": "Second Half (Upper Section)",
-              "pin": [
-                -33.742,
-                19.1105
-              ],
-              "lower_pin": [
-                -33.7385,
-                19.1118
-              ],
-              "upper_pin": [
-                -33.7455,
-                19.1092
-              ],
-              "mid_pin": [
-                -33.742,
-                19.1105
-              ]
-            },
-            {
-              "session_id": 3,
-              "session_name": "Sunday Morning",
-              "session_short": "Sun AM",
-              "day": "Sunday",
-              "time": "Morning",
-              "beat_number": 5,
-              "beat_id": "SB1",
-              "beat_code": "SB1",
-              "beat_name": "Smalblaar 1 (SB1)",
-              "river": "Smalblaar",
-              "meeting_point": "Picnic site pull-off",
-              "match_type": "1v1v1",
-              "opponents": [
-                "Michelle",
-                "Dale"
-              ],
-              "is_stayer": false,
-              "section": "First Half (Lower Section)",
-              "pin": [
-                -33.72,
-                19.167
-              ],
-              "lower_pin": [
-                -33.72,
-                19.167
-              ],
-              "upper_pin": [
-                -33.723,
-                19.1585
-              ],
-              "mid_pin": [
-                -33.7215,
-                19.163
-              ]
-            },
-            {
-              "session_id": 4,
-              "session_name": "Sunday Afternoon",
-              "session_short": "Sun PM",
-              "day": "Sunday",
-              "time": "Afternoon",
-              "beat_number": 5,
-              "beat_id": "SB1",
-              "beat_code": "SB1",
-              "beat_name": "Smalblaar 1 (SB1)",
-              "river": "Smalblaar",
-              "meeting_point": "Picnic site pull-off",
-              "match_type": "1v1",
-              "opponents": [
-                "Dylan"
-              ],
-              "is_stayer": true,
-              "section": "Second Half (Upper Section)",
-              "pin": [
-                -33.7215,
-                19.163
-              ],
-              "lower_pin": [
-                -33.72,
-                19.167
-              ],
-              "upper_pin": [
-                -33.723,
-                19.1585
-              ],
-              "mid_pin": [
-                -33.7215,
-                19.163
-              ]
-            }
-          ],
-          "Malcolm": [
-            {
-              "session_id": 1,
-              "session_name": "Saturday Morning",
-              "session_short": "Sat AM",
-              "day": "Saturday",
-              "time": "Morning",
-              "beat_number": 2,
-              "beat_id": "EP1",
-              "beat_code": "EP1",
-              "beat_name": "Elandspad 1 (EP1)",
-              "river": "Elandspad",
-              "meeting_point": "Junction Pool trail head",
-              "match_type": "1v1v1",
-              "opponents": [
-                "Garrett",
-                "Garth"
-              ],
-              "is_stayer": false,
-              "section": "First Half (Lower Section)",
-              "pin": [
-                -33.7319,
-                19.1141
-              ],
-              "lower_pin": [
-                -33.7319,
-                19.1141
-              ],
-              "upper_pin": [
-                -33.7385,
-                19.1118
-              ],
-              "mid_pin": [
-                -33.7352,
-                19.1129
-              ]
-            },
-            {
-              "session_id": 2,
-              "session_name": "Saturday Afternoon",
-              "session_short": "Sat PM",
-              "day": "Saturday",
-              "time": "Afternoon",
-              "beat_number": 2,
-              "beat_id": "EP1",
-              "beat_code": "EP1",
-              "beat_name": "Elandspad 1 (EP1)",
-              "river": "Elandspad",
-              "meeting_point": "Junction Pool trail head",
-              "match_type": "1v1",
-              "opponents": [
-                "James"
-              ],
-              "is_stayer": true,
-              "section": "Second Half (Upper Section)",
-              "pin": [
-                -33.7352,
-                19.1129
-              ],
-              "lower_pin": [
-                -33.7319,
-                19.1141
-              ],
-              "upper_pin": [
-                -33.7385,
-                19.1118
-              ],
-              "mid_pin": [
-                -33.7352,
-                19.1129
-              ]
-            },
-            {
-              "session_id": 3,
-              "session_name": "Sunday Morning",
-              "session_short": "Sun AM",
-              "day": "Sunday",
-              "time": "Morning",
-              "beat_number": 3,
-              "beat_id": "Transport",
-              "beat_code": "Transport",
-              "beat_name": "Transport Beat",
-              "river": "Smalblaar",
-              "meeting_point": "Transport Bridge layby on N1",
-              "match_type": "1v1",
-              "opponents": [
-                "Dylan"
-              ],
-              "is_stayer": false,
-              "section": "First Half (Lower Section)",
-              "pin": [
-                -33.7085,
-                19.1895
-              ],
-              "lower_pin": [
-                -33.7085,
-                19.1895
-              ],
-              "upper_pin": [
-                -33.712,
-                19.1825
-              ],
-              "mid_pin": [
-                -33.71,
-                19.186
-              ]
-            },
-            {
-              "session_id": 4,
-              "session_name": "Sunday Afternoon",
-              "session_short": "Sun PM",
-              "day": "Sunday",
-              "time": "Afternoon",
-              "beat_number": 3,
-              "beat_id": "Transport",
-              "beat_code": "Transport",
-              "beat_name": "Transport Beat",
-              "river": "Smalblaar",
-              "meeting_point": "Transport Bridge layby on N1",
-              "match_type": "1v1",
-              "opponents": [
-                "Dale"
-              ],
-              "is_stayer": true,
-              "section": "Second Half (Upper Section)",
-              "pin": [
-                -33.71,
-                19.186
-              ],
-              "lower_pin": [
-                -33.7085,
-                19.1895
-              ],
-              "upper_pin": [
-                -33.712,
-                19.1825
-              ],
-              "mid_pin": [
-                -33.71,
-                19.186
-              ]
-            }
-          ],
-          "Ryan": [
-            {
-              "session_id": 1,
-              "session_name": "Saturday Morning",
-              "session_short": "Sat AM",
-              "day": "Saturday",
-              "time": "Morning",
-              "beat_number": 4,
-              "beat_id": "EP2",
-              "beat_code": "EP2",
-              "beat_name": "Elandspad 2 (EP2)",
-              "river": "Elandspad",
-              "meeting_point": "Fisherman's Cave trail",
-              "match_type": "1v1",
-              "opponents": [
-                "Ian"
-              ],
-              "is_stayer": false,
-              "section": "First Half (Lower Section)",
-              "pin": [
-                -33.7385,
-                19.1118
-              ],
-              "lower_pin": [
-                -33.7385,
-                19.1118
-              ],
-              "upper_pin": [
-                -33.7455,
-                19.1092
-              ],
-              "mid_pin": [
-                -33.742,
-                19.1105
-              ]
-            },
-            {
-              "session_id": 2,
-              "session_name": "Saturday Afternoon",
-              "session_short": "Sat PM",
-              "day": "Saturday",
-              "time": "Afternoon",
-              "beat_number": 5,
-              "beat_id": "SB1",
-              "beat_code": "SB1",
-              "beat_name": "Smalblaar 1 (SB1)",
-              "river": "Smalblaar",
-              "meeting_point": "Picnic site pull-off",
-              "match_type": "1v1v1",
-              "opponents": [
-                "Daniel",
-                "Dylan"
-              ],
-              "is_stayer": false,
-              "section": "First Half (Lower Section)",
-              "pin": [
-                -33.72,
-                19.167
-              ],
-              "lower_pin": [
-                -33.72,
-                19.167
-              ],
-              "upper_pin": [
-                -33.723,
-                19.1585
-              ],
-              "mid_pin": [
-                -33.7215,
-                19.163
-              ]
-            },
-            {
-              "session_id": 3,
-              "session_name": "Sunday Morning",
-              "session_short": "Sun AM",
-              "day": "Sunday",
-              "time": "Morning",
-              "beat_number": 2,
-              "beat_id": "EP1",
-              "beat_code": "EP1",
-              "beat_name": "Elandspad 1 (EP1)",
-              "river": "Elandspad",
-              "meeting_point": "Junction Pool trail head",
-              "match_type": "1v1",
-              "opponents": [
-                "Garth"
-              ],
-              "is_stayer": false,
-              "section": "First Half (Lower Section)",
-              "pin": [
-                -33.7319,
-                19.1141
-              ],
-              "lower_pin": [
-                -33.7319,
-                19.1141
-              ],
-              "upper_pin": [
-                -33.7385,
-                19.1118
-              ],
-              "mid_pin": [
-                -33.7352,
-                19.1129
-              ]
-            },
-            {
-              "session_id": 4,
-              "session_name": "Sunday Afternoon",
-              "session_short": "Sun PM",
-              "day": "Sunday",
-              "time": "Afternoon",
-              "beat_number": 2,
-              "beat_id": "EP1",
-              "beat_code": "EP1",
-              "beat_name": "Elandspad 1 (EP1)",
-              "river": "Elandspad",
-              "meeting_point": "Junction Pool trail head",
-              "match_type": "1v1",
-              "opponents": [
-                "Garrett"
-              ],
-              "is_stayer": true,
-              "section": "Second Half (Upper Section)",
-              "pin": [
-                -33.7352,
-                19.1129
-              ],
-              "lower_pin": [
-                -33.7319,
-                19.1141
-              ],
-              "upper_pin": [
-                -33.7385,
-                19.1118
-              ],
-              "mid_pin": [
-                -33.7352,
-                19.1129
-              ]
-            }
-          ],
-          "Garrett": [
-            {
-              "session_id": 1,
-              "session_name": "Saturday Morning",
-              "session_short": "Sat AM",
-              "day": "Saturday",
-              "time": "Morning",
-              "beat_number": 2,
-              "beat_id": "EP1",
-              "beat_code": "EP1",
-              "beat_name": "Elandspad 1 (EP1)",
-              "river": "Elandspad",
-              "meeting_point": "Junction Pool trail head",
-              "match_type": "1v1v1",
-              "opponents": [
-                "Malcolm",
-                "Garth"
-              ],
-              "is_stayer": false,
-              "section": "First Half (Lower Section)",
-              "pin": [
-                -33.7319,
-                19.1141
-              ],
-              "lower_pin": [
-                -33.7319,
-                19.1141
-              ],
-              "upper_pin": [
-                -33.7385,
-                19.1118
-              ],
-              "mid_pin": [
-                -33.7352,
-                19.1129
-              ]
-            },
-            {
-              "session_id": 2,
-              "session_name": "Saturday Afternoon",
-              "session_short": "Sat PM",
-              "day": "Saturday",
-              "time": "Afternoon",
-              "beat_number": 1,
-              "beat_id": "SB6",
-              "beat_code": "SB6",
-              "beat_name": "Smalblaar 6 (SB6)",
-              "river": "Smalblaar",
-              "meeting_point": "Tunnel East Portal Parking / Junction Path",
-              "match_type": "1v1",
-              "opponents": [
-                "Dale"
-              ],
-              "is_stayer": false,
-              "section": "First Half (Lower Section)",
-              "pin": [
-                -33.7319,
-                19.1141
-              ],
-              "lower_pin": [
-                -33.7319,
-                19.1141
-              ],
-              "upper_pin": [
-                -33.734,
-                19.1225
-              ],
-              "mid_pin": [
-                -33.733,
-                19.118
-              ]
-            },
-            {
-              "session_id": 3,
-              "session_name": "Sunday Morning",
-              "session_short": "Sun AM",
-              "day": "Sunday",
-              "time": "Morning",
-              "beat_number": 1,
-              "beat_id": "SB6",
-              "beat_code": "SB6",
-              "beat_name": "Smalblaar 6 (SB6)",
-              "river": "Smalblaar",
-              "meeting_point": "Tunnel East Portal Parking / Junction Path",
-              "match_type": "1v1",
-              "opponents": [
-                "James"
-              ],
-              "is_stayer": false,
-              "section": "First Half (Lower Section)",
-              "pin": [
-                -33.7319,
-                19.1141
-              ],
-              "lower_pin": [
-                -33.7319,
-                19.1141
-              ],
-              "upper_pin": [
-                -33.734,
-                19.1225
-              ],
-              "mid_pin": [
-                -33.733,
-                19.118
-              ]
-            },
-            {
-              "session_id": 4,
-              "session_name": "Sunday Afternoon",
-              "session_short": "Sun PM",
-              "day": "Sunday",
-              "time": "Afternoon",
-              "beat_number": 2,
-              "beat_id": "EP1",
-              "beat_code": "EP1",
-              "beat_name": "Elandspad 1 (EP1)",
-              "river": "Elandspad",
-              "meeting_point": "Junction Pool trail head",
-              "match_type": "1v1",
-              "opponents": [
-                "Ryan"
-              ],
-              "is_stayer": false,
-              "section": "First Half (Lower Section)",
-              "pin": [
-                -33.7319,
-                19.1141
-              ],
-              "lower_pin": [
-                -33.7319,
-                19.1141
-              ],
-              "upper_pin": [
-                -33.7385,
-                19.1118
-              ],
-              "mid_pin": [
-                -33.7352,
-                19.1129
-              ]
-            }
-          ],
-          "Michelle": [
-            {
-              "session_id": 1,
-              "session_name": "Saturday Morning",
-              "session_short": "Sat AM",
-              "day": "Saturday",
-              "time": "Morning",
-              "beat_number": 3,
-              "beat_id": "Transport",
-              "beat_code": "Transport",
-              "beat_name": "Transport Beat",
-              "river": "Smalblaar",
-              "meeting_point": "Transport Bridge layby on N1",
-              "match_type": "1v1",
-              "opponents": [
-                "Dylan"
-              ],
-              "is_stayer": false,
-              "section": "First Half (Lower Section)",
-              "pin": [
-                -33.7085,
-                19.1895
-              ],
-              "lower_pin": [
-                -33.7085,
-                19.1895
-              ],
-              "upper_pin": [
-                -33.712,
-                19.1825
-              ],
-              "mid_pin": [
-                -33.71,
-                19.186
-              ]
-            },
-            {
-              "session_id": 2,
-              "session_name": "Saturday Afternoon",
-              "session_short": "Sat PM",
-              "day": "Saturday",
-              "time": "Afternoon",
-              "beat_number": 3,
-              "beat_id": "Transport",
-              "beat_code": "Transport",
-              "beat_name": "Transport Beat",
-              "river": "Smalblaar",
-              "meeting_point": "Transport Bridge layby on N1",
-              "match_type": "1v1",
-              "opponents": [
-                "Garth"
-              ],
-              "is_stayer": true,
-              "section": "Second Half (Upper Section)",
-              "pin": [
-                -33.71,
-                19.186
-              ],
-              "lower_pin": [
-                -33.7085,
-                19.1895
-              ],
-              "upper_pin": [
-                -33.712,
-                19.1825
-              ],
-              "mid_pin": [
-                -33.71,
-                19.186
-              ]
-            },
-            {
-              "session_id": 3,
-              "session_name": "Sunday Morning",
-              "session_short": "Sun AM",
-              "day": "Sunday",
-              "time": "Morning",
-              "beat_number": 5,
-              "beat_id": "SB1",
-              "beat_code": "SB1",
-              "beat_name": "Smalblaar 1 (SB1)",
-              "river": "Smalblaar",
-              "meeting_point": "Picnic site pull-off",
-              "match_type": "1v1v1",
-              "opponents": [
-                "Ian",
-                "Dale"
-              ],
-              "is_stayer": false,
-              "section": "First Half (Lower Section)",
-              "pin": [
-                -33.72,
-                19.167
-              ],
-              "lower_pin": [
-                -33.72,
-                19.167
-              ],
-              "upper_pin": [
-                -33.723,
-                19.1585
-              ],
-              "mid_pin": [
-                -33.7215,
-                19.163
-              ]
-            },
-            {
-              "session_id": 4,
-              "session_name": "Sunday Afternoon",
-              "session_short": "Sun PM",
-              "day": "Sunday",
-              "time": "Afternoon",
-              "beat_number": 1,
-              "beat_id": "SB6",
-              "beat_code": "SB6",
-              "beat_name": "Smalblaar 6 (SB6)",
-              "river": "Smalblaar",
-              "meeting_point": "Tunnel East Portal Parking / Junction Path",
-              "match_type": "1v1v1",
-              "opponents": [
-                "Barry",
-                "James"
-              ],
-              "is_stayer": false,
-              "section": "First Half (Lower Section)",
-              "pin": [
-                -33.7319,
-                19.1141
-              ],
-              "lower_pin": [
-                -33.7319,
-                19.1141
-              ],
-              "upper_pin": [
-                -33.734,
-                19.1225
-              ],
-              "mid_pin": [
-                -33.733,
-                19.118
-              ]
-            }
-          ]
-        },
         "three_way_counts": {
           "James": 1,
           "Barry": 1,
@@ -8709,223 +3936,224 @@ export const INITIAL_STATE = {
             "session_short": "Sat AM",
             "day": "Saturday",
             "time": "Morning",
+            "time_slot": "Morning",
+            "is_saved": false,
+            "saved_at": null,
             "matches": [
               {
-                "match_id": "S1_B1",
-                "session_id": 1,
-                "beat": 1,
+                "match_id": "S1_M1",
+                "match_number": 1,
+                "match_type": "1v1",
+                "is_solo": false,
+                "is_bye": false,
                 "beat_number": 1,
+                "beat": 1,
                 "beat_id": "SB6",
                 "beat_code": "SB6",
-                "beat_name": "Smalblaar 6 (SB6)",
+                "beat_name": "SB6",
                 "river": "Small Blaar",
-                "meeting_point": "Tunnel East Portal Parking / Junction Path",
                 "lower_pin": [
                   -33.7319,
                   19.1141
-                ],
-                "upper_pin": [
-                  -33.734,
-                  19.1225
                 ],
                 "mid_pin": [
                   -33.733,
-                  19.118
+                  19.1105
                 ],
-                "match_type": "1v1",
+                "upper_pin": [
+                  -33.7342,
+                  19.1065
+                ],
+                "meeting_point": "Tunnel East Portal Parking / Junction Path",
+                "travel_time": 15,
                 "anglers": [
                   "Dale",
-                  "Barry"
+                  "Daniel"
                 ],
-                "angler_indices": [
-                  4,
-                  1
-                ],
-                "stayers": [],
-                "movers": [],
-                "is_head_to_head_a_team": false,
-                "has_a_team_angler": true,
-                "a_team_competitors": [
-                  "Barry"
-                ],
+                "stayer": null,
                 "status": "UNREPORTED",
                 "submissions": {},
                 "official_scores": {},
-                "calculated_points": {},
-                "discrepancy_details": null
+                "calculated_points": {}
               },
               {
-                "match_id": "S1_B2",
-                "session_id": 1,
-                "beat": 2,
+                "match_id": "S1_M2",
+                "match_number": 2,
+                "match_type": "1v1",
+                "is_solo": false,
+                "is_bye": false,
                 "beat_number": 2,
+                "beat": 2,
+                "beat_id": "SB5",
+                "beat_code": "SB5",
+                "beat_name": "SB5",
+                "river": "Small Blaar",
+                "lower_pin": [
+                  -33.7295,
+                  19.132
+                ],
+                "mid_pin": [
+                  -33.7305,
+                  19.127
+                ],
+                "upper_pin": [
+                  -33.7319,
+                  19.1141
+                ],
+                "meeting_point": "CPS Elandspad parking lot",
+                "travel_time": 15,
+                "anglers": [
+                  "Ian",
+                  "Barry"
+                ],
+                "stayer": null,
+                "status": "UNREPORTED",
+                "submissions": {},
+                "official_scores": {},
+                "calculated_points": {}
+              },
+              {
+                "match_id": "S1_M3",
+                "match_number": 3,
+                "match_type": "1v1",
+                "is_solo": false,
+                "is_bye": false,
+                "beat_number": 3,
+                "beat": 3,
+                "beat_id": "SB3",
+                "beat_code": "SB3",
+                "beat_name": "SB3",
+                "river": "Small Blaar",
+                "lower_pin": [
+                  -33.7235,
+                  19.153
+                ],
+                "mid_pin": [
+                  -33.7258,
+                  19.147
+                ],
+                "upper_pin": [
+                  -33.7272,
+                  19.1415
+                ],
+                "meeting_point": "N1 emergency telephone layby 3",
+                "travel_time": 15,
+                "anglers": [
+                  "Michelle",
+                  "Garth"
+                ],
+                "stayer": null,
+                "status": "UNREPORTED",
+                "submissions": {},
+                "official_scores": {},
+                "calculated_points": {}
+              },
+              {
+                "match_id": "S1_M4",
+                "match_number": 4,
+                "match_type": "1v1",
+                "is_solo": false,
+                "is_bye": false,
+                "beat_number": 4,
+                "beat": 4,
+                "beat_id": "EP2",
+                "beat_code": "EP2",
+                "beat_name": "EP2",
+                "river": "Elands Pad",
+                "lower_pin": [
+                  -33.7405,
+                  19.1162
+                ],
+                "mid_pin": [
+                  -33.746,
+                  19.1172
+                ],
+                "upper_pin": [
+                  -33.752,
+                  19.1188
+                ],
+                "meeting_point": "Fisherman's Cave trail",
+                "travel_time": 30,
+                "anglers": [
+                  "Garrett",
+                  "Malcolm"
+                ],
+                "stayer": null,
+                "status": "UNREPORTED",
+                "submissions": {},
+                "official_scores": {},
+                "calculated_points": {}
+              },
+              {
+                "match_id": "S1_M5",
+                "match_number": 5,
+                "match_type": "1v1",
+                "is_solo": false,
+                "is_bye": false,
+                "beat_number": 5,
+                "beat": 5,
+                "beat_id": "EP3",
+                "beat_code": "EP3",
+                "beat_name": "EP3",
+                "river": "Elands Pad",
+                "lower_pin": [
+                  -33.752,
+                  19.1188
+                ],
+                "mid_pin": [
+                  -33.7565,
+                  19.1195
+                ],
+                "upper_pin": [
+                  -33.761,
+                  19.1205
+                ],
+                "meeting_point": "Star beat rock shelter",
+                "travel_time": 30,
+                "anglers": [
+                  "James",
+                  "Ryan"
+                ],
+                "stayer": null,
+                "status": "UNREPORTED",
+                "submissions": {},
+                "official_scores": {},
+                "calculated_points": {}
+              },
+              {
+                "match_id": "S1_M6",
+                "match_number": 6,
+                "match_type": "BYE",
+                "is_solo": true,
+                "is_bye": true,
+                "beat_number": 6,
+                "beat": 6,
                 "beat_id": "EP1",
                 "beat_code": "EP1",
-                "beat_name": "Elandspad 1 (EP1)",
+                "beat_name": "EP1",
                 "river": "Elands Pad",
-                "meeting_point": "Junction Pool trail head",
                 "lower_pin": [
                   -33.7319,
                   19.1141
                 ],
-                "upper_pin": [
-                  -33.7385,
-                  19.1118
-                ],
                 "mid_pin": [
-                  -33.7352,
-                  19.1129
-                ],
-                "match_type": "1v1v1",
-                "anglers": [
-                  "Malcolm",
-                  "Garrett",
-                  "Garth"
-                ],
-                "angler_indices": [
-                  7,
-                  9,
-                  3
-                ],
-                "stayers": [],
-                "movers": [],
-                "is_head_to_head_a_team": false,
-                "has_a_team_angler": false,
-                "a_team_competitors": [],
-                "status": "UNREPORTED",
-                "submissions": {},
-                "official_scores": {},
-                "calculated_points": {},
-                "discrepancy_details": null
-              },
-              {
-                "match_id": "S1_B3",
-                "session_id": 1,
-                "beat": 3,
-                "beat_number": 3,
-                "beat_id": "Transport",
-                "beat_code": "Transport",
-                "beat_name": "Transport Beat",
-                "river": "Small Blaar",
-                "meeting_point": "Transport Bridge layby on N1",
-                "lower_pin": [
-                  -33.7085,
-                  19.1895
+                  -33.736,
+                  19.1152
                 ],
                 "upper_pin": [
-                  -33.712,
-                  19.1825
+                  -33.7405,
+                  19.1162
                 ],
-                "mid_pin": [
-                  -33.71,
-                  19.186
-                ],
-                "match_type": "1v1",
+                "meeting_point": "Junction Pool trail head",
+                "travel_time": 15,
                 "anglers": [
-                  "Dylan",
-                  "Michelle"
+                  "Dylan"
                 ],
-                "angler_indices": [
-                  5,
-                  10
-                ],
-                "stayers": [],
-                "movers": [],
-                "is_head_to_head_a_team": false,
-                "has_a_team_angler": false,
-                "a_team_competitors": [],
-                "status": "UNREPORTED",
+                "stayer": null,
+                "status": "BYE",
                 "submissions": {},
                 "official_scores": {},
-                "calculated_points": {},
-                "discrepancy_details": null
-              },
-              {
-                "match_id": "S1_B4",
-                "session_id": 1,
-                "beat": 4,
-                "beat_number": 4,
-                "beat_id": "EP2",
-                "beat_code": "EP2",
-                "beat_name": "Elandspad 2 (EP2)",
-                "river": "Elands Pad",
-                "meeting_point": "Fisherman's Cave trail",
-                "lower_pin": [
-                  -33.7385,
-                  19.1118
-                ],
-                "upper_pin": [
-                  -33.7455,
-                  19.1092
-                ],
-                "mid_pin": [
-                  -33.742,
-                  19.1105
-                ],
-                "match_type": "1v1",
-                "anglers": [
-                  "Ryan",
-                  "Ian"
-                ],
-                "angler_indices": [
-                  8,
-                  6
-                ],
-                "stayers": [],
-                "movers": [],
-                "is_head_to_head_a_team": false,
-                "has_a_team_angler": false,
-                "a_team_competitors": [],
-                "status": "UNREPORTED",
-                "submissions": {},
-                "official_scores": {},
-                "calculated_points": {},
-                "discrepancy_details": null
-              },
-              {
-                "match_id": "S1_B5",
-                "session_id": 1,
-                "beat": 5,
-                "beat_number": 5,
-                "beat_id": "SB1",
-                "beat_code": "SB1",
-                "beat_name": "Smalblaar 1 (SB1)",
-                "river": "Small Blaar",
-                "meeting_point": "Picnic site pull-off",
-                "lower_pin": [
-                  -33.72,
-                  19.167
-                ],
-                "upper_pin": [
-                  -33.723,
-                  19.1585
-                ],
-                "mid_pin": [
-                  -33.7215,
-                  19.163
-                ],
-                "match_type": "1v1",
-                "anglers": [
-                  "James",
-                  "Daniel"
-                ],
-                "angler_indices": [
-                  0,
-                  2
-                ],
-                "stayers": [],
-                "movers": [],
-                "is_head_to_head_a_team": true,
-                "has_a_team_angler": true,
-                "a_team_competitors": [
-                  "James",
-                  "Daniel"
-                ],
-                "status": "UNREPORTED",
-                "submissions": {},
-                "official_scores": {},
-                "calculated_points": {},
-                "discrepancy_details": null
+                "calculated_points": {}
               }
             ]
           },
@@ -8935,245 +4163,224 @@ export const INITIAL_STATE = {
             "session_short": "Sat PM",
             "day": "Saturday",
             "time": "Afternoon",
+            "time_slot": "Afternoon",
+            "is_saved": false,
+            "saved_at": null,
             "matches": [
               {
-                "match_id": "S2_B1",
-                "session_id": 2,
-                "beat": 1,
+                "match_id": "S2_M1",
+                "match_number": 1,
+                "match_type": "1v1",
+                "is_solo": false,
+                "is_bye": false,
                 "beat_number": 1,
+                "beat": 1,
                 "beat_id": "SB6",
                 "beat_code": "SB6",
-                "beat_name": "Smalblaar 6 (SB6)",
+                "beat_name": "SB6",
                 "river": "Small Blaar",
-                "meeting_point": "Tunnel East Portal Parking / Junction Path",
                 "lower_pin": [
                   -33.7319,
                   19.1141
-                ],
-                "upper_pin": [
-                  -33.734,
-                  19.1225
                 ],
                 "mid_pin": [
                   -33.733,
-                  19.118
+                  19.1105
                 ],
-                "match_type": "1v1",
+                "upper_pin": [
+                  -33.7342,
+                  19.1065
+                ],
+                "meeting_point": "Tunnel East Portal Parking / Junction Path",
+                "travel_time": 15,
                 "anglers": [
-                  "Dale",
-                  "Garrett"
-                ],
-                "angler_indices": [
-                  4,
-                  9
-                ],
-                "stayers": [
+                  "Ian",
                   "Dale"
                 ],
-                "movers": [
-                  "Garrett"
-                ],
-                "is_head_to_head_a_team": false,
-                "has_a_team_angler": false,
-                "a_team_competitors": [],
+                "stayer": "Dale",
                 "status": "UNREPORTED",
                 "submissions": {},
                 "official_scores": {},
-                "calculated_points": {},
-                "discrepancy_details": null
+                "calculated_points": {}
               },
               {
-                "match_id": "S2_B2",
-                "session_id": 2,
-                "beat": 2,
+                "match_id": "S2_M2",
+                "match_number": 2,
+                "match_type": "1v1",
+                "is_solo": false,
+                "is_bye": false,
                 "beat_number": 2,
-                "beat_id": "EP1",
-                "beat_code": "EP1",
-                "beat_name": "Elandspad 1 (EP1)",
-                "river": "Elands Pad",
-                "meeting_point": "Junction Pool trail head",
+                "beat": 2,
+                "beat_id": "SB5",
+                "beat_code": "SB5",
+                "beat_name": "SB5",
+                "river": "Small Blaar",
                 "lower_pin": [
+                  -33.7295,
+                  19.132
+                ],
+                "mid_pin": [
+                  -33.7305,
+                  19.127
+                ],
+                "upper_pin": [
                   -33.7319,
                   19.1141
                 ],
-                "upper_pin": [
-                  -33.7385,
-                  19.1118
-                ],
-                "mid_pin": [
-                  -33.7352,
-                  19.1129
-                ],
-                "match_type": "1v1",
+                "meeting_point": "CPS Elandspad parking lot",
+                "travel_time": 15,
                 "anglers": [
-                  "Malcolm",
-                  "James"
+                  "Daniel",
+                  "Barry"
                 ],
-                "angler_indices": [
-                  7,
-                  0
-                ],
-                "stayers": [
-                  "Malcolm"
-                ],
-                "movers": [
-                  "James"
-                ],
-                "is_head_to_head_a_team": false,
-                "has_a_team_angler": true,
-                "a_team_competitors": [
-                  "James"
-                ],
+                "stayer": "Barry",
                 "status": "UNREPORTED",
                 "submissions": {},
                 "official_scores": {},
-                "calculated_points": {},
-                "discrepancy_details": null
+                "calculated_points": {}
               },
               {
-                "match_id": "S2_B3",
-                "session_id": 2,
-                "beat": 3,
+                "match_id": "S2_M3",
+                "match_number": 3,
+                "match_type": "1v1",
+                "is_solo": false,
+                "is_bye": false,
                 "beat_number": 3,
-                "beat_id": "Transport",
-                "beat_code": "Transport",
-                "beat_name": "Transport Beat",
+                "beat": 3,
+                "beat_id": "SB3",
+                "beat_code": "SB3",
+                "beat_name": "SB3",
                 "river": "Small Blaar",
-                "meeting_point": "Transport Bridge layby on N1",
                 "lower_pin": [
-                  -33.7085,
-                  19.1895
-                ],
-                "upper_pin": [
-                  -33.712,
-                  19.1825
+                  -33.7235,
+                  19.153
                 ],
                 "mid_pin": [
-                  -33.71,
-                  19.186
+                  -33.7258,
+                  19.147
                 ],
-                "match_type": "1v1",
+                "upper_pin": [
+                  -33.7272,
+                  19.1415
+                ],
+                "meeting_point": "N1 emergency telephone layby 3",
+                "travel_time": 15,
                 "anglers": [
-                  "Michelle",
-                  "Garth"
-                ],
-                "angler_indices": [
-                  10,
-                  3
-                ],
-                "stayers": [
+                  "Ryan",
                   "Michelle"
                 ],
-                "movers": [
+                "stayer": "Michelle",
+                "status": "UNREPORTED",
+                "submissions": {},
+                "official_scores": {},
+                "calculated_points": {}
+              },
+              {
+                "match_id": "S2_M4",
+                "match_number": 4,
+                "match_type": "1v1",
+                "is_solo": false,
+                "is_bye": false,
+                "beat_number": 4,
+                "beat": 4,
+                "beat_id": "SB(HOTEL)",
+                "beat_code": "SB(HOTEL)",
+                "beat_name": "SB(HOTEL)",
+                "river": "Small Blaar",
+                "lower_pin": [
+                  -33.7125,
+                  19.18
+                ],
+                "mid_pin": [
+                  -33.7138,
+                  19.177
+                ],
+                "upper_pin": [
+                  -33.715,
+                  19.174
+                ],
+                "meeting_point": "Du Kloof Lodge guest parking",
+                "travel_time": 15,
+                "anglers": [
+                  "Malcolm",
                   "Garth"
                 ],
-                "is_head_to_head_a_team": false,
-                "has_a_team_angler": false,
-                "a_team_competitors": [],
+                "stayer": null,
                 "status": "UNREPORTED",
                 "submissions": {},
                 "official_scores": {},
-                "calculated_points": {},
-                "discrepancy_details": null
+                "calculated_points": {}
               },
               {
-                "match_id": "S2_B4",
-                "session_id": 2,
-                "beat": 4,
-                "beat_number": 4,
-                "beat_id": "EP2",
-                "beat_code": "EP2",
-                "beat_name": "Elandspad 2 (EP2)",
-                "river": "Elands Pad",
-                "meeting_point": "Fisherman's Cave trail",
-                "lower_pin": [
-                  -33.7385,
-                  19.1118
-                ],
-                "upper_pin": [
-                  -33.7455,
-                  19.1092
-                ],
-                "mid_pin": [
-                  -33.742,
-                  19.1105
-                ],
+                "match_id": "S2_M5",
+                "match_number": 5,
                 "match_type": "1v1",
-                "anglers": [
-                  "Ian",
-                  "Barry"
-                ],
-                "angler_indices": [
-                  6,
-                  1
-                ],
-                "stayers": [
-                  "Ian"
-                ],
-                "movers": [
-                  "Barry"
-                ],
-                "is_head_to_head_a_team": false,
-                "has_a_team_angler": true,
-                "a_team_competitors": [
-                  "Barry"
-                ],
-                "status": "UNREPORTED",
-                "submissions": {},
-                "official_scores": {},
-                "calculated_points": {},
-                "discrepancy_details": null
-              },
-              {
-                "match_id": "S2_B5",
-                "session_id": 2,
-                "beat": 5,
+                "is_solo": false,
+                "is_bye": false,
                 "beat_number": 5,
+                "beat": 5,
                 "beat_id": "SB1",
                 "beat_code": "SB1",
-                "beat_name": "Smalblaar 1 (SB1)",
+                "beat_name": "SB1",
                 "river": "Small Blaar",
-                "meeting_point": "Picnic site pull-off",
                 "lower_pin": [
-                  -33.72,
-                  19.167
-                ],
-                "upper_pin": [
-                  -33.723,
-                  19.1585
+                  -33.715,
+                  19.174
                 ],
                 "mid_pin": [
-                  -33.7215,
-                  19.163
+                  -33.717,
+                  19.17
                 ],
-                "match_type": "1v1v1",
+                "upper_pin": [
+                  -33.719,
+                  19.1655
+                ],
+                "meeting_point": "Picnic site pull-off",
+                "travel_time": 15,
                 "anglers": [
-                  "Ryan",
-                  "Daniel",
+                  "Garrett",
                   "Dylan"
                 ],
-                "angler_indices": [
-                  8,
-                  2,
-                  5
-                ],
-                "stayers": [
-                  "Daniel"
-                ],
-                "movers": [
-                  "Ryan",
-                  "Dylan"
-                ],
-                "is_head_to_head_a_team": false,
-                "has_a_team_angler": true,
-                "a_team_competitors": [
-                  "Daniel"
-                ],
+                "stayer": null,
                 "status": "UNREPORTED",
                 "submissions": {},
                 "official_scores": {},
-                "calculated_points": {},
-                "discrepancy_details": null
+                "calculated_points": {}
+              },
+              {
+                "match_id": "S2_M6",
+                "match_number": 6,
+                "match_type": "BYE",
+                "is_solo": true,
+                "is_bye": true,
+                "beat_number": 6,
+                "beat": 6,
+                "beat_id": "SB2",
+                "beat_code": "SB2",
+                "beat_name": "SB2",
+                "river": "Small Blaar",
+                "lower_pin": [
+                  -33.719,
+                  19.1655
+                ],
+                "mid_pin": [
+                  -33.7212,
+                  19.159
+                ],
+                "upper_pin": [
+                  -33.7235,
+                  19.153
+                ],
+                "meeting_point": "Picnic site parking",
+                "travel_time": 15,
+                "anglers": [
+                  "James"
+                ],
+                "stayer": null,
+                "status": "BYE",
+                "submissions": {},
+                "official_scores": {},
+                "calculated_points": {}
               }
             ]
           },
@@ -9183,223 +4390,224 @@ export const INITIAL_STATE = {
             "session_short": "Sun AM",
             "day": "Sunday",
             "time": "Morning",
+            "time_slot": "Morning",
+            "is_saved": false,
+            "saved_at": null,
             "matches": [
               {
-                "match_id": "S3_B1",
-                "session_id": 3,
-                "beat": 1,
+                "match_id": "S3_M1",
+                "match_number": 1,
+                "match_type": "1v1",
+                "is_solo": false,
+                "is_bye": false,
                 "beat_number": 1,
+                "beat": 1,
                 "beat_id": "SB6",
                 "beat_code": "SB6",
-                "beat_name": "Smalblaar 6 (SB6)",
+                "beat_name": "SB6",
                 "river": "Small Blaar",
-                "meeting_point": "Tunnel East Portal Parking / Junction Path",
                 "lower_pin": [
                   -33.7319,
                   19.1141
-                ],
-                "upper_pin": [
-                  -33.734,
-                  19.1225
                 ],
                 "mid_pin": [
                   -33.733,
-                  19.118
+                  19.1105
                 ],
-                "match_type": "1v1",
+                "upper_pin": [
+                  -33.7342,
+                  19.1065
+                ],
+                "meeting_point": "Tunnel East Portal Parking / Junction Path",
+                "travel_time": 15,
                 "anglers": [
-                  "Garrett",
-                  "James"
+                  "James",
+                  "Barry"
                 ],
-                "angler_indices": [
-                  9,
-                  0
-                ],
-                "stayers": [],
-                "movers": [],
-                "is_head_to_head_a_team": false,
-                "has_a_team_angler": true,
-                "a_team_competitors": [
-                  "James"
-                ],
+                "stayer": null,
                 "status": "UNREPORTED",
                 "submissions": {},
                 "official_scores": {},
-                "calculated_points": {},
-                "discrepancy_details": null
+                "calculated_points": {}
               },
               {
-                "match_id": "S3_B2",
-                "session_id": 3,
-                "beat": 2,
+                "match_id": "S3_M2",
+                "match_number": 2,
+                "match_type": "1v1",
+                "is_solo": false,
+                "is_bye": false,
                 "beat_number": 2,
-                "beat_id": "EP1",
-                "beat_code": "EP1",
-                "beat_name": "Elandspad 1 (EP1)",
-                "river": "Elands Pad",
-                "meeting_point": "Junction Pool trail head",
+                "beat": 2,
+                "beat_id": "SB5",
+                "beat_code": "SB5",
+                "beat_name": "SB5",
+                "river": "Small Blaar",
                 "lower_pin": [
+                  -33.7295,
+                  19.132
+                ],
+                "mid_pin": [
+                  -33.7305,
+                  19.127
+                ],
+                "upper_pin": [
                   -33.7319,
                   19.1141
                 ],
-                "upper_pin": [
-                  -33.7385,
-                  19.1118
-                ],
-                "mid_pin": [
-                  -33.7352,
-                  19.1129
-                ],
-                "match_type": "1v1",
+                "meeting_point": "CPS Elandspad parking lot",
+                "travel_time": 15,
                 "anglers": [
                   "Garth",
-                  "Ryan"
+                  "Dale"
                 ],
-                "angler_indices": [
-                  3,
-                  8
-                ],
-                "stayers": [],
-                "movers": [],
-                "is_head_to_head_a_team": false,
-                "has_a_team_angler": false,
-                "a_team_competitors": [],
+                "stayer": null,
                 "status": "UNREPORTED",
                 "submissions": {},
                 "official_scores": {},
-                "calculated_points": {},
-                "discrepancy_details": null
+                "calculated_points": {}
               },
               {
-                "match_id": "S3_B3",
-                "session_id": 3,
-                "beat": 3,
+                "match_id": "S3_M3",
+                "match_number": 3,
+                "match_type": "1v1",
+                "is_solo": false,
+                "is_bye": false,
                 "beat_number": 3,
-                "beat_id": "Transport",
-                "beat_code": "Transport",
-                "beat_name": "Transport Beat",
+                "beat": 3,
+                "beat_id": "SB3",
+                "beat_code": "SB3",
+                "beat_name": "SB3",
                 "river": "Small Blaar",
-                "meeting_point": "Transport Bridge layby on N1",
                 "lower_pin": [
-                  -33.7085,
-                  19.1895
-                ],
-                "upper_pin": [
-                  -33.712,
-                  19.1825
+                  -33.7235,
+                  19.153
                 ],
                 "mid_pin": [
-                  -33.71,
-                  19.186
+                  -33.7258,
+                  19.147
                 ],
+                "upper_pin": [
+                  -33.7272,
+                  19.1415
+                ],
+                "meeting_point": "N1 emergency telephone layby 3",
+                "travel_time": 15,
+                "anglers": [
+                  "Ian",
+                  "Michelle"
+                ],
+                "stayer": null,
+                "status": "UNREPORTED",
+                "submissions": {},
+                "official_scores": {},
+                "calculated_points": {}
+              },
+              {
+                "match_id": "S3_M4",
+                "match_number": 4,
                 "match_type": "1v1",
+                "is_solo": false,
+                "is_bye": false,
+                "beat_number": 4,
+                "beat": 4,
+                "beat_id": "EP2",
+                "beat_code": "EP2",
+                "beat_name": "EP2",
+                "river": "Elands Pad",
+                "lower_pin": [
+                  -33.7405,
+                  19.1162
+                ],
+                "mid_pin": [
+                  -33.746,
+                  19.1172
+                ],
+                "upper_pin": [
+                  -33.752,
+                  19.1188
+                ],
+                "meeting_point": "Fisherman's Cave trail",
+                "travel_time": 30,
                 "anglers": [
                   "Dylan",
                   "Malcolm"
                 ],
-                "angler_indices": [
-                  5,
-                  7
-                ],
-                "stayers": [],
-                "movers": [],
-                "is_head_to_head_a_team": false,
-                "has_a_team_angler": false,
-                "a_team_competitors": [],
+                "stayer": null,
                 "status": "UNREPORTED",
                 "submissions": {},
                 "official_scores": {},
-                "calculated_points": {},
-                "discrepancy_details": null
+                "calculated_points": {}
               },
               {
-                "match_id": "S3_B4",
-                "session_id": 3,
-                "beat": 4,
-                "beat_number": 4,
-                "beat_id": "EP2",
-                "beat_code": "EP2",
-                "beat_name": "Elandspad 2 (EP2)",
-                "river": "Elands Pad",
-                "meeting_point": "Fisherman's Cave trail",
-                "lower_pin": [
-                  -33.7385,
-                  19.1118
-                ],
-                "upper_pin": [
-                  -33.7455,
-                  19.1092
-                ],
-                "mid_pin": [
-                  -33.742,
-                  19.1105
-                ],
+                "match_id": "S3_M5",
+                "match_number": 5,
                 "match_type": "1v1",
-                "anglers": [
-                  "Daniel",
-                  "Barry"
-                ],
-                "angler_indices": [
-                  2,
-                  1
-                ],
-                "stayers": [],
-                "movers": [],
-                "is_head_to_head_a_team": true,
-                "has_a_team_angler": true,
-                "a_team_competitors": [
-                  "Daniel",
-                  "Barry"
-                ],
-                "status": "UNREPORTED",
-                "submissions": {},
-                "official_scores": {},
-                "calculated_points": {},
-                "discrepancy_details": null
-              },
-              {
-                "match_id": "S3_B5",
-                "session_id": 3,
-                "beat": 5,
+                "is_solo": false,
+                "is_bye": false,
                 "beat_number": 5,
-                "beat_id": "SB1",
-                "beat_code": "SB1",
-                "beat_name": "Smalblaar 1 (SB1)",
-                "river": "Small Blaar",
-                "meeting_point": "Picnic site pull-off",
+                "beat": 5,
+                "beat_id": "EP3",
+                "beat_code": "EP3",
+                "beat_name": "EP3",
+                "river": "Elands Pad",
                 "lower_pin": [
-                  -33.72,
-                  19.167
-                ],
-                "upper_pin": [
-                  -33.723,
-                  19.1585
+                  -33.752,
+                  19.1188
                 ],
                 "mid_pin": [
-                  -33.7215,
-                  19.163
+                  -33.7565,
+                  19.1195
                 ],
-                "match_type": "1v1v1",
+                "upper_pin": [
+                  -33.761,
+                  19.1205
+                ],
+                "meeting_point": "Star beat rock shelter",
+                "travel_time": 30,
                 "anglers": [
-                  "Michelle",
-                  "Ian",
-                  "Dale"
+                  "Garrett",
+                  "Daniel"
                 ],
-                "angler_indices": [
-                  10,
-                  6,
-                  4
-                ],
-                "stayers": [],
-                "movers": [],
-                "is_head_to_head_a_team": false,
-                "has_a_team_angler": false,
-                "a_team_competitors": [],
+                "stayer": null,
                 "status": "UNREPORTED",
                 "submissions": {},
                 "official_scores": {},
-                "calculated_points": {},
-                "discrepancy_details": null
+                "calculated_points": {}
+              },
+              {
+                "match_id": "S3_M6",
+                "match_number": 6,
+                "match_type": "BYE",
+                "is_solo": true,
+                "is_bye": true,
+                "beat_number": 6,
+                "beat": 6,
+                "beat_id": "EP1",
+                "beat_code": "EP1",
+                "beat_name": "EP1",
+                "river": "Elands Pad",
+                "lower_pin": [
+                  -33.7319,
+                  19.1141
+                ],
+                "mid_pin": [
+                  -33.736,
+                  19.1152
+                ],
+                "upper_pin": [
+                  -33.7405,
+                  19.1162
+                ],
+                "meeting_point": "Junction Pool trail head",
+                "travel_time": 15,
+                "anglers": [
+                  "Ryan"
+                ],
+                "stayer": null,
+                "status": "BYE",
+                "submissions": {},
+                "official_scores": {},
+                "calculated_points": {}
               }
             ]
           },
@@ -9409,244 +4617,224 @@ export const INITIAL_STATE = {
             "session_short": "Sun PM",
             "day": "Sunday",
             "time": "Afternoon",
+            "time_slot": "Afternoon",
+            "is_saved": false,
+            "saved_at": null,
             "matches": [
               {
-                "match_id": "S4_B1",
-                "session_id": 4,
-                "beat": 1,
+                "match_id": "S4_M1",
+                "match_number": 1,
+                "match_type": "1v1",
+                "is_solo": false,
+                "is_bye": false,
                 "beat_number": 1,
+                "beat": 1,
                 "beat_id": "SB6",
                 "beat_code": "SB6",
-                "beat_name": "Smalblaar 6 (SB6)",
+                "beat_name": "SB6",
                 "river": "Small Blaar",
-                "meeting_point": "Tunnel East Portal Parking / Junction Path",
                 "lower_pin": [
                   -33.7319,
                   19.1141
-                ],
-                "upper_pin": [
-                  -33.734,
-                  19.1225
                 ],
                 "mid_pin": [
                   -33.733,
-                  19.118
+                  19.1105
                 ],
-                "match_type": "1v1v1",
+                "upper_pin": [
+                  -33.7342,
+                  19.1065
+                ],
+                "meeting_point": "Tunnel East Portal Parking / Junction Path",
+                "travel_time": 15,
                 "anglers": [
-                  "Barry",
                   "James",
-                  "Michelle"
+                  "Daniel"
                 ],
-                "angler_indices": [
-                  1,
-                  0,
-                  10
-                ],
-                "stayers": [
-                  "James"
-                ],
-                "movers": [
-                  "Barry",
-                  "Michelle"
-                ],
-                "is_head_to_head_a_team": true,
-                "has_a_team_angler": true,
-                "a_team_competitors": [
-                  "Barry",
-                  "James"
-                ],
+                "stayer": "James",
                 "status": "UNREPORTED",
                 "submissions": {},
                 "official_scores": {},
-                "calculated_points": {},
-                "discrepancy_details": null
+                "calculated_points": {}
               },
               {
-                "match_id": "S4_B2",
-                "session_id": 4,
-                "beat": 2,
+                "match_id": "S4_M2",
+                "match_number": 2,
+                "match_type": "1v1",
+                "is_solo": false,
+                "is_bye": false,
                 "beat_number": 2,
-                "beat_id": "EP1",
-                "beat_code": "EP1",
-                "beat_name": "Elandspad 1 (EP1)",
-                "river": "Elands Pad",
-                "meeting_point": "Junction Pool trail head",
+                "beat": 2,
+                "beat_id": "SB5",
+                "beat_code": "SB5",
+                "beat_name": "SB5",
+                "river": "Small Blaar",
                 "lower_pin": [
+                  -33.7295,
+                  19.132
+                ],
+                "mid_pin": [
+                  -33.7305,
+                  19.127
+                ],
+                "upper_pin": [
                   -33.7319,
                   19.1141
                 ],
-                "upper_pin": [
-                  -33.7385,
-                  19.1118
-                ],
-                "mid_pin": [
-                  -33.7352,
-                  19.1129
-                ],
-                "match_type": "1v1",
+                "meeting_point": "CPS Elandspad parking lot",
+                "travel_time": 15,
                 "anglers": [
-                  "Ryan",
-                  "Garrett"
+                  "Barry",
+                  "Garth"
                 ],
-                "angler_indices": [
-                  8,
-                  9
-                ],
-                "stayers": [
-                  "Ryan"
-                ],
-                "movers": [
-                  "Garrett"
-                ],
-                "is_head_to_head_a_team": false,
-                "has_a_team_angler": false,
-                "a_team_competitors": [],
+                "stayer": "Garth",
                 "status": "UNREPORTED",
                 "submissions": {},
                 "official_scores": {},
-                "calculated_points": {},
-                "discrepancy_details": null
+                "calculated_points": {}
               },
               {
-                "match_id": "S4_B3",
-                "session_id": 4,
-                "beat": 3,
+                "match_id": "S4_M3",
+                "match_number": 3,
+                "match_type": "1v1",
+                "is_solo": false,
+                "is_bye": false,
                 "beat_number": 3,
-                "beat_id": "Transport",
-                "beat_code": "Transport",
-                "beat_name": "Transport Beat",
+                "beat": 3,
+                "beat_id": "SB3",
+                "beat_code": "SB3",
+                "beat_name": "SB3",
                 "river": "Small Blaar",
-                "meeting_point": "Transport Bridge layby on N1",
                 "lower_pin": [
-                  -33.7085,
-                  19.1895
-                ],
-                "upper_pin": [
-                  -33.712,
-                  19.1825
+                  -33.7235,
+                  19.153
                 ],
                 "mid_pin": [
-                  -33.71,
-                  19.186
-                ],
-                "match_type": "1v1",
-                "anglers": [
-                  "Dale",
-                  "Malcolm"
-                ],
-                "angler_indices": [
-                  4,
-                  7
-                ],
-                "stayers": [
-                  "Malcolm"
-                ],
-                "movers": [
-                  "Dale"
-                ],
-                "is_head_to_head_a_team": false,
-                "has_a_team_angler": false,
-                "a_team_competitors": [],
-                "status": "UNREPORTED",
-                "submissions": {},
-                "official_scores": {},
-                "calculated_points": {},
-                "discrepancy_details": null
-              },
-              {
-                "match_id": "S4_B4",
-                "session_id": 4,
-                "beat": 4,
-                "beat_number": 4,
-                "beat_id": "EP2",
-                "beat_code": "EP2",
-                "beat_name": "Elandspad 2 (EP2)",
-                "river": "Elands Pad",
-                "meeting_point": "Fisherman's Cave trail",
-                "lower_pin": [
-                  -33.7385,
-                  19.1118
+                  -33.7258,
+                  19.147
                 ],
                 "upper_pin": [
-                  -33.7455,
-                  19.1092
+                  -33.7272,
+                  19.1415
                 ],
-                "mid_pin": [
-                  -33.742,
-                  19.1105
-                ],
-                "match_type": "1v1",
-                "anglers": [
-                  "Daniel",
-                  "Garth"
-                ],
-                "angler_indices": [
-                  2,
-                  3
-                ],
-                "stayers": [
-                  "Daniel"
-                ],
-                "movers": [
-                  "Garth"
-                ],
-                "is_head_to_head_a_team": false,
-                "has_a_team_angler": true,
-                "a_team_competitors": [
-                  "Daniel"
-                ],
-                "status": "UNREPORTED",
-                "submissions": {},
-                "official_scores": {},
-                "calculated_points": {},
-                "discrepancy_details": null
-              },
-              {
-                "match_id": "S4_B5",
-                "session_id": 4,
-                "beat": 5,
-                "beat_number": 5,
-                "beat_id": "SB1",
-                "beat_code": "SB1",
-                "beat_name": "Smalblaar 1 (SB1)",
-                "river": "Small Blaar",
-                "meeting_point": "Picnic site pull-off",
-                "lower_pin": [
-                  -33.72,
-                  19.167
-                ],
-                "upper_pin": [
-                  -33.723,
-                  19.1585
-                ],
-                "mid_pin": [
-                  -33.7215,
-                  19.163
-                ],
-                "match_type": "1v1",
+                "meeting_point": "N1 emergency telephone layby 3",
+                "travel_time": 15,
                 "anglers": [
                   "Ian",
-                  "Dylan"
+                  "Malcolm"
                 ],
-                "angler_indices": [
-                  6,
-                  5
-                ],
-                "stayers": [
-                  "Ian"
-                ],
-                "movers": [
-                  "Dylan"
-                ],
-                "is_head_to_head_a_team": false,
-                "has_a_team_angler": false,
-                "a_team_competitors": [],
+                "stayer": "Ian",
                 "status": "UNREPORTED",
                 "submissions": {},
                 "official_scores": {},
-                "calculated_points": {},
-                "discrepancy_details": null
+                "calculated_points": {}
+              },
+              {
+                "match_id": "S4_M4",
+                "match_number": 4,
+                "match_type": "1v1",
+                "is_solo": false,
+                "is_bye": false,
+                "beat_number": 4,
+                "beat": 4,
+                "beat_id": "SB(HOTEL)",
+                "beat_code": "SB(HOTEL)",
+                "beat_name": "SB(HOTEL)",
+                "river": "Small Blaar",
+                "lower_pin": [
+                  -33.7125,
+                  19.18
+                ],
+                "mid_pin": [
+                  -33.7138,
+                  19.177
+                ],
+                "upper_pin": [
+                  -33.715,
+                  19.174
+                ],
+                "meeting_point": "Du Kloof Lodge guest parking",
+                "travel_time": 15,
+                "anglers": [
+                  "Michelle",
+                  "Dylan"
+                ],
+                "stayer": null,
+                "status": "UNREPORTED",
+                "submissions": {},
+                "official_scores": {},
+                "calculated_points": {}
+              },
+              {
+                "match_id": "S4_M5",
+                "match_number": 5,
+                "match_type": "BYE",
+                "is_solo": true,
+                "is_bye": true,
+                "beat_number": 5,
+                "beat": 5,
+                "beat_id": "SB1",
+                "beat_code": "SB1",
+                "beat_name": "SB1",
+                "river": "Small Blaar",
+                "lower_pin": [
+                  -33.715,
+                  19.174
+                ],
+                "mid_pin": [
+                  -33.717,
+                  19.17
+                ],
+                "upper_pin": [
+                  -33.719,
+                  19.1655
+                ],
+                "meeting_point": "Picnic site pull-off",
+                "travel_time": 15,
+                "anglers": [
+                  "Garrett"
+                ],
+                "stayer": null,
+                "status": "BYE",
+                "submissions": {},
+                "official_scores": {},
+                "calculated_points": {}
+              },
+              {
+                "match_id": "S4_M6",
+                "match_number": 6,
+                "match_type": "1v1",
+                "is_solo": false,
+                "is_bye": false,
+                "beat_number": 6,
+                "beat": 6,
+                "beat_id": "SB2",
+                "beat_code": "SB2",
+                "beat_name": "SB2",
+                "river": "Small Blaar",
+                "lower_pin": [
+                  -33.719,
+                  19.1655
+                ],
+                "mid_pin": [
+                  -33.7212,
+                  19.159
+                ],
+                "upper_pin": [
+                  -33.7235,
+                  19.153
+                ],
+                "meeting_point": "Picnic site parking",
+                "travel_time": 15,
+                "anglers": [
+                  "Dale",
+                  "Ryan"
+                ],
+                "stayer": null,
+                "status": "UNREPORTED",
+                "submissions": {},
+                "official_scores": {},
+                "calculated_points": {}
               }
             ]
           }
@@ -9663,7 +4851,7 @@ export const INITIAL_STATE = {
             "rank": 1,
             "name": "James",
             "angler": "James",
-            "is_a_team": true,
+            "is_a_team": false,
             "s1_pts": 0,
             "s2_pts": 0,
             "s3_pts": 0,
@@ -9723,7 +4911,7 @@ export const INITIAL_STATE = {
             "rank": 4,
             "name": "Garth",
             "angler": "Garth",
-            "is_a_team": false,
+            "is_a_team": true,
             "s1_pts": 0,
             "s2_pts": 0,
             "s3_pts": 0,
@@ -9743,7 +4931,7 @@ export const INITIAL_STATE = {
             "rank": 5,
             "name": "Dale",
             "angler": "Dale",
-            "is_a_team": false,
+            "is_a_team": true,
             "s1_pts": 0,
             "s2_pts": 0,
             "s3_pts": 0,
@@ -9934,7 +5122,8 @@ export const INITIAL_STATE = {
         -33.719,
         19.1655
       ],
-      "meeting_point": "Picnic site pull-off"
+      "meeting_point": "Picnic site pull-off",
+      "travel_time": 15
     },
     {
       "id": "SB2",
@@ -9959,7 +5148,8 @@ export const INITIAL_STATE = {
         -33.7235,
         19.153
       ],
-      "meeting_point": "Picnic site parking"
+      "meeting_point": "Picnic site parking",
+      "travel_time": 15
     },
     {
       "id": "SB3",
@@ -9984,7 +5174,8 @@ export const INITIAL_STATE = {
         -33.7272,
         19.1415
       ],
-      "meeting_point": "N1 emergency telephone layby 3"
+      "meeting_point": "N1 emergency telephone layby 3",
+      "travel_time": 15
     },
     {
       "id": "SB4",
@@ -10009,7 +5200,8 @@ export const INITIAL_STATE = {
         -33.7295,
         19.132
       ],
-      "meeting_point": "Donkergat pull-off"
+      "meeting_point": "Donkergat pull-off",
+      "travel_time": 15
     },
     {
       "id": "SB5",
@@ -10034,7 +5226,8 @@ export const INITIAL_STATE = {
         -33.7319,
         19.1141
       ],
-      "meeting_point": "CPS Elandspad parking lot"
+      "meeting_point": "CPS Elandspad parking lot",
+      "travel_time": 15
     },
     {
       "id": "SB6",
@@ -10059,7 +5252,8 @@ export const INITIAL_STATE = {
         -33.7342,
         19.1065
       ],
-      "meeting_point": "Tunnel East Portal Parking / Junction Path"
+      "meeting_point": "Tunnel East Portal Parking / Junction Path",
+      "travel_time": 15
     },
     {
       "id": "SB(HOTEL)",
@@ -10084,7 +5278,8 @@ export const INITIAL_STATE = {
         -33.715,
         19.174
       ],
-      "meeting_point": "Du Kloof Lodge guest parking"
+      "meeting_point": "Du Kloof Lodge guest parking",
+      "travel_time": 15
     },
     {
       "id": "SB(TRANSPORT)",
@@ -10109,7 +5304,8 @@ export const INITIAL_STATE = {
         -33.7125,
         19.18
       ],
-      "meeting_point": "Transport bridge parking"
+      "meeting_point": "Transport bridge parking",
+      "travel_time": 15
     },
     {
       "id": "EP1",
@@ -10134,7 +5330,8 @@ export const INITIAL_STATE = {
         -33.7405,
         19.1162
       ],
-      "meeting_point": "Junction Pool trail head"
+      "meeting_point": "Junction Pool trail head",
+      "travel_time": 15
     },
     {
       "id": "EP2",
@@ -10159,7 +5356,8 @@ export const INITIAL_STATE = {
         -33.752,
         19.1188
       ],
-      "meeting_point": "Fisherman's Cave trail"
+      "meeting_point": "Fisherman's Cave trail",
+      "travel_time": 30
     },
     {
       "id": "EP3",
@@ -10184,7 +5382,8 @@ export const INITIAL_STATE = {
         -33.761,
         19.1205
       ],
-      "meeting_point": "Star beat rock shelter"
+      "meeting_point": "Star beat rock shelter",
+      "travel_time": 30
     },
     {
       "id": "EP4",
@@ -10209,7 +5408,8 @@ export const INITIAL_STATE = {
         -33.77,
         19.123
       ],
-      "meeting_point": "Kraalstroom gorge access"
+      "meeting_point": "Kraalstroom gorge access",
+      "travel_time": 30
     },
     {
       "id": "MOLENAARS(UPPER)",
@@ -10234,7 +5434,8 @@ export const INITIAL_STATE = {
         -33.7085,
         19.1895
       ],
-      "meeting_point": "Upper Molenaars turn-off"
+      "meeting_point": "Upper Molenaars turn-off",
+      "travel_time": 15
     },
     {
       "id": "MOLENAARS(LOWER)",
@@ -10259,7 +5460,8 @@ export const INITIAL_STATE = {
         -33.704,
         19.2
       ],
-      "meeting_point": "Lower Molenaars boundary"
+      "meeting_point": "Lower Molenaars boundary",
+      "travel_time": 15
     }
   ],
   "selected_beats": [
@@ -10414,1654 +5616,6 @@ export const INITIAL_STATE = {
       "meeting_point": "Tunnel East Portal Parking / Junction Path"
     }
   ],
-  "angler_schedule": {
-    "James": [
-      {
-        "session_id": 1,
-        "session_name": "Saturday Morning",
-        "session_short": "Sat AM",
-        "day": "Saturday",
-        "time": "Morning",
-        "beat_number": 3,
-        "beat": 3,
-        "beat_id": "SB2",
-        "beat_code": "SB2",
-        "beat_name": "SB2",
-        "river": "Small Blaar",
-        "meeting_point": "Picnic site parking",
-        "match_type": "1v1",
-        "is_solo": false,
-        "opponents": [
-          "Malcolm"
-        ],
-        "is_stayer": false,
-        "section": "First Half (Lower Section)",
-        "pin": [
-          -33.719,
-          19.1655
-        ],
-        "lower_pin": [
-          -33.719,
-          19.1655
-        ],
-        "mid_pin": [
-          -33.7212,
-          19.159
-        ],
-        "upper_pin": [
-          -33.7235,
-          19.153
-        ]
-      },
-      {
-        "session_id": 2,
-        "session_name": "Saturday Afternoon",
-        "session_short": "Sat PM",
-        "day": "Saturday",
-        "time": "Afternoon",
-        "beat_number": 3,
-        "beat": 3,
-        "beat_id": "SB2",
-        "beat_code": "SB2",
-        "beat_name": "SB2",
-        "river": "Small Blaar",
-        "meeting_point": "Picnic site parking",
-        "match_type": "1v1",
-        "is_solo": false,
-        "opponents": [
-          "Ryan"
-        ],
-        "is_stayer": true,
-        "section": "Second Half (Upper Section)",
-        "pin": [
-          -33.7212,
-          19.159
-        ],
-        "lower_pin": [
-          -33.719,
-          19.1655
-        ],
-        "mid_pin": [
-          -33.7212,
-          19.159
-        ],
-        "upper_pin": [
-          -33.7235,
-          19.153
-        ]
-      },
-      {
-        "session_id": 3,
-        "session_name": "Sunday Morning",
-        "session_short": "Sun AM",
-        "day": "Sunday",
-        "time": "Morning",
-        "beat_number": 6,
-        "beat": 6,
-        "beat_id": "EP3",
-        "beat_code": "EP3",
-        "beat_name": "EP3",
-        "river": "Elands Pad",
-        "meeting_point": "Star beat rock shelter",
-        "match_type": "BYE",
-        "is_solo": true,
-        "is_bye": true,
-        "opponents": [],
-        "is_stayer": false,
-        "section": "Full Beat (Issued Bye)",
-        "pin": [
-          -33.752,
-          19.1188
-        ],
-        "lower_pin": [
-          -33.752,
-          19.1188
-        ],
-        "mid_pin": [
-          -33.7565,
-          19.1195
-        ],
-        "upper_pin": [
-          -33.761,
-          19.1205
-        ]
-      },
-      {
-        "session_id": 4,
-        "session_name": "Sunday Afternoon",
-        "session_short": "Sun PM",
-        "day": "Sunday",
-        "time": "Afternoon",
-        "beat_number": 6,
-        "beat": 6,
-        "beat_id": "SB4",
-        "beat_code": "SB4",
-        "beat_name": "SB4",
-        "river": "Small Blaar",
-        "meeting_point": "Donkergat pull-off",
-        "match_type": "BYE",
-        "is_solo": true,
-        "is_bye": true,
-        "opponents": [],
-        "is_stayer": false,
-        "section": "Full Beat (Issued Bye)",
-        "pin": [
-          -33.7272,
-          19.1415
-        ],
-        "lower_pin": [
-          -33.7272,
-          19.1415
-        ],
-        "mid_pin": [
-          -33.7285,
-          19.137
-        ],
-        "upper_pin": [
-          -33.7295,
-          19.132
-        ]
-      }
-    ],
-    "Barry": [
-      {
-        "session_id": 1,
-        "session_name": "Saturday Morning",
-        "session_short": "Sat AM",
-        "day": "Saturday",
-        "time": "Morning",
-        "beat_number": 1,
-        "beat": 1,
-        "beat_id": "SB1",
-        "beat_code": "SB1",
-        "beat_name": "SB1",
-        "river": "Small Blaar",
-        "meeting_point": "Picnic site pull-off",
-        "match_type": "1v1",
-        "is_solo": false,
-        "opponents": [
-          "Dale"
-        ],
-        "is_stayer": false,
-        "section": "First Half (Lower Section)",
-        "pin": [
-          -33.715,
-          19.174
-        ],
-        "lower_pin": [
-          -33.715,
-          19.174
-        ],
-        "mid_pin": [
-          -33.717,
-          19.17
-        ],
-        "upper_pin": [
-          -33.719,
-          19.1655
-        ]
-      },
-      {
-        "session_id": 2,
-        "session_name": "Saturday Afternoon",
-        "session_short": "Sat PM",
-        "day": "Saturday",
-        "time": "Afternoon",
-        "beat_number": 2,
-        "beat": 2,
-        "beat_id": "EP1",
-        "beat_code": "EP1",
-        "beat_name": "EP1",
-        "river": "Elands Pad",
-        "meeting_point": "Junction Pool trail head",
-        "match_type": "1v1",
-        "is_solo": false,
-        "opponents": [
-          "Daniel"
-        ],
-        "is_stayer": false,
-        "section": "First Half (Lower Section)",
-        "pin": [
-          -33.7319,
-          19.1141
-        ],
-        "lower_pin": [
-          -33.7319,
-          19.1141
-        ],
-        "mid_pin": [
-          -33.736,
-          19.1152
-        ],
-        "upper_pin": [
-          -33.7405,
-          19.1162
-        ]
-      },
-      {
-        "session_id": 3,
-        "session_name": "Sunday Morning",
-        "session_short": "Sun AM",
-        "day": "Sunday",
-        "time": "Morning",
-        "beat_number": 4,
-        "beat": 4,
-        "beat_id": "EP2",
-        "beat_code": "EP2",
-        "beat_name": "EP2",
-        "river": "Elands Pad",
-        "meeting_point": "Fisherman's Cave trail",
-        "match_type": "1v1",
-        "is_solo": false,
-        "opponents": [
-          "Michelle"
-        ],
-        "is_stayer": false,
-        "section": "First Half (Lower Section)",
-        "pin": [
-          -33.7405,
-          19.1162
-        ],
-        "lower_pin": [
-          -33.7405,
-          19.1162
-        ],
-        "mid_pin": [
-          -33.746,
-          19.1172
-        ],
-        "upper_pin": [
-          -33.752,
-          19.1188
-        ]
-      },
-      {
-        "session_id": 4,
-        "session_name": "Sunday Afternoon",
-        "session_short": "Sun PM",
-        "day": "Sunday",
-        "time": "Afternoon",
-        "beat_number": 3,
-        "beat": 3,
-        "beat_id": "SB2",
-        "beat_code": "SB2",
-        "beat_name": "SB2",
-        "river": "Small Blaar",
-        "meeting_point": "Picnic site parking",
-        "match_type": "1v1",
-        "is_solo": false,
-        "opponents": [
-          "Dylan"
-        ],
-        "is_stayer": false,
-        "section": "First Half (Lower Section)",
-        "pin": [
-          -33.719,
-          19.1655
-        ],
-        "lower_pin": [
-          -33.719,
-          19.1655
-        ],
-        "mid_pin": [
-          -33.7212,
-          19.159
-        ],
-        "upper_pin": [
-          -33.7235,
-          19.153
-        ]
-      }
-    ],
-    "Daniel": [
-      {
-        "session_id": 1,
-        "session_name": "Saturday Morning",
-        "session_short": "Sat AM",
-        "day": "Saturday",
-        "time": "Morning",
-        "beat_number": 2,
-        "beat": 2,
-        "beat_id": "EP1",
-        "beat_code": "EP1",
-        "beat_name": "EP1",
-        "river": "Elands Pad",
-        "meeting_point": "Junction Pool trail head",
-        "match_type": "1v1",
-        "is_solo": false,
-        "opponents": [
-          "Garth"
-        ],
-        "is_stayer": false,
-        "section": "First Half (Lower Section)",
-        "pin": [
-          -33.7319,
-          19.1141
-        ],
-        "lower_pin": [
-          -33.7319,
-          19.1141
-        ],
-        "mid_pin": [
-          -33.736,
-          19.1152
-        ],
-        "upper_pin": [
-          -33.7405,
-          19.1162
-        ]
-      },
-      {
-        "session_id": 2,
-        "session_name": "Saturday Afternoon",
-        "session_short": "Sat PM",
-        "day": "Saturday",
-        "time": "Afternoon",
-        "beat_number": 2,
-        "beat": 2,
-        "beat_id": "EP1",
-        "beat_code": "EP1",
-        "beat_name": "EP1",
-        "river": "Elands Pad",
-        "meeting_point": "Junction Pool trail head",
-        "match_type": "1v1",
-        "is_solo": false,
-        "opponents": [
-          "Barry"
-        ],
-        "is_stayer": true,
-        "section": "Second Half (Upper Section)",
-        "pin": [
-          -33.736,
-          19.1152
-        ],
-        "lower_pin": [
-          -33.7319,
-          19.1141
-        ],
-        "mid_pin": [
-          -33.736,
-          19.1152
-        ],
-        "upper_pin": [
-          -33.7405,
-          19.1162
-        ]
-      },
-      {
-        "session_id": 3,
-        "session_name": "Sunday Morning",
-        "session_short": "Sun AM",
-        "day": "Sunday",
-        "time": "Morning",
-        "beat_number": 1,
-        "beat": 1,
-        "beat_id": "SB1",
-        "beat_code": "SB1",
-        "beat_name": "SB1",
-        "river": "Small Blaar",
-        "meeting_point": "Picnic site pull-off",
-        "match_type": "1v1",
-        "is_solo": false,
-        "opponents": [
-          "Ian"
-        ],
-        "is_stayer": false,
-        "section": "First Half (Lower Section)",
-        "pin": [
-          -33.715,
-          19.174
-        ],
-        "lower_pin": [
-          -33.715,
-          19.174
-        ],
-        "mid_pin": [
-          -33.717,
-          19.17
-        ],
-        "upper_pin": [
-          -33.719,
-          19.1655
-        ]
-      },
-      {
-        "session_id": 4,
-        "session_name": "Sunday Afternoon",
-        "session_short": "Sun PM",
-        "day": "Sunday",
-        "time": "Afternoon",
-        "beat_number": 5,
-        "beat": 5,
-        "beat_id": "SB3",
-        "beat_code": "SB3",
-        "beat_name": "SB3",
-        "river": "Small Blaar",
-        "meeting_point": "N1 emergency telephone layby 3",
-        "match_type": "1v1",
-        "is_solo": false,
-        "opponents": [
-          "Malcolm"
-        ],
-        "is_stayer": false,
-        "section": "First Half (Lower Section)",
-        "pin": [
-          -33.7235,
-          19.153
-        ],
-        "lower_pin": [
-          -33.7235,
-          19.153
-        ],
-        "mid_pin": [
-          -33.7258,
-          19.147
-        ],
-        "upper_pin": [
-          -33.7272,
-          19.1415
-        ]
-      }
-    ],
-    "Garth": [
-      {
-        "session_id": 1,
-        "session_name": "Saturday Morning",
-        "session_short": "Sat AM",
-        "day": "Saturday",
-        "time": "Morning",
-        "beat_number": 2,
-        "beat": 2,
-        "beat_id": "EP1",
-        "beat_code": "EP1",
-        "beat_name": "EP1",
-        "river": "Elands Pad",
-        "meeting_point": "Junction Pool trail head",
-        "match_type": "1v1",
-        "is_solo": false,
-        "opponents": [
-          "Daniel"
-        ],
-        "is_stayer": false,
-        "section": "First Half (Lower Section)",
-        "pin": [
-          -33.7319,
-          19.1141
-        ],
-        "lower_pin": [
-          -33.7319,
-          19.1141
-        ],
-        "mid_pin": [
-          -33.736,
-          19.1152
-        ],
-        "upper_pin": [
-          -33.7405,
-          19.1162
-        ]
-      },
-      {
-        "session_id": 2,
-        "session_name": "Saturday Afternoon",
-        "session_short": "Sat PM",
-        "day": "Saturday",
-        "time": "Afternoon",
-        "beat_number": 1,
-        "beat": 1,
-        "beat_id": "SB1",
-        "beat_code": "SB1",
-        "beat_name": "SB1",
-        "river": "Small Blaar",
-        "meeting_point": "Picnic site pull-off",
-        "match_type": "1v1",
-        "is_solo": false,
-        "opponents": [
-          "Dale"
-        ],
-        "is_stayer": false,
-        "section": "First Half (Lower Section)",
-        "pin": [
-          -33.715,
-          19.174
-        ],
-        "lower_pin": [
-          -33.715,
-          19.174
-        ],
-        "mid_pin": [
-          -33.717,
-          19.17
-        ],
-        "upper_pin": [
-          -33.719,
-          19.1655
-        ]
-      },
-      {
-        "session_id": 3,
-        "session_name": "Sunday Morning",
-        "session_short": "Sun AM",
-        "day": "Sunday",
-        "time": "Morning",
-        "beat_number": 2,
-        "beat": 2,
-        "beat_id": "EP1",
-        "beat_code": "EP1",
-        "beat_name": "EP1",
-        "river": "Elands Pad",
-        "meeting_point": "Junction Pool trail head",
-        "match_type": "1v1",
-        "is_solo": false,
-        "opponents": [
-          "Ryan"
-        ],
-        "is_stayer": false,
-        "section": "First Half (Lower Section)",
-        "pin": [
-          -33.7319,
-          19.1141
-        ],
-        "lower_pin": [
-          -33.7319,
-          19.1141
-        ],
-        "mid_pin": [
-          -33.736,
-          19.1152
-        ],
-        "upper_pin": [
-          -33.7405,
-          19.1162
-        ]
-      },
-      {
-        "session_id": 4,
-        "session_name": "Sunday Afternoon",
-        "session_short": "Sun PM",
-        "day": "Sunday",
-        "time": "Afternoon",
-        "beat_number": 1,
-        "beat": 1,
-        "beat_id": "SB1",
-        "beat_code": "SB1",
-        "beat_name": "SB1",
-        "river": "Small Blaar",
-        "meeting_point": "Picnic site pull-off",
-        "match_type": "1v1",
-        "is_solo": false,
-        "opponents": [
-          "Ian"
-        ],
-        "is_stayer": false,
-        "section": "First Half (Lower Section)",
-        "pin": [
-          -33.715,
-          19.174
-        ],
-        "lower_pin": [
-          -33.715,
-          19.174
-        ],
-        "mid_pin": [
-          -33.717,
-          19.17
-        ],
-        "upper_pin": [
-          -33.719,
-          19.1655
-        ]
-      }
-    ],
-    "Dale": [
-      {
-        "session_id": 1,
-        "session_name": "Saturday Morning",
-        "session_short": "Sat AM",
-        "day": "Saturday",
-        "time": "Morning",
-        "beat_number": 1,
-        "beat": 1,
-        "beat_id": "SB1",
-        "beat_code": "SB1",
-        "beat_name": "SB1",
-        "river": "Small Blaar",
-        "meeting_point": "Picnic site pull-off",
-        "match_type": "1v1",
-        "is_solo": false,
-        "opponents": [
-          "Barry"
-        ],
-        "is_stayer": false,
-        "section": "First Half (Lower Section)",
-        "pin": [
-          -33.715,
-          19.174
-        ],
-        "lower_pin": [
-          -33.715,
-          19.174
-        ],
-        "mid_pin": [
-          -33.717,
-          19.17
-        ],
-        "upper_pin": [
-          -33.719,
-          19.1655
-        ]
-      },
-      {
-        "session_id": 2,
-        "session_name": "Saturday Afternoon",
-        "session_short": "Sat PM",
-        "day": "Saturday",
-        "time": "Afternoon",
-        "beat_number": 1,
-        "beat": 1,
-        "beat_id": "SB1",
-        "beat_code": "SB1",
-        "beat_name": "SB1",
-        "river": "Small Blaar",
-        "meeting_point": "Picnic site pull-off",
-        "match_type": "1v1",
-        "is_solo": false,
-        "opponents": [
-          "Garth"
-        ],
-        "is_stayer": true,
-        "section": "Second Half (Upper Section)",
-        "pin": [
-          -33.717,
-          19.17
-        ],
-        "lower_pin": [
-          -33.715,
-          19.174
-        ],
-        "mid_pin": [
-          -33.717,
-          19.17
-        ],
-        "upper_pin": [
-          -33.719,
-          19.1655
-        ]
-      },
-      {
-        "session_id": 3,
-        "session_name": "Sunday Morning",
-        "session_short": "Sun AM",
-        "day": "Sunday",
-        "time": "Morning",
-        "beat_number": 3,
-        "beat": 3,
-        "beat_id": "SB2",
-        "beat_code": "SB2",
-        "beat_name": "SB2",
-        "river": "Small Blaar",
-        "meeting_point": "Picnic site parking",
-        "match_type": "1v1",
-        "is_solo": false,
-        "opponents": [
-          "Dylan"
-        ],
-        "is_stayer": false,
-        "section": "First Half (Lower Section)",
-        "pin": [
-          -33.719,
-          19.1655
-        ],
-        "lower_pin": [
-          -33.719,
-          19.1655
-        ],
-        "mid_pin": [
-          -33.7212,
-          19.159
-        ],
-        "upper_pin": [
-          -33.7235,
-          19.153
-        ]
-      },
-      {
-        "session_id": 4,
-        "session_name": "Sunday Afternoon",
-        "session_short": "Sun PM",
-        "day": "Sunday",
-        "time": "Afternoon",
-        "beat_number": 4,
-        "beat": 4,
-        "beat_id": "EP2",
-        "beat_code": "EP2",
-        "beat_name": "EP2",
-        "river": "Elands Pad",
-        "meeting_point": "Fisherman's Cave trail",
-        "match_type": "1v1",
-        "is_solo": false,
-        "opponents": [
-          "Michelle"
-        ],
-        "is_stayer": false,
-        "section": "First Half (Lower Section)",
-        "pin": [
-          -33.7405,
-          19.1162
-        ],
-        "lower_pin": [
-          -33.7405,
-          19.1162
-        ],
-        "mid_pin": [
-          -33.746,
-          19.1172
-        ],
-        "upper_pin": [
-          -33.752,
-          19.1188
-        ]
-      }
-    ],
-    "Dylan": [
-      {
-        "session_id": 1,
-        "session_name": "Saturday Morning",
-        "session_short": "Sat AM",
-        "day": "Saturday",
-        "time": "Morning",
-        "beat_number": 5,
-        "beat": 5,
-        "beat_id": "SB3",
-        "beat_code": "SB3",
-        "beat_name": "SB3",
-        "river": "Small Blaar",
-        "meeting_point": "N1 emergency telephone layby 3",
-        "match_type": "1v1",
-        "is_solo": false,
-        "opponents": [
-          "Ryan"
-        ],
-        "is_stayer": false,
-        "section": "First Half (Lower Section)",
-        "pin": [
-          -33.7235,
-          19.153
-        ],
-        "lower_pin": [
-          -33.7235,
-          19.153
-        ],
-        "mid_pin": [
-          -33.7258,
-          19.147
-        ],
-        "upper_pin": [
-          -33.7272,
-          19.1415
-        ]
-      },
-      {
-        "session_id": 2,
-        "session_name": "Saturday Afternoon",
-        "session_short": "Sat PM",
-        "day": "Saturday",
-        "time": "Afternoon",
-        "beat_number": 5,
-        "beat": 5,
-        "beat_id": "SB3",
-        "beat_code": "SB3",
-        "beat_name": "SB3",
-        "river": "Small Blaar",
-        "meeting_point": "N1 emergency telephone layby 3",
-        "match_type": "1v1",
-        "is_solo": false,
-        "opponents": [
-          "Ian"
-        ],
-        "is_stayer": true,
-        "section": "Second Half (Upper Section)",
-        "pin": [
-          -33.7258,
-          19.147
-        ],
-        "lower_pin": [
-          -33.7235,
-          19.153
-        ],
-        "mid_pin": [
-          -33.7258,
-          19.147
-        ],
-        "upper_pin": [
-          -33.7272,
-          19.1415
-        ]
-      },
-      {
-        "session_id": 3,
-        "session_name": "Sunday Morning",
-        "session_short": "Sun AM",
-        "day": "Sunday",
-        "time": "Morning",
-        "beat_number": 3,
-        "beat": 3,
-        "beat_id": "SB2",
-        "beat_code": "SB2",
-        "beat_name": "SB2",
-        "river": "Small Blaar",
-        "meeting_point": "Picnic site parking",
-        "match_type": "1v1",
-        "is_solo": false,
-        "opponents": [
-          "Dale"
-        ],
-        "is_stayer": false,
-        "section": "First Half (Lower Section)",
-        "pin": [
-          -33.719,
-          19.1655
-        ],
-        "lower_pin": [
-          -33.719,
-          19.1655
-        ],
-        "mid_pin": [
-          -33.7212,
-          19.159
-        ],
-        "upper_pin": [
-          -33.7235,
-          19.153
-        ]
-      },
-      {
-        "session_id": 4,
-        "session_name": "Sunday Afternoon",
-        "session_short": "Sun PM",
-        "day": "Sunday",
-        "time": "Afternoon",
-        "beat_number": 3,
-        "beat": 3,
-        "beat_id": "SB2",
-        "beat_code": "SB2",
-        "beat_name": "SB2",
-        "river": "Small Blaar",
-        "meeting_point": "Picnic site parking",
-        "match_type": "1v1",
-        "is_solo": false,
-        "opponents": [
-          "Barry"
-        ],
-        "is_stayer": true,
-        "section": "Second Half (Upper Section)",
-        "pin": [
-          -33.7212,
-          19.159
-        ],
-        "lower_pin": [
-          -33.719,
-          19.1655
-        ],
-        "mid_pin": [
-          -33.7212,
-          19.159
-        ],
-        "upper_pin": [
-          -33.7235,
-          19.153
-        ]
-      }
-    ],
-    "Ian": [
-      {
-        "session_id": 1,
-        "session_name": "Saturday Morning",
-        "session_short": "Sat AM",
-        "day": "Saturday",
-        "time": "Morning",
-        "beat_number": 4,
-        "beat": 4,
-        "beat_id": "EP2",
-        "beat_code": "EP2",
-        "beat_name": "EP2",
-        "river": "Elands Pad",
-        "meeting_point": "Fisherman's Cave trail",
-        "match_type": "1v1",
-        "is_solo": false,
-        "opponents": [
-          "Michelle"
-        ],
-        "is_stayer": false,
-        "section": "First Half (Lower Section)",
-        "pin": [
-          -33.7405,
-          19.1162
-        ],
-        "lower_pin": [
-          -33.7405,
-          19.1162
-        ],
-        "mid_pin": [
-          -33.746,
-          19.1172
-        ],
-        "upper_pin": [
-          -33.752,
-          19.1188
-        ]
-      },
-      {
-        "session_id": 2,
-        "session_name": "Saturday Afternoon",
-        "session_short": "Sat PM",
-        "day": "Saturday",
-        "time": "Afternoon",
-        "beat_number": 5,
-        "beat": 5,
-        "beat_id": "SB3",
-        "beat_code": "SB3",
-        "beat_name": "SB3",
-        "river": "Small Blaar",
-        "meeting_point": "N1 emergency telephone layby 3",
-        "match_type": "1v1",
-        "is_solo": false,
-        "opponents": [
-          "Dylan"
-        ],
-        "is_stayer": false,
-        "section": "First Half (Lower Section)",
-        "pin": [
-          -33.7235,
-          19.153
-        ],
-        "lower_pin": [
-          -33.7235,
-          19.153
-        ],
-        "mid_pin": [
-          -33.7258,
-          19.147
-        ],
-        "upper_pin": [
-          -33.7272,
-          19.1415
-        ]
-      },
-      {
-        "session_id": 3,
-        "session_name": "Sunday Morning",
-        "session_short": "Sun AM",
-        "day": "Sunday",
-        "time": "Morning",
-        "beat_number": 1,
-        "beat": 1,
-        "beat_id": "SB1",
-        "beat_code": "SB1",
-        "beat_name": "SB1",
-        "river": "Small Blaar",
-        "meeting_point": "Picnic site pull-off",
-        "match_type": "1v1",
-        "is_solo": false,
-        "opponents": [
-          "Daniel"
-        ],
-        "is_stayer": false,
-        "section": "First Half (Lower Section)",
-        "pin": [
-          -33.715,
-          19.174
-        ],
-        "lower_pin": [
-          -33.715,
-          19.174
-        ],
-        "mid_pin": [
-          -33.717,
-          19.17
-        ],
-        "upper_pin": [
-          -33.719,
-          19.1655
-        ]
-      },
-      {
-        "session_id": 4,
-        "session_name": "Sunday Afternoon",
-        "session_short": "Sun PM",
-        "day": "Sunday",
-        "time": "Afternoon",
-        "beat_number": 1,
-        "beat": 1,
-        "beat_id": "SB1",
-        "beat_code": "SB1",
-        "beat_name": "SB1",
-        "river": "Small Blaar",
-        "meeting_point": "Picnic site pull-off",
-        "match_type": "1v1",
-        "is_solo": false,
-        "opponents": [
-          "Garth"
-        ],
-        "is_stayer": true,
-        "section": "Second Half (Upper Section)",
-        "pin": [
-          -33.717,
-          19.17
-        ],
-        "lower_pin": [
-          -33.715,
-          19.174
-        ],
-        "mid_pin": [
-          -33.717,
-          19.17
-        ],
-        "upper_pin": [
-          -33.719,
-          19.1655
-        ]
-      }
-    ],
-    "Malcolm": [
-      {
-        "session_id": 1,
-        "session_name": "Saturday Morning",
-        "session_short": "Sat AM",
-        "day": "Saturday",
-        "time": "Morning",
-        "beat_number": 3,
-        "beat": 3,
-        "beat_id": "SB2",
-        "beat_code": "SB2",
-        "beat_name": "SB2",
-        "river": "Small Blaar",
-        "meeting_point": "Picnic site parking",
-        "match_type": "1v1",
-        "is_solo": false,
-        "opponents": [
-          "James"
-        ],
-        "is_stayer": false,
-        "section": "First Half (Lower Section)",
-        "pin": [
-          -33.719,
-          19.1655
-        ],
-        "lower_pin": [
-          -33.719,
-          19.1655
-        ],
-        "mid_pin": [
-          -33.7212,
-          19.159
-        ],
-        "upper_pin": [
-          -33.7235,
-          19.153
-        ]
-      },
-      {
-        "session_id": 2,
-        "session_name": "Saturday Afternoon",
-        "session_short": "Sat PM",
-        "day": "Saturday",
-        "time": "Afternoon",
-        "beat_number": 4,
-        "beat": 4,
-        "beat_id": "EP2",
-        "beat_code": "EP2",
-        "beat_name": "EP2",
-        "river": "Elands Pad",
-        "meeting_point": "Fisherman's Cave trail",
-        "match_type": "1v1",
-        "is_solo": false,
-        "opponents": [
-          "Michelle"
-        ],
-        "is_stayer": false,
-        "section": "First Half (Lower Section)",
-        "pin": [
-          -33.7405,
-          19.1162
-        ],
-        "lower_pin": [
-          -33.7405,
-          19.1162
-        ],
-        "mid_pin": [
-          -33.746,
-          19.1172
-        ],
-        "upper_pin": [
-          -33.752,
-          19.1188
-        ]
-      },
-      {
-        "session_id": 3,
-        "session_name": "Sunday Morning",
-        "session_short": "Sun AM",
-        "day": "Sunday",
-        "time": "Morning",
-        "beat_number": 5,
-        "beat": 5,
-        "beat_id": "SB3",
-        "beat_code": "SB3",
-        "beat_name": "SB3",
-        "river": "Small Blaar",
-        "meeting_point": "N1 emergency telephone layby 3",
-        "match_type": "1v1",
-        "is_solo": false,
-        "opponents": [
-          "Garrett"
-        ],
-        "is_stayer": false,
-        "section": "First Half (Lower Section)",
-        "pin": [
-          -33.7235,
-          19.153
-        ],
-        "lower_pin": [
-          -33.7235,
-          19.153
-        ],
-        "mid_pin": [
-          -33.7258,
-          19.147
-        ],
-        "upper_pin": [
-          -33.7272,
-          19.1415
-        ]
-      },
-      {
-        "session_id": 4,
-        "session_name": "Sunday Afternoon",
-        "session_short": "Sun PM",
-        "day": "Sunday",
-        "time": "Afternoon",
-        "beat_number": 5,
-        "beat": 5,
-        "beat_id": "SB3",
-        "beat_code": "SB3",
-        "beat_name": "SB3",
-        "river": "Small Blaar",
-        "meeting_point": "N1 emergency telephone layby 3",
-        "match_type": "1v1",
-        "is_solo": false,
-        "opponents": [
-          "Daniel"
-        ],
-        "is_stayer": true,
-        "section": "Second Half (Upper Section)",
-        "pin": [
-          -33.7258,
-          19.147
-        ],
-        "lower_pin": [
-          -33.7235,
-          19.153
-        ],
-        "mid_pin": [
-          -33.7258,
-          19.147
-        ],
-        "upper_pin": [
-          -33.7272,
-          19.1415
-        ]
-      }
-    ],
-    "Ryan": [
-      {
-        "session_id": 1,
-        "session_name": "Saturday Morning",
-        "session_short": "Sat AM",
-        "day": "Saturday",
-        "time": "Morning",
-        "beat_number": 5,
-        "beat": 5,
-        "beat_id": "SB3",
-        "beat_code": "SB3",
-        "beat_name": "SB3",
-        "river": "Small Blaar",
-        "meeting_point": "N1 emergency telephone layby 3",
-        "match_type": "1v1",
-        "is_solo": false,
-        "opponents": [
-          "Dylan"
-        ],
-        "is_stayer": false,
-        "section": "First Half (Lower Section)",
-        "pin": [
-          -33.7235,
-          19.153
-        ],
-        "lower_pin": [
-          -33.7235,
-          19.153
-        ],
-        "mid_pin": [
-          -33.7258,
-          19.147
-        ],
-        "upper_pin": [
-          -33.7272,
-          19.1415
-        ]
-      },
-      {
-        "session_id": 2,
-        "session_name": "Saturday Afternoon",
-        "session_short": "Sat PM",
-        "day": "Saturday",
-        "time": "Afternoon",
-        "beat_number": 3,
-        "beat": 3,
-        "beat_id": "SB2",
-        "beat_code": "SB2",
-        "beat_name": "SB2",
-        "river": "Small Blaar",
-        "meeting_point": "Picnic site parking",
-        "match_type": "1v1",
-        "is_solo": false,
-        "opponents": [
-          "James"
-        ],
-        "is_stayer": false,
-        "section": "First Half (Lower Section)",
-        "pin": [
-          -33.719,
-          19.1655
-        ],
-        "lower_pin": [
-          -33.719,
-          19.1655
-        ],
-        "mid_pin": [
-          -33.7212,
-          19.159
-        ],
-        "upper_pin": [
-          -33.7235,
-          19.153
-        ]
-      },
-      {
-        "session_id": 3,
-        "session_name": "Sunday Morning",
-        "session_short": "Sun AM",
-        "day": "Sunday",
-        "time": "Morning",
-        "beat_number": 2,
-        "beat": 2,
-        "beat_id": "EP1",
-        "beat_code": "EP1",
-        "beat_name": "EP1",
-        "river": "Elands Pad",
-        "meeting_point": "Junction Pool trail head",
-        "match_type": "1v1",
-        "is_solo": false,
-        "opponents": [
-          "Garth"
-        ],
-        "is_stayer": false,
-        "section": "First Half (Lower Section)",
-        "pin": [
-          -33.7319,
-          19.1141
-        ],
-        "lower_pin": [
-          -33.7319,
-          19.1141
-        ],
-        "mid_pin": [
-          -33.736,
-          19.1152
-        ],
-        "upper_pin": [
-          -33.7405,
-          19.1162
-        ]
-      },
-      {
-        "session_id": 4,
-        "session_name": "Sunday Afternoon",
-        "session_short": "Sun PM",
-        "day": "Sunday",
-        "time": "Afternoon",
-        "beat_number": 2,
-        "beat": 2,
-        "beat_id": "EP1",
-        "beat_code": "EP1",
-        "beat_name": "EP1",
-        "river": "Elands Pad",
-        "meeting_point": "Junction Pool trail head",
-        "match_type": "1v1",
-        "is_solo": false,
-        "opponents": [
-          "Garrett"
-        ],
-        "is_stayer": true,
-        "section": "Second Half (Upper Section)",
-        "pin": [
-          -33.736,
-          19.1152
-        ],
-        "lower_pin": [
-          -33.7319,
-          19.1141
-        ],
-        "mid_pin": [
-          -33.736,
-          19.1152
-        ],
-        "upper_pin": [
-          -33.7405,
-          19.1162
-        ]
-      }
-    ],
-    "Garrett": [
-      {
-        "session_id": 1,
-        "session_name": "Saturday Morning",
-        "session_short": "Sat AM",
-        "day": "Saturday",
-        "time": "Morning",
-        "beat_number": 6,
-        "beat": 6,
-        "beat_id": "EP3",
-        "beat_code": "EP3",
-        "beat_name": "EP3",
-        "river": "Elands Pad",
-        "meeting_point": "Star beat rock shelter",
-        "match_type": "BYE",
-        "is_solo": true,
-        "is_bye": true,
-        "opponents": [],
-        "is_stayer": false,
-        "section": "Full Beat (Issued Bye)",
-        "pin": [
-          -33.752,
-          19.1188
-        ],
-        "lower_pin": [
-          -33.752,
-          19.1188
-        ],
-        "mid_pin": [
-          -33.7565,
-          19.1195
-        ],
-        "upper_pin": [
-          -33.761,
-          19.1205
-        ]
-      },
-      {
-        "session_id": 2,
-        "session_name": "Saturday Afternoon",
-        "session_short": "Sat PM",
-        "day": "Saturday",
-        "time": "Afternoon",
-        "beat_number": 6,
-        "beat": 6,
-        "beat_id": "SB4",
-        "beat_code": "SB4",
-        "beat_name": "SB4",
-        "river": "Small Blaar",
-        "meeting_point": "Donkergat pull-off",
-        "match_type": "BYE",
-        "is_solo": true,
-        "is_bye": true,
-        "opponents": [],
-        "is_stayer": false,
-        "section": "Full Beat (Issued Bye)",
-        "pin": [
-          -33.7272,
-          19.1415
-        ],
-        "lower_pin": [
-          -33.7272,
-          19.1415
-        ],
-        "mid_pin": [
-          -33.7285,
-          19.137
-        ],
-        "upper_pin": [
-          -33.7295,
-          19.132
-        ]
-      },
-      {
-        "session_id": 3,
-        "session_name": "Sunday Morning",
-        "session_short": "Sun AM",
-        "day": "Sunday",
-        "time": "Morning",
-        "beat_number": 5,
-        "beat": 5,
-        "beat_id": "SB3",
-        "beat_code": "SB3",
-        "beat_name": "SB3",
-        "river": "Small Blaar",
-        "meeting_point": "N1 emergency telephone layby 3",
-        "match_type": "1v1",
-        "is_solo": false,
-        "opponents": [
-          "Malcolm"
-        ],
-        "is_stayer": false,
-        "section": "First Half (Lower Section)",
-        "pin": [
-          -33.7235,
-          19.153
-        ],
-        "lower_pin": [
-          -33.7235,
-          19.153
-        ],
-        "mid_pin": [
-          -33.7258,
-          19.147
-        ],
-        "upper_pin": [
-          -33.7272,
-          19.1415
-        ]
-      },
-      {
-        "session_id": 4,
-        "session_name": "Sunday Afternoon",
-        "session_short": "Sun PM",
-        "day": "Sunday",
-        "time": "Afternoon",
-        "beat_number": 2,
-        "beat": 2,
-        "beat_id": "EP1",
-        "beat_code": "EP1",
-        "beat_name": "EP1",
-        "river": "Elands Pad",
-        "meeting_point": "Junction Pool trail head",
-        "match_type": "1v1",
-        "is_solo": false,
-        "opponents": [
-          "Ryan"
-        ],
-        "is_stayer": false,
-        "section": "First Half (Lower Section)",
-        "pin": [
-          -33.7319,
-          19.1141
-        ],
-        "lower_pin": [
-          -33.7319,
-          19.1141
-        ],
-        "mid_pin": [
-          -33.736,
-          19.1152
-        ],
-        "upper_pin": [
-          -33.7405,
-          19.1162
-        ]
-      }
-    ],
-    "Michelle": [
-      {
-        "session_id": 1,
-        "session_name": "Saturday Morning",
-        "session_short": "Sat AM",
-        "day": "Saturday",
-        "time": "Morning",
-        "beat_number": 4,
-        "beat": 4,
-        "beat_id": "EP2",
-        "beat_code": "EP2",
-        "beat_name": "EP2",
-        "river": "Elands Pad",
-        "meeting_point": "Fisherman's Cave trail",
-        "match_type": "1v1",
-        "is_solo": false,
-        "opponents": [
-          "Ian"
-        ],
-        "is_stayer": false,
-        "section": "First Half (Lower Section)",
-        "pin": [
-          -33.7405,
-          19.1162
-        ],
-        "lower_pin": [
-          -33.7405,
-          19.1162
-        ],
-        "mid_pin": [
-          -33.746,
-          19.1172
-        ],
-        "upper_pin": [
-          -33.752,
-          19.1188
-        ]
-      },
-      {
-        "session_id": 2,
-        "session_name": "Saturday Afternoon",
-        "session_short": "Sat PM",
-        "day": "Saturday",
-        "time": "Afternoon",
-        "beat_number": 4,
-        "beat": 4,
-        "beat_id": "EP2",
-        "beat_code": "EP2",
-        "beat_name": "EP2",
-        "river": "Elands Pad",
-        "meeting_point": "Fisherman's Cave trail",
-        "match_type": "1v1",
-        "is_solo": false,
-        "opponents": [
-          "Malcolm"
-        ],
-        "is_stayer": true,
-        "section": "Second Half (Upper Section)",
-        "pin": [
-          -33.746,
-          19.1172
-        ],
-        "lower_pin": [
-          -33.7405,
-          19.1162
-        ],
-        "mid_pin": [
-          -33.746,
-          19.1172
-        ],
-        "upper_pin": [
-          -33.752,
-          19.1188
-        ]
-      },
-      {
-        "session_id": 3,
-        "session_name": "Sunday Morning",
-        "session_short": "Sun AM",
-        "day": "Sunday",
-        "time": "Morning",
-        "beat_number": 4,
-        "beat": 4,
-        "beat_id": "EP2",
-        "beat_code": "EP2",
-        "beat_name": "EP2",
-        "river": "Elands Pad",
-        "meeting_point": "Fisherman's Cave trail",
-        "match_type": "1v1",
-        "is_solo": false,
-        "opponents": [
-          "Barry"
-        ],
-        "is_stayer": false,
-        "section": "First Half (Lower Section)",
-        "pin": [
-          -33.7405,
-          19.1162
-        ],
-        "lower_pin": [
-          -33.7405,
-          19.1162
-        ],
-        "mid_pin": [
-          -33.746,
-          19.1172
-        ],
-        "upper_pin": [
-          -33.752,
-          19.1188
-        ]
-      },
-      {
-        "session_id": 4,
-        "session_name": "Sunday Afternoon",
-        "session_short": "Sun PM",
-        "day": "Sunday",
-        "time": "Afternoon",
-        "beat_number": 4,
-        "beat": 4,
-        "beat_id": "EP2",
-        "beat_code": "EP2",
-        "beat_name": "EP2",
-        "river": "Elands Pad",
-        "meeting_point": "Fisherman's Cave trail",
-        "match_type": "1v1",
-        "is_solo": false,
-        "opponents": [
-          "Dale"
-        ],
-        "is_stayer": true,
-        "section": "Second Half (Upper Section)",
-        "pin": [
-          -33.746,
-          19.1172
-        ],
-        "lower_pin": [
-          -33.7405,
-          19.1162
-        ],
-        "mid_pin": [
-          -33.746,
-          19.1172
-        ],
-        "upper_pin": [
-          -33.752,
-          19.1188
-        ]
-      }
-    ]
-  },
   "three_way_counts": {
     "James": 0,
     "Barry": 0,
@@ -12094,25 +5648,26 @@ export const INITIAL_STATE = {
           "is_bye": false,
           "beat_number": 1,
           "beat": 1,
-          "beat_id": "SB1",
-          "beat_code": "SB1",
-          "beat_name": "SB1",
+          "beat_id": "SB6",
+          "beat_code": "SB6",
+          "beat_name": "SB6",
           "river": "Small Blaar",
           "lower_pin": [
-            -33.715,
-            19.174
+            -33.7319,
+            19.1141
           ],
           "mid_pin": [
-            -33.717,
-            19.17
+            -33.733,
+            19.1105
           ],
           "upper_pin": [
-            -33.719,
-            19.1655
+            -33.7342,
+            19.1065
           ],
-          "meeting_point": "Picnic site pull-off",
+          "meeting_point": "Tunnel East Portal Parking / Junction Path",
+          "travel_time": 15,
           "anglers": [
-            "Dale",
+            "Garth",
             "Barry"
           ],
           "stayer": null,
@@ -12129,26 +5684,27 @@ export const INITIAL_STATE = {
           "is_bye": false,
           "beat_number": 2,
           "beat": 2,
-          "beat_id": "EP1",
-          "beat_code": "EP1",
-          "beat_name": "EP1",
-          "river": "Elands Pad",
+          "beat_id": "SB5",
+          "beat_code": "SB5",
+          "beat_name": "SB5",
+          "river": "Small Blaar",
           "lower_pin": [
+            -33.7295,
+            19.132
+          ],
+          "mid_pin": [
+            -33.7305,
+            19.127
+          ],
+          "upper_pin": [
             -33.7319,
             19.1141
           ],
-          "mid_pin": [
-            -33.736,
-            19.1152
-          ],
-          "upper_pin": [
-            -33.7405,
-            19.1162
-          ],
-          "meeting_point": "Junction Pool trail head",
+          "meeting_point": "CPS Elandspad parking lot",
+          "travel_time": 15,
           "anglers": [
-            "Daniel",
-            "Garth"
+            "Michelle",
+            "Dale"
           ],
           "stayer": null,
           "status": "UNREPORTED",
@@ -12164,26 +5720,27 @@ export const INITIAL_STATE = {
           "is_bye": false,
           "beat_number": 3,
           "beat": 3,
-          "beat_id": "SB2",
-          "beat_code": "SB2",
-          "beat_name": "SB2",
+          "beat_id": "SB3",
+          "beat_code": "SB3",
+          "beat_name": "SB3",
           "river": "Small Blaar",
           "lower_pin": [
-            -33.719,
-            19.1655
-          ],
-          "mid_pin": [
-            -33.7212,
-            19.159
-          ],
-          "upper_pin": [
             -33.7235,
             19.153
           ],
-          "meeting_point": "Picnic site parking",
+          "mid_pin": [
+            -33.7258,
+            19.147
+          ],
+          "upper_pin": [
+            -33.7272,
+            19.1415
+          ],
+          "meeting_point": "N1 emergency telephone layby 3",
+          "travel_time": 15,
           "anglers": [
             "James",
-            "Malcolm"
+            "Daniel"
           ],
           "stayer": null,
           "status": "UNREPORTED",
@@ -12216,9 +5773,10 @@ export const INITIAL_STATE = {
             19.1188
           ],
           "meeting_point": "Fisherman's Cave trail",
+          "travel_time": 30,
           "anglers": [
-            "Michelle",
-            "Ian"
+            "Malcolm",
+            "Ryan"
           ],
           "stayer": null,
           "status": "UNREPORTED",
@@ -12234,41 +5792,6 @@ export const INITIAL_STATE = {
           "is_bye": false,
           "beat_number": 5,
           "beat": 5,
-          "beat_id": "SB3",
-          "beat_code": "SB3",
-          "beat_name": "SB3",
-          "river": "Small Blaar",
-          "lower_pin": [
-            -33.7235,
-            19.153
-          ],
-          "mid_pin": [
-            -33.7258,
-            19.147
-          ],
-          "upper_pin": [
-            -33.7272,
-            19.1415
-          ],
-          "meeting_point": "N1 emergency telephone layby 3",
-          "anglers": [
-            "Ryan",
-            "Dylan"
-          ],
-          "stayer": null,
-          "status": "UNREPORTED",
-          "submissions": {},
-          "official_scores": {},
-          "calculated_points": {}
-        },
-        {
-          "match_id": "S1_M6",
-          "match_number": 6,
-          "match_type": "BYE",
-          "is_solo": true,
-          "is_bye": true,
-          "beat_number": 6,
-          "beat": 6,
           "beat_id": "EP3",
           "beat_code": "EP3",
           "beat_name": "EP3",
@@ -12286,6 +5809,43 @@ export const INITIAL_STATE = {
             19.1205
           ],
           "meeting_point": "Star beat rock shelter",
+          "travel_time": 30,
+          "anglers": [
+            "Ian",
+            "Dylan"
+          ],
+          "stayer": null,
+          "status": "UNREPORTED",
+          "submissions": {},
+          "official_scores": {},
+          "calculated_points": {}
+        },
+        {
+          "match_id": "S1_M6",
+          "match_number": 6,
+          "match_type": "BYE",
+          "is_solo": true,
+          "is_bye": true,
+          "beat_number": 6,
+          "beat": 6,
+          "beat_id": "EP1",
+          "beat_code": "EP1",
+          "beat_name": "EP1",
+          "river": "Elands Pad",
+          "lower_pin": [
+            -33.7319,
+            19.1141
+          ],
+          "mid_pin": [
+            -33.736,
+            19.1152
+          ],
+          "upper_pin": [
+            -33.7405,
+            19.1162
+          ],
+          "meeting_point": "Junction Pool trail head",
+          "travel_time": 15,
           "anglers": [
             "Garrett"
           ],
@@ -12315,28 +5875,29 @@ export const INITIAL_STATE = {
           "is_bye": false,
           "beat_number": 1,
           "beat": 1,
-          "beat_id": "SB1",
-          "beat_code": "SB1",
-          "beat_name": "SB1",
+          "beat_id": "SB6",
+          "beat_code": "SB6",
+          "beat_name": "SB6",
           "river": "Small Blaar",
           "lower_pin": [
-            -33.715,
-            19.174
+            -33.7319,
+            19.1141
           ],
           "mid_pin": [
-            -33.717,
-            19.17
+            -33.733,
+            19.1105
           ],
           "upper_pin": [
-            -33.719,
-            19.1655
+            -33.7342,
+            19.1065
           ],
-          "meeting_point": "Picnic site pull-off",
+          "meeting_point": "Tunnel East Portal Parking / Junction Path",
+          "travel_time": 15,
           "anglers": [
-            "Garth",
-            "Dale"
+            "Dylan",
+            "Garth"
           ],
-          "stayer": "Dale",
+          "stayer": "Garth",
           "status": "UNREPORTED",
           "submissions": {},
           "official_scores": {},
@@ -12350,28 +5911,29 @@ export const INITIAL_STATE = {
           "is_bye": false,
           "beat_number": 2,
           "beat": 2,
-          "beat_id": "EP1",
-          "beat_code": "EP1",
-          "beat_name": "EP1",
-          "river": "Elands Pad",
+          "beat_id": "SB5",
+          "beat_code": "SB5",
+          "beat_name": "SB5",
+          "river": "Small Blaar",
           "lower_pin": [
+            -33.7295,
+            19.132
+          ],
+          "mid_pin": [
+            -33.7305,
+            19.127
+          ],
+          "upper_pin": [
             -33.7319,
             19.1141
           ],
-          "mid_pin": [
-            -33.736,
-            19.1152
-          ],
-          "upper_pin": [
-            -33.7405,
-            19.1162
-          ],
-          "meeting_point": "Junction Pool trail head",
+          "meeting_point": "CPS Elandspad parking lot",
+          "travel_time": 15,
           "anglers": [
-            "Barry",
-            "Daniel"
+            "Malcolm",
+            "Michelle"
           ],
-          "stayer": "Daniel",
+          "stayer": "Michelle",
           "status": "UNREPORTED",
           "submissions": {},
           "official_scores": {},
@@ -12385,23 +5947,24 @@ export const INITIAL_STATE = {
           "is_bye": false,
           "beat_number": 3,
           "beat": 3,
-          "beat_id": "SB2",
-          "beat_code": "SB2",
-          "beat_name": "SB2",
+          "beat_id": "SB3",
+          "beat_code": "SB3",
+          "beat_name": "SB3",
           "river": "Small Blaar",
           "lower_pin": [
-            -33.719,
-            19.1655
-          ],
-          "mid_pin": [
-            -33.7212,
-            19.159
-          ],
-          "upper_pin": [
             -33.7235,
             19.153
           ],
-          "meeting_point": "Picnic site parking",
+          "mid_pin": [
+            -33.7258,
+            19.147
+          ],
+          "upper_pin": [
+            -33.7272,
+            19.1415
+          ],
+          "meeting_point": "N1 emergency telephone layby 3",
+          "travel_time": 15,
           "anglers": [
             "James",
             "Ryan"
@@ -12420,28 +5983,29 @@ export const INITIAL_STATE = {
           "is_bye": false,
           "beat_number": 4,
           "beat": 4,
-          "beat_id": "EP2",
-          "beat_code": "EP2",
-          "beat_name": "EP2",
-          "river": "Elands Pad",
+          "beat_id": "SB(HOTEL)",
+          "beat_code": "SB(HOTEL)",
+          "beat_name": "SB(HOTEL)",
+          "river": "Small Blaar",
           "lower_pin": [
-            -33.7405,
-            19.1162
+            -33.7125,
+            19.18
           ],
           "mid_pin": [
-            -33.746,
-            19.1172
+            -33.7138,
+            19.177
           ],
           "upper_pin": [
-            -33.752,
-            19.1188
+            -33.715,
+            19.174
           ],
-          "meeting_point": "Fisherman's Cave trail",
+          "meeting_point": "Du Kloof Lodge guest parking",
+          "travel_time": 15,
           "anglers": [
-            "Malcolm",
-            "Michelle"
+            "Ian",
+            "Daniel"
           ],
-          "stayer": "Michelle",
+          "stayer": null,
           "status": "UNREPORTED",
           "submissions": {},
           "official_scores": {},
@@ -12455,28 +6019,29 @@ export const INITIAL_STATE = {
           "is_bye": false,
           "beat_number": 5,
           "beat": 5,
-          "beat_id": "SB3",
-          "beat_code": "SB3",
-          "beat_name": "SB3",
+          "beat_id": "SB1",
+          "beat_code": "SB1",
+          "beat_name": "SB1",
           "river": "Small Blaar",
           "lower_pin": [
-            -33.7235,
-            19.153
+            -33.715,
+            19.174
           ],
           "mid_pin": [
-            -33.7258,
-            19.147
+            -33.717,
+            19.17
           ],
           "upper_pin": [
-            -33.7272,
-            19.1415
+            -33.719,
+            19.1655
           ],
-          "meeting_point": "N1 emergency telephone layby 3",
+          "meeting_point": "Picnic site pull-off",
+          "travel_time": 15,
           "anglers": [
-            "Dylan",
-            "Ian"
+            "Barry",
+            "Dale"
           ],
-          "stayer": "Dylan",
+          "stayer": null,
           "status": "UNREPORTED",
           "submissions": {},
           "official_scores": {},
@@ -12490,23 +6055,24 @@ export const INITIAL_STATE = {
           "is_bye": true,
           "beat_number": 6,
           "beat": 6,
-          "beat_id": "SB4",
-          "beat_code": "SB4",
-          "beat_name": "SB4",
+          "beat_id": "SB2",
+          "beat_code": "SB2",
+          "beat_name": "SB2",
           "river": "Small Blaar",
           "lower_pin": [
-            -33.7272,
-            19.1415
+            -33.719,
+            19.1655
           ],
           "mid_pin": [
-            -33.7285,
-            19.137
+            -33.7212,
+            19.159
           ],
           "upper_pin": [
-            -33.7295,
-            19.132
+            -33.7235,
+            19.153
           ],
-          "meeting_point": "Donkergat pull-off",
+          "meeting_point": "Picnic site parking",
+          "travel_time": 15,
           "anglers": [
             "Garrett"
           ],
@@ -12536,26 +6102,27 @@ export const INITIAL_STATE = {
           "is_bye": false,
           "beat_number": 1,
           "beat": 1,
-          "beat_id": "SB1",
-          "beat_code": "SB1",
-          "beat_name": "SB1",
+          "beat_id": "SB6",
+          "beat_code": "SB6",
+          "beat_name": "SB6",
           "river": "Small Blaar",
           "lower_pin": [
-            -33.715,
-            19.174
+            -33.7319,
+            19.1141
           ],
           "mid_pin": [
-            -33.717,
-            19.17
+            -33.733,
+            19.1105
           ],
           "upper_pin": [
-            -33.719,
-            19.1655
+            -33.7342,
+            19.1065
           ],
-          "meeting_point": "Picnic site pull-off",
+          "meeting_point": "Tunnel East Portal Parking / Junction Path",
+          "travel_time": 15,
           "anglers": [
-            "Ian",
-            "Daniel"
+            "Michelle",
+            "Barry"
           ],
           "stayer": null,
           "status": "UNREPORTED",
@@ -12571,25 +6138,26 @@ export const INITIAL_STATE = {
           "is_bye": false,
           "beat_number": 2,
           "beat": 2,
-          "beat_id": "EP1",
-          "beat_code": "EP1",
-          "beat_name": "EP1",
-          "river": "Elands Pad",
+          "beat_id": "SB5",
+          "beat_code": "SB5",
+          "beat_name": "SB5",
+          "river": "Small Blaar",
           "lower_pin": [
+            -33.7295,
+            19.132
+          ],
+          "mid_pin": [
+            -33.7305,
+            19.127
+          ],
+          "upper_pin": [
             -33.7319,
             19.1141
           ],
-          "mid_pin": [
-            -33.736,
-            19.1152
-          ],
-          "upper_pin": [
-            -33.7405,
-            19.1162
-          ],
-          "meeting_point": "Junction Pool trail head",
+          "meeting_point": "CPS Elandspad parking lot",
+          "travel_time": 15,
           "anglers": [
-            "Ryan",
+            "Daniel",
             "Garth"
           ],
           "stayer": null,
@@ -12606,25 +6174,26 @@ export const INITIAL_STATE = {
           "is_bye": false,
           "beat_number": 3,
           "beat": 3,
-          "beat_id": "SB2",
-          "beat_code": "SB2",
-          "beat_name": "SB2",
+          "beat_id": "SB3",
+          "beat_code": "SB3",
+          "beat_name": "SB3",
           "river": "Small Blaar",
           "lower_pin": [
-            -33.719,
-            19.1655
-          ],
-          "mid_pin": [
-            -33.7212,
-            19.159
-          ],
-          "upper_pin": [
             -33.7235,
             19.153
           ],
-          "meeting_point": "Picnic site parking",
+          "mid_pin": [
+            -33.7258,
+            19.147
+          ],
+          "upper_pin": [
+            -33.7272,
+            19.1415
+          ],
+          "meeting_point": "N1 emergency telephone layby 3",
+          "travel_time": 15,
           "anglers": [
-            "Dylan",
+            "Malcolm",
             "Dale"
           ],
           "stayer": null,
@@ -12658,9 +6227,10 @@ export const INITIAL_STATE = {
             19.1188
           ],
           "meeting_point": "Fisherman's Cave trail",
+          "travel_time": 30,
           "anglers": [
-            "Michelle",
-            "Barry"
+            "Ryan",
+            "Ian"
           ],
           "stayer": null,
           "status": "UNREPORTED",
@@ -12676,41 +6246,6 @@ export const INITIAL_STATE = {
           "is_bye": false,
           "beat_number": 5,
           "beat": 5,
-          "beat_id": "SB3",
-          "beat_code": "SB3",
-          "beat_name": "SB3",
-          "river": "Small Blaar",
-          "lower_pin": [
-            -33.7235,
-            19.153
-          ],
-          "mid_pin": [
-            -33.7258,
-            19.147
-          ],
-          "upper_pin": [
-            -33.7272,
-            19.1415
-          ],
-          "meeting_point": "N1 emergency telephone layby 3",
-          "anglers": [
-            "Garrett",
-            "Malcolm"
-          ],
-          "stayer": null,
-          "status": "UNREPORTED",
-          "submissions": {},
-          "official_scores": {},
-          "calculated_points": {}
-        },
-        {
-          "match_id": "S3_M6",
-          "match_number": 6,
-          "match_type": "BYE",
-          "is_solo": true,
-          "is_bye": true,
-          "beat_number": 6,
-          "beat": 6,
           "beat_id": "EP3",
           "beat_code": "EP3",
           "beat_name": "EP3",
@@ -12728,6 +6263,43 @@ export const INITIAL_STATE = {
             19.1205
           ],
           "meeting_point": "Star beat rock shelter",
+          "travel_time": 30,
+          "anglers": [
+            "Garrett",
+            "Dylan"
+          ],
+          "stayer": null,
+          "status": "UNREPORTED",
+          "submissions": {},
+          "official_scores": {},
+          "calculated_points": {}
+        },
+        {
+          "match_id": "S3_M6",
+          "match_number": 6,
+          "match_type": "BYE",
+          "is_solo": true,
+          "is_bye": true,
+          "beat_number": 6,
+          "beat": 6,
+          "beat_id": "EP1",
+          "beat_code": "EP1",
+          "beat_name": "EP1",
+          "river": "Elands Pad",
+          "lower_pin": [
+            -33.7319,
+            19.1141
+          ],
+          "mid_pin": [
+            -33.736,
+            19.1152
+          ],
+          "upper_pin": [
+            -33.7405,
+            19.1162
+          ],
+          "meeting_point": "Junction Pool trail head",
+          "travel_time": 15,
           "anglers": [
             "James"
           ],
@@ -12757,28 +6329,29 @@ export const INITIAL_STATE = {
           "is_bye": false,
           "beat_number": 1,
           "beat": 1,
-          "beat_id": "SB1",
-          "beat_code": "SB1",
-          "beat_name": "SB1",
+          "beat_id": "SB6",
+          "beat_code": "SB6",
+          "beat_name": "SB6",
           "river": "Small Blaar",
           "lower_pin": [
-            -33.715,
-            19.174
+            -33.7319,
+            19.1141
           ],
           "mid_pin": [
-            -33.717,
-            19.17
+            -33.733,
+            19.1105
           ],
           "upper_pin": [
-            -33.719,
-            19.1655
+            -33.7342,
+            19.1065
           ],
-          "meeting_point": "Picnic site pull-off",
+          "meeting_point": "Tunnel East Portal Parking / Junction Path",
+          "travel_time": 15,
           "anglers": [
-            "Ian",
-            "Garth"
+            "Michelle",
+            "Dylan"
           ],
-          "stayer": "Ian",
+          "stayer": "Michelle",
           "status": "UNREPORTED",
           "submissions": {},
           "official_scores": {},
@@ -12792,28 +6365,29 @@ export const INITIAL_STATE = {
           "is_bye": false,
           "beat_number": 2,
           "beat": 2,
-          "beat_id": "EP1",
-          "beat_code": "EP1",
-          "beat_name": "EP1",
-          "river": "Elands Pad",
+          "beat_id": "SB5",
+          "beat_code": "SB5",
+          "beat_name": "SB5",
+          "river": "Small Blaar",
           "lower_pin": [
+            -33.7295,
+            19.132
+          ],
+          "mid_pin": [
+            -33.7305,
+            19.127
+          ],
+          "upper_pin": [
             -33.7319,
             19.1141
           ],
-          "mid_pin": [
-            -33.736,
-            19.1152
-          ],
-          "upper_pin": [
-            -33.7405,
-            19.1162
-          ],
-          "meeting_point": "Junction Pool trail head",
+          "meeting_point": "CPS Elandspad parking lot",
+          "travel_time": 15,
           "anglers": [
-            "Ryan",
-            "Garrett"
+            "Garth",
+            "Ryan"
           ],
-          "stayer": "Ryan",
+          "stayer": "Garth",
           "status": "UNREPORTED",
           "submissions": {},
           "official_scores": {},
@@ -12827,76 +6401,6 @@ export const INITIAL_STATE = {
           "is_bye": false,
           "beat_number": 3,
           "beat": 3,
-          "beat_id": "SB2",
-          "beat_code": "SB2",
-          "beat_name": "SB2",
-          "river": "Small Blaar",
-          "lower_pin": [
-            -33.719,
-            19.1655
-          ],
-          "mid_pin": [
-            -33.7212,
-            19.159
-          ],
-          "upper_pin": [
-            -33.7235,
-            19.153
-          ],
-          "meeting_point": "Picnic site parking",
-          "anglers": [
-            "Dylan",
-            "Barry"
-          ],
-          "stayer": "Dylan",
-          "status": "UNREPORTED",
-          "submissions": {},
-          "official_scores": {},
-          "calculated_points": {}
-        },
-        {
-          "match_id": "S4_M4",
-          "match_number": 4,
-          "match_type": "1v1",
-          "is_solo": false,
-          "is_bye": false,
-          "beat_number": 4,
-          "beat": 4,
-          "beat_id": "EP2",
-          "beat_code": "EP2",
-          "beat_name": "EP2",
-          "river": "Elands Pad",
-          "lower_pin": [
-            -33.7405,
-            19.1162
-          ],
-          "mid_pin": [
-            -33.746,
-            19.1172
-          ],
-          "upper_pin": [
-            -33.752,
-            19.1188
-          ],
-          "meeting_point": "Fisherman's Cave trail",
-          "anglers": [
-            "Michelle",
-            "Dale"
-          ],
-          "stayer": "Michelle",
-          "status": "UNREPORTED",
-          "submissions": {},
-          "official_scores": {},
-          "calculated_points": {}
-        },
-        {
-          "match_id": "S4_M5",
-          "match_number": 5,
-          "match_type": "1v1",
-          "is_solo": false,
-          "is_bye": false,
-          "beat_number": 5,
-          "beat": 5,
           "beat_id": "SB3",
           "beat_code": "SB3",
           "beat_name": "SB3",
@@ -12914,11 +6418,84 @@ export const INITIAL_STATE = {
             19.1415
           ],
           "meeting_point": "N1 emergency telephone layby 3",
+          "travel_time": 15,
           "anglers": [
             "Malcolm",
-            "Daniel"
+            "Ian"
           ],
           "stayer": "Malcolm",
+          "status": "UNREPORTED",
+          "submissions": {},
+          "official_scores": {},
+          "calculated_points": {}
+        },
+        {
+          "match_id": "S4_M4",
+          "match_number": 4,
+          "match_type": "1v1",
+          "is_solo": false,
+          "is_bye": false,
+          "beat_number": 4,
+          "beat": 4,
+          "beat_id": "SB(HOTEL)",
+          "beat_code": "SB(HOTEL)",
+          "beat_name": "SB(HOTEL)",
+          "river": "Small Blaar",
+          "lower_pin": [
+            -33.7125,
+            19.18
+          ],
+          "mid_pin": [
+            -33.7138,
+            19.177
+          ],
+          "upper_pin": [
+            -33.715,
+            19.174
+          ],
+          "meeting_point": "Du Kloof Lodge guest parking",
+          "travel_time": 15,
+          "anglers": [
+            "Barry",
+            "Garrett"
+          ],
+          "stayer": null,
+          "status": "UNREPORTED",
+          "submissions": {},
+          "official_scores": {},
+          "calculated_points": {}
+        },
+        {
+          "match_id": "S4_M5",
+          "match_number": 5,
+          "match_type": "1v1",
+          "is_solo": false,
+          "is_bye": false,
+          "beat_number": 5,
+          "beat": 5,
+          "beat_id": "SB1",
+          "beat_code": "SB1",
+          "beat_name": "SB1",
+          "river": "Small Blaar",
+          "lower_pin": [
+            -33.715,
+            19.174
+          ],
+          "mid_pin": [
+            -33.717,
+            19.17
+          ],
+          "upper_pin": [
+            -33.719,
+            19.1655
+          ],
+          "meeting_point": "Picnic site pull-off",
+          "travel_time": 15,
+          "anglers": [
+            "Dale",
+            "Daniel"
+          ],
+          "stayer": null,
           "status": "UNREPORTED",
           "submissions": {},
           "official_scores": {},
@@ -12932,23 +6509,24 @@ export const INITIAL_STATE = {
           "is_bye": true,
           "beat_number": 6,
           "beat": 6,
-          "beat_id": "SB4",
-          "beat_code": "SB4",
-          "beat_name": "SB4",
+          "beat_id": "SB2",
+          "beat_code": "SB2",
+          "beat_name": "SB2",
           "river": "Small Blaar",
           "lower_pin": [
-            -33.7272,
-            19.1415
+            -33.719,
+            19.1655
           ],
           "mid_pin": [
-            -33.7285,
-            19.137
+            -33.7212,
+            19.159
           ],
           "upper_pin": [
-            -33.7295,
-            19.132
+            -33.7235,
+            19.153
           ],
-          "meeting_point": "Donkergat pull-off",
+          "meeting_point": "Picnic site parking",
+          "travel_time": 15,
           "anglers": [
             "James"
           ],

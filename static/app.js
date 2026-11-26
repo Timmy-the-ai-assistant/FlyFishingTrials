@@ -1,3 +1,4 @@
+const APP_VERSION = "v2.5.0";
 /**
  * Fly Fishing Trials - Real-Time Frontend Application
  * Handles live polling, dual-submission Google-form verification,
@@ -115,7 +116,7 @@ function renderHeader() {
   const aTeamTag = document.getElementById('aTeamCountTag');
   if (aTeamTag) {
     if (aTeamAnglers.length > 0) {
-      aTeamTag.textContent = `⭐ ${aTeamAnglers.length} A-Team`;
+      aTeamTag.textContent = `⭐ ${aTeamAnglers.length} Top 8`;
       aTeamTag.classList.remove('hidden');
     } else {
       aTeamTag.classList.add('hidden');
@@ -192,7 +193,7 @@ function renderLeaderboard() {
     const anglerName = row.angler || row.name || '';
     const isA = row.is_a_team || aTeamList.includes(anglerName);
     const aTeamBadge = isA 
-      ? `<span class="ateam-badge-mini" title="A-Team Seeded Angler">⭐ A-Team</span>` 
+      ? `<span class="ateam-badge-mini" title="Top 8 Seeded Angler">⭐ Top 8</span>` 
       : '';
 
     html += `
@@ -294,9 +295,9 @@ function renderSchedule() {
       if (isSolo) {
         aTeamClashBadge = `<span class="badge" style="background:rgba(99,102,241,0.25); color:#a5b4fc; border:1px solid rgba(99,102,241,0.4); font-size:0.7rem; padding:0.15rem 0.45rem; border-radius:4px; font-weight:700;">👤 Solo Beat (Non-Competing)</span>`;
       } else if (match.is_head_to_head_a_team) {
-        aTeamClashBadge = `<span class="clash-badge">⚔️ A-Team Clash</span>`;
+        aTeamClashBadge = `<span class="clash-badge">⚔️ Top 8 Clash</span>`;
       } else if (match.has_a_team_angler) {
-        aTeamClashBadge = `<span class="clash-badge" style="color:#93c5fd; background:rgba(56,189,248,0.15); border-color:rgba(56,189,248,0.3);">⭐ A-Team vs Challenger</span>`;
+        aTeamClashBadge = `<span class="clash-badge" style="color:#93c5fd; background:rgba(56,189,248,0.15); border-color:rgba(56,189,248,0.3);">⭐ Top 8 vs Challenger</span>`;
       }
 
       html += `
@@ -306,6 +307,7 @@ function renderSchedule() {
               <div style="display:flex; align-items:center; gap:0.4rem; flex-wrap:wrap;">
                 <span class="beat-tag">Beat ${match.beat || match.beat_number}</span>
                 ${match.beat_code || match.beat_name ? `<span class="beat-tag" style="background:rgba(255,255,255,0.06); font-size:0.75rem;">${escapeHtml(match.beat_code || match.beat_name)}</span>` : ''}
+                <span class="beat-tag" style="background:rgba(245,158,11,0.15); font-size:0.7rem; color:#fbbf24;">⏱️ ${match.travel_time || 15}m travel</span>
                 ${match.river ? `<span class="beat-tag" style="background:${(match.river||'').toLowerCase().includes('eland') ? 'rgba(168,85,247,0.15)' : 'rgba(56,189,248,0.15)'}; font-size:0.7rem; color:${(match.river||'').toLowerCase().includes('eland') ? '#c084fc' : '#7dd3fc'};">${escapeHtml(match.river)}</span>` : ''}
                 ${aTeamClashBadge}
                 ${match.stayer ? `<span class="badge" style="background:rgba(16,185,129,0.2); color:#34d399; border:1px solid rgba(16,185,129,0.3); font-size:0.7rem; padding:0.15rem 0.4rem; border-radius:4px; font-weight:700;">🔄 Stayer: ${escapeHtml(match.stayer)}</span>` : ''}
@@ -335,7 +337,7 @@ function renderSchedule() {
         }
 
         const isAnglerA = aTeamList.includes(angler);
-        const aTag = isAnglerA ? `<span class="ateam-badge-mini">A-Team</span>` : '';
+        const aTag = isAnglerA ? `<span class="ateam-badge-mini">Top 8</span>` : '';
         const isStayerAngler = (match.stayer === angler);
         const stayerTag = isStayerAngler ? `<span class="ateam-badge-mini" style="background:rgba(16,185,129,0.2); color:#34d399; border-color:rgba(16,185,129,0.3);" title="Remains on beat from morning session">🔄 Stayer</span>` : '';
 
@@ -847,7 +849,7 @@ function renderAteamChecklist() {
 
   const anglers = parseAnglerLines();
   if (anglers.length === 0) {
-    container.innerHTML = `<div class="text-muted text-sm py-2">Enter angler names above to configure A-Team members.</div>`;
+    container.innerHTML = `<div class="text-muted text-sm py-2">Enter angler names above to configure Top 8 members.</div>`;
     if (summaryEl) summaryEl.innerHTML = '';
     return;
   }
@@ -867,7 +869,7 @@ function renderAteamChecklist() {
       <label class="ateam-check-item ${isA ? 'selected' : ''}">
         <input type="checkbox" ${isA ? 'checked' : ''} onchange="toggleAteamAngler('${escapeHtml(name)}')">
         <span>${escapeHtml(name)}</span>
-        ${isA ? '<span class="ateam-badge-mini">⭐ A-Team</span>' : ''}
+        ${isA ? '<span class="ateam-badge-mini">⭐ Top 8</span>' : ''}
       </label>
     `;
   });
@@ -878,18 +880,18 @@ function renderAteamChecklist() {
   const N = anglers.length;
   if (summaryEl) {
     if (k === 0) {
-      summaryEl.innerHTML = `<span class="text-muted">ℹ️ No A-Team selected. All competitors will participate in standard random draw.</span>`;
+      summaryEl.innerHTML = `<span class="text-muted">ℹ️ No Top 8 selected. All competitors will participate in standard random draw.</span>`;
     } else if (k < 3) {
-      summaryEl.innerHTML = `<span style="color: var(--danger)">⚠️ A-Team currently has ${k} member(s). Minimum 3 required so each A-Team member can face 2 different A-Team opponents without repeat pairings.</span>`;
+      summaryEl.innerHTML = `<span style="color: var(--danger)">⚠️ Top 8 currently has ${k} member(s). Minimum 3 required so each Top 8 member can face 2 different Top 8 opponents without repeat pairings.</span>`;
     } else {
       const challengerCount = N - k;
       const challengerCoverage = (2 * k >= challengerCount) 
-        ? `<span style="color:var(--primary);">✓ Every challenger is guaranteed to face at least one A-Team member.</span>`
-        : `<span style="color:var(--accent-gold);">Note: With ${k} A-Team members, ${2*k} challenger matches are available for ${challengerCount} challengers.</span>`;
+        ? `<span style="color:var(--primary);">✓ Every challenger is guaranteed to face at least one Top 8 member.</span>`
+        : `<span style="color:var(--accent-gold);">Note: With ${k} Top 8 members, ${2*k} challenger matches are available for ${challengerCount} challengers.</span>`;
 
       summaryEl.innerHTML = `
-        <span style="color: var(--primary)">✓ <strong>${k} A-Team Anglers Selected:</strong></span> 
-        Each will play <strong>2 matches</strong> against fellow A-Team members and <strong>2 normal matches</strong>. ${challengerCoverage}
+        <span style="color: var(--primary)">✓ <strong>${k} Top 8 Anglers Selected:</strong></span> 
+        Each will play <strong>2 matches</strong> against fellow Top 8 members and <strong>2 normal matches</strong>. ${challengerCoverage}
       `;
     }
   }
@@ -938,7 +940,7 @@ async function confirmResetTournament() {
 
   const aTeamList = Array.from(selectedAteamSet).filter(a => set.has(a));
   if (aTeamList.length > 0 && aTeamList.length < 3) {
-    alert(`A-Team requires at least 3 members (currently selected ${aTeamList.length}). Please select at least 3 or clear A-Team selection.`);
+    alert(`Top 8 requires at least 3 members (currently selected ${aTeamList.length}). Please select at least 3 or clear Top 8 selection.`);
     return;
   }
 
@@ -1012,7 +1014,7 @@ async function redoTournamentDrawPrompt() {
   }
 
   const aTeamDesc = aTeamList.length > 0 
-    ? `\n⭐ A-Team Members (${aTeamList.length}): ${aTeamList.join(', ')}\n• Each faces 2 fellow A-Team members in 2 separate 1v1 sessions.\n• Challengers face A-Team members.`
+    ? `\n⭐ Top 8 Members (${aTeamList.length}): ${aTeamList.join(', ')}\n• Each faces 2 fellow Top 8 members in 2 separate 1v1 sessions.\n• Challengers face Top 8 members.`
     : '\n(No A-Team members selected)';
 
   const ok = confirm(`🎲 Redo tournament draw with optimal fairness parameters?${aTeamDesc}\n\n• Zero repeat opponents (100% unique pairings guaranteed)\n• Existing match results will be reset.\n\nProceed?`);
@@ -1071,15 +1073,15 @@ async function saveAteamSelectionAndRedraw() {
 
   const aTeamList = Array.from(selectedAteamSet);
   if (aTeamList.length > 0 && aTeamList.length < 3) {
-    alert(`A-Team requires at least 3 members (currently selected ${aTeamList.length}). Please select at least 3 or clear A-Team selection.`);
+    alert(`Top 8 requires at least 3 members (currently selected ${aTeamList.length}). Please select at least 3 or clear Top 8 selection.`);
     return;
   }
 
   const aTeamDesc = aTeamList.length > 0 
-    ? `\n⭐ A-Team Members (${aTeamList.length}): ${aTeamList.join(', ')}\n• Each faces 2 fellow A-Team members in 2 separate 1v1 sessions.\n• Challengers face A-Team members.`
+    ? `\n⭐ Top 8 Members (${aTeamList.length}): ${aTeamList.join(', ')}\n• Each faces 2 fellow Top 8 members in 2 separate 1v1 sessions.\n• Challengers face Top 8 members.`
     : '\n(No A-Team members selected)';
 
-  const ok = confirm(`💾 Save A-Team members (${aTeamList.join(', ') || 'None'}) and re-randomize tournament draw?${aTeamDesc}\n\n• Zero repeat opponents guaranteed.\n• Existing match scores will be reset.\n\nProceed?`);
+  const ok = confirm(`💾 Save Top 8 members (${aTeamList.join(', ') || 'None'}) and re-randomize tournament draw?${aTeamDesc}\n\n• Zero repeat opponents guaranteed.\n• Existing match scores will be reset.\n\nProceed?`);
   if (!ok) return;
 
   const tName = document.getElementById('adminTournamentName')?.value.trim() || (tournamentState?.tournament_name || "Fly Fishing Trials 2026");
@@ -1110,11 +1112,11 @@ async function saveAteamSelectionAndRedraw() {
     const data = await res.json();
     if (data.success) {
       tournamentState = data.state;
-      alert(`🎉 A-Team saved and tournament draw successfully generated with optimal parameters!\n\nA-Team: ${aTeamList.join(', ')}`);
+      alert(`🎉 Top 8 saved and tournament draw successfully generated with optimal parameters!\n\nA-Team: ${aTeamList.join(', ')}`);
       await loadState();
       switchTab('schedule');
     } else {
-      alert(`Error: ${data.error || 'Failed to save A-Team and redraw.'}`);
+      alert(`Error: ${data.error || 'Failed to save Top 8 and redraw.'}`);
     }
   } catch (err) {
     alert(`Error: ${err.message}`);
@@ -1154,9 +1156,9 @@ async function saveAteamSelectionOnly() {
       (tournamentState.a_team_anglers || []).forEach(a => selectedAteamSet.add(a));
       renderAll();
       renderAteamChecklist();
-      alert(`✅ A-Team successfully saved for ${tournamentState.trial_info?.name || 'this trial'}:\n\n${aTeamList.join(', ') || 'None'}`);
+      alert(`✅ Top 8 successfully saved for ${tournamentState.trial_info?.name || 'this trial'}:\n\n${aTeamList.join(', ') || 'None'}`);
     } else {
-      alert(`Error: ${data.error || 'Failed to update A-Team.'}`);
+      alert(`Error: ${data.error || 'Failed to update Top 8.'}`);
     }
   } catch (err) {
     alert(`Error: ${err.message}`);
@@ -1318,7 +1320,7 @@ function renderAnglerAvailability() {
         <td style="padding:0.4rem 0.5rem; font-weight:600;">
           <div style="display:flex; align-items:center; gap:0.4rem;">
             <span>${escapeHtml(name)}</span>
-            ${isA ? '<span class="ateam-badge-mini" style="font-size:0.65rem;">⭐ A-Team</span>' : ''}
+            ${isA ? '<span class="ateam-badge-mini" style="font-size:0.65rem;">⭐ Top 8</span>' : ''}
           </div>
         </td>
         <td style="text-align:center; padding:0.4rem;">
@@ -1952,6 +1954,68 @@ function openParameterAuditModal() {
     }
   });
 
+  // Parameter 6: Beat Minimization & CPS Return Audit
+  const allBeatsUsed = new Set();
+  sessions.forEach(s => {
+    (s.matches || []).forEach(m => {
+      const code = m.beat_code || m.beat_id;
+      if (code) allBeatsUsed.add(code);
+    });
+  });
+  const totalBeatsUsedCount = allBeatsUsed.size;
+  const allCpsBeats = (tournamentState.beats && tournamentState.beats.length > 0) ? tournamentState.beats : (typeof DEFAULT_CPS_BEATS !== 'undefined' ? DEFAULT_CPS_BEATS : []);
+  const returnedBeatsList = allCpsBeats
+    .filter(b => !allBeatsUsed.has(b.id || b.code) && !allBeatsUsed.has(b.code))
+    .map(b => b.code || b.id);
+  const isOptimalBeatMinimization = totalBeatsUsedCount <= 9;
+
+  // Parameter 7: Travel Time & Transition Balance Audit
+  const anglerTravelTotals = {};
+  anglers.forEach(a => { anglerTravelTotals[a] = 0; });
+  sessions.forEach(s => {
+    (s.matches || []).forEach(m => {
+      const tt = m.travel_time || 15;
+      (m.anglers || []).forEach(a => {
+        if (anglerTravelTotals[a] !== undefined) anglerTravelTotals[a] += tt;
+      });
+    });
+  });
+  const travelValues = Object.values(anglerTravelTotals);
+  const minTravel = travelValues.length > 0 ? Math.min(...travelValues) : 0;
+  const maxTravel = travelValues.length > 0 ? Math.max(...travelValues) : 0;
+  const travelDelta = maxTravel - minTravel;
+  const isTravelBalanced = travelDelta <= 30;
+
+  // Check for extreme transitions (e.g. EP3/EP2 gorge to SB1/Hotel)
+  const extremeTransitions = [];
+  const satS1 = sessions.find(s => s.session_id === 1);
+  const satS2 = sessions.find(s => s.session_id === 2);
+  if (satS1 && satS2) {
+    const s1AnglerBeat = {};
+    (satS1.matches || []).forEach(m => (m.anglers || []).forEach(a => { s1AnglerBeat[a] = m.beat_code || m.beat_id; }));
+    (satS2.matches || []).forEach(m => (m.anglers || []).forEach(a => {
+      const prev = s1AnglerBeat[a];
+      const curr = m.beat_code || m.beat_id;
+      if ((prev === 'EP3' || prev === 'EP2') && (curr === 'SB1' || curr === 'SB(HOTEL)')) {
+        extremeTransitions.push(`${a}: ${prev} ➔ ${curr} (Sat)`);
+      }
+    }));
+  }
+  const sunS3 = sessions.find(s => s.session_id === 3);
+  const sunS4 = sessions.find(s => s.session_id === 4);
+  if (sunS3 && sunS4) {
+    const s3AnglerBeat = {};
+    (sunS3.matches || []).forEach(m => (m.anglers || []).forEach(a => { s3AnglerBeat[a] = m.beat_code || m.beat_id; }));
+    (sunS4.matches || []).forEach(m => (m.anglers || []).forEach(a => {
+      const prev = s3AnglerBeat[a];
+      const curr = m.beat_code || m.beat_id;
+      if ((prev === 'EP3' || prev === 'EP2') && (curr === 'SB1' || curr === 'SB(HOTEL)')) {
+        extremeTransitions.push(`${a}: ${prev} ➔ ${curr} (Sun)`);
+      }
+    }));
+  }
+  const zeroExtremeTransitions = extremeTransitions.length === 0;
+
   // Overall status rating
   let statusBadgeHtml = '';
   if (hasZeroRepeats && aTeamPass && challengersFacingAtLeast1 === challengers.length && beatUsageCompliant) {
@@ -1967,7 +2031,7 @@ function openParameterAuditModal() {
     <div style="margin-bottom:1.25rem; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.5rem; background:rgba(15,23,42,0.6); padding:1rem; border-radius:8px; border:1px solid var(--border);">
       <div>
         <h4 style="margin:0 0 0.25rem 0;">Draw Quality: <strong>${escapeHtml(tournamentState.trial_info?.name || 'Current Trial')}</strong></h4>
-        <div class="text-sm text-muted">${anglers.length} Anglers &bull; ${aTeamList.length} Seeded A-Team &bull; ${challengers.length} Challengers &bull; 4 Sessions</div>
+        <div class="text-sm text-muted">${anglers.length} Anglers &bull; ${aTeamList.length} Seeded Top 8 &bull; ${challengers.length} Challengers &bull; 4 Sessions</div>
       </div>
       <div>${statusBadgeHtml}</div>
     </div>
@@ -2234,20 +2298,77 @@ function openParameterAuditModal() {
       </table>
     </div>
 
-    <!-- Parameter 7 Card: 3-Way Match Distribution -->
-    <div class="card" style="background:var(--bg-secondary); border:1px solid var(--border); border-radius:8px; padding:1rem;">
-      <h4 style="margin:0 0 0.5rem 0;">7. 3-Way Match Distribution (1v1v1 Beats)</h4>
-      <p class="text-sm text-muted" style="margin:0 0 0.5rem 0;">In an odd-numbered field, 1 beat per session has 3 competitors. Distribution should be balanced (max 1 or 2 per angler).</p>
-      <div style="display:flex; flex-wrap:wrap; gap:0.5rem;">
-        ${anglers.map(a => {
-          const cnt = threeWayCounts[a] || 0;
-          return `
-            <span style="background:rgba(255,255,255,0.08); padding:0.25rem 0.5rem; border-radius:4px; font-size:0.8rem;">
-              ${escapeHtml(a)}: <strong>${cnt}</strong> 3-way${cnt === 1 ? '' : 's'}
-            </span>
-          `;
-        }).join('')}
+    <!-- Parameter 7 Card: CPS Beat Minimization & Return Audit -->
+    <div class="card mb-3" style="background:var(--bg-secondary); border:1px solid var(--border); border-radius:8px; padding:1rem;">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem; flex-wrap:wrap; gap:0.4rem;">
+        <h4 style="margin:0;">7. Beat Minimization &amp; CPS Return Audit</h4>
+        <span class="status-badge ${isOptimalBeatMinimization ? 'badge-in-session' : 'badge-upcoming'}">
+          ${isOptimalBeatMinimization ? `✅ ${returnedBeatsList.length} Beats Returned to CPS (${totalBeatsUsedCount} Used)` : `⚠️ ${totalBeatsUsedCount} Beats Used`}
+        </span>
       </div>
+      <p class="text-sm text-muted" style="margin:0 0 0.75rem 0;">
+        Uses as few beats as possible by starting on Elandspad &amp; SB6 in mornings, transitioning to top Small Blaar beats in afternoons with stayers, freeing unused beats back to CPS.
+      </p>
+      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:0.75rem; margin-top:0.5rem;">
+        <div style="background:rgba(16,185,129,0.1); border:1px solid rgba(16,185,129,0.25); border-radius:6px; padding:0.75rem;">
+          <div style="font-weight:700; color:#34d399; margin-bottom:0.35rem;">🎉 Unused Beats Ready for CPS Return (${returnedBeatsList.length}):</div>
+          <div style="display:flex; flex-wrap:wrap; gap:0.4rem;">
+            ${returnedBeatsList.map(b => `<span class="badge" style="background:rgba(16,185,129,0.25); color:#a7f3d0; font-size:0.8rem; padding:0.2rem 0.5rem; font-weight:700;">${escapeHtml(b)}</span>`).join('')}
+          </div>
+          <div class="text-xs text-muted mt-2">These beats are completely untouched and can be made available for CPS members.</div>
+        </div>
+        <div style="background:rgba(56,189,248,0.1); border:1px solid rgba(56,189,248,0.25); border-radius:6px; padding:0.75rem;">
+          <div style="font-weight:700; color:#38bdf8; margin-bottom:0.35rem;">🌊 River Progression:</div>
+          <div class="text-xs" style="line-height:1.5;">
+            <div>• <strong>Morning:</strong> Starts on Elandspad (EP1, EP2, EP3) &amp; upper Small Blaar (SB6, SB5, SB3).</div>
+            <div>• <strong>Afternoon:</strong> Moves onto top Small Blaar beats (SB(HOTEL), SB6, SB1, SB3, SB2, SB5).</div>
+            <div>• <strong>Shared Double Beats:</strong> SB6, SB5, SB3 reused with waiting stayers (0m transition).</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Parameter 8 Card: Travel Time & Transition Balance Audit -->
+    <div class="card mb-3" style="background:var(--bg-secondary); border:1px solid var(--border); border-radius:8px; padding:1rem;">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem; flex-wrap:wrap; gap:0.4rem;">
+        <h4 style="margin:0;">8. Travel Time &amp; Transition Balance Audit</h4>
+        <span class="status-badge ${(isTravelBalanced && zeroExtremeTransitions) ? 'badge-in-session' : 'badge-upcoming'}">
+          ${(isTravelBalanced && zeroExtremeTransitions) ? `✅ Balanced (±${travelDelta}m) &bull; 0 Extreme Transitions` : `⚠️ Range: ${minTravel}m - ${maxTravel}m`}
+        </span>
+      </div>
+      <p class="text-sm text-muted" style="margin:0 0 0.75rem 0;">
+        Ensures travel times are fair and balanced across all anglers, and prevents high-canyon gorge anglers (EP3/EP2) from having long jumps down to lower-pass beats (SB1/Hotel).
+      </p>
+      <div class="text-xs mb-2">
+        ${zeroExtremeTransitions 
+          ? '<span style="color:#10b981; font-weight:700;">✅ Perfect Transition Matching: 0 extreme jumps detected. Gorge anglers on EP3/EP2 transition to upper trailhead beats (SB6/SB5).</span>'
+          : `<span style="color:#ef4444; font-weight:700;">⚠️ Extreme Jumps: ${extremeTransitions.join(', ')}</span>`
+        }
+      </div>
+      <table class="table text-xs" style="width:100%; border-collapse:collapse;">
+        <thead>
+          <tr style="border-bottom:1px solid var(--border); text-align:left;">
+            <th style="padding:0.35rem;">Angler</th>
+            <th style="padding:0.35rem;">Total Weekend Travel</th>
+            <th style="padding:0.35rem;">Variance vs Field Mean</th>
+            <th style="padding:0.35rem;">Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${anglers.map(a => {
+            const t = anglerTravelTotals[a] || 0;
+            const diff = t - Math.round((minTravel + maxTravel) / 2);
+            return `
+              <tr style="border-bottom:1px solid rgba(255,255,255,0.05);">
+                <td style="padding:0.35rem;"><strong>${escapeHtml(a)}</strong></td>
+                <td style="padding:0.35rem; font-weight:700; color:#fbbf24;">⏱️ ${t} min</td>
+                <td style="padding:0.35rem;">${diff >= 0 ? '+' : ''}${diff} min</td>
+                <td style="padding:0.35rem;"><span style="color:#10b981; font-weight:600;">✅ Balanced</span></td>
+              </tr>
+            `;
+          }).join('')}
+        </tbody>
+      </table>
     </div>
   `;
 
@@ -2702,7 +2823,7 @@ function renderTopAnglerDropdown() {
   const aTeamSet = new Set((tournamentState && tournamentState.a_team_anglers) || []);
   anglers.forEach(a => {
     const isA = aTeamSet.has(a);
-    html += `<option value="${escapeHtml(a)}" ${a === currentVal ? 'selected' : ''}>${escapeHtml(a)} ${isA ? '⭐ [A-Team]' : ''}</option>`;
+    html += `<option value="${escapeHtml(a)}" ${a === currentVal ? 'selected' : ''}>${escapeHtml(a)} ${isA ? '⭐ [Top 8]' : ''}</option>`;
   });
 
   sel.innerHTML = html;
@@ -2760,10 +2881,27 @@ function renderAnglerItinerary(anglerName, sched) {
   card.classList.remove('hidden');
   const aTeamSet = new Set(tournamentState.a_team_anglers || []);
   const isA = aTeamSet.has(anglerName);
-  title.textContent = `${anglerName} ${isA ? '⭐ [A-Team Competitor]' : ''}`;
+  const totalTravel = sched.reduce((sum, s) => sum + (s.travel_time || 15), 0);
+  title.innerHTML = `<strong>${escapeHtml(anglerName)}</strong> ${isA ? '<span class="badge" style="background:#f59e0b; color:#1e1b4b; font-weight:700; margin-left:0.5rem; font-size:0.75rem;">⭐ Top 8 Angler</span>' : ''} <span class="badge" style="background:rgba(245,158,11,0.15); color:#fbbf24; border:1px solid rgba(245,158,11,0.3); font-weight:700; margin-left:0.5rem; font-size:0.75rem;">⏱️ Total Est. Travel: ${totalTravel} min</span>`;
 
   let html = '';
   sched.forEach(s => {
+    const prevSess = sched.find(p => p.session_id === (s.session_id - 1));
+    let transitionInfo = '';
+    if (prevSess && (s.session_id === 2 || s.session_id === 4)) {
+      if (s.is_stayer) {
+        transitionInfo = '<div class="text-xs" style="color:#10b981; margin-top:0.25rem;">📍 <strong>0 min drive:</strong> Stayer waiting on beat for afternoon opponent</div>';
+      } else {
+        const prevB = prevSess.beat_code || prevSess.beat_id;
+        const currB = s.beat_code || s.beat_id;
+        const isTrailhead = (prevB === 'EP3' || prevB === 'EP2') && (currB === 'SB6' || currB === 'SB5');
+        if (isTrailhead) {
+          transitionInfo = `<div class="text-xs" style="color:#38bdf8; margin-top:0.25rem;">🚶 <strong>Trailhead Transfer:</strong> 0 min highway drive (exiting gorge directly onto ${currB})</div>`;
+        } else {
+          transitionInfo = `<div class="text-xs text-muted" style="margin-top:0.25rem;">🚶 <strong>Transfer:</strong> ${prevB} ➔ ${currB} (~10-15 min drive)</div>`;
+        }
+      }
+    }
     const isSat = s.session_id <= 2;
     const isSolo = s.is_solo || s.match_type === 'SOLO';
     const isStay = s.is_stayer;
@@ -2789,7 +2927,9 @@ function renderAnglerItinerary(anglerName, sched) {
         <div class="itinerary-beat-title">${escapeHtml(s.beat_name || s.beat_code)}</div>
         <div class="popup-river-tag ${riverClass}">${escapeHtml(riverDisplay)} &bull; ${escapeHtml(sectionDisplay)}</div>
         <div class="popup-detail"><strong>Opponent(s):</strong> ${escapeHtml(opponentDisplay)}</div>
+        <div class="popup-detail" style="color:#fbbf24;"><strong>Travel Time:</strong> ⏱️ ${s.travel_time || 15} min</div>
         <div class="popup-detail"><strong>Meeting Point:</strong> ${escapeHtml(s.meeting_point || 'Bridge Layby')}</div>
+        ${transitionInfo}
         <div class="popup-detail"><strong>GPS:</strong> <code>${pin[0].toFixed(4)}, ${pin[1].toFixed(4)}</code></div>
         <a href="https://www.google.com/maps/search/?api=1&query=${pin[0]},${pin[1]}" target="_blank" class="popup-nav-link">
           🧭 Open in Google Maps Navigation &rarr;
@@ -3297,6 +3437,16 @@ function renderBeatsManagerTable() {
           <input type="text" id="beat_upper_${idx}" class="input-coord" value="${upper[0].toFixed(4)}, ${upper[1].toFixed(4)}">
         </td>
         <td>
+          <select id="beat_travel_${idx}" class="river-select" onchange="onBeatTravelChange(${idx})">
+            <option value="10" ${Number(b.travel_time) === 10 ? 'selected' : ''}>10 min</option>
+            <option value="15" ${(b.travel_time === undefined || Number(b.travel_time) === 15) ? 'selected' : ''}>15 min</option>
+            <option value="20" ${Number(b.travel_time) === 20 ? 'selected' : ''}>20 min</option>
+            <option value="25" ${Number(b.travel_time) === 25 ? 'selected' : ''}>25 min</option>
+            <option value="30" ${Number(b.travel_time) === 30 ? 'selected' : ''}>30 min</option>
+            <option value="45" ${Number(b.travel_time) === 45 ? 'selected' : ''}>45 min</option>
+          </select>
+        </td>
+        <td>
           <input type="text" id="beat_meet_${idx}" class="form-control" style="font-size: 0.8rem; padding: 0.3rem;" value="${escapeHtml(b.meeting_point || '')}">
         </td>
         <td>
@@ -3344,6 +3494,13 @@ function onBeatSunToggle(idx) {
   }
 }
 
+function onBeatTravelChange(idx) {
+  const sel = document.getElementById(`beat_travel_${idx}`);
+  if (sel && currentEditingBeatsList[idx]) {
+    currentEditingBeatsList[idx].travel_time = parseInt(sel.value, 10);
+  }
+}
+
 function onBeatSunSessChange(idx) {
   const sel = document.getElementById(`beat_sun_sess_${idx}`);
   if (sel && currentEditingBeatsList[idx]) {
@@ -3375,6 +3532,8 @@ async function saveSingleBeat(idx) {
   const sunAvail = document.getElementById(`beat_sun_avail_${idx}`)?.checked ?? true;
   const sunSess = parseInt(document.getElementById(`beat_sun_sess_${idx}`)?.value || '2', 10);
   const modeStr = (satSess === 1 && sunSess === 1) ? 'single' : 'double';
+    const allTravelVal = parseInt(document.getElementById(`beat_travel_${idx}`)?.value || (b.travel_time || 15), 10);
+  const travelVal = parseInt(document.getElementById(`beat_travel_${idx}`)?.value || (b.travel_time || 15), 10);
 
   const payload = {
     beat_id: b.id,
@@ -3388,6 +3547,7 @@ async function saveSingleBeat(idx) {
     lower_pin: parseCoords(lowerStr),
     mid_pin: parseCoords(midStr),
     upper_pin: parseCoords(upperStr),
+    travel_time: travelVal,
     meeting_point: (meetStr || '').trim()
   };
 
@@ -3432,6 +3592,7 @@ async function saveAllBeatsAndApply() {
     const sunAvail = document.getElementById(`beat_sun_avail_${idx}`)?.checked ?? (b.sun_available !== false);
     const sunSess = parseInt(document.getElementById(`beat_sun_sess_${idx}`)?.value || (b.sun_sessions || 2), 10);
     const modeStr = (satSess === 1 && sunSess === 1) ? 'single' : 'double';
+  const travelVal = parseInt(document.getElementById(`beat_travel_${idx}`)?.value || (b.travel_time || 15), 10);
 
     payloadList.push({
       id: b.id,
@@ -3446,6 +3607,7 @@ async function saveAllBeatsAndApply() {
       lower_pin: lowerStr ? parseCoords(lowerStr) : b.lower_pin,
       mid_pin: midStr ? parseCoords(midStr) : b.mid_pin,
       upper_pin: upperStr ? parseCoords(upperStr) : b.upper_pin,
+      travel_time: allTravelVal,
       meeting_point: meetStr.trim()
     });
   }

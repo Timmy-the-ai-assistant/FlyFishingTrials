@@ -15,10 +15,10 @@ Constraints:
   - For N > 11: 12 distinct anglers participate across the 4 sessions.
 - Opponents:
   - Zero repeat opponents (no pair meets twice).
-- A-Team Constraints:
-  - Any angler on the A-team has exactly two matches against other A-team anglers.
+- Top 8 Constraints:
+  - Any angler on the Top 8 has exactly two matches against other Top 8 anglers.
   - And exactly two normal matches against challengers.
-  - Every challenger faces at least one A-team angler across the 4 sessions.
+  - Every challenger faces at least one Top 8 angler across the 4 sessions.
 - Beat Movement Constraints:
   - Day 1 (S1 -> S2): on each beat, one angler stays on the beat and the other moves.
   - Day 2 (S3 -> S4): the angler that moved on Day 1 stays on the beat, and the one that stayed moves.
@@ -92,7 +92,7 @@ def generate_trials_schedule(
     can_strictly_cover_both_rivers = has_both_rivers and (min_river_beats * 5 >= N)
 
     
-    # Process A-team members
+    # Process Top 8 members
     raw_a_team = a_team_anglers or []
     clean_a_team = [a for a in raw_a_team if a in anglers]
     a_indices: Set[int] = {i for i, a in enumerate(anglers) if a in clean_a_team}
@@ -103,7 +103,7 @@ def generate_trials_schedule(
     if has_a_team and k < 3:
         return {
             "success": False,
-            "error": f"A-Team requires at least 3 anglers (marked {k}) so each member can play 2 matches against different A-team anglers without repeat pairings."
+            "error": f"Top 8 requires at least 3 anglers (marked {k}) so each member can play 2 matches against different Top 8 anglers without repeat pairings."
         }
     
     strict_non_a_coverage = (2 * k >= len(non_a_indices))
@@ -133,7 +133,7 @@ def generate_trials_schedule(
                            (c2, c3) not in pairs_met and (c3, c2) not in pairs_met:
                             if has_a_team:
                                 a_in_comb = [x for x in comb if x in a_indices]
-                                # A-vs-A matches must be strictly 1v1: max 1 A-Team member in any 3-way match
+                                # A-vs-A matches must be strictly 1v1: max 1 Top 8 member in any 3-way match
                                 if len(a_in_comb) > 1:
                                     continue
                             found_group3 = comb
@@ -491,7 +491,7 @@ def generate_trials_schedule(
     # Smooth fallback if multi-river was too constrained for the specific seed
     return {
         "success": False,
-        "error": "Could not find a valid schedule satisfying all constraints. Please verify A-Team or available beats."
+        "error": "Could not find a valid schedule satisfying all constraints. Please verify Top 8 or available beats."
     }
 
 if __name__ == "__main__":

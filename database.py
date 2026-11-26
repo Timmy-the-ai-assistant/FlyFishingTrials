@@ -1,3 +1,4 @@
+APP_VERSION = "v2.5.0"
 """
 Fly Fishing Trials Database & Verification Engine
 =================================================
@@ -7,7 +8,7 @@ Handles persistent storage of:
 - Standard Naming (Autumn Trial [Year] A/B, Spring Trial [Year] A/B, Stillwater Trial [Year] A/B)
 - Organizer Admin Authentication (Password: "small-Blaar")
 - WhatsApp Group Link per trial
-- Angler list (8 to 20 competitors with A-Team designation)
+- Angler list (8 to 20 competitors with Top 8 Anglers designation)
 - Generated 4-session schedule with CPS beats
 - Dual-submission verification engine ("Google Forms" style)
 """
@@ -163,7 +164,7 @@ class TournamentDB:
                 {
                     "timestamp": datetime.datetime.now().isoformat(),
                     "type": "SYSTEM",
-                    "message": f"{tournament_name} initialized with {len(clean_anglers)} anglers and {len(clean_a_team)} A-Team members across 4 sessions."
+                    "message": f"{tournament_name} initialized with {len(clean_anglers)} anglers and {len(clean_a_team)} Top 8 members across 4 sessions."
                 }
             ]
         }
@@ -603,7 +604,7 @@ class TournamentDB:
                 {
                     "timestamp": datetime.datetime.now().isoformat(),
                     "type": "RESET",
-                    "message": f"Tournament randomized for {len(clean_anglers)} anglers with {len(clean_a_team)} A-Team members across {schedule_res['num_beats']} beats."
+                    "message": f"Tournament randomized for {len(clean_anglers)} anglers with {len(clean_a_team)} Top 8 members across {schedule_res['num_beats']} beats."
                 }
             ]
         }

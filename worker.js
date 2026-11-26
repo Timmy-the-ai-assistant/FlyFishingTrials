@@ -1,3 +1,4 @@
+const APP_VERSION = "v2.5.0";
 /**
  * WP Fly Fishing Trials - Cloudflare Edge Worker
  * Full Edge-native API engine with zero cold starts and instant response times.
@@ -157,20 +158,20 @@ function checkAdminAuth(request, body = {}) {
 }
 
 const DEFAULT_CPS_BEATS = [
-  { id: "SB1", code: "SB1", name: "SB1", river: "Small Blaar", enabled: true, sat_available: true, sat_sessions: 2, sun_available: true, sun_sessions: 2, usage_mode: "double", lower_pin: [-33.7150, 19.1740], mid_pin: [-33.7170, 19.1700], upper_pin: [-33.7190, 19.1655], meeting_point: "Picnic site pull-off" },
-  { id: "SB2", code: "SB2", name: "SB2", river: "Small Blaar", enabled: true, sat_available: true, sat_sessions: 2, sun_available: true, sun_sessions: 2, usage_mode: "double", lower_pin: [-33.7190, 19.1655], mid_pin: [-33.7212, 19.1590], upper_pin: [-33.7235, 19.1530], meeting_point: "Picnic site parking" },
-  { id: "SB3", code: "SB3", name: "SB3", river: "Small Blaar", enabled: true, sat_available: true, sat_sessions: 2, sun_available: true, sun_sessions: 2, usage_mode: "double", lower_pin: [-33.7235, 19.1530], mid_pin: [-33.7258, 19.1470], upper_pin: [-33.7272, 19.1415], meeting_point: "N1 emergency telephone layby 3" },
-  { id: "SB4", code: "SB4", name: "SB4", river: "Small Blaar", enabled: true, sat_available: true, sat_sessions: 2, sun_available: true, sun_sessions: 2, usage_mode: "double", lower_pin: [-33.7272, 19.1415], mid_pin: [-33.7285, 19.1370], upper_pin: [-33.7295, 19.1320], meeting_point: "Donkergat pull-off" },
-  { id: "SB5", code: "SB5", name: "SB5", river: "Small Blaar", enabled: true, sat_available: true, sat_sessions: 2, sun_available: true, sun_sessions: 2, usage_mode: "double", lower_pin: [-33.7295, 19.1320], mid_pin: [-33.7305, 19.1270], upper_pin: [-33.7319, 19.1141], meeting_point: "CPS Elandspad parking lot" },
-  { id: "SB6", code: "SB6", name: "SB6", river: "Small Blaar", enabled: true, sat_available: true, sat_sessions: 2, sun_available: true, sun_sessions: 2, usage_mode: "double", lower_pin: [-33.7319, 19.1141], mid_pin: [-33.7330, 19.1105], upper_pin: [-33.7342, 19.1065], meeting_point: "Tunnel East Portal Parking / Junction Path" },
-  { id: "SB(HOTEL)", code: "SB(HOTEL)", name: "SB(HOTEL)", river: "Small Blaar", enabled: true, sat_available: true, sat_sessions: 1, sun_available: true, sun_sessions: 1, usage_mode: "single", lower_pin: [-33.7125, 19.1800], mid_pin: [-33.7138, 19.1770], upper_pin: [-33.7150, 19.1740], meeting_point: "Du Kloof Lodge guest parking" },
-  { id: "SB(TRANSPORT)", code: "SB(TRANSPORT)", name: "SB(TRANSPORT)", river: "Small Blaar", enabled: true, sat_available: true, sat_sessions: 2, sun_available: true, sun_sessions: 2, usage_mode: "double", lower_pin: [-33.7085, 19.1895], mid_pin: [-33.7105, 19.1845], upper_pin: [-33.7125, 19.1800], meeting_point: "Transport bridge parking" },
-  { id: "EP1", code: "EP1", name: "EP1", river: "Elands Pad", enabled: true, sat_available: true, sat_sessions: 2, sun_available: true, sun_sessions: 2, usage_mode: "double", lower_pin: [-33.7319, 19.1141], mid_pin: [-33.7360, 19.1152], upper_pin: [-33.7405, 19.1162], meeting_point: "Junction Pool trail head" },
-  { id: "EP2", code: "EP2", name: "EP2", river: "Elands Pad", enabled: true, sat_available: true, sat_sessions: 2, sun_available: true, sun_sessions: 2, usage_mode: "double", lower_pin: [-33.7405, 19.1162], mid_pin: [-33.7460, 19.1172], upper_pin: [-33.7520, 19.1188], meeting_point: "Fisherman's Cave trail" },
-  { id: "EP3", code: "EP3", name: "EP3", river: "Elands Pad", enabled: true, sat_available: true, sat_sessions: 1, sun_available: true, sun_sessions: 1, usage_mode: "single", lower_pin: [-33.7520, 19.1188], mid_pin: [-33.7565, 19.1195], upper_pin: [-33.7610, 19.1205], meeting_point: "Star beat rock shelter" },
-  { id: "EP4", code: "EP4", name: "EP4", river: "Elands Pad", enabled: true, sat_available: true, sat_sessions: 1, sun_available: true, sun_sessions: 1, usage_mode: "single", lower_pin: [-33.7610, 19.1205], mid_pin: [-33.7650, 19.1215], upper_pin: [-33.7700, 19.1230], meeting_point: "Kraalstroom gorge access" },
-  { id: "MOLENAARS(UPPER)", code: "MOLENAARS(UPPER)", name: "MOLENAARS(UPPER)", river: "Small Blaar", enabled: true, sat_available: true, sat_sessions: 2, sun_available: true, sun_sessions: 2, usage_mode: "double", lower_pin: [-33.7040, 19.2000], mid_pin: [-33.7065, 19.1945], upper_pin: [-33.7085, 19.1895], meeting_point: "Upper Molenaars turn-off" },
-  { id: "MOLENAARS(LOWER)", code: "MOLENAARS(LOWER)", name: "MOLENAARS(LOWER)", river: "Small Blaar", enabled: true, sat_available: true, sat_sessions: 2, sun_available: true, sun_sessions: 2, usage_mode: "double", lower_pin: [-33.6980, 19.2150], mid_pin: [-33.7010, 19.2075], upper_pin: [-33.7040, 19.2000], meeting_point: "Lower Molenaars boundary" }
+  { id: "SB1", code: "SB1", name: "SB1", river: "Small Blaar", enabled: true, sat_available: true, sat_sessions: 2, sun_available: true, sun_sessions: 2, usage_mode: "double", travel_time: 15, lower_pin: [-33.7150, 19.1740], mid_pin: [-33.7170, 19.1700], upper_pin: [-33.7190, 19.1655], meeting_point: "Picnic site pull-off" },
+  { id: "SB2", code: "SB2", name: "SB2", river: "Small Blaar", enabled: true, sat_available: true, sat_sessions: 2, sun_available: true, sun_sessions: 2, usage_mode: "double", travel_time: 15, lower_pin: [-33.7190, 19.1655], mid_pin: [-33.7212, 19.1590], upper_pin: [-33.7235, 19.1530], meeting_point: "Picnic site parking" },
+  { id: "SB3", code: "SB3", name: "SB3", river: "Small Blaar", enabled: true, sat_available: true, sat_sessions: 2, sun_available: true, sun_sessions: 2, usage_mode: "double", travel_time: 15, lower_pin: [-33.7235, 19.1530], mid_pin: [-33.7258, 19.1470], upper_pin: [-33.7272, 19.1415], meeting_point: "N1 emergency telephone layby 3" },
+  { id: "SB4", code: "SB4", name: "SB4", river: "Small Blaar", enabled: true, sat_available: true, sat_sessions: 2, sun_available: true, sun_sessions: 2, usage_mode: "double", travel_time: 15, lower_pin: [-33.7272, 19.1415], mid_pin: [-33.7285, 19.1370], upper_pin: [-33.7295, 19.1320], meeting_point: "Donkergat pull-off" },
+  { id: "SB5", code: "SB5", name: "SB5", river: "Small Blaar", enabled: true, sat_available: true, sat_sessions: 2, sun_available: true, sun_sessions: 2, usage_mode: "double", travel_time: 15, lower_pin: [-33.7295, 19.1320], mid_pin: [-33.7305, 19.1270], upper_pin: [-33.7319, 19.1141], meeting_point: "CPS Elandspad parking lot" },
+  { id: "SB6", code: "SB6", name: "SB6", river: "Small Blaar", enabled: true, sat_available: true, sat_sessions: 2, sun_available: true, sun_sessions: 2, usage_mode: "double", travel_time: 15, lower_pin: [-33.7319, 19.1141], mid_pin: [-33.7330, 19.1105], upper_pin: [-33.7342, 19.1065], meeting_point: "Tunnel East Portal Parking / Junction Path" },
+  { id: "SB(HOTEL)", code: "SB(HOTEL)", name: "SB(HOTEL)", river: "Small Blaar", enabled: true, sat_available: true, sat_sessions: 1, sun_available: true, sun_sessions: 1, usage_mode: "single", travel_time: 15, lower_pin: [-33.7125, 19.1800], mid_pin: [-33.7138, 19.1770], upper_pin: [-33.7150, 19.1740], meeting_point: "Du Kloof Lodge guest parking" },
+  { id: "SB(TRANSPORT)", code: "SB(TRANSPORT)", name: "SB(TRANSPORT)", river: "Small Blaar", enabled: true, sat_available: true, sat_sessions: 2, sun_available: true, sun_sessions: 2, usage_mode: "double", travel_time: 15, lower_pin: [-33.7085, 19.1895], mid_pin: [-33.7105, 19.1845], upper_pin: [-33.7125, 19.1800], meeting_point: "Transport bridge parking" },
+  { id: "EP1", code: "EP1", name: "EP1", river: "Elands Pad", enabled: true, sat_available: true, sat_sessions: 2, sun_available: true, sun_sessions: 2, usage_mode: "double", travel_time: 15, lower_pin: [-33.7319, 19.1141], mid_pin: [-33.7360, 19.1152], upper_pin: [-33.7405, 19.1162], meeting_point: "Junction Pool trail head" },
+  { id: "EP2", code: "EP2", name: "EP2", river: "Elands Pad", enabled: true, sat_available: true, sat_sessions: 2, sun_available: true, sun_sessions: 2, usage_mode: "double", travel_time: 30, lower_pin: [-33.7405, 19.1162], mid_pin: [-33.7460, 19.1172], upper_pin: [-33.7520, 19.1188], meeting_point: "Fisherman's Cave trail" },
+  { id: "EP3", code: "EP3", name: "EP3", river: "Elands Pad", enabled: true, sat_available: true, sat_sessions: 1, sun_available: true, sun_sessions: 1, usage_mode: "single", travel_time: 30, lower_pin: [-33.7520, 19.1188], mid_pin: [-33.7565, 19.1195], upper_pin: [-33.7610, 19.1205], meeting_point: "Star beat rock shelter" },
+  { id: "EP4", code: "EP4", name: "EP4", river: "Elands Pad", enabled: true, sat_available: true, sat_sessions: 1, sun_available: true, sun_sessions: 1, usage_mode: "single", travel_time: 30, lower_pin: [-33.7610, 19.1205], mid_pin: [-33.7650, 19.1215], upper_pin: [-33.7700, 19.1230], meeting_point: "Kraalstroom gorge access" },
+  { id: "MOLENAARS(UPPER)", code: "MOLENAARS(UPPER)", name: "MOLENAARS(UPPER)", river: "Small Blaar", enabled: true, sat_available: true, sat_sessions: 2, sun_available: true, sun_sessions: 2, usage_mode: "double", travel_time: 15, lower_pin: [-33.7040, 19.2000], mid_pin: [-33.7065, 19.1945], upper_pin: [-33.7085, 19.1895], meeting_point: "Upper Molenaars turn-off" },
+  { id: "MOLENAARS(LOWER)", code: "MOLENAARS(LOWER)", name: "MOLENAARS(LOWER)", river: "Small Blaar", enabled: true, sat_available: true, sat_sessions: 2, sun_available: true, sun_sessions: 2, usage_mode: "double", travel_time: 15, lower_pin: [-33.6980, 19.2150], mid_pin: [-33.7010, 19.2075], upper_pin: [-33.7040, 19.2000], meeting_point: "Lower Molenaars boundary" }
 ];
 
 function generateEdgeSchedule(anglers, aTeamAnglers = [], availableBeats = [], anglerAvailability = {}) {
@@ -404,57 +405,112 @@ function generateEdgeSchedule(anglers, aTeamAnglers = [], availableBeats = [], a
   const isEp = b => (b.river || '').toLowerCase().includes('eland');
   const isSb = b => !isEp(b);
 
-  function pickBalancedBeats(beatList, count, preferDouble = true) {
-    const list = [...beatList];
-    if (preferDouble) {
-      list.sort((a, b) => {
-        const ma = (a.usage_mode === 'single') ? 1 : 0;
-        const mb = (b.usage_mode === 'single') ? 1 : 0;
-        return ma - mb;
-      });
-    }
-    const ep = list.filter(isEp);
-    const sb = list.filter(isSb);
-    const res = [];
-    const maxL = Math.max(ep.length, sb.length);
-    for (let i = 0; i < maxL; i++) {
-      if (sb[i] && res.length < count && !res.includes(sb[i])) res.push(sb[i]);
-      if (ep[i] && res.length < count && !res.includes(ep[i])) res.push(ep[i]);
-    }
-    for (const b of list) {
-      if (res.length >= count) break;
-      if (!res.includes(b)) res.push(b);
-    }
-    return res;
+  // CPS Catch Ranking & River Strategy:
+  // Morning: Elands Pad (EP2, EP3, EP1, EP4) + Upper Small Blaar (SB6, SB5, SB3, SB2, SB1, SB(HOTEL))
+  // Afternoon: Best Small Blaar (SB(HOTEL), SB6, SB1, SB3, SB2, SB5, SB4, SB(TRANSPORT))
+  const BEAT_PRIORITY_MORNING = [
+    'EP2', 'EP3', 'EP1', 'SB6', 'SB5', 'SB3', 'SB2', 'SB1', 'SB(HOTEL)', 'EP4', 'SB4', 'SB(TRANSPORT)', 'MOLENAARS(UPPER)', 'MOLENAARS(LOWER)'
+  ];
+  const BEAT_PRIORITY_AFTERNOON = [
+    'SB(HOTEL)', 'SB6', 'SB1', 'SB3', 'SB2', 'SB5', 'SB4', 'SB(TRANSPORT)', 'EP1', 'EP2', 'EP3', 'EP4', 'MOLENAARS(UPPER)', 'MOLENAARS(LOWER)'
+  ];
+
+  function getPriorityScore(beat, prioList) {
+    const id = beat.id || beat.code;
+    const idx = prioList.indexOf(id);
+    return idx === -1 ? 999 : idx;
   }
 
-  // Saturday
+  function pickDayBeats(dayPool, amCount, pmCount) {
+    const epCandidates = dayPool.filter(isEp);
+    epCandidates.sort((a, b) => getPriorityScore(a, BEAT_PRIORITY_MORNING) - getPriorityScore(b, BEAT_PRIORITY_MORNING));
+    const sbCandidates = dayPool.filter(isSb);
+    sbCandidates.sort((a, b) => getPriorityScore(a, BEAT_PRIORITY_MORNING) - getPriorityScore(b, BEAT_PRIORITY_MORNING));
+
+    const amBeats = [];
+    const maxEpInAm = Math.min(Math.ceil(amCount / 2), epCandidates.length);
+    for (let i = 0; i < maxEpInAm; i++) {
+      amBeats.push(epCandidates[i]);
+    }
+    for (const b of sbCandidates) {
+      if (amBeats.length >= amCount) break;
+      if (!amBeats.some(x => (x.id || x.code) === (b.id || b.code))) amBeats.push(b);
+    }
+    for (const b of epCandidates) {
+      if (amBeats.length >= amCount) break;
+      if (!amBeats.some(x => (x.id || x.code) === (b.id || b.code))) amBeats.push(b);
+    }
+
+    const amSbDoubles = amBeats.filter(b => isSb(b) && (b.sat_sessions === 2 || (b.sat_sessions === undefined && b.usage_mode !== 'single')));
+    amSbDoubles.sort((a, b) => getPriorityScore(a, BEAT_PRIORITY_AFTERNOON) - getPriorityScore(b, BEAT_PRIORITY_AFTERNOON));
+
+    const pmBeats = [...amSbDoubles];
+    const sbAfternoonPool = dayPool.filter(isSb);
+    sbAfternoonPool.sort((a, b) => getPriorityScore(a, BEAT_PRIORITY_AFTERNOON) - getPriorityScore(b, BEAT_PRIORITY_AFTERNOON));
+    for (const b of sbAfternoonPool) {
+      if (pmBeats.length >= pmCount) break;
+      if (!pmBeats.some(x => (x.id || x.code) === (b.id || b.code))) pmBeats.push(b);
+    }
+    for (const b of dayPool) {
+      if (pmBeats.length >= pmCount) break;
+      if (!pmBeats.some(x => (x.id || x.code) === (b.id || b.code))) pmBeats.push(b);
+    }
+
+    const overlapping = [];
+    amBeats.forEach(amb => {
+      const pIdx = pmBeats.findIndex(pmb => (pmb.id || pmb.code) === (amb.id || amb.code));
+      if (pIdx !== -1) {
+        overlapping.push(amb);
+      }
+    });
+
+    const amAligned = [...overlapping, ...amBeats.filter(b => !overlapping.some(o => (o.id || o.code) === (b.id || b.code)))];
+    const pmAligned = [...overlapping, ...pmBeats.filter(b => !overlapping.some(o => (o.id || o.code) === (b.id || b.code)))];
+
+    return { amBeats: amAligned, pmBeats: pmAligned, overlappingCount: overlapping.length };
+  }
+
+  // Saturday (S1 Morning -> S2 Afternoon)
   const satPool = pool.filter(b => b.sat_available !== false);
   const activeSatPool = satPool.length >= maxBeatsNeeded ? satPool : pool;
-  const s1Beats = pickBalancedBeats(activeSatPool, s1NumBeats, true);
-  const s1DoubleBeats = s1Beats.filter(b => (b.sat_sessions === 2 || (b.sat_sessions === undefined && b.usage_mode !== 'single')));
-  const s1SingleIds = new Set(s1Beats.filter(b => (b.sat_sessions === 1 || (b.sat_sessions === undefined && b.usage_mode === 'single'))).map(b => b.id || b.code));
-  const s2UnusedPool = activeSatPool.filter(b => !s1SingleIds.has(b.id || b.code) && !s1DoubleBeats.some(db => (db.id || db.code) === (b.id || b.code)));
-  const s2Beats = [...s1DoubleBeats];
-  for (const b of s2UnusedPool) { if (s2Beats.length >= s2NumBeats) break; s2Beats.push(b); }
-  for (const b of activeSatPool) { if (s2Beats.length >= s2NumBeats) break; if (!s2Beats.some(eb => (eb.id || eb.code) === (b.id || b.code))) s2Beats.push(b); }
-  for (const b of pool) { if (s2Beats.length >= s2NumBeats) break; if (!s2Beats.some(eb => (eb.id || eb.code) === (b.id || b.code))) s2Beats.push(b); }
-  if (s2Beats.length > s2NumBeats) s2Beats.splice(s2NumBeats);
+  const satBeatsPlan = pickDayBeats(activeSatPool, s1NumBeats, s2NumBeats);
+  const s1Beats = satBeatsPlan.amBeats;
+  const s2Beats = satBeatsPlan.pmBeats;
+  const s1OverlappingCount = satBeatsPlan.overlappingCount;
 
-  // Day 1 Stayers
-  const s1OverlappingCount = Math.min(s1DoubleBeats.length, s1NumBeats, s2NumBeats);
+  // Track morning anglers on upper Elandspad (EP3 and EP2) to avoid long jumps to SB1/Hotel
+  const d1EpHeavyAnglers = new Set();
+  s1Beats.forEach((b, bIdx) => {
+    const bId = b.id || b.code;
+    if (bId === 'EP3' || bId === 'EP2') {
+      (s1MatchesRaw[bIdx] || []).forEach(aIdx => d1EpHeavyAnglers.add(aIdx));
+    }
+  });
+
+  // Day 1 Stayers & Optimal Transition Matching
   function matchDay1Stayers(beatIdx, usedS2, curr) {
     if (beatIdx === s1OverlappingCount) return curr;
     const beatAnglers = s1MatchesRaw[beatIdx];
     if (!beatAnglers || beatAnglers.length <= 1) return matchDay1Stayers(beatIdx + 1, usedS2, curr);
+    
+    // Sort stayers candidates: prefer pairing stayer with an incoming EP3/EP2 gorge angler on SB6/SB5
+    const candidates = [];
     for (const stayerIdx of beatAnglers) {
-      const s2mIdx = s2MatchesRaw.findIndex((m, idx) => m.length > 1 && m.includes(stayerIdx) && !usedS2.has(idx));
-      if (s2mIdx !== -1) {
-        const nextUsed = new Set(usedS2);
-        nextUsed.add(s2mIdx);
-        const res = matchDay1Stayers(beatIdx + 1, nextUsed, [...curr, { beatIdx, stayerIdx, s2mIdx }]);
-        if (res) return res;
-      }
+      s2MatchesRaw.forEach((m, s2mIdx) => {
+        if (m.length > 1 && m.includes(stayerIdx) && !usedS2.has(s2mIdx)) {
+          const partnerIdx = m.find(x => x !== stayerIdx);
+          const hasEpHeavy = d1EpHeavyAnglers.has(partnerIdx);
+          candidates.push({ stayerIdx, s2mIdx, priority: hasEpHeavy ? -100 : 0 });
+        }
+      });
+    }
+    candidates.sort((a, b) => a.priority - b.priority);
+
+    for (const cand of candidates) {
+      const nextUsed = new Set(usedS2);
+      nextUsed.add(cand.s2mIdx);
+      const res = matchDay1Stayers(beatIdx + 1, nextUsed, [...curr, { beatIdx, stayerIdx: cand.stayerIdx, s2mIdx: cand.s2mIdx }]);
+      if (res) return res;
     }
     return matchDay1Stayers(beatIdx + 1, usedS2, curr);
   }
@@ -468,7 +524,15 @@ function generateEdgeSchedule(anglers, aTeamAnglers = [], availableBeats = [], a
     s2Stayers[item.beatIdx] = anglers[item.stayerIdx];
     usedS2Indices.add(item.s2mIdx);
   });
+  
+  // Assign remaining S2 matches, ensuring any remaining EP3/EP2 gorge anglers get upper beats
   let remS2 = s2MatchesRaw.filter((_, idx) => !usedS2Indices.has(idx));
+  remS2.sort((mA, mB) => {
+    const hasA = mA.some(a => d1EpHeavyAnglers.has(a));
+    const hasB = mB.some(a => d1EpHeavyAnglers.has(a));
+    return (hasB ? 1 : 0) - (hasA ? 1 : 0);
+  });
+
   for (let b = 0; b < s2NumBeats; b++) {
     if (!s2AssignedMatches[b]) {
       s2AssignedMatches[b] = remS2.shift();
@@ -476,33 +540,47 @@ function generateEdgeSchedule(anglers, aTeamAnglers = [], availableBeats = [], a
     }
   }
 
-  // Sunday
+  // Sunday (S3 Morning -> S4 Afternoon)
   const sunPool = pool.filter(b => b.sun_available !== false);
   const activeSunPool = sunPool.length >= maxBeatsNeeded ? sunPool : pool;
-  const s3Beats = pickBalancedBeats(activeSunPool, s3NumBeats, true);
-  const s3DoubleBeats = s3Beats.filter(b => (b.sun_sessions === 2 || (b.sun_sessions === undefined && b.usage_mode !== 'single')));
-  const s3SingleIds = new Set(s3Beats.filter(b => (b.sun_sessions === 1 || (b.sun_sessions === undefined && b.usage_mode === 'single'))).map(b => b.id || b.code));
-  const s4UnusedPool = activeSunPool.filter(b => !s3SingleIds.has(b.id || b.code) && !s3DoubleBeats.some(db => (db.id || db.code) === (b.id || b.code)));
-  const s4Beats = [...s3DoubleBeats];
-  for (const b of s4UnusedPool) { if (s4Beats.length >= s4NumBeats) break; s4Beats.push(b); }
-  for (const b of activeSunPool) { if (s4Beats.length >= s4NumBeats) break; if (!s4Beats.some(eb => (eb.id || eb.code) === (b.id || b.code))) s4Beats.push(b); }
-  for (const b of pool) { if (s4Beats.length >= s4NumBeats) break; if (!s4Beats.some(eb => (eb.id || eb.code) === (b.id || b.code))) s4Beats.push(b); }
-  if (s4Beats.length > s4NumBeats) s4Beats.splice(s4NumBeats);
-
+  const sunBeatsPlan = pickDayBeats(activeSunPool, s3NumBeats, s4NumBeats);
+  const s3Beats = sunBeatsPlan.amBeats;
+  const s4Beats = sunBeatsPlan.pmBeats;
   const s3AssignedMatches = [...s3MatchesRaw];
-  const s3OverlappingCount = Math.min(s3DoubleBeats.length, s3NumBeats, s4NumBeats);
+  const s3OverlappingCount = sunBeatsPlan.overlappingCount;
+
+  // Track morning anglers on upper Elandspad (EP3 and EP2) on Sunday
+  const d2EpHeavyAnglers = new Set();
+  s3Beats.forEach((b, bIdx) => {
+    const bId = b.id || b.code;
+    if (bId === 'EP3' || bId === 'EP2') {
+      (s3MatchesRaw[bIdx] || []).forEach(aIdx => d2EpHeavyAnglers.add(aIdx));
+    }
+  });
+
+  // Day 2 Stayers & Optimal Transition Matching
   function matchDay2Stayers(beatIdx, usedS4, curr) {
     if (beatIdx === s3OverlappingCount) return curr;
-    const beatAnglers = s3AssignedMatches[beatIdx];
+    const beatAnglers = s3MatchesRaw[beatIdx];
     if (!beatAnglers || beatAnglers.length <= 1) return matchDay2Stayers(beatIdx + 1, usedS4, curr);
+
+    const candidates = [];
     for (const stayerIdx of beatAnglers) {
-      const s4mIdx = s4MatchesRaw.findIndex((m, idx) => m.length > 1 && m.includes(stayerIdx) && !usedS4.has(idx));
-      if (s4mIdx !== -1) {
-        const nextUsed = new Set(usedS4);
-        nextUsed.add(s4mIdx);
-        const res = matchDay2Stayers(beatIdx + 1, nextUsed, [...curr, { beatIdx, stayerIdx, s4mIdx }]);
-        if (res) return res;
-      }
+      s4MatchesRaw.forEach((m, s4mIdx) => {
+        if (m.length > 1 && m.includes(stayerIdx) && !usedS4.has(s4mIdx)) {
+          const partnerIdx = m.find(x => x !== stayerIdx);
+          const hasEpHeavy = d2EpHeavyAnglers.has(partnerIdx);
+          candidates.push({ stayerIdx, s4mIdx, priority: hasEpHeavy ? -100 : 0 });
+        }
+      });
+    }
+    candidates.sort((a, b) => a.priority - b.priority);
+
+    for (const cand of candidates) {
+      const nextUsed = new Set(usedS4);
+      nextUsed.add(cand.s4mIdx);
+      const res = matchDay2Stayers(beatIdx + 1, nextUsed, [...curr, { beatIdx, stayerIdx: cand.stayerIdx, s4mIdx: cand.s4mIdx }]);
+      if (res) return res;
     }
     return matchDay2Stayers(beatIdx + 1, usedS4, curr);
   }
@@ -516,7 +594,14 @@ function generateEdgeSchedule(anglers, aTeamAnglers = [], availableBeats = [], a
     s4Stayers[item.beatIdx] = anglers[item.stayerIdx];
     usedS4Indices.add(item.s4mIdx);
   });
+
   let remS4 = s4MatchesRaw.filter((_, idx) => !usedS4Indices.has(idx));
+  remS4.sort((mA, mB) => {
+    const hasA = mA.some(a => d2EpHeavyAnglers.has(a));
+    const hasB = mB.some(a => d2EpHeavyAnglers.has(a));
+    return (hasB ? 1 : 0) - (hasA ? 1 : 0);
+  });
+
   for (let b = 0; b < s4NumBeats; b++) {
     if (!s4AssignedMatches[b]) {
       s4AssignedMatches[b] = remS4.shift();
@@ -564,6 +649,7 @@ function generateEdgeSchedule(anglers, aTeamAnglers = [], availableBeats = [], a
         mid_pin: beat.mid_pin || [-33.7330, 19.1180],
         upper_pin: beat.upper_pin || [-33.7340, 19.1225],
         meeting_point: beat.meeting_point || "Parking",
+        travel_time: beat.travel_time || 15,
         anglers: matchAnglers,
         stayer: stayer,
         status: isSolo ? "BYE" : "UNREPORTED",
@@ -587,6 +673,7 @@ function generateEdgeSchedule(anglers, aTeamAnglers = [], availableBeats = [], a
           beat_name: beat.name,
           river: beat.river || "Small Blaar",
           meeting_point: beat.meeting_point,
+          travel_time: beat.travel_time || 15,
           match_type: "BYE",
           is_solo: true,
           is_bye: true,
@@ -615,6 +702,7 @@ function generateEdgeSchedule(anglers, aTeamAnglers = [], availableBeats = [], a
             beat_name: beat.name,
             river: beat.river || "Small Blaar",
             meeting_point: beat.meeting_point,
+          travel_time: beat.travel_time || 15,
             match_type: m.match_type,
             is_solo: false,
             opponents: opps,
@@ -1029,6 +1117,7 @@ export default {
             if (body.sun_sessions !== undefined) b.sun_sessions = Number(body.sun_sessions);
             if (body.river !== undefined) b.river = body.river;
             if (body.usage_mode !== undefined) b.usage_mode = body.usage_mode;
+            if (body.travel_time !== undefined) b.travel_time = Number(body.travel_time);
             if (body.lower_pin !== undefined) b.lower_pin = body.lower_pin;
             if (body.mid_pin !== undefined) b.mid_pin = body.mid_pin;
             if (body.upper_pin !== undefined) b.upper_pin = body.upper_pin;
@@ -1071,6 +1160,7 @@ export default {
             if (nb.sun_sessions !== undefined) found.sun_sessions = Number(nb.sun_sessions);
             if (nb.river !== undefined) found.river = nb.river;
             if (nb.usage_mode !== undefined) found.usage_mode = nb.usage_mode;
+            if (nb.travel_time !== undefined) found.travel_time = Number(nb.travel_time);
             if (nb.meeting_point !== undefined) found.meeting_point = nb.meeting_point;
             if (nb.lower_pin !== undefined) found.lower_pin = nb.lower_pin;
             if (nb.mid_pin !== undefined) found.mid_pin = nb.mid_pin;
@@ -1091,6 +1181,7 @@ export default {
             if (nb.sun_sessions !== undefined) found.sun_sessions = Number(nb.sun_sessions);
             if (nb.river !== undefined) found.river = nb.river;
             if (nb.usage_mode !== undefined) found.usage_mode = nb.usage_mode;
+            if (nb.travel_time !== undefined) found.travel_time = Number(nb.travel_time);
             if (nb.meeting_point !== undefined) found.meeting_point = nb.meeting_point;
             if (nb.lower_pin !== undefined) found.lower_pin = nb.lower_pin;
             if (nb.mid_pin !== undefined) found.mid_pin = nb.mid_pin;
