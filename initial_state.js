@@ -2904,7 +2904,8 @@ export const INITIAL_STATE = {
               "4": 0
             }
           }
-        ]
+        ],
+        "angler_availability": {}
       }
     },
     {
@@ -6182,7 +6183,8 @@ export const INITIAL_STATE = {
               "4": 0
             }
           }
-        ]
+        ],
+        "angler_availability": {}
       }
     },
     {
@@ -9460,7 +9462,8 @@ export const INITIAL_STATE = {
               "4": 0
             }
           }
-        ]
+        ],
+        "angler_availability": {}
       }
     }
   ],
@@ -9483,11 +9486,12 @@ export const INITIAL_STATE = {
   ],
   "num_anglers": 11,
   "a_team_anglers": [
-    "James",
     "Barry",
-    "Daniel"
+    "Daniel",
+    "Garth",
+    "Dale"
   ],
-  "num_a_team": 3,
+  "num_a_team": 4,
   "num_beats": 5,
   "beats": [
     {
@@ -12506,5 +12510,6 @@ export const INITIAL_STATE = {
       "type": "SYSTEM",
       "message": "Autumn Trial 2026 A initialized with 11 anglers and 3 A-Team members across 4 sessions."
     }
-  ]
+  ],
+  "angler_availability": {}
 };

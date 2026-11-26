@@ -10,6 +10,7 @@ let activeSessionFilter = 0;
 let qrCodeObj = null;
 let pollingInterval = null;
 let selectedAteamSet = new Set();
+let anglerAvailabilityState = {};
 
 // Presets for easy setup (8 to 20 anglers)
 const MASTER_ANGLER_POOL = [
@@ -72,6 +73,7 @@ async function loadState(isManual = false) {
       selectedAteamSet.clear();
       data.a_team_anglers.forEach(a => selectedAteamSet.add(a));
     }
+    initAnglerAvailabilityFromState();
     renderAll();
   } catch (err) {
     console.error("Failed to load tournament state:", err);
@@ -83,6 +85,7 @@ function renderAll() {
   if (!tournamentState) return;
 
   renderTrialBar();
+  renderAnglerAvailability();
   updateAdminUIState();
   renderHeader();
   renderLeaderboard();
@@ -283,11 +286,14 @@ function renderSchedule() {
         statusLabel = `${numRep} of ${match.anglers.length} Reported`;
       }
 
-      const is3Way = match.match_type === '1v1v1' || match.anglers.length === 3;
+      const isSolo = match.is_solo || match.match_type === 'SOLO' || (match.anglers && match.anglers.length === 1);
+      const is3Way = !isSolo && (match.match_type === '1v1v1' || match.anglers.length === 3);
       const typeBadge = is3Way ? `<span class="three-way-badge">3-Way Match (1v1v1)</span>` : '';
 
       let aTeamClashBadge = '';
-      if (match.is_head_to_head_a_team) {
+      if (isSolo) {
+        aTeamClashBadge = `<span class="badge" style="background:rgba(99,102,241,0.25); color:#a5b4fc; border:1px solid rgba(99,102,241,0.4); font-size:0.7rem; padding:0.15rem 0.45rem; border-radius:4px; font-weight:700;">👤 Solo Beat (Non-Competing)</span>`;
+      } else if (match.is_head_to_head_a_team) {
         aTeamClashBadge = `<span class="clash-badge">⚔️ A-Team Clash</span>`;
       } else if (match.has_a_team_angler) {
         aTeamClashBadge = `<span class="clash-badge" style="color:#93c5fd; background:rgba(56,189,248,0.15); border-color:rgba(56,189,248,0.3);">⭐ A-Team vs Challenger</span>`;
@@ -315,7 +321,9 @@ function renderSchedule() {
         const pts = match.calculated_points ? match.calculated_points[angler] : (match.points_awarded ? match.points_awarded[angler] : null);
 
         let resultStr = '';
-        if ((match.status === 'CONFIRMED' || match.status === 'ADMIN_CONFIRMED') && fish !== null && pts !== null) {
+        if (isSolo) {
+          resultStr = `<span class="text-muted text-xs">Solo Practice / Free Session</span>`;
+        } else if ((match.status === 'CONFIRMED' || match.status === 'ADMIN_CONFIRMED') && fish !== null && pts !== null) {
           resultStr = `
             <span class="fish-pill">${fish} fish</span>
             <span class="pts-pill">${pts.toFixed(2)} pts</span>
@@ -349,9 +357,12 @@ function renderSchedule() {
           </div>
 
           <div class="match-quick-action">
-            <button class="btn btn-sm btn-outline" onclick="prefillSubmitForm(${session.session_id}, '${escapeHtml(match.match_id)}')">
-              Submit Score
-            </button>
+            ${isSolo
+              ? `<span class="text-xs text-muted" style="padding:0.35rem 0.65rem; background:rgba(255,255,255,0.04); border-radius:4px; border:1px solid rgba(255,255,255,0.06); font-size:0.75rem;">👤 Solo Beat (No Score)</span>`
+              : `<button class="btn btn-sm btn-outline" onclick="prefillSubmitForm(${session.session_id}, '${escapeHtml(match.match_id)}')">
+                   Submit Score
+                 </button>`
+            }
           </div>
         </div>
       `;
@@ -951,6 +962,7 @@ async function confirmResetTournament() {
       body: JSON.stringify({
         anglers: anglers,
         a_team_anglers: aTeamList,
+        angler_availability: anglerAvailabilityState,
         tournament_name: tName,
         venue: venue,
         password: getAdminPassword()
@@ -1019,6 +1031,7 @@ async function redoTournamentDrawPrompt() {
       body: JSON.stringify({
         anglers: anglers,
         a_team_anglers: aTeamList,
+        angler_availability: anglerAvailabilityState,
         tournament_name: tName,
         venue: venue,
         password: getAdminPassword()
@@ -1082,6 +1095,7 @@ async function saveAteamSelectionAndRedraw() {
       body: JSON.stringify({
         anglers: anglers,
         a_team_anglers: aTeamList,
+        angler_availability: anglerAvailabilityState,
         tournament_name: tName,
         venue: venue,
         password: getAdminPassword()
@@ -1205,6 +1219,219 @@ async function saveTournamentMetadata() {
       alert(`✅ Tournament Name ("${name}") and Venue ("${venue}") updated successfully!`);
     } else {
       alert(`Error updating tournament details: ${data.error || 'Failed'}`);
+    }
+  } catch (err) {
+    alert(`Error: ${err.message}`);
+  }
+}
+
+// --- Angler Session Availability (Competition Sessions Checkboxes) ---
+function initAnglerAvailabilityFromState() {
+  const avail = (tournamentState && tournamentState.angler_availability) || {};
+  const anglers = (tournamentState && tournamentState.anglers && tournamentState.anglers.length > 0)
+    ? tournamentState.anglers
+    : parseAnglerLines();
+  
+  anglerAvailabilityState = {};
+  anglers.forEach(a => {
+    if (avail[a] && Array.isArray(avail[a])) {
+      anglerAvailabilityState[a] = [...avail[a]];
+    } else {
+      anglerAvailabilityState[a] = [1, 2, 3, 4];
+    }
+  });
+}
+
+function renderAnglerAvailability() {
+  const container = document.getElementById('anglerAvailabilityContainer');
+  const summaryEl = document.getElementById('anglerAvailabilitySummary');
+  if (!container) return;
+
+  const anglers = parseAnglerLines();
+  if (anglers.length === 0) {
+    container.innerHTML = '<div class="text-muted text-sm py-2">Enter angler names above to configure session availability.</div>';
+    if (summaryEl) summaryEl.innerHTML = '';
+    return;
+  }
+
+  // Ensure state contains entries for all current anglers
+  anglers.forEach(a => {
+    if (!anglerAvailabilityState[a] || !Array.isArray(anglerAvailabilityState[a])) {
+      if (tournamentState && tournamentState.angler_availability && tournamentState.angler_availability[a]) {
+        anglerAvailabilityState[a] = [...tournamentState.angler_availability[a]];
+      } else {
+        anglerAvailabilityState[a] = [1, 2, 3, 4];
+      }
+    }
+  });
+
+  const aTeamSet = new Set(selectedAteamSet && selectedAteamSet.size > 0 
+    ? Array.from(selectedAteamSet) 
+    : (tournamentState?.a_team_anglers || []));
+
+  let html = `
+    <table class="data-table text-sm" style="width:100%; border-collapse:collapse;">
+      <thead>
+        <tr style="border-bottom:1px solid var(--border); text-align:left;">
+          <th style="padding:0.4rem;">Angler</th>
+          <th style="text-align:center; padding:0.4rem; width:80px;">S1 (Sat AM)</th>
+          <th style="text-align:center; padding:0.4rem; width:80px;">S2 (Sat PM)</th>
+          <th style="text-align:center; padding:0.4rem; width:80px;">S3 (Sun AM)</th>
+          <th style="text-align:center; padding:0.4rem; width:80px;">S4 (Sun PM)</th>
+          <th style="padding:0.4rem; width:150px; text-align:center;">Competition Status</th>
+          <th style="padding:0.4rem; width:120px; text-align:center;">Quick Select</th>
+        </tr>
+      </thead>
+      <tbody>
+  `;
+
+  let sCounts = { 1: 0, 2: 0, 3: 0, 4: 0 };
+  let sSoloCounts = { 1: 0, 2: 0, 3: 0, 4: 0 };
+
+  anglers.forEach(name => {
+    const isA = aTeamSet.has(name);
+    const sessions = anglerAvailabilityState[name] || [1, 2, 3, 4];
+    const s1 = sessions.includes(1);
+    const s2 = sessions.includes(2);
+    const s3 = sessions.includes(3);
+    const s4 = sessions.includes(4);
+
+    if (s1) sCounts[1]++; else sSoloCounts[1]++;
+    if (s2) sCounts[2]++; else sSoloCounts[2]++;
+    if (s3) sCounts[3]++; else sSoloCounts[3]++;
+    if (s4) sCounts[4]++; else sSoloCounts[4]++;
+
+    const compCount = sessions.length;
+    const soloCount = 4 - compCount;
+
+    let statusBadge = '';
+    if (compCount === 4) {
+      statusBadge = '<span class="badge" style="background:rgba(16,185,129,0.2); color:#34d399; font-weight:700;">4 / 4 Competing</span>';
+    } else if (compCount === 0) {
+      statusBadge = '<span class="badge" style="background:rgba(239,68,68,0.2); color:#f87171; font-weight:700;">All Solo (0 Comp)</span>';
+    } else {
+      statusBadge = `<span class="badge" style="background:rgba(99,102,241,0.2); color:#a5b4fc; font-weight:700;">${compCount} Comp / ${soloCount} Solo</span>`;
+    }
+
+    html += `
+      <tr style="border-bottom:1px solid rgba(255,255,255,0.04);">
+        <td style="padding:0.4rem 0.5rem; font-weight:600;">
+          <div style="display:flex; align-items:center; gap:0.4rem;">
+            <span>${escapeHtml(name)}</span>
+            ${isA ? '<span class="ateam-badge-mini" style="font-size:0.65rem;">⭐ A-Team</span>' : ''}
+          </div>
+        </td>
+        <td style="text-align:center; padding:0.4rem;">
+          <input type="checkbox" ${s1 ? 'checked' : ''} onchange="onAnglerAvailChange('${escapeHtml(name)}', 1, this.checked)" title="${escapeHtml(name)} - S1 Sat AM">
+        </td>
+        <td style="text-align:center; padding:0.4rem;">
+          <input type="checkbox" ${s2 ? 'checked' : ''} onchange="onAnglerAvailChange('${escapeHtml(name)}', 2, this.checked)" title="${escapeHtml(name)} - S2 Sat PM">
+        </td>
+        <td style="text-align:center; padding:0.4rem;">
+          <input type="checkbox" ${s3 ? 'checked' : ''} onchange="onAnglerAvailChange('${escapeHtml(name)}', 3, this.checked)" title="${escapeHtml(name)} - S3 Sun AM">
+        </td>
+        <td style="text-align:center; padding:0.4rem;">
+          <input type="checkbox" ${s4 ? 'checked' : ''} onchange="onAnglerAvailChange('${escapeHtml(name)}', 4, this.checked)" title="${escapeHtml(name)} - S4 Sun PM">
+        </td>
+        <td style="text-align:center; padding:0.4rem;">
+          ${statusBadge}
+        </td>
+        <td style="text-align:center; padding:0.4rem;">
+          <div style="display:flex; justify-content:center; gap:0.25rem;">
+            <button type="button" class="btn btn-sm btn-outline" style="padding:0.15rem 0.4rem; font-size:0.7rem;" onclick="setSingleAnglerAvailability('${escapeHtml(name)}', true)" title="Set all 4 sessions competing">All</button>
+            <button type="button" class="btn btn-sm btn-outline" style="padding:0.15rem 0.4rem; font-size:0.7rem;" onclick="setSingleAnglerAvailability('${escapeHtml(name)}', false)" title="Mark as solo beat for all sessions">Solo</button>
+          </div>
+        </td>
+      </tr>
+    `;
+  });
+
+  html += `
+      </tbody>
+    </table>
+  `;
+
+  container.innerHTML = html;
+
+  if (summaryEl) {
+    summaryEl.innerHTML = `
+      <span style="display:inline-flex; gap:0.8rem; flex-wrap:wrap;">
+        <span><strong>S1:</strong> ${sCounts[1]} competing${sSoloCounts[1] > 0 ? ` (${sSoloCounts[1]} solo)` : ''}</span>
+        <span>&bull;</span>
+        <span><strong>S2:</strong> ${sCounts[2]} competing${sSoloCounts[2] > 0 ? ` (${sSoloCounts[2]} solo)` : ''}</span>
+        <span>&bull;</span>
+        <span><strong>S3:</strong> ${sCounts[3]} competing${sSoloCounts[3] > 0 ? ` (${sSoloCounts[3]} solo)` : ''}</span>
+        <span>&bull;</span>
+        <span><strong>S4:</strong> ${sCounts[4]} competing${sSoloCounts[4] > 0 ? ` (${sSoloCounts[4]} solo)` : ''}</span>
+      </span>
+    `;
+  }
+}
+
+function onAnglerAvailChange(name, sId, checked) {
+  if (!anglerAvailabilityState[name]) {
+    anglerAvailabilityState[name] = [1, 2, 3, 4];
+  }
+  const set = new Set(anglerAvailabilityState[name]);
+  if (checked) {
+    set.add(sId);
+  } else {
+    set.delete(sId);
+  }
+  anglerAvailabilityState[name] = Array.from(set).sort((a, b) => a - b);
+  renderAnglerAvailability();
+}
+
+function setSingleAnglerAvailability(name, isAll) {
+  anglerAvailabilityState[name] = isAll ? [1, 2, 3, 4] : [];
+  renderAnglerAvailability();
+}
+
+function setAllAnglerAvailability(allChecked) {
+  const anglers = parseAnglerLines();
+  anglers.forEach(a => {
+    anglerAvailabilityState[a] = allChecked ? [1, 2, 3, 4] : [];
+  });
+  renderAnglerAvailability();
+}
+
+async function saveAnglerAvailabilityOnly() {
+  if (!isAdminAuthenticated()) {
+    openAdminPasswordModal(() => saveAnglerAvailabilityOnly());
+    return;
+  }
+
+  const doRedraw = confirm("💾 Save Angler Session Availability?\n\n• Click OK to save and immediately re-randomize tournament draw (assigning solo beats to un-ticked anglers).\n• Click Cancel to save availability only without redrawing existing matches.");
+
+  try {
+    const res = await fetch('/api/admin/angler_availability/update', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-Admin-Password': getAdminPassword()
+      },
+      body: JSON.stringify({
+        angler_availability: anglerAvailabilityState,
+        redraw: doRedraw,
+        password: getAdminPassword()
+      })
+    });
+
+    if (res.status === 401) {
+      openAdminPasswordModal(() => saveAnglerAvailabilityOnly());
+      return;
+    }
+
+    const data = await res.json();
+    if (data.success) {
+      tournamentState = data.state;
+      alert(`✅ ${data.message || 'Angler availability updated successfully!'}`);
+      await loadState();
+      if (doRedraw) {
+        switchTab('schedule');
+      }
+    } else {
+      alert(`Error saving availability: ${data.error || 'Failed'}`);
     }
   } catch (err) {
     alert(`Error: ${err.message}`);
@@ -1528,9 +1755,14 @@ function openParameterAuditModal() {
 
   let repeatViolations = [];
 
+  let totalSoloMatches = 0;
   sessions.forEach(s => {
     (s.matches || []).forEach(m => {
       const mAnglers = m.anglers || [];
+      if (m.is_solo || m.match_type === 'SOLO' || mAnglers.length <= 1) {
+        totalSoloMatches++;
+        return; // Don't track collisions for solo matches
+      }
       if (mAnglers.length === 3) {
         mAnglers.forEach(a => { threeWayCounts[a] = (threeWayCounts[a] || 0) + 1; });
       }
@@ -2077,6 +2309,7 @@ function switchTab(tabId) {
       }
       updateAnglerCountHint();
       renderAteamChecklist();
+      renderAnglerAvailability();
     }
   }
 }
@@ -2532,6 +2765,7 @@ function renderAnglerItinerary(anglerName, sched) {
   let html = '';
   sched.forEach(s => {
     const isSat = s.session_id <= 2;
+    const isSolo = s.is_solo || s.match_type === 'SOLO';
     const isStay = s.is_stayer;
     const isYP = (s.river && s.river.toLowerCase().includes('eland'));
     const riverClass = isYP ? 'popup-river-yp' : 'popup-river-sb';
@@ -2539,15 +2773,22 @@ function renderAnglerItinerary(anglerName, sched) {
     const cardClass = `card-s${s.session_id}`;
     const pin = s.pin || s.lower_pin || [-33.7319, 19.1141];
 
+    const statusTag = isSolo 
+      ? '<span class="itinerary-status-tag" style="background:rgba(99,102,241,0.25); color:#a5b4fc; border:1px solid rgba(99,102,241,0.4);">👤 Solo Beat (Non-Competing)</span>'
+      : `<span class="itinerary-status-tag ${isStay ? 'tag-stay' : 'tag-move'}">${isStay ? '📍 Stay on Beat' : '🚶 Move Beat'}</span>`;
+
+    const sectionDisplay = isSolo ? 'Full Beat (Solo Session)' : (s.section || 'First Half');
+    const opponentDisplay = isSolo ? 'None (Solo Beat)' : (s.opponents && s.opponents.length > 0 ? s.opponents.join(' & ') : 'None');
+
     html += `
       <div class="itinerary-card ${cardClass}">
         <div class="d-flex justify-content-between align-items-center">
           <span class="sess-pill pill-s${s.session_id}">${s.session_name}</span>
-          <span class="itinerary-status-tag ${isStay ? 'tag-stay' : 'tag-move'}">${isStay ? '📍 Stay on Beat' : '🚶 Move Beat'}</span>
+          ${statusTag}
         </div>
         <div class="itinerary-beat-title">${escapeHtml(s.beat_name || s.beat_code)}</div>
-        <div class="popup-river-tag ${riverClass}">${escapeHtml(riverDisplay)} &bull; ${escapeHtml(s.section || 'First Half')}</div>
-        <div class="popup-detail"><strong>Opponent(s):</strong> ${escapeHtml(s.opponents.join(' & ') || 'TBD')}</div>
+        <div class="popup-river-tag ${riverClass}">${escapeHtml(riverDisplay)} &bull; ${escapeHtml(sectionDisplay)}</div>
+        <div class="popup-detail"><strong>Opponent(s):</strong> ${escapeHtml(opponentDisplay)}</div>
         <div class="popup-detail"><strong>Meeting Point:</strong> ${escapeHtml(s.meeting_point || 'Bridge Layby')}</div>
         <div class="popup-detail"><strong>GPS:</strong> <code>${pin[0].toFixed(4)}, ${pin[1].toFixed(4)}</code></div>
         <a href="https://www.google.com/maps/search/?api=1&query=${pin[0]},${pin[1]}" target="_blank" class="popup-nav-link">

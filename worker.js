@@ -118,6 +118,7 @@ function getFullState() {
     num_beats: tData.num_beats || (tData.beats || []).length,
     beats: tData.beats || [],
     selected_beats: tData.selected_beats || [],
+    angler_availability: tData.angler_availability || {},
     angler_schedule: tData.angler_schedule || {},
     three_way_counts: tData.three_way_counts || {},
     sessions: tData.sessions || [],
@@ -155,34 +156,38 @@ function checkAdminAuth(request, body = {}) {
   return (headerPwd === ADMIN_PASSWORD || bodyPwd === ADMIN_PASSWORD);
 }
 
-function generateEdgeSchedule(anglers, aTeamAnglers = [], availableBeats = []) {
+const DEFAULT_CPS_BEATS = [
+  { id: "SB1", code: "SB1", name: "SB1", river: "Small Blaar", enabled: true, sat_available: true, sat_sessions: 2, sun_available: true, sun_sessions: 2, usage_mode: "double", lower_pin: [-33.7150, 19.1740], mid_pin: [-33.7170, 19.1700], upper_pin: [-33.7190, 19.1655], meeting_point: "Picnic site pull-off" },
+  { id: "SB2", code: "SB2", name: "SB2", river: "Small Blaar", enabled: true, sat_available: true, sat_sessions: 2, sun_available: true, sun_sessions: 2, usage_mode: "double", lower_pin: [-33.7190, 19.1655], mid_pin: [-33.7212, 19.1590], upper_pin: [-33.7235, 19.1530], meeting_point: "Picnic site parking" },
+  { id: "SB3", code: "SB3", name: "SB3", river: "Small Blaar", enabled: true, sat_available: true, sat_sessions: 2, sun_available: true, sun_sessions: 2, usage_mode: "double", lower_pin: [-33.7235, 19.1530], mid_pin: [-33.7258, 19.1470], upper_pin: [-33.7272, 19.1415], meeting_point: "N1 emergency telephone layby 3" },
+  { id: "SB4", code: "SB4", name: "SB4", river: "Small Blaar", enabled: true, sat_available: true, sat_sessions: 2, sun_available: true, sun_sessions: 2, usage_mode: "double", lower_pin: [-33.7272, 19.1415], mid_pin: [-33.7285, 19.1370], upper_pin: [-33.7295, 19.1320], meeting_point: "Donkergat pull-off" },
+  { id: "SB5", code: "SB5", name: "SB5", river: "Small Blaar", enabled: true, sat_available: true, sat_sessions: 2, sun_available: true, sun_sessions: 2, usage_mode: "double", lower_pin: [-33.7295, 19.1320], mid_pin: [-33.7305, 19.1270], upper_pin: [-33.7319, 19.1141], meeting_point: "CPS Elandspad parking lot" },
+  { id: "SB6", code: "SB6", name: "SB6", river: "Small Blaar", enabled: true, sat_available: true, sat_sessions: 2, sun_available: true, sun_sessions: 2, usage_mode: "double", lower_pin: [-33.7319, 19.1141], mid_pin: [-33.7330, 19.1105], upper_pin: [-33.7342, 19.1065], meeting_point: "Tunnel East Portal Parking / Junction Path" },
+  { id: "SB(HOTEL)", code: "SB(HOTEL)", name: "SB(HOTEL)", river: "Small Blaar", enabled: true, sat_available: true, sat_sessions: 1, sun_available: true, sun_sessions: 1, usage_mode: "single", lower_pin: [-33.7125, 19.1800], mid_pin: [-33.7138, 19.1770], upper_pin: [-33.7150, 19.1740], meeting_point: "Du Kloof Lodge guest parking" },
+  { id: "SB(TRANSPORT)", code: "SB(TRANSPORT)", name: "SB(TRANSPORT)", river: "Small Blaar", enabled: true, sat_available: true, sat_sessions: 2, sun_available: true, sun_sessions: 2, usage_mode: "double", lower_pin: [-33.7085, 19.1895], mid_pin: [-33.7105, 19.1845], upper_pin: [-33.7125, 19.1800], meeting_point: "Transport bridge parking" },
+  { id: "EP1", code: "EP1", name: "EP1", river: "Elands Pad", enabled: true, sat_available: true, sat_sessions: 2, sun_available: true, sun_sessions: 2, usage_mode: "double", lower_pin: [-33.7319, 19.1141], mid_pin: [-33.7360, 19.1152], upper_pin: [-33.7405, 19.1162], meeting_point: "Junction Pool trail head" },
+  { id: "EP2", code: "EP2", name: "EP2", river: "Elands Pad", enabled: true, sat_available: true, sat_sessions: 2, sun_available: true, sun_sessions: 2, usage_mode: "double", lower_pin: [-33.7405, 19.1162], mid_pin: [-33.7460, 19.1172], upper_pin: [-33.7520, 19.1188], meeting_point: "Fisherman's Cave trail" },
+  { id: "EP3", code: "EP3", name: "EP3", river: "Elands Pad", enabled: true, sat_available: true, sat_sessions: 1, sun_available: true, sun_sessions: 1, usage_mode: "single", lower_pin: [-33.7520, 19.1188], mid_pin: [-33.7565, 19.1195], upper_pin: [-33.7610, 19.1205], meeting_point: "Star beat rock shelter" },
+  { id: "EP4", code: "EP4", name: "EP4", river: "Elands Pad", enabled: true, sat_available: true, sat_sessions: 1, sun_available: true, sun_sessions: 1, usage_mode: "single", lower_pin: [-33.7610, 19.1205], mid_pin: [-33.7650, 19.1215], upper_pin: [-33.7700, 19.1230], meeting_point: "Kraalstroom gorge access" },
+  { id: "MOLENAARS(UPPER)", code: "MOLENAARS(UPPER)", name: "MOLENAARS(UPPER)", river: "Small Blaar", enabled: true, sat_available: true, sat_sessions: 2, sun_available: true, sun_sessions: 2, usage_mode: "double", lower_pin: [-33.7040, 19.2000], mid_pin: [-33.7065, 19.1945], upper_pin: [-33.7085, 19.1895], meeting_point: "Upper Molenaars turn-off" },
+  { id: "MOLENAARS(LOWER)", code: "MOLENAARS(LOWER)", name: "MOLENAARS(LOWER)", river: "Small Blaar", enabled: true, sat_available: true, sat_sessions: 2, sun_available: true, sun_sessions: 2, usage_mode: "double", lower_pin: [-33.6980, 19.2150], mid_pin: [-33.7010, 19.2075], upper_pin: [-33.7040, 19.2000], meeting_point: "Lower Molenaars boundary" }
+];
+
+function generateEdgeSchedule(anglers, aTeamAnglers = [], availableBeats = [], anglerAvailability = {}) {
   const N = anglers.length;
-  if (N < 4) throw new Error("At least 4 anglers required for fly fishing trials.");
+  if (N < 2) throw new Error("At least 2 anglers required for fly fishing trials.");
 
-  const isOdd = (N % 2 !== 0);
   const numSessions = 4;
-  const numBeats = isOdd ? Math.floor((N - 1) / 2) : Math.floor(N / 2);
+  const fallbackBeats = (availableBeats && availableBeats.length > 0) ? availableBeats : DEFAULT_CPS_BEATS;
 
-  const fallbackBeats = [
-    { id: "SB1", code: "SB1", name: "SB1", river: "Small Blaar", enabled: true, sat_available: true, sat_sessions: 2, sun_available: true, sun_sessions: 2, usage_mode: "double", lower_pin: [-33.7150, 19.1740], mid_pin: [-33.7170, 19.1700], upper_pin: [-33.7190, 19.1655], meeting_point: "Picnic site pull-off" },
-    { id: "SB2", code: "SB2", name: "SB2", river: "Small Blaar", enabled: true, sat_available: true, sat_sessions: 2, sun_available: true, sun_sessions: 2, usage_mode: "double", lower_pin: [-33.7190, 19.1655], mid_pin: [-33.7212, 19.1590], upper_pin: [-33.7235, 19.1530], meeting_point: "Picnic site parking" },
-    { id: "SB3", code: "SB3", name: "SB3", river: "Small Blaar", enabled: true, sat_available: true, sat_sessions: 2, sun_available: true, sun_sessions: 2, usage_mode: "double", lower_pin: [-33.7235, 19.1530], mid_pin: [-33.7258, 19.1470], upper_pin: [-33.7272, 19.1415], meeting_point: "N1 emergency telephone layby 3" },
-    { id: "SB4", code: "SB4", name: "SB4", river: "Small Blaar", enabled: true, sat_available: true, sat_sessions: 2, sun_available: true, sun_sessions: 2, usage_mode: "double", lower_pin: [-33.7272, 19.1415], mid_pin: [-33.7285, 19.1370], upper_pin: [-33.7295, 19.1320], meeting_point: "Donkergat pull-off" },
-    { id: "SB5", code: "SB5", name: "SB5", river: "Small Blaar", enabled: true, sat_available: true, sat_sessions: 2, sun_available: true, sun_sessions: 2, usage_mode: "double", lower_pin: [-33.7295, 19.1320], mid_pin: [-33.7305, 19.1270], upper_pin: [-33.7319, 19.1141], meeting_point: "CPS Elandspad parking lot" },
-    { id: "SB6", code: "SB6", name: "SB6", river: "Small Blaar", enabled: true, sat_available: true, sat_sessions: 2, sun_available: true, sun_sessions: 2, usage_mode: "double", lower_pin: [-33.7319, 19.1141], mid_pin: [-33.7330, 19.1105], upper_pin: [-33.7342, 19.1065], meeting_point: "Tunnel East Portal Parking / Junction Path" },
-    { id: "SB(HOTEL)", code: "SB(HOTEL)", name: "SB(HOTEL)", river: "Small Blaar", enabled: true, sat_available: true, sat_sessions: 1, sun_available: true, sun_sessions: 1, usage_mode: "single", lower_pin: [-33.7125, 19.1800], mid_pin: [-33.7138, 19.1770], upper_pin: [-33.7150, 19.1740], meeting_point: "Du Kloof Lodge guest parking" },
-    { id: "SB(TRANSPORT)", code: "SB(TRANSPORT)", name: "SB(TRANSPORT)", river: "Small Blaar", enabled: true, sat_available: true, sat_sessions: 2, sun_available: true, sun_sessions: 2, usage_mode: "double", lower_pin: [-33.7085, 19.1895], mid_pin: [-33.7105, 19.1845], upper_pin: [-33.7125, 19.1800], meeting_point: "Transport bridge parking" },
-    { id: "EP1", code: "EP1", name: "EP1", river: "Elands Pad", enabled: true, sat_available: true, sat_sessions: 2, sun_available: true, sun_sessions: 2, usage_mode: "double", lower_pin: [-33.7319, 19.1141], mid_pin: [-33.7360, 19.1152], upper_pin: [-33.7405, 19.1162], meeting_point: "Junction Pool trail head" },
-    { id: "EP2", code: "EP2", name: "EP2", river: "Elands Pad", enabled: true, sat_available: true, sat_sessions: 2, sun_available: true, sun_sessions: 2, usage_mode: "double", lower_pin: [-33.7405, 19.1162], mid_pin: [-33.7460, 19.1172], upper_pin: [-33.7520, 19.1188], meeting_point: "Fisherman's Cave trail" },
-    { id: "EP3", code: "EP3", name: "EP3", river: "Elands Pad", enabled: true, sat_available: true, sat_sessions: 1, sun_available: true, sun_sessions: 1, usage_mode: "single", lower_pin: [-33.7520, 19.1188], mid_pin: [-33.7565, 19.1195], upper_pin: [-33.7610, 19.1205], meeting_point: "Star beat rock shelter" },
-    { id: "EP4", code: "EP4", name: "EP4", river: "Elands Pad", enabled: true, sat_available: true, sat_sessions: 1, sun_available: true, sun_sessions: 1, usage_mode: "single", lower_pin: [-33.7610, 19.1205], mid_pin: [-33.7650, 19.1212], upper_pin: [-33.7690, 19.1220], meeting_point: "Kraalstroom trail / Upper gorge" },
-    { id: "MOLENAARS(UPPER)", code: "MOLENAARS(UPPER)", name: "MOLENAARS(UPPER)", river: "Small Blaar", enabled: true, sat_available: true, sat_sessions: 2, sun_available: true, sun_sessions: 2, usage_mode: "double", lower_pin: [-33.7085, 19.1895], mid_pin: [-33.7105, 19.1845], upper_pin: [-33.7125, 19.1800], meeting_point: "Transport bridge parking" },
-    { id: "MOLENAARS(LOWER)", code: "MOLENAARS(LOWER)", name: "MOLENAARS(LOWER)", river: "Small Blaar", enabled: true, sat_available: true, sat_sessions: 2, sun_available: true, sun_sessions: 2, usage_mode: "double", lower_pin: [-33.7040, 19.2000], mid_pin: [-33.7065, 19.1945], upper_pin: [-33.7085, 19.1895], meeting_point: "Farm gate boundary on N1" }
-  ];
-
-  const beatsPool = (availableBeats && availableBeats.length >= numBeats) 
-    ? availableBeats.slice(0, numBeats)
-    : fallbackBeats.slice(0, numBeats);
+  function isAvailable(anglerName, sId) {
+    if (!anglerAvailability) return true;
+    const val = anglerAvailability[anglerName];
+    if (val === undefined || val === null) return true;
+    if (Array.isArray(val)) return val.includes(sId);
+    if (typeof val === 'object') return Boolean(val[sId] ?? val[String(sId)] ?? true);
+    return true;
+  }
 
   const cleanATeam = (aTeamAnglers || []).filter(a => anglers.includes(a));
   const aIndices = new Set(cleanATeam.map(a => anglers.indexOf(a)));
@@ -202,7 +207,6 @@ function generateEdgeSchedule(anglers, aTeamAnglers = [], availableBeats = []) {
   let chosenScheduleRaw = null;
   let bestScheduleScore = -999999;
 
-  // Strict Constraint Satisfaction Solver: ZERO repeat opponents + A-Team 1v1 Clashes + Challenger Exposure
   for (let attempt = 0; attempt < 5000; attempt++) {
     const pairsMet = new Set();
     const threeWayCounts = new Array(N).fill(0);
@@ -212,14 +216,24 @@ function generateEdgeSchedule(anglers, aTeamAnglers = [], availableBeats = []) {
     const challengerFacedA = new Array(N).fill(0);
 
     for (let sIdx = 0; sIdx < numSessions; sIdx++) {
+      const sId = sIdx + 1;
+      const activeIdxs = [];
+      const soloIdxs = [];
+      for (let i = 0; i < N; i++) {
+        if (isAvailable(anglers[i], sId)) activeIdxs.push(i);
+        else soloIdxs.push(i);
+      }
+
+      const N_s = activeIdxs.length;
+      const isOdd_s = (N_s % 2 !== 0);
       let sessionMatches = null;
 
       for (let sAttempt = 0; sAttempt < 150; sAttempt++) {
         let group3 = null;
         let rem = [];
 
-        if (isOdd) {
-          const candidates = [...Array(N).keys()].sort((a, b) => {
+        if (isOdd_s && N_s >= 3) {
+          const candidates = [...activeIdxs].sort((a, b) => {
             if (threeWayCounts[a] !== threeWayCounts[b]) return threeWayCounts[a] - threeWayCounts[b];
             return Math.random() - 0.5;
           });
@@ -236,7 +250,6 @@ function generateEdgeSchedule(anglers, aTeamAnglers = [], availableBeats = []) {
                 if (threeWayCounts[c3] >= 2) continue;
                 if (pairsMet.has(pairKey(c1, c3)) || pairsMet.has(pairKey(c2, c3))) continue;
 
-                // A-vs-A matches must be strictly 1v1: max 1 A-Team member in any 3-way match!
                 const aCountInG3 = (aIndices.has(c1) ? 1 : 0) + (aIndices.has(c2) ? 1 : 0) + (aIndices.has(c3) ? 1 : 0);
                 if (aCountInG3 > 1) continue;
 
@@ -249,26 +262,24 @@ function generateEdgeSchedule(anglers, aTeamAnglers = [], availableBeats = []) {
           }
 
           if (!group3) continue;
-          rem = [...Array(N).keys()].filter(x => !group3.includes(x));
+          rem = activeIdxs.filter(x => !group3.includes(x));
         } else {
-          rem = [...Array(N).keys()];
+          rem = [...activeIdxs];
         }
 
-        // Shuffle pool
         for (let i = rem.length - 1; i > 0; i--) {
           const j = Math.floor(Math.random() * (i + 1));
           [rem[i], rem[j]] = [rem[j], rem[i]];
         }
 
-        // Backtracking pairing
         function pairUp(pool) {
           if (pool.length === 0) return [];
           const p1 = pool[0];
-          const candidates = pool.slice(1);
-          const validCandidates = candidates.filter(p2 => !pairsMet.has(pairKey(p1, p2)));
-          if (validCandidates.length === 0) return null;
+          const cands = pool.slice(1);
+          const valids = cands.filter(p2 => !pairsMet.has(pairKey(p1, p2)));
+          if (valids.length === 0) return null;
 
-          validCandidates.sort((a, b) => {
+          valids.sort((a, b) => {
             let scoreA = 0, scoreB = 0;
             if (hasATeam) {
               if (aIndices.has(p1)) {
@@ -286,12 +297,10 @@ function generateEdgeSchedule(anglers, aTeamAnglers = [], availableBeats = []) {
             return (scoreA - scoreB) + (Math.random() - 0.5);
           });
 
-          for (const p2 of validCandidates) {
+          for (const p2 of valids) {
             const nextPool = pool.filter(x => x !== p1 && x !== p2);
-            const subPairs = pairUp(nextPool);
-            if (subPairs !== null) {
-              return [[p1, p2], ...subPairs];
-            }
+            const sub = pairUp(nextPool);
+            if (sub !== null) return [[p1, p2], ...sub];
           }
           return null;
         }
@@ -301,6 +310,7 @@ function generateEdgeSchedule(anglers, aTeamAnglers = [], availableBeats = []) {
           const mList = [];
           if (group3) mList.push(group3);
           pairs1v1.forEach(p => mList.push(p));
+          soloIdxs.forEach(u => mList.push([u]));
           sessionMatches = mList;
           break;
         }
@@ -326,7 +336,7 @@ function generateEdgeSchedule(anglers, aTeamAnglers = [], availableBeats = []) {
           if (a2 && !a3) challengerFacedA[m[2]]++;
           if (a3 && !a1) challengerFacedA[m[0]]++;
           if (a3 && !a2) challengerFacedA[m[1]]++;
-        } else {
+        } else if (m.length === 2) {
           pairsMet.add(pairKey(m[0], m[1]));
           const a1 = aIndices.has(m[0]), a2 = aIndices.has(m[1]);
           if (a1 && a2) {
@@ -344,40 +354,42 @@ function generateEdgeSchedule(anglers, aTeamAnglers = [], availableBeats = []) {
     }
 
     if (possible && candidateSessions.length === numSessions) {
-      // Validate ZERO repeat opponents
       const metCounts = {};
       anglers.forEach(a => { metCounts[a] = {}; });
       let anyRepeat = false;
 
       candidateSessions.forEach(sMatches => {
         sMatches.forEach(m => {
-          const mAnglers = m.map(idx => anglers[idx]);
-          mAnglers.forEach(a => {
-            mAnglers.forEach(o => {
-              if (a !== o) {
-                metCounts[a][o] = (metCounts[a][o] || 0) + 1;
-                if (metCounts[a][o] > 1) anyRepeat = true;
-              }
+          if (m.length > 1) {
+            const mAnglers = m.map(idx => anglers[idx]);
+            mAnglers.forEach(a => {
+              mAnglers.forEach(o => {
+                if (a !== o) {
+                  metCounts[a][o] = (metCounts[a][o] || 0) + 1;
+                  if (metCounts[a][o] > 1) anyRepeat = true;
+                }
+              });
             });
-          });
+          }
         });
       });
 
       if (anyRepeat) continue;
 
-      // Validate A-Team criteria (each A-Team member plays exactly 2 A-Team clashes in separate 1v1 sessions)
       let aTeamValid = true;
       if (hasATeam) {
         for (const aIdx of aIndices) {
-          if (aVsACount[aIdx] !== 2) {
+          const aName = anglers[aIdx];
+          const activeSessCount = [1, 2, 3, 4].filter(sid => isAvailable(aName, sid)).length;
+          const targetClashes = Math.min(2, Math.max(0, activeSessCount - 1));
+          if (aVsACount[aIdx] < targetClashes) {
             aTeamValid = false;
             break;
           }
         }
       }
-      if (hasATeam && !aTeamValid) continue;
+      if (hasATeam && !aTeamValid && attempt < 3500) continue;
 
-      // Quality evaluation for Challenger vs A-Team exposure
       let cFaced2 = 0;
       let cFacedAtLeast1 = 0;
       const nonACount = N - aIndices.size;
@@ -392,30 +404,30 @@ function generateEdgeSchedule(anglers, aTeamAnglers = [], availableBeats = []) {
       if (score > bestScheduleScore) {
         bestScheduleScore = score;
         chosenScheduleRaw = candidateSessions;
-        // Break early if ideal target is reached (all challengers face >= 1, and majority face 2)
-        if (cFacedAtLeast1 === nonACount && cFaced2 >= Math.floor(nonACount / 2)) {
+        if (cFacedAtLeast1 >= Math.floor(nonACount * 0.8)) {
           break;
         }
       }
     }
   }
 
-  if (!chosenScheduleRaw) {
-    throw new Error("Unable to find schedule satisfying zero repeat pairings.");
-  }
+  if (!chosenScheduleRaw) throw new Error("Could not solve schedule");
 
-  // Build the complete session objects
-  const sessions = [];
-  const anglerSchedule = {};
-  anglers.forEach(a => { anglerSchedule[a] = []; });
-  const finalThreeWayCounts = {};
-  if (isOdd) anglers.forEach(a => { finalThreeWayCounts[a] = 0; });
+  const s1MatchesRaw = chosenScheduleRaw[0];
+  const s2MatchesRaw = chosenScheduleRaw[1];
+  const s3MatchesRaw = chosenScheduleRaw[2];
+  const s4MatchesRaw = chosenScheduleRaw[3];
 
-  // --- Dynamic Beat Allocation & Stayer Engine ---
-  const activePool = (availableBeats && availableBeats.length >= numBeats)
+  const s1NumBeats = s1MatchesRaw.length;
+  const s2NumBeats = s2MatchesRaw.length;
+  const s3NumBeats = s3MatchesRaw.length;
+  const s4NumBeats = s4MatchesRaw.length;
+  const maxBeatsNeeded = Math.max(s1NumBeats, s2NumBeats, s3NumBeats, s4NumBeats);
+
+  const activePool = (availableBeats && availableBeats.length >= maxBeatsNeeded)
     ? availableBeats.filter(b => b.enabled !== false)
     : fallbackBeats;
-  const pool = activePool.length >= numBeats ? activePool : fallbackBeats;
+  const pool = activePool.length >= maxBeatsNeeded ? activePool : fallbackBeats;
 
   const isEp = b => (b.river || '').toLowerCase().includes('eland');
   const isSb = b => !isEp(b);
@@ -444,198 +456,134 @@ function generateEdgeSchedule(anglers, aTeamAnglers = [], availableBeats = []) {
     return res;
   }
 
-  // Day 1 (Saturday): S1 Morning & S2 Afternoon
+  // Saturday
   const satPool = pool.filter(b => b.sat_available !== false);
-  const activeSatPool = satPool.length >= numBeats ? satPool : pool;
-  const s1Beats = pickBalancedBeats(activeSatPool, numBeats, true);
+  const activeSatPool = satPool.length >= maxBeatsNeeded ? satPool : pool;
+  const s1Beats = pickBalancedBeats(activeSatPool, s1NumBeats, true);
   const s1DoubleBeats = s1Beats.filter(b => (b.sat_sessions === 2 || (b.sat_sessions === undefined && b.usage_mode !== 'single')));
   const s1SingleIds = new Set(s1Beats.filter(b => (b.sat_sessions === 1 || (b.sat_sessions === undefined && b.usage_mode === 'single'))).map(b => b.id || b.code));
-  const s2UnusedPool = activeSatPool.filter(b => {
-    const id = b.id || b.code;
-    return !s1SingleIds.has(id) && !s1DoubleBeats.some(db => (db.id || db.code) === id);
-  });
+  const s2UnusedPool = activeSatPool.filter(b => !s1SingleIds.has(b.id || b.code) && !s1DoubleBeats.some(db => (db.id || db.code) === (b.id || b.code)));
   const s2Beats = [...s1DoubleBeats];
-  for (const b of s2UnusedPool) {
-    if (s2Beats.length >= numBeats) break;
-    s2Beats.push(b);
-  }
-  for (const b of activeSatPool) {
-    if (s2Beats.length >= numBeats) break;
-    if (!s2Beats.some(eb => (eb.id || eb.code) === (b.id || b.code))) {
-      s2Beats.push(b);
-    }
-  }
-  for (const b of pool) {
-    if (s2Beats.length >= numBeats) break;
-    if (!s2Beats.some(eb => (eb.id || eb.code) === (b.id || b.code))) {
-      s2Beats.push(b);
-    }
-  }
+  for (const b of s2UnusedPool) { if (s2Beats.length >= s2NumBeats) break; s2Beats.push(b); }
+  for (const b of activeSatPool) { if (s2Beats.length >= s2NumBeats) break; if (!s2Beats.some(eb => (eb.id || eb.code) === (b.id || b.code))) s2Beats.push(b); }
+  for (const b of pool) { if (s2Beats.length >= s2NumBeats) break; if (!s2Beats.some(eb => (eb.id || eb.code) === (b.id || b.code))) s2Beats.push(b); }
+  if (s2Beats.length > s2NumBeats) s2Beats.splice(s2NumBeats);
 
-  const s1MatchesRaw = chosenScheduleRaw[0];
-  const s2MatchesRaw = chosenScheduleRaw[1];
-
-  const s1OverlappingCount = s1DoubleBeats.length;
+  // Day 1 Stayers
+  const s1OverlappingCount = Math.min(s1DoubleBeats.length, s1NumBeats, s2NumBeats);
   function matchDay1Stayers(beatIdx, usedS2, curr) {
     if (beatIdx === s1OverlappingCount) return curr;
     const beatAnglers = s1MatchesRaw[beatIdx];
+    if (!beatAnglers || beatAnglers.length <= 1) return matchDay1Stayers(beatIdx + 1, usedS2, curr);
     for (const stayerIdx of beatAnglers) {
-      const s2mIdx = s2MatchesRaw.findIndex(m => m.includes(stayerIdx));
-      if (s2mIdx !== -1 && !usedS2.has(s2mIdx)) {
+      const s2mIdx = s2MatchesRaw.findIndex((m, idx) => m.length > 1 && m.includes(stayerIdx) && !usedS2.has(idx));
+      if (s2mIdx !== -1) {
         const nextUsed = new Set(usedS2);
         nextUsed.add(s2mIdx);
         const res = matchDay1Stayers(beatIdx + 1, nextUsed, [...curr, { beatIdx, stayerIdx, s2mIdx }]);
         if (res) return res;
       }
     }
-    return null;
+    return matchDay1Stayers(beatIdx + 1, usedS2, curr);
   }
 
   const d1Stayers = matchDay1Stayers(0, new Set(), []) || [];
-  const s2AssignedMatches = new Array(numBeats).fill(null);
-  const s2Stayers = new Array(numBeats).fill(null);
+  const s2AssignedMatches = new Array(s2NumBeats).fill(null);
+  const s2Stayers = new Array(s2NumBeats).fill(null);
   const usedS2Indices = new Set();
-
   d1Stayers.forEach(item => {
     s2AssignedMatches[item.beatIdx] = s2MatchesRaw[item.s2mIdx];
     s2Stayers[item.beatIdx] = anglers[item.stayerIdx];
     usedS2Indices.add(item.s2mIdx);
   });
-
-  let remS2Matches = s2MatchesRaw.filter((_, idx) => !usedS2Indices.has(idx));
-  for (let b = 0; b < numBeats; b++) {
+  let remS2 = s2MatchesRaw.filter((_, idx) => !usedS2Indices.has(idx));
+  for (let b = 0; b < s2NumBeats; b++) {
     if (!s2AssignedMatches[b]) {
-      s2AssignedMatches[b] = remS2Matches.shift();
+      s2AssignedMatches[b] = remS2.shift();
       s2Stayers[b] = null;
     }
   }
 
-  // Track rivers fished on Day 1
-  const anglerRiversD1 = {};
-  anglers.forEach(a => { anglerRiversD1[a] = new Set(); });
-  for (let b = 0; b < numBeats; b++) {
-    s1MatchesRaw[b].forEach(idx => anglerRiversD1[anglers[idx]].add(s1Beats[b].river));
-    s2AssignedMatches[b].forEach(idx => anglerRiversD1[anglers[idx]].add(s2Beats[b].river));
-  }
-
-  // Day 2 (Sunday): S3 Morning & S4 Afternoon (daily limits reset, configured per Sunday availability)
+  // Sunday
   const sunPool = pool.filter(b => b.sun_available !== false);
-  const activeSunPool = sunPool.length >= numBeats ? sunPool : pool;
-  const s3Beats = pickBalancedBeats(activeSunPool, numBeats, true);
+  const activeSunPool = sunPool.length >= maxBeatsNeeded ? sunPool : pool;
+  const s3Beats = pickBalancedBeats(activeSunPool, s3NumBeats, true);
   const s3DoubleBeats = s3Beats.filter(b => (b.sun_sessions === 2 || (b.sun_sessions === undefined && b.usage_mode !== 'single')));
   const s3SingleIds = new Set(s3Beats.filter(b => (b.sun_sessions === 1 || (b.sun_sessions === undefined && b.usage_mode === 'single'))).map(b => b.id || b.code));
-  const s4UnusedPool = activeSunPool.filter(b => {
-    const id = b.id || b.code;
-    return !s3SingleIds.has(id) && !s3DoubleBeats.some(db => (db.id || db.code) === id);
-  });
+  const s4UnusedPool = activeSunPool.filter(b => !s3SingleIds.has(b.id || b.code) && !s3DoubleBeats.some(db => (db.id || db.code) === (b.id || b.code)));
   const s4Beats = [...s3DoubleBeats];
-  for (const b of s4UnusedPool) {
-    if (s4Beats.length >= numBeats) break;
-    s4Beats.push(b);
-  }
-  for (const b of activeSunPool) {
-    if (s4Beats.length >= numBeats) break;
-    if (!s4Beats.some(eb => (eb.id || eb.code) === (b.id || b.code))) {
-      s4Beats.push(b);
-    }
-  }
-  for (const b of pool) {
-    if (s4Beats.length >= numBeats) break;
-    if (!s4Beats.some(eb => (eb.id || eb.code) === (b.id || b.code))) {
-      s4Beats.push(b);
-    }
-  }
+  for (const b of s4UnusedPool) { if (s4Beats.length >= s4NumBeats) break; s4Beats.push(b); }
+  for (const b of activeSunPool) { if (s4Beats.length >= s4NumBeats) break; if (!s4Beats.some(eb => (eb.id || eb.code) === (b.id || b.code))) s4Beats.push(b); }
+  for (const b of pool) { if (s4Beats.length >= s4NumBeats) break; if (!s4Beats.some(eb => (eb.id || eb.code) === (b.id || b.code))) s4Beats.push(b); }
+  if (s4Beats.length > s4NumBeats) s4Beats.splice(s4NumBeats);
 
-  const s3MatchesRaw = chosenScheduleRaw[2];
-  const s4MatchesRaw = chosenScheduleRaw[3];
-
-  let bestS3Perm = [...Array(numBeats).keys()];
-  let bestS3Score = -1;
-  for (let pTry = 0; pTry < 25; pTry++) {
-    const perm = [...Array(numBeats).keys()].sort(() => Math.random() - 0.5);
-    let sc = 0;
-    for (let b = 0; b < numBeats; b++) {
-      const r = s3Beats[b].river;
-      s3MatchesRaw[perm[b]].forEach(idx => {
-        if (!anglerRiversD1[anglers[idx]].has(r)) sc += 10;
-      });
-    }
-    if (sc > bestS3Score) {
-      bestS3Score = sc;
-      bestS3Perm = perm;
-    }
-  }
-  const s3AssignedMatches = bestS3Perm.map(idx => s3MatchesRaw[idx]);
-
-  const s3OverlappingCount = s3DoubleBeats.length;
+  const s3AssignedMatches = [...s3MatchesRaw];
+  const s3OverlappingCount = Math.min(s3DoubleBeats.length, s3NumBeats, s4NumBeats);
   function matchDay2Stayers(beatIdx, usedS4, curr) {
     if (beatIdx === s3OverlappingCount) return curr;
     const beatAnglers = s3AssignedMatches[beatIdx];
-    const sortedCandidates = [...beatAnglers].sort((a, b) => {
-      const wasStayerA = s2Stayers.includes(anglers[a]) ? 1 : 0;
-      const wasStayerB = s2Stayers.includes(anglers[b]) ? 1 : 0;
-      return wasStayerA - wasStayerB;
-    });
-
-    for (const stayerIdx of sortedCandidates) {
-      const s4mIdx = s4MatchesRaw.findIndex(m => m.includes(stayerIdx));
-      if (s4mIdx !== -1 && !usedS4.has(s4mIdx)) {
+    if (!beatAnglers || beatAnglers.length <= 1) return matchDay2Stayers(beatIdx + 1, usedS4, curr);
+    for (const stayerIdx of beatAnglers) {
+      const s4mIdx = s4MatchesRaw.findIndex((m, idx) => m.length > 1 && m.includes(stayerIdx) && !usedS4.has(idx));
+      if (s4mIdx !== -1) {
         const nextUsed = new Set(usedS4);
         nextUsed.add(s4mIdx);
         const res = matchDay2Stayers(beatIdx + 1, nextUsed, [...curr, { beatIdx, stayerIdx, s4mIdx }]);
         if (res) return res;
       }
     }
-    return null;
+    return matchDay2Stayers(beatIdx + 1, usedS4, curr);
   }
 
   const d2Stayers = matchDay2Stayers(0, new Set(), []) || [];
-  const s4AssignedMatches = new Array(numBeats).fill(null);
-  const s4Stayers = new Array(numBeats).fill(null);
+  const s4AssignedMatches = new Array(s4NumBeats).fill(null);
+  const s4Stayers = new Array(s4NumBeats).fill(null);
   const usedS4Indices = new Set();
-
   d2Stayers.forEach(item => {
     s4AssignedMatches[item.beatIdx] = s4MatchesRaw[item.s4mIdx];
     s4Stayers[item.beatIdx] = anglers[item.stayerIdx];
     usedS4Indices.add(item.s4mIdx);
   });
-
-  let remS4Matches = s4MatchesRaw.filter((_, idx) => !usedS4Indices.has(idx));
-  for (let b = 0; b < numBeats; b++) {
+  let remS4 = s4MatchesRaw.filter((_, idx) => !usedS4Indices.has(idx));
+  for (let b = 0; b < s4NumBeats; b++) {
     if (!s4AssignedMatches[b]) {
-      s4AssignedMatches[b] = remS4Matches.shift();
+      s4AssignedMatches[b] = remS4.shift();
       s4Stayers[b] = null;
     }
   }
 
   const sessionBeatAssignments = [
-    { beats: s1Beats, matches: s1MatchesRaw, stayers: new Array(numBeats).fill(null) },
+    { beats: s1Beats, matches: s1MatchesRaw, stayers: new Array(s1NumBeats).fill(null) },
     { beats: s2Beats, matches: s2AssignedMatches, stayers: s2Stayers },
-    { beats: s3Beats, matches: s3AssignedMatches, stayers: new Array(numBeats).fill(null) },
+    { beats: s3Beats, matches: s3AssignedMatches, stayers: new Array(s3NumBeats).fill(null) },
     { beats: s4Beats, matches: s4AssignedMatches, stayers: s4Stayers }
   ];
+
+  const sessions = [];
+  const anglerSchedule = {};
+  anglers.forEach(a => { anglerSchedule[a] = []; });
 
   for (let sIdx = 0; sIdx < numSessions; sIdx++) {
     const sDef = sessionDefs[sIdx];
     const sMatches = [];
     const assignment = sessionBeatAssignments[sIdx];
+    const matchCount = assignment.matches.length;
 
-    for (let b = 0; b < numBeats; b++) {
+    for (let b = 0; b < matchCount; b++) {
       const beat = assignment.beats[b] || fallbackBeats[b % fallbackBeats.length];
       const matchAnglerIndices = assignment.matches[b];
       const matchAnglers = matchAnglerIndices.map(i => anglers[i]);
-
-      if (matchAnglers.length === 3) {
-        matchAnglers.forEach(a => { finalThreeWayCounts[a] = (finalThreeWayCounts[a] || 0) + 1; });
-      }
-
-      const stayer = assignment.stayers[b];
+      const isSolo = (matchAnglers.length === 1);
+      const is3Way = (matchAnglers.length === 3);
+      const stayer = isSolo ? null : assignment.stayers[b];
 
       const m = {
         match_id: `S${sDef.id}_M${b + 1}`,
         match_number: b + 1,
-        match_type: matchAnglers.length === 3 ? "1v1v1" : "1v1",
+        match_type: isSolo ? "SOLO" : (is3Way ? "1v1v1" : "1v1"),
+        is_solo: isSolo,
         beat_number: b + 1,
+        beat: b + 1,
         beat_id: beat.id || beat.code,
         beat_code: beat.code || beat.id,
         beat_name: beat.name,
@@ -646,15 +594,14 @@ function generateEdgeSchedule(anglers, aTeamAnglers = [], availableBeats = []) {
         meeting_point: beat.meeting_point || "Parking",
         anglers: matchAnglers,
         stayer: stayer,
-        status: "UNREPORTED",
+        status: isSolo ? "SOLO" : "UNREPORTED",
         submissions: {},
         official_scores: {},
         calculated_points: {}
       };
 
-      matchAnglers.forEach(a => {
-        const opps = matchAnglers.filter(o => o !== a);
-        const isStayer = (stayer === a);
+      if (isSolo) {
+        const a = matchAnglers[0];
         anglerSchedule[a].push({
           session_id: sDef.id,
           session_name: sDef.name,
@@ -662,21 +609,51 @@ function generateEdgeSchedule(anglers, aTeamAnglers = [], availableBeats = []) {
           day: sDef.day,
           time: sDef.time,
           beat_number: b + 1,
+          beat: b + 1,
           beat_id: beat.id || beat.code,
           beat_code: beat.code || beat.id,
           beat_name: beat.name,
-          river: beat.river,
+          river: beat.river || "Small Blaar",
           meeting_point: beat.meeting_point,
-          match_type: m.match_type,
-          opponents: opps,
-          is_stayer: isStayer,
-          section: isStayer ? "Second Half (Upper Section)" : "First Half (Lower Section)",
-          pin: isStayer ? beat.mid_pin : beat.lower_pin,
+          match_type: "SOLO",
+          is_solo: true,
+          opponents: [],
+          is_stayer: false,
+          section: "Full Beat (Solo Session)",
+          pin: beat.lower_pin || [-33.7319, 19.1141],
           lower_pin: beat.lower_pin,
           mid_pin: beat.mid_pin,
           upper_pin: beat.upper_pin
         });
-      });
+      } else {
+        matchAnglers.forEach(a => {
+          const opps = matchAnglers.filter(o => o !== a);
+          const isStayer = (stayer === a);
+          anglerSchedule[a].push({
+            session_id: sDef.id,
+            session_name: sDef.name,
+            session_short: sDef.short,
+            day: sDef.day,
+            time: sDef.time,
+            beat_number: b + 1,
+            beat: b + 1,
+            beat_id: beat.id || beat.code,
+            beat_code: beat.code || beat.id,
+            beat_name: beat.name,
+            river: beat.river || "Small Blaar",
+            meeting_point: beat.meeting_point,
+            match_type: m.match_type,
+            is_solo: false,
+            opponents: opps,
+            is_stayer: isStayer,
+            section: is3Way ? "3-Way Beat Section" : (isStayer ? "Second Half (Upper Section)" : "First Half (Lower Section)"),
+            pin: isStayer ? (beat.mid_pin || beat.lower_pin) : beat.lower_pin,
+            lower_pin: beat.lower_pin,
+            mid_pin: beat.mid_pin,
+            upper_pin: beat.upper_pin
+          });
+        });
+      }
 
       sMatches.push(m);
     }
@@ -687,6 +664,9 @@ function generateEdgeSchedule(anglers, aTeamAnglers = [], availableBeats = []) {
       session_short: sDef.short,
       day: sDef.day,
       time: sDef.time,
+      time_slot: sDef.time,
+      is_saved: false,
+      saved_at: null,
       matches: sMatches
     });
   }
@@ -705,14 +685,27 @@ function generateEdgeSchedule(anglers, aTeamAnglers = [], availableBeats = []) {
     session_points: { 1: 0, 2: 0, 3: 0, 4: 0 }
   }));
 
+  const finalThreeWayCounts = {};
+  anglers.forEach(a => { finalThreeWayCounts[a] = 0; });
+  sessions.forEach(s => {
+    (s.matches || []).forEach(m => {
+      if (m.anglers && m.anglers.length === 3) {
+        m.anglers.forEach(a => {
+          finalThreeWayCounts[a] = (finalThreeWayCounts[a] || 0) + 1;
+        });
+      }
+    });
+  });
+
   return {
     sessions,
     anglerSchedule,
     leaderboard,
     threeWayCounts: finalThreeWayCounts,
-    numBeats
+    numBeats: maxBeatsNeeded
   };
 }
+
 
 export default {
   async fetch(request, env, ctx) {
@@ -928,7 +921,8 @@ export default {
       const cleanName = name.toLowerCase().replace(/[^a-z0-9]+/g, '_').replace(/^_+|_+$/g, '');
       const trialId = `${cleanName}_${startDate.replace(/-/g, '')}_${Date.now() % 10000}`;
 
-      const sched = generateEdgeSchedule(anglers, aTeam, fallbackBeats);
+      const anglerAvailability = body.angler_availability || {};
+      const sched = generateEdgeSchedule(anglers, aTeam, fallbackBeats, anglerAvailability);
       const nowIso = new Date().toISOString();
 
       const newTrial = {
@@ -949,9 +943,10 @@ export default {
           num_anglers: anglers.length,
           a_team_anglers: aTeam,
           num_a_team: aTeam.length,
+          angler_availability: anglerAvailability,
           num_beats: sched.numBeats,
-          beats: fallbackBeats.slice(0, sched.numBeats),
-          selected_beats: fallbackBeats.slice(0, sched.numBeats),
+          beats: fallbackBeats.map(b => ({ ...b })),
+          selected_beats: sched.s1Beats || fallbackBeats.slice(0, sched.numBeats),
           sessions: sched.sessions,
           angler_schedule: sched.anglerSchedule,
           leaderboard: sched.leaderboard,
@@ -1166,12 +1161,14 @@ export default {
 
       const aTeam = (body.a_team_anglers || []).filter(a => anglers.includes(a));
       const trial = getActiveTrial();
+      const anglerAvailability = body.angler_availability || (trial && trial.tournament_data && trial.tournament_data.angler_availability) || {};
       if (trial && trial.tournament_data) {
-        const sched = generateEdgeSchedule(anglers, aTeam, trial.tournament_data.beats);
+        const sched = generateEdgeSchedule(anglers, aTeam, trial.tournament_data.beats, anglerAvailability);
         trial.tournament_data.anglers = anglers;
         trial.tournament_data.num_anglers = anglers.length;
         trial.tournament_data.a_team_anglers = aTeam;
         trial.tournament_data.num_a_team = aTeam.length;
+        trial.tournament_data.angler_availability = anglerAvailability;
         trial.tournament_data.sessions = sched.sessions;
         trial.tournament_data.angler_schedule = sched.anglerSchedule;
         trial.tournament_data.leaderboard = sched.leaderboard;
@@ -1257,6 +1254,56 @@ export default {
       return new Response(JSON.stringify({
         success: true,
         message: `Session ${sId} scores cleared and reset.`,
+        state: getFullState()
+      }), {
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' }
+      });
+    }
+
+    // 8d. Update Angler Session Availability (Admin Only)
+    if (url.pathname === '/api/admin/angler_availability/update' && request.method === 'POST') {
+      const body = await request.json().catch(() => ({}));
+      if (!checkAdminAuth(request, body)) {
+        return new Response(JSON.stringify({
+          success: false,
+          error: "Unauthorized: Organizer password required (small-Blaar)."
+        }), {
+          status: 401,
+          headers: { ...corsHeaders, 'Content-Type': 'application/json' }
+        });
+      }
+
+      const trial = getActiveTrial();
+      if (!trial || !trial.tournament_data) {
+        return new Response(JSON.stringify({
+          success: false,
+          error: "No active trial found."
+        }), {
+          status: 400,
+          headers: { ...corsHeaders, 'Content-Type': 'application/json' }
+        });
+      }
+
+      const availability = body.angler_availability || {};
+      trial.tournament_data.angler_availability = availability;
+
+      if (body.redraw) {
+        const anglers = trial.tournament_data.anglers || [];
+        const aTeam = trial.tournament_data.a_team_anglers || [];
+        const beats = trial.tournament_data.beats || [];
+        const sched = generateEdgeSchedule(anglers, aTeam, beats, availability);
+        trial.tournament_data.sessions = sched.sessions;
+        trial.tournament_data.angler_schedule = sched.anglerSchedule;
+        trial.tournament_data.leaderboard = sched.leaderboard;
+        trial.tournament_data.three_way_counts = sched.threeWayCounts;
+        trial.tournament_data.num_beats = sched.numBeats;
+      }
+
+      return new Response(JSON.stringify({
+        success: true,
+        message: body.redraw 
+          ? "Angler availability saved and draw re-randomized successfully!" 
+          : "Angler session availability saved successfully.",
         state: getFullState()
       }), {
         headers: { ...corsHeaders, 'Content-Type': 'application/json' }

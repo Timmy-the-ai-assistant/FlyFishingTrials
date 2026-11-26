@@ -554,6 +554,33 @@
             </div>
           </div>
 
+          <!-- Angler Session Availability (Competition Sessions Checkboxes) -->
+          <div class="form-group mt-3" style="background: var(--bg-primary); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 1rem;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.4rem; flex-wrap:wrap; gap:0.5rem;">
+              <label style="margin-bottom:0;"><strong>📅 Angler Session Availability (Competition vs Solo Beat):</strong></label>
+              <div style="display:flex; gap:0.4rem; align-items:center; flex-wrap:wrap;">
+                <button type="button" class="btn btn-sm btn-outline" onclick="setAllAnglerAvailability(true)" title="Mark all anglers available for all 4 competition sessions">
+                  Select All (4 Sessions)
+                </button>
+                <button type="button" class="btn btn-sm btn-primary" onclick="saveAnglerAvailabilityOnly()" style="background:#059669; border-color:#059669; font-weight:700; display:flex; align-items:center; gap:0.35rem;" title="Save marked session availability for this trial">
+                  💾 Save Availability
+                </button>
+              </div>
+            </div>
+            <p class="form-hint" style="color: var(--text-muted); margin-bottom: 0.75rem;">
+              Mark which sessions each angler is available to compete in. Any angler <strong>un-ticked for a session</strong> will be assigned a beat <strong>by themselves (Solo Beat)</strong> for that session without an opponent.
+            </p>
+            <div id="anglerAvailabilityContainer" class="table-responsive" style="max-height: 320px; overflow-y: auto;">
+              <!-- Dynamically populated via renderAnglerAvailability() -->
+            </div>
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-top:0.75rem; flex-wrap:wrap; gap:0.5rem; padding-top:0.5rem; border-top:1px solid rgba(255,255,255,0.06);">
+              <div id="anglerAvailabilitySummary" class="text-sm text-muted"></div>
+              <button type="button" class="btn btn-sm btn-primary" onclick="saveAnglerAvailabilityOnly()" style="background:#059669; border-color:#059669; font-weight:700; padding:0.35rem 0.9rem;" title="Save marked session availability for this trial">
+                💾 Save Availability
+              </button>
+            </div>
+          </div>
+
           <!-- Active Beats, River Allocation & Usage Capacity Configuration -->
           <div class="form-group mt-3" style="background: var(--bg-primary); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 1rem;">
             <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.4rem; flex-wrap:wrap; gap:0.5rem;">

@@ -13,3 +13,5 @@ debug_*.py
 trials_data.json.bak*
 .DS_Store
 Thumbs.db
+
+scratch/
