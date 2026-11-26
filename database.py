@@ -40,7 +40,7 @@ ALLOWED_TRIAL_PREFIXES = [
 DEFAULT_ANGLERS = [
     "James", "Barry", "Daniel", "Garth",
     "Dale", "Dylan", "Ian", "Malcolm",
-    "Ryan", "Gary", "Michelle"
+    "Ryan", "Garrett", "Michelle"
 ]
 
 def compute_trial_status(start_date_str: str, end_date_str: str) -> Dict[str, Any]:

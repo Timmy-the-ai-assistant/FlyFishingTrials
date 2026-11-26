@@ -209,7 +209,7 @@ function generateEdgeSchedule(anglers, aTeamAnglers = [], availableBeats = [], a
 
   for (let attempt = 0; attempt < 5000; attempt++) {
     const pairsMet = new Set();
-    const threeWayCounts = new Array(N).fill(0);
+    const byeCounts = new Array(N).fill(0);
     const candidateSessions = [];
     let possible = true;
     const aVsACount = new Array(N).fill(0);
@@ -217,59 +217,40 @@ function generateEdgeSchedule(anglers, aTeamAnglers = [], availableBeats = [], a
 
     for (let sIdx = 0; sIdx < numSessions; sIdx++) {
       const sId = sIdx + 1;
-      const activeIdxs = [];
-      const soloIdxs = [];
+      const initialActive = [];
+      const sessionSolo = [];
+
       for (let i = 0; i < N; i++) {
-        if (isAvailable(anglers[i], sId)) activeIdxs.push(i);
-        else soloIdxs.push(i);
+        if (isAvailable(anglers[i], sId)) initialActive.push(i);
+        else sessionSolo.push(i);
       }
 
-      const N_s = activeIdxs.length;
-      const isOdd_s = (N_s % 2 !== 0);
       let sessionMatches = null;
 
       for (let sAttempt = 0; sAttempt < 150; sAttempt++) {
-        let group3 = null;
-        let rem = [];
+        let currActive = [...initialActive];
+        let currSolo = [...sessionSolo];
 
-        if (isOdd_s && N_s >= 3) {
-          const candidates = [...activeIdxs].sort((a, b) => {
-            if (threeWayCounts[a] !== threeWayCounts[b]) return threeWayCounts[a] - threeWayCounts[b];
+        // STRICT TWO-PERSON PAIRINGS (Zero 3-way combos):
+        // If active count is odd, issue 1 BYE to make it even
+        if (currActive.length % 2 !== 0) {
+          const byeCandidates = [...currActive].sort((a, b) => {
+            if (byeCounts[a] !== byeCounts[b]) return byeCounts[a] - byeCounts[b];
+            const aIsA = aIndices.has(a) ? 1 : 0;
+            const bIsA = aIndices.has(b) ? 1 : 0;
+            if (aIsA !== bIsA) return aIsA - bIsA; // Non-A-team prefers bye first
             return Math.random() - 0.5;
           });
 
-          for (let i = 0; i < candidates.length; i++) {
-            const c1 = candidates[i];
-            if (threeWayCounts[c1] >= 2) continue;
-            for (let j = i + 1; j < candidates.length; j++) {
-              const c2 = candidates[j];
-              if (threeWayCounts[c2] >= 2) continue;
-              if (pairsMet.has(pairKey(c1, c2))) continue;
-              for (let k = j + 1; k < candidates.length; k++) {
-                const c3 = candidates[k];
-                if (threeWayCounts[c3] >= 2) continue;
-                if (pairsMet.has(pairKey(c1, c3)) || pairsMet.has(pairKey(c2, c3))) continue;
-
-                const aCountInG3 = (aIndices.has(c1) ? 1 : 0) + (aIndices.has(c2) ? 1 : 0) + (aIndices.has(c3) ? 1 : 0);
-                if (aCountInG3 > 1) continue;
-
-                group3 = [c1, c2, c3];
-                break;
-              }
-              if (group3) break;
-            }
-            if (group3) break;
-          }
-
-          if (!group3) continue;
-          rem = activeIdxs.filter(x => !group3.includes(x));
-        } else {
-          rem = [...activeIdxs];
+          const byeAngler = byeCandidates[0];
+          currActive = currActive.filter(x => x !== byeAngler);
+          currSolo.push(byeAngler);
         }
 
-        for (let i = rem.length - 1; i > 0; i--) {
+        // Shuffle currActive
+        for (let i = currActive.length - 1; i > 0; i--) {
           const j = Math.floor(Math.random() * (i + 1));
-          [rem[i], rem[j]] = [rem[j], rem[i]];
+          [currActive[i], currActive[j]] = [currActive[j], currActive[i]];
         }
 
         function pairUp(pool) {
@@ -305,13 +286,16 @@ function generateEdgeSchedule(anglers, aTeamAnglers = [], availableBeats = [], a
           return null;
         }
 
-        const pairs1v1 = pairUp(rem);
+        const pairs1v1 = pairUp(currActive);
         if (pairs1v1 !== null) {
           const mList = [];
-          if (group3) mList.push(group3);
           pairs1v1.forEach(p => mList.push(p));
-          soloIdxs.forEach(u => mList.push([u]));
-          sessionMatches = mList;
+          currSolo.forEach(u => mList.push([u]));
+          sessionMatches = {
+            matches: mList,
+            byes: currSolo,
+            pairs: pairs1v1
+          };
           break;
         }
       }
@@ -321,36 +305,24 @@ function generateEdgeSchedule(anglers, aTeamAnglers = [], availableBeats = [], a
         break;
       }
 
-      for (const m of sessionMatches) {
-        if (m.length === 3) {
-          pairsMet.add(pairKey(m[0], m[1]));
-          pairsMet.add(pairKey(m[0], m[2]));
-          pairsMet.add(pairKey(m[1], m[2]));
-          threeWayCounts[m[0]]++;
-          threeWayCounts[m[1]]++;
-          threeWayCounts[m[2]]++;
-          const a1 = aIndices.has(m[0]), a2 = aIndices.has(m[1]), a3 = aIndices.has(m[2]);
-          if (a1 && !a2) challengerFacedA[m[1]]++;
-          if (a1 && !a3) challengerFacedA[m[2]]++;
-          if (a2 && !a1) challengerFacedA[m[0]]++;
-          if (a2 && !a3) challengerFacedA[m[2]]++;
-          if (a3 && !a1) challengerFacedA[m[0]]++;
-          if (a3 && !a2) challengerFacedA[m[1]]++;
-        } else if (m.length === 2) {
-          pairsMet.add(pairKey(m[0], m[1]));
-          const a1 = aIndices.has(m[0]), a2 = aIndices.has(m[1]);
-          if (a1 && a2) {
-            aVsACount[m[0]]++;
-            aVsACount[m[1]]++;
-          } else if (a1 && !a2) {
-            challengerFacedA[m[1]]++;
-          } else if (a2 && !a1) {
-            challengerFacedA[m[0]]++;
-          }
+      for (const p of sessionMatches.pairs) {
+        pairsMet.add(pairKey(p[0], p[1]));
+        const a1 = aIndices.has(p[0]), a2 = aIndices.has(p[1]);
+        if (a1 && a2) {
+          aVsACount[p[0]]++;
+          aVsACount[p[1]]++;
+        } else if (a1 && !a2) {
+          challengerFacedA[p[1]]++;
+        } else if (a2 && !a1) {
+          challengerFacedA[p[0]]++;
         }
       }
 
-      candidateSessions.push(sessionMatches);
+      for (const bIdx of sessionMatches.byes) {
+        byeCounts[bIdx]++;
+      }
+
+      candidateSessions.push(sessionMatches.matches);
     }
 
     if (possible && candidateSessions.length === numSessions) {
@@ -574,14 +546,14 @@ function generateEdgeSchedule(anglers, aTeamAnglers = [], availableBeats = [], a
       const matchAnglerIndices = assignment.matches[b];
       const matchAnglers = matchAnglerIndices.map(i => anglers[i]);
       const isSolo = (matchAnglers.length === 1);
-      const is3Way = (matchAnglers.length === 3);
       const stayer = isSolo ? null : assignment.stayers[b];
 
       const m = {
         match_id: `S${sDef.id}_M${b + 1}`,
         match_number: b + 1,
-        match_type: isSolo ? "SOLO" : (is3Way ? "1v1v1" : "1v1"),
+        match_type: isSolo ? "BYE" : "1v1",
         is_solo: isSolo,
+        is_bye: isSolo,
         beat_number: b + 1,
         beat: b + 1,
         beat_id: beat.id || beat.code,
@@ -594,7 +566,7 @@ function generateEdgeSchedule(anglers, aTeamAnglers = [], availableBeats = [], a
         meeting_point: beat.meeting_point || "Parking",
         anglers: matchAnglers,
         stayer: stayer,
-        status: isSolo ? "SOLO" : "UNREPORTED",
+        status: isSolo ? "BYE" : "UNREPORTED",
         submissions: {},
         official_scores: {},
         calculated_points: {}
@@ -615,11 +587,12 @@ function generateEdgeSchedule(anglers, aTeamAnglers = [], availableBeats = [], a
           beat_name: beat.name,
           river: beat.river || "Small Blaar",
           meeting_point: beat.meeting_point,
-          match_type: "SOLO",
+          match_type: "BYE",
           is_solo: true,
+          is_bye: true,
           opponents: [],
           is_stayer: false,
-          section: "Full Beat (Solo Session)",
+          section: "Full Beat (Issued Bye)",
           pin: beat.lower_pin || [-33.7319, 19.1141],
           lower_pin: beat.lower_pin,
           mid_pin: beat.mid_pin,
@@ -646,7 +619,7 @@ function generateEdgeSchedule(anglers, aTeamAnglers = [], availableBeats = [], a
             is_solo: false,
             opponents: opps,
             is_stayer: isStayer,
-            section: is3Way ? "3-Way Beat Section" : (isStayer ? "Second Half (Upper Section)" : "First Half (Lower Section)"),
+            section: isStayer ? "Second Half (Upper Section)" : "First Half (Lower Section)",
             pin: isStayer ? (beat.mid_pin || beat.lower_pin) : beat.lower_pin,
             lower_pin: beat.lower_pin,
             mid_pin: beat.mid_pin,
