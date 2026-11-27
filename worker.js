@@ -1879,27 +1879,31 @@ if (url.pathname === '/api/state' && request.method === 'GET') {
         notes: notes.trim()
       };
 
-      const numAnglers = match.anglers.length;
-      const numSubmissions = Object.keys(match.submissions).length;
-
-      if (numSubmissions < numAnglers) {
-        match.status = "PENDING_CONFIRMATION";
+      const subList = Object.values(match.submissions);
+      if (subList.length === 1) {
+        // Immediate confirmation on first submitted scorecard (ideal for mountain river cell spots)
+        match.status = "CONFIRMED";
+        match.official_scores = cleanScores;
+        match.calculated_points = calculateMatchPoints(cleanScores, match.match_type);
         match.discrepancy_details = null;
-        const pendingFrom = match.anglers.filter(a => !match.submissions[a]);
-        const msg = `Score received from ${submitterName}. Waiting for report from: ${pendingFrom.join(', ')}.`;
-        logWorkerEvent(trial.tournament_data, "SUBMISSION", `Session ${sessionId}, Beat ${match.beat_code || match.beat}: ${msg}`);
+
+        recomputeTournamentLeaderboard(trial.tournament_data);
+
+        const scoreStr = match.anglers.map(a => `${a}: ${cleanScores[a]} fish (${match.calculated_points[a]} pts)`).join(', ');
+        const logMsg = `Scorecard recorded by ${submitterName} on Session ${sessionId}, Beat ${match.beat_code || match.beat}: ${scoreStr}`;
+        logWorkerEvent(trial.tournament_data, "CONFIRMED", logMsg);
 
         return new Response(JSON.stringify({
           success: true,
-          status: "PENDING_CONFIRMATION",
-          message: msg,
+          status: "CONFIRMED",
+          message: `Official scorecard received from ${submitterName}. Scores confirmed and leaderboard updated!`,
           match: match,
           state: getFullState()
         }), {
           headers: { ...corsHeaders, 'Content-Type': 'application/json' }
         });
       } else {
-        const subList = Object.values(match.submissions);
+        // Dual submission verification
         const firstSub = subList[0].reported_scores;
         let allMatch = true;
         for (let i = 1; i < subList.length; i++) {
