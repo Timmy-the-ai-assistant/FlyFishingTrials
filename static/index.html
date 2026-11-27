@@ -80,7 +80,7 @@
           <img src="disa_logo.png" alt="WP Disa" class="disa-logo-img">
         </div>
         <div>
-          <h1 id="tournamentTitle">Fly Fishing Trials 2026 <span class="badge" style="font-size:0.75rem; background:rgba(59,130,246,0.2); color:#60a5fa; border:1px solid rgba(59,130,246,0.3); border-radius:4px; margin-left:0.4rem; vertical-align:middle;">v2.6.2</span></h1>
+          <h1 id="tournamentTitle">Fly Fishing Trials 2026 <span class="badge" style="font-size:0.75rem; background:rgba(59,130,246,0.2); color:#60a5fa; border:1px solid rgba(59,130,246,0.3); border-radius:4px; margin-left:0.4rem; vertical-align:middle;">v2.6.4</span></h1>
           <div class="sub-meta">
             <span id="tournamentVenue" class="meta-tag">Championship Beats</span>
             <span id="anglerCountTag" class="meta-tag tag-accent">9 Anglers</span>
@@ -243,6 +243,9 @@
           <p class="section-desc">View pairings across all 4 sessions. Zero repeat opponents guaranteed.</p>
         </div>
         <div style="display:flex; gap:0.6rem; align-items:center; flex-wrap:wrap;">
+          <button type="button" class="btn btn-sm" onclick="openDrawCardsModal()" style="font-weight:700; background:#0ea5e9; border:1px solid #38bdf8; color:#fff;" title="View official high-res draw cards for WhatsApp">
+            🖼️ WhatsApp Draw Cards
+          </button>
           <div class="session-filter-buttons" id="sessionFilters">
             <button class="filter-btn active" onclick="filterSchedule(0)">All Sessions</button>
             <button class="filter-btn" onclick="filterSchedule(1)">Sat AM</button>
@@ -1051,5 +1054,66 @@
   </div>
 
   <script src="app.js"></script>
+  <!-- Modal: Official WhatsApp Draw Cards -->
+  <div id="drawCardsModal" class="modal-overlay hidden">
+    <div class="modal-card card modal-lg" style="max-width: 960px; max-height: 90vh; overflow-y: auto;">
+      <div class="modal-header">
+        <div>
+          <h3>🖼️ Official Tournament Draw Cards</h3>
+          <p class="text-muted text-sm">High-resolution cards formatted for WhatsApp sharing. Tap any image to view or download.</p>
+        </div>
+        <button class="modal-close" onclick="closeDrawCardsModal()">&times;</button>
+      </div>
+
+      <div class="modal-body" style="display: flex; flex-direction: column; gap: 1.5rem;">
+        <div style="background: rgba(15,23,42,0.6); padding: 1rem; border-radius: 8px; border: 1px solid rgba(255,255,255,0.08);">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 0.5rem;">
+            <strong style="color:#f8fafc; font-size:1.05rem;">📅 Full Weekend Match Schedule</strong>
+            <a href="draw_images/draw_full_weekend_schedule.png" download="Official_Draw_Full_Weekend.png" class="btn btn-sm btn-outline">⬇️ Download Card</a>
+          </div>
+          <img src="draw_images/draw_full_weekend_schedule.png" alt="Full Weekend Schedule" style="width: 100%; border-radius: 6px; border: 1px solid rgba(255,255,255,0.1);">
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(420px, 1fr)); gap: 1rem;">
+          <div style="background: rgba(15,23,42,0.6); padding: 0.85rem; border-radius: 8px; border: 1px solid rgba(255,255,255,0.08);">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 0.4rem;">
+              <strong style="color:#f59e0b;">🟡 Session 1 (Saturday Morning)</strong>
+              <a href="draw_images/draw_s1_saturday_morning.png" download="Official_Draw_Session_1.png" class="btn btn-sm btn-outline">⬇️ Save</a>
+            </div>
+            <img src="draw_images/draw_s1_saturday_morning.png" alt="Session 1 Card" style="width: 100%; border-radius: 6px;">
+          </div>
+
+          <div style="background: rgba(15,23,42,0.6); padding: 0.85rem; border-radius: 8px; border: 1px solid rgba(255,255,255,0.08);">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 0.4rem;">
+              <strong style="color:#f97316;">🟠 Session 2 (Saturday Afternoon)</strong>
+              <a href="draw_images/draw_s2_saturday_afternoon.png" download="Official_Draw_Session_2.png" class="btn btn-sm btn-outline">⬇️ Save</a>
+            </div>
+            <img src="draw_images/draw_s2_saturday_afternoon.png" alt="Session 2 Card" style="width: 100%; border-radius: 6px;">
+          </div>
+
+          <div style="background: rgba(15,23,42,0.6); padding: 0.85rem; border-radius: 8px; border: 1px solid rgba(255,255,255,0.08);">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 0.4rem;">
+              <strong style="color:#10b981;">🟢 Session 3 (Sunday Morning)</strong>
+              <a href="draw_images/draw_s3_sunday_morning.png" download="Official_Draw_Session_3.png" class="btn btn-sm btn-outline">⬇️ Save</a>
+            </div>
+            <img src="draw_images/draw_s3_sunday_morning.png" alt="Session 3 Card" style="width: 100%; border-radius: 6px;">
+          </div>
+
+          <div style="background: rgba(15,23,42,0.6); padding: 0.85rem; border-radius: 8px; border: 1px solid rgba(255,255,255,0.08);">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 0.4rem;">
+              <strong style="color:#38bdf8;">🔵 Session 4 (Sunday Afternoon)</strong>
+              <a href="draw_images/draw_s4_sunday_afternoon.png" download="Official_Draw_Session_4.png" class="btn btn-sm btn-outline">⬇️ Save</a>
+            </div>
+            <img src="draw_images/draw_s4_sunday_afternoon.png" alt="Session 4 Card" style="width: 100%; border-radius: 6px;">
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-footer" style="display:flex; justify-content:flex-end; margin-top:1.25rem;">
+        <button class="btn btn-secondary" onclick="closeDrawCardsModal()">Close</button>
+      </div>
+    </div>
+  </div>
+
 </body>
 </html>

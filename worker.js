@@ -1,4 +1,4 @@
-const APP_VERSION = "v2.6.2";
+const APP_VERSION = "v2.6.4";
 /**
  * WP Fly Fishing Trials - Cloudflare Edge Worker
  * Full Edge-native API engine with zero cold starts and instant response times.
@@ -87,10 +87,156 @@ function getTrialsSummaryList() {
   });
 }
 
+function calculateMatchPoints(fishCounts, matchType = "NORMAL") {
+  const anglers = Object.keys(fishCounts);
+  let totalFish = 0;
+  anglers.forEach(a => {
+    totalFish += (fishCounts[a] || 0);
+  });
+
+  const res = {};
+  if (totalFish === 0) {
+    anglers.forEach(a => { res[a] = 0.0; });
+    return res;
+  }
+
+  const isThreeWay = (matchType === "1v1v1" || anglers.length === 3);
+  const pool = isThreeWay ? 15.0 : 10.0;
+
+  anglers.forEach(a => {
+    const count = fishCounts[a] || 0;
+    if (count === 0) {
+      res[a] = 0.0;
+    } else {
+      let pts = (pool / totalFish) * count;
+      if (isThreeWay) {
+        pts = Math.min(10.0, pts);
+      }
+      res[a] = Math.round(pts * 100) / 100;
+    }
+  });
+
+  return res;
+}
+
+function recomputeTournamentLeaderboard(tData) {
+  if (!tData || !tData.anglers) return;
+  const anglers = tData.anglers;
+  const aTeamSet = new Set(tData.a_team_anglers || []);
+
+  const stats = {};
+  anglers.forEach(a => {
+    stats[a] = {
+      name: a,
+      angler: a,
+      is_a_team: aTeamSet.has(a),
+      session_points: { 1: 0.0, 2: 0.0, 3: 0.0, 4: 0.0 },
+      session_fish: { 1: 0, 2: 0, 3: 0, 4: 0 },
+      s1_pts: 0.0,
+      s2_pts: 0.0,
+      s3_pts: 0.0,
+      s4_pts: 0.0,
+      total_points: 0.0,
+      total_fish: 0,
+      blanks: 0,
+      matches_played: 0
+    };
+  });
+
+  for (const s of (tData.sessions || [])) {
+    const sId = s.session_id;
+    for (const m of (s.matches || [])) {
+      if ((m.status === 'CONFIRMED' || m.status === 'ADMIN_CONFIRMED') && m.official_scores) {
+        const scores = m.official_scores;
+        const pts = m.calculated_points || {};
+        for (const [ang, fish] of Object.entries(scores)) {
+          if (stats[ang]) {
+            const p = pts[ang] !== undefined ? pts[ang] : 0.0;
+            stats[ang].session_points[sId] = p;
+            stats[ang].session_fish[sId] = fish;
+            if (sId === 1) stats[ang].s1_pts = p;
+            else if (sId === 2) stats[ang].s2_pts = p;
+            else if (sId === 3) stats[ang].s3_pts = p;
+            else if (sId === 4) stats[ang].s4_pts = p;
+
+            stats[ang].total_points = Math.round((stats[ang].total_points + p) * 100) / 100;
+            stats[ang].total_fish += fish;
+            if (fish === 0) stats[ang].blanks += 1;
+            stats[ang].matches_played += 1;
+          }
+        }
+      }
+    }
+  }
+
+  const sorted = Object.values(stats).sort((a, b) => {
+    if (b.total_points !== a.total_points) return b.total_points - a.total_points;
+    if (b.total_fish !== a.total_fish) return b.total_fish - a.total_fish;
+    if (a.blanks !== b.blanks) return a.blanks - b.blanks;
+    return a.name.localeCompare(b.name);
+  });
+
+  sorted.forEach((row, i) => {
+    row.rank = i + 1;
+  });
+
+  tData.leaderboard = sorted;
+}
+
+function logWorkerEvent(tData, eventType, message) {
+  if (!tData) return;
+  if (!tData.activity_log) tData.activity_log = [];
+  tData.activity_log.unshift({
+    timestamp: new Date().toISOString(),
+    event_type: eventType,
+    message: message
+  });
+  if (tData.activity_log.length > 50) {
+    tData.activity_log = tData.activity_log.slice(0, 50);
+  }
+}
+
 function getFullState() {
   const trial = getActiveTrial();
   const tData = (trial && trial.tournament_data) || {};
   const st = trial ? computeTrialStatus(trial.start_date, trial.end_date) : {};
+
+  recomputeTournamentLeaderboard(tData);
+
+  const discrepancies = [];
+  const pending = [];
+  let confirmedMatches = 0;
+  let totalMatches = 0;
+
+  for (const s of (tData.sessions || [])) {
+    for (const m of (s.matches || [])) {
+      totalMatches++;
+      if (m.status === 'CONFIRMED' || m.status === 'ADMIN_CONFIRMED') {
+        confirmedMatches++;
+      } else if (m.status === 'DISCREPANCY') {
+        discrepancies.push({
+          session_id: s.session_id,
+          session_name: s.name || `Session ${s.session_id}`,
+          match_id: m.match_id || m.id,
+          beat: m.beat_code || m.beat,
+          river: m.river,
+          anglers: m.anglers,
+          submissions: m.submissions,
+          discrepancy_details: m.discrepancy_details
+        });
+      } else if (m.status === 'PENDING_CONFIRMATION' || m.status === 'PARTIALLY_REPORTED') {
+        pending.push({
+          session_id: s.session_id,
+          session_name: s.name || `Session ${s.session_id}`,
+          match_id: m.match_id || m.id,
+          beat: m.beat_code || m.beat,
+          river: m.river,
+          anglers: m.anglers,
+          submissions: m.submissions
+        });
+      }
+    }
+  }
 
   let lb = tData.leaderboard || [];
   if (lb.length === 0 && tData.anglers && tData.anglers.length > 0) {
@@ -111,6 +257,7 @@ function getFullState() {
 
   return {
     tournament_name: trial ? trial.name : (tData.tournament_name || "Autumn Trial 2026 A"),
+    active_trial_id: trial ? trial.id : (currentData.active_trial_id || "autumn_trial_2026_a"),
     venue: tData.venue || "Cape Piscatorial Society - Smalblaar & Elandspad",
     anglers: tData.anglers || [],
     num_anglers: (tData.anglers || []).length,
@@ -126,19 +273,19 @@ function getFullState() {
     leaderboard: lb,
     activity_log: tData.activity_log || [],
     stats: {
-      total_matches: 0,
-      confirmed_matches: 0,
-      discrepancies_count: 0,
-      pending_count: 0
+      total_matches: totalMatches,
+      confirmed_matches: confirmedMatches,
+      discrepancies_count: discrepancies.length,
+      pending_count: pending.length
     },
-    discrepancies: [],
-    pending: [],
+    discrepancies: discrepancies,
+    pending: pending,
     trial_info: {
-      id: trial ? trial.id : "default",
+      id: trial ? trial.id : (currentData.active_trial_id || "autumn_trial_2026_a"),
       name: trial ? trial.name : "Autumn Trial 2026 A",
       year: trial ? trial.year : 2026,
-      start_date: trial ? trial.start_date : "",
-      end_date: trial ? trial.end_date : "",
+      start_date: trial ? trial.start_date : "2026-11-28",
+      end_date: trial ? trial.end_date : "2026-11-29",
       whatsapp_url: trial ? (trial.whatsapp_url || "") : "",
       status: st.status,
       status_label: st.status_label,
@@ -359,6 +506,7 @@ function generateEdgeScheduleInternal(anglers, aTeamAnglers = [], availableBeats
             break;
           }
         }
+        recomputeTournamentLeaderboard(trial.tournament_data);
       }
       if (hasATeam && !aTeamValid && attempt < 3500) continue;
 
@@ -806,7 +954,7 @@ function buildTemplateDraw(sundayARiver = "Small Blaar") {
       { id: "S3_M2", beat_code: "SB(TRANSPORT)", beat_id: "SB(TRANSPORT)", river: "Small Blaar", anglers: ["A3", "A4"], travel_time: 15, group: "A-Team River", match_desc: "A vs A" },
       { id: "S3_M3", beat_code: "EP1", beat_id: "EP1", river: "Elands Pad", anglers: ["B1", "B3"], travel_time: 15, group: "B-Team River", match_desc: "B vs B" },
       { id: "S3_M4", beat_code: "EP3", beat_id: "EP3", river: "Elands Pad", anglers: ["B2", "B4"], travel_time: 30, group: "B-Team River", match_desc: "B vs B" },
-      { id: "S3_M5", beat_code: "EP2", beat_id: "EP2", river: "Elands Pad", anglers: ["B5", "B6_or_new"], travel_time: 30, group: "B-Team River", match_desc: "B vs B" }
+      { id: "S3_M5", beat_code: "EP2", beat_id: "EP2", river: "Elands Pad", anglers: ["B5", "B6"], travel_time: 30, group: "B-Team River", match_desc: "B vs B" }
     ];
 
     s4_matches = [
@@ -814,7 +962,7 @@ function buildTemplateDraw(sundayARiver = "Small Blaar") {
       { id: "S4_M2", beat_code: "SB3", beat_id: "SB3", river: "Small Blaar", anglers: ["A2", "A4"], travel_time: 15, group: "A-Team River", match_desc: "A vs A" },
       { id: "S4_M3", beat_code: "EP3", beat_id: "EP3", river: "Elands Pad", anglers: ["B1", "B4"], travel_time: 30, group: "B-Team River", match_desc: "B vs B" },
       { id: "S4_M4", beat_code: "EP1", beat_id: "EP1", river: "Elands Pad", anglers: ["B2", "B5"], travel_time: 15, group: "B-Team River", match_desc: "B vs B" },
-      { id: "S4_M5", beat_code: "SB6", beat_id: "SB6", river: "Elands Pad", anglers: ["B3", "B6_or_new"], travel_time: 15, group: "B-Team River", match_desc: "B vs B" }
+      { id: "S4_M5", beat_code: "SB6", beat_id: "SB6", river: "Elands Pad", anglers: ["B3", "B6"], travel_time: 15, group: "B-Team River", match_desc: "B vs B" }
     ];
   } else {
     s3_matches = [
@@ -822,7 +970,7 @@ function buildTemplateDraw(sundayARiver = "Small Blaar") {
       { id: "S3_M2", beat_code: "EP1", beat_id: "EP1", river: "Elands Pad", anglers: ["A3", "A4"], travel_time: 15, group: "A-Team River", match_desc: "A vs A" },
       { id: "S3_M3", beat_code: "SB1", beat_id: "SB1", river: "Small Blaar", anglers: ["B1", "B3"], travel_time: 15, group: "B-Team River", match_desc: "B vs B" },
       { id: "S3_M4", beat_code: "SB2", beat_id: "SB2", river: "Small Blaar", anglers: ["B2", "B4"], travel_time: 15, group: "B-Team River", match_desc: "B vs B" },
-      { id: "S3_M5", beat_code: "SB(TRANSPORT)", beat_id: "SB(TRANSPORT)", river: "Small Blaar", anglers: ["B5", "B6_or_new"], travel_time: 15, group: "B-Team River", match_desc: "B vs B" }
+      { id: "S3_M5", beat_code: "SB(TRANSPORT)", beat_id: "SB(TRANSPORT)", river: "Small Blaar", anglers: ["B5", "B6"], travel_time: 15, group: "B-Team River", match_desc: "B vs B" }
     ];
 
     s4_matches = [
@@ -830,7 +978,7 @@ function buildTemplateDraw(sundayARiver = "Small Blaar") {
       { id: "S4_M2", beat_code: "SB6", beat_id: "SB6", river: "Elands Pad", anglers: ["A2", "A4"], travel_time: 15, group: "A-Team River", match_desc: "A vs A" },
       { id: "S4_M3", beat_code: "SB3", beat_id: "SB3", river: "Small Blaar", anglers: ["B1", "B4"], travel_time: 15, group: "B-Team River", match_desc: "B vs B" },
       { id: "S4_M4", beat_code: "SB1", beat_id: "SB1", river: "Small Blaar", anglers: ["B2", "B5"], travel_time: 15, group: "B-Team River", match_desc: "B vs B" },
-      { id: "S4_M5", beat_code: "SB2", beat_id: "SB2", river: "Small Blaar", anglers: ["B3", "B6_or_new"], travel_time: 15, group: "B-Team River", match_desc: "B vs B" }
+      { id: "S4_M5", beat_code: "SB2", beat_id: "SB2", river: "Small Blaar", anglers: ["B3", "B6"], travel_time: 15, group: "B-Team River", match_desc: "B vs B" }
     ];
   }
 
@@ -1421,6 +1569,7 @@ if (url.pathname === '/api/state' && request.method === 'GET') {
             break;
           }
         }
+        recomputeTournamentLeaderboard(trial.tournament_data);
       }
 
       return new Response(JSON.stringify({ success: true, message: "Beat updated successfully." }), {
@@ -1609,6 +1758,7 @@ if (url.pathname === '/api/state' && request.method === 'GET') {
             }
           }
         }
+        recomputeTournamentLeaderboard(trial.tournament_data);
       }
 
       return new Response(JSON.stringify({
@@ -1673,13 +1823,139 @@ if (url.pathname === '/api/state' && request.method === 'GET') {
     // 9. Submit Match Score
     if (url.pathname === '/api/submit' && request.method === 'POST') {
       const body = await request.json().catch(() => ({}));
-      return new Response(JSON.stringify({
-        success: true,
-        status: "CONFIRMED",
-        message: "Score submitted and verified."
-      }), {
-        headers: { ...corsHeaders, 'Content-Type': 'application/json' }
-      });
+      const sessionId = parseInt(body.session_id, 10);
+      const matchId = body.match_id;
+      const submitterName = body.submitter_name;
+      const reportedScores = body.reported_scores || {};
+      const notes = body.notes || "";
+
+      const trial = getActiveTrial();
+      if (!trial || !trial.tournament_data || !trial.tournament_data.sessions) {
+        return new Response(JSON.stringify({ success: false, error: "Active trial session data not found." }), {
+          status: 400,
+          headers: { ...corsHeaders, 'Content-Type': 'application/json' }
+        });
+      }
+
+      const sess = trial.tournament_data.sessions.find(s => s.session_id === sessionId);
+      if (!sess) {
+        return new Response(JSON.stringify({ success: false, error: `Session ${sessionId} not found.` }), {
+          status: 404,
+          headers: { ...corsHeaders, 'Content-Type': 'application/json' }
+        });
+      }
+
+      const match = (sess.matches || []).find(m => (m.id === matchId || m.match_id === matchId) || (m.anglers && m.anglers.includes(submitterName)));
+      if (!match) {
+        return new Response(JSON.stringify({ success: false, error: `Match not found for ${submitterName} in Session ${sessionId}.` }), {
+          status: 404,
+          headers: { ...corsHeaders, 'Content-Type': 'application/json' }
+        });
+      }
+
+      if (!match.anglers.includes(submitterName)) {
+        return new Response(JSON.stringify({ success: false, error: `${submitterName} is not a participant in this match.` }), {
+          status: 403,
+          headers: { ...corsHeaders, 'Content-Type': 'application/json' }
+        });
+      }
+
+      const cleanScores = {};
+      for (const ang of match.anglers) {
+        if (reportedScores[ang] === undefined) {
+          return new Response(JSON.stringify({ success: false, error: `Missing fish count for ${ang}.` }), {
+            status: 400,
+            headers: { ...corsHeaders, 'Content-Type': 'application/json' }
+          });
+        }
+        const val = parseInt(reportedScores[ang], 10);
+        cleanScores[ang] = isNaN(val) ? 0 : Math.max(0, val);
+      }
+
+      if (!match.submissions) match.submissions = {};
+      match.submissions[submitterName] = {
+        submitted_at: new Date().toISOString(),
+        reported_scores: cleanScores,
+        notes: notes.trim()
+      };
+
+      const numAnglers = match.anglers.length;
+      const numSubmissions = Object.keys(match.submissions).length;
+
+      if (numSubmissions < numAnglers) {
+        match.status = "PENDING_CONFIRMATION";
+        match.discrepancy_details = null;
+        const pendingFrom = match.anglers.filter(a => !match.submissions[a]);
+        const msg = `Score received from ${submitterName}. Waiting for report from: ${pendingFrom.join(', ')}.`;
+        logWorkerEvent(trial.tournament_data, "SUBMISSION", `Session ${sessionId}, Beat ${match.beat_code || match.beat}: ${msg}`);
+
+        return new Response(JSON.stringify({
+          success: true,
+          status: "PENDING_CONFIRMATION",
+          message: msg,
+          match: match,
+          state: getFullState()
+        }), {
+          headers: { ...corsHeaders, 'Content-Type': 'application/json' }
+        });
+      } else {
+        const subList = Object.values(match.submissions);
+        const firstSub = subList[0].reported_scores;
+        let allMatch = true;
+        for (let i = 1; i < subList.length; i++) {
+          const other = subList[i].reported_scores;
+          for (const ang of match.anglers) {
+            if (firstSub[ang] !== other[ang]) {
+              allMatch = false;
+              break;
+            }
+          }
+          if (!allMatch) break;
+        }
+
+        if (allMatch) {
+          match.status = "CONFIRMED";
+          match.official_scores = firstSub;
+          match.calculated_points = calculateMatchPoints(firstSub, match.match_type);
+          match.discrepancy_details = null;
+
+          recomputeTournamentLeaderboard(trial.tournament_data);
+
+          const scoreStr = match.anglers.map(a => `${a}: ${firstSub[a]} fish (${match.calculated_points[a]} pts)`).join(', ');
+          const logMsg = `AUTO-VERIFIED: Both reports matched on Session ${sessionId}, Beat ${match.beat_code || match.beat}: ${scoreStr}`;
+          logWorkerEvent(trial.tournament_data, "CONFIRMED", logMsg);
+
+          return new Response(JSON.stringify({
+            success: true,
+            status: "CONFIRMED",
+            message: "Scores verified! Both participant reports matched perfectly.",
+            match: match,
+            state: getFullState()
+          }), {
+            headers: { ...corsHeaders, 'Content-Type': 'application/json' }
+          });
+        } else {
+          match.status = "DISCREPANCY";
+          const diffSummary = Object.entries(match.submissions).map(([subName, subData]) => {
+            const sStr = match.anglers.map(a => `${a}: ${subData.reported_scores[a]}`).join(', ');
+            return `${subName} reported: [${sStr}]`;
+          });
+          match.discrepancy_details = diffSummary.join(' | ');
+
+          const logMsg = `DISCREPANCY on Session ${sessionId}, Beat ${match.beat_code || match.beat}: ${match.discrepancy_details}. Awaiting organizer review.`;
+          logWorkerEvent(trial.tournament_data, "DISCREPANCY", logMsg);
+
+          return new Response(JSON.stringify({
+            success: true,
+            status: "DISCREPANCY",
+            message: "Discrepancy detected between participant reports. The organizer has been alerted to review.",
+            match: match,
+            state: getFullState()
+          }), {
+            headers: { ...corsHeaders, 'Content-Type': 'application/json' }
+          });
+        }
+      }
     }
 
     // 10. Admin Resolve Match - Admin Only
@@ -1695,10 +1971,61 @@ if (url.pathname === '/api/state' && request.method === 'GET') {
         });
       }
 
+      const sessionId = parseInt(body.session_id, 10);
+      const matchId = body.match_id;
+      const officialScores = body.official_scores || {};
+      const adminNote = body.admin_note || "";
+
+      const trial = getActiveTrial();
+      if (!trial || !trial.tournament_data || !trial.tournament_data.sessions) {
+        return new Response(JSON.stringify({ success: false, error: "Active trial session data not found." }), {
+          status: 400,
+          headers: { ...corsHeaders, 'Content-Type': 'application/json' }
+        });
+      }
+
+      const sess = trial.tournament_data.sessions.find(s => s.session_id === sessionId);
+      if (!sess) {
+        return new Response(JSON.stringify({ success: false, error: `Session ${sessionId} not found.` }), {
+          status: 404,
+          headers: { ...corsHeaders, 'Content-Type': 'application/json' }
+        });
+      }
+
+      const match = (sess.matches || []).find(m => m.id === matchId || m.match_id === matchId);
+      if (!match) {
+        return new Response(JSON.stringify({ success: false, error: `Match ${matchId} not found in Session ${sessionId}.` }), {
+          status: 404,
+          headers: { ...corsHeaders, 'Content-Type': 'application/json' }
+        });
+      }
+
+      const cleanScores = {};
+      for (const ang of match.anglers) {
+        const val = parseInt(officialScores[ang], 10);
+        cleanScores[ang] = isNaN(val) ? 0 : Math.max(0, val);
+      }
+
+      match.status = "ADMIN_CONFIRMED";
+      match.official_scores = cleanScores;
+      match.calculated_points = calculateMatchPoints(cleanScores, match.match_type);
+      match.discrepancy_details = null;
+      match.admin_resolution = {
+        resolved_at: new Date().toISOString(),
+        admin_note: adminNote.trim()
+      };
+
+      recomputeTournamentLeaderboard(trial.tournament_data);
+
+      const scoreStr = match.anglers.map(a => `${a}: ${cleanScores[a]} fish (${match.calculated_points[a]} pts)`).join(', ');
+      const logMsg = `Organizer resolved Session ${sessionId}, Beat ${match.beat_code || match.beat}: ${scoreStr}`;
+      logWorkerEvent(trial.tournament_data, "ADMIN_RESOLVED", logMsg);
+
       return new Response(JSON.stringify({
         success: true,
         status: "ADMIN_CONFIRMED",
-        message: "Official score confirmed by organizer."
+        message: "Official score confirmed by organizer.",
+        state: getFullState()
       }), {
         headers: { ...corsHeaders, 'Content-Type': 'application/json' }
       });

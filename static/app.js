@@ -1,4 +1,4 @@
-const APP_VERSION = "v2.6.2";
+const APP_VERSION = "v2.6.4";
 /**
  * Fly Fishing Trials - Real-Time Frontend Application
  * Handles live polling, dual-submission Google-form verification,
@@ -361,7 +361,7 @@ function renderSchedule() {
           <div class="match-quick-action">
             ${isSolo
               ? `<span class="text-xs text-muted" style="padding:0.35rem 0.65rem; background:rgba(255,255,255,0.04); border-radius:4px; border:1px solid rgba(255,255,255,0.06); font-size:0.75rem;">👤 Solo Beat (No Score)</span>`
-              : `<button class="btn btn-sm btn-outline" onclick="prefillSubmitForm(${session.session_id}, '${escapeHtml(match.match_id)}')">
+              : `<button class="btn btn-sm btn-outline" onclick="prefillSubmitForm(${session.session_id}, '${escapeHtml(match.match_id || match.id)}')">
                    Submit Score
                  </button>`
             }
@@ -447,7 +447,7 @@ function onAnglerChange() {
 
   // Display Match Info Banner
   banner.classList.remove('hidden');
-  document.getElementById('matchBeatTitle').textContent = `Beat ${match.beat}: ${match.anglers.join(' vs ')}`;
+  document.getElementById('matchBeatTitle').textContent = `Beat ${match.beat_code || match.beat || match.beat_name}: ${match.anglers.join(' vs ')}`;
   const is3Way = match.anglers.length === 3;
   document.getElementById('matchTypeBadge').textContent = is3Way ? "3-Way Match (1v1v1)" : "1 vs 1";
 
@@ -512,7 +512,7 @@ function prefillSubmitForm(sessionId, matchId) {
   // Pick first angler in that match
   const session = (tournamentState.sessions || []).find(s => s.session_id === sessionId);
   if (session) {
-    const match = (session.matches || []).find(m => m.match_id === matchId);
+    const match = (session.matches || []).find(m => (m.match_id || m.id) === matchId);
     if (match && match.anglers.length > 0) {
       document.getElementById('submitAnglerSelect').value = match.anglers[0];
       onAnglerChange();
@@ -547,7 +547,7 @@ async function handleFormSubmit(e) {
 
   const payload = {
     session_id: sessionVal,
-    match_id: match.match_id,
+    match_id: match.match_id || match.id,
     submitter_name: anglerVal,
     reported_scores: reportedScores,
     notes: notesVal
@@ -684,12 +684,12 @@ function renderAllMatchesTable() {
       html += `
         <tr>
           <td>S${sess.session_id} (${sess.name})</td>
-          <td><strong>Beat ${match.beat}</strong></td>
+          <td><strong>Beat ${match.beat_code || match.beat || match.beat_name}</strong></td>
           <td>${escapeHtml(match.anglers.join(' vs '))}</td>
           <td><span class="match-status-badge ${statusClass}">${match.status}</span></td>
           <td>${scoresSummary}</td>
           <td>
-            <button class="btn btn-sm btn-outline" onclick="openAdminEditModal(${sess.session_id}, '${escapeHtml(match.match_id)}')">
+            <button class="btn btn-sm btn-outline" onclick="openAdminEditModal(${sess.session_id}, '${escapeHtml(match.match_id || match.id)}')">
               Edit Score
             </button>
           </td>
@@ -704,12 +704,12 @@ function renderAllMatchesTable() {
 // --- Admin Edit Score Modal ---
 function openAdminEditModal(sessionId, matchId) {
   const session = (tournamentState.sessions || []).find(s => s.session_id === sessionId);
-  const match = session ? (session.matches || []).find(m => m.match_id === matchId) : null;
+  const match = session ? (session.matches || []).find(m => (m.match_id || m.id) === matchId) : null;
   if (!match) return;
 
   document.getElementById('editSessionId').value = sessionId;
   document.getElementById('editMatchId').value = matchId;
-  document.getElementById('editModalTitle').textContent = `Official Score: S${sessionId} Beat ${match.beat}`;
+  document.getElementById('editModalTitle').textContent = `Official Score: S${sessionId} Beat ${match.beat_code || match.beat || match.beat_name}`;
 
   const container = document.getElementById('editFieldsContainer');
   let html = '';
@@ -2472,6 +2472,16 @@ function unlockAdminInline() {
 // --- Anonymous Draw Template Modal Functions ---
 let currentTemplateSundayRiver = 'Small Blaar';
 
+function openDrawCardsModal() {
+  const modal = document.getElementById('drawCardsModal');
+  if (modal) modal.classList.remove('hidden');
+}
+
+function closeDrawCardsModal() {
+  const modal = document.getElementById('drawCardsModal');
+  if (modal) modal.classList.add('hidden');
+}
+
 async function openTemplateDrawModal(sundayRiver = null) {
   const modal = document.getElementById('templateDrawModal');
   const body = document.getElementById('templateDrawBody');
@@ -2559,7 +2569,7 @@ function renderTemplateDrawContent(template, sundayRiver) {
   `;
 
   sessions.forEach(s => {
-    const isSat = s.session_id <= 2;
+    const isSat = sNum <= 2;
     html += `
       <div class="card" style="background:var(--bg-card); border:1px solid var(--border); border-radius:8px; padding:1rem;">
         <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.75rem; border-bottom:1px solid rgba(255,255,255,0.06); padding-bottom:0.4rem;">
@@ -3079,12 +3089,14 @@ function onTopAnglerSelected() {
     pillsRow.classList.remove('hidden');
     // Populate the 4 quick session pills
     sched.forEach(s => {
-      const el = document.getElementById(`pillS${s.session_id}`);
+      const sNum = s.session_id || s.session;
+      const el = document.getElementById(`pillS${sNum}`);
       if (el) {
         const icon = s.session_id === 1 ? '🟡' : (s.session_id === 2 ? '🟠' : (s.session_id === 3 ? '🟢' : '🔵'));
         const stayTag = s.is_stayer ? ' (2nd half)' : '';
-        el.textContent = `${icon} S${s.session_id}: ${s.beat_code || s.beat_name}${stayTag}`;
-        el.title = `${s.session_name} - ${s.beat_name} (${s.river}) vs ${s.opponents.join(', ')}`;
+        el.textContent = `${icon} S${sNum}: ${s.beat_code || s.beat_name || s.beat}${stayTag}`;
+        const oppList = s.opponents || (s.opponent ? [s.opponent] : []);
+        el.title = `${s.session_name} - ${s.beat_name || s.beat_code || s.beat} (${s.river}) vs ${oppList.join(', ')}`;
       }
     });
   }
@@ -3113,9 +3125,10 @@ function renderAnglerItinerary(anglerName, sched) {
 
   let html = '';
   sched.forEach(s => {
-    const prevSess = sched.find(p => p.session_id === (s.session_id - 1));
+    const sNum = s.session_id || s.session;
+    const prevSess = sched.find(p => (p.session_id || p.session) === (sNum - 1));
     let transitionInfo = '';
-    if (prevSess && (s.session_id === 2 || s.session_id === 4)) {
+    if (prevSess && (sNum === 2 || sNum === 4)) {
       if (s.is_stayer) {
         transitionInfo = '<div class="text-xs" style="color:#10b981; margin-top:0.25rem;">📍 <strong>0 min drive:</strong> Stayer waiting on beat for afternoon opponent</div>';
       } else {
@@ -3129,13 +3142,13 @@ function renderAnglerItinerary(anglerName, sched) {
         }
       }
     }
-    const isSat = s.session_id <= 2;
+    const isSat = sNum <= 2;
     const isSolo = s.is_solo || s.match_type === 'SOLO';
     const isStay = s.is_stayer;
     const isYP = (s.river && s.river.toLowerCase().includes('eland'));
     const riverClass = isYP ? 'popup-river-yp' : 'popup-river-sb';
     const riverDisplay = isYP ? 'Elands Pad' : 'Small Blaar';
-    const cardClass = `card-s${s.session_id}`;
+    const cardClass = `card-s${sNum}`;
     const pin = s.pin || s.lower_pin || [-33.7319, 19.1141];
 
     const statusTag = isSolo 
