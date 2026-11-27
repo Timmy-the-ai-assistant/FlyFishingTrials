@@ -1,4 +1,4 @@
-const APP_VERSION = "v2.5.1";
+const APP_VERSION = "v2.6.0";
 /**
  * Fly Fishing Trials - Real-Time Frontend Application
  * Handles live polling, dual-submission Google-form verification,
@@ -2467,6 +2467,155 @@ function unlockAdminInline() {
     if (errEl) errEl.classList.remove("hidden");
   }
 }
+
+
+// --- Anonymous Draw Template Modal Functions ---
+let currentTemplateSundayRiver = 'Small Blaar';
+
+async function openTemplateDrawModal(sundayRiver = null) {
+  const modal = document.getElementById('templateDrawModal');
+  const body = document.getElementById('templateDrawBody');
+  if (!modal || !body) return;
+
+  if (sundayRiver) {
+    currentTemplateSundayRiver = sundayRiver;
+  }
+
+  body.innerHTML = `
+    <div class="text-center py-4 text-muted">
+      <div class="spinner-border text-primary" role="status"></div>
+      <p class="mt-2">Generating anonymous draw template...</p>
+    </div>
+  `;
+  modal.classList.remove('hidden');
+
+  try {
+    const res = await fetch(`/api/draw/template?sunday_river=${encodeURIComponent(currentTemplateSundayRiver)}`);
+    const data = await res.json();
+    if (!data.success || !data.template) {
+      body.innerHTML = `<div class="alert alert-danger">Failed to load template draw.</div>`;
+      return;
+    }
+
+    renderTemplateDrawContent(data.template, currentTemplateSundayRiver);
+  } catch (err) {
+    console.error("Error loading draw template:", err);
+    body.innerHTML = `<div class="alert alert-danger">Error: ${err.message}</div>`;
+  }
+}
+
+function closeTemplateDrawModal() {
+  const modal = document.getElementById('templateDrawModal');
+  if (modal) modal.classList.add('hidden');
+}
+
+function renderTemplateDrawContent(template, sundayRiver) {
+  const body = document.getElementById('templateDrawBody');
+  if (!body) return;
+
+  const sessions = template.sessions || [];
+  const sARiver = template.sunday_a_team_river;
+  const sBRiver = template.sunday_b_team_river;
+
+  let html = `
+    <!-- Rules Banner -->
+    <div style="background:var(--bg-secondary); border:1px solid var(--border); border-radius:8px; padding:1rem; margin-bottom:1.25rem;">
+      <h4 style="margin:0 0 0.5rem 0; color:#38bdf8;">🎯 Tournament Structure Rules</h4>
+      <div class="text-xs" style="line-height:1.6; display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:0.75rem;">
+        <div style="background:rgba(255,255,255,0.03); padding:0.6rem; border-radius:6px; border-left:3px solid #10b981;">
+          <strong>📅 Saturday (S1 & S2):</strong><br>
+          &bull; <strong>Group 1:</strong> 2 A-Team + 2 B-Team on <strong>Elands Pad</strong> (EP1, EP3). Each A angler verses each B angler.<br>
+          &bull; <strong>Group 2:</strong> 2 A-Team + 4 B-Team on <strong>Small Blaar</strong> (SB1, SB2, SB3). Each A verses 2 B, remaining 2 B verse 2 unique B.
+        </div>
+        <div style="background:rgba(255,255,255,0.03); padding:0.6rem; border-radius:6px; border-left:3px solid #f59e0b;">
+          <strong>📅 Sunday (S3 & S4):</strong><br>
+          &bull; <strong>A-Team River:</strong> All 4 A-Team anglers assigned to <strong>${escapeHtml(sARiver)}</strong> (2 matches against A-Team members).<br>
+          &bull; <strong>B-Team River:</strong> All B-Team anglers assigned to <strong>${escapeHtml(sBRiver)}</strong> (fish 2 new competitors).
+        </div>
+        <div style="background:rgba(255,255,255,0.03); padding:0.6rem; border-radius:6px; border-left:3px solid #8b5cf6;">
+          <strong>⏱️ Active Beats &amp; Session Limits:</strong><br>
+          &bull; <strong>Elands Beats:</strong> EP1 (2x), EP3 (2x), EP2 (1x), SB6 (1x)<br>
+          &bull; <strong>Small Blaar Beats:</strong> SB1 (2x), SB2 (2x), SB3 (2x), SB4 (1x), Transport (1x)
+        </div>
+      </div>
+
+      <!-- Sunday River Switcher -->
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-top:0.75rem; padding-top:0.6rem; border-top:1px solid rgba(255,255,255,0.06); flex-wrap:wrap; gap:0.5rem;">
+        <span class="text-xs text-muted">Sunday River Randomizer Option:</span>
+        <div class="btn-group" style="display:flex; gap:0.3rem;">
+          <button class="btn btn-xs ${sARiver === 'Small Blaar' ? 'btn-primary' : 'btn-outline'}" onclick="openTemplateDrawModal('Small Blaar')">
+            Option A: A-Team on Small Blaar / B-Team on Elands
+          </button>
+          <button class="btn btn-xs ${sARiver === 'Elands Pad' ? 'btn-primary' : 'btn-outline'}" onclick="openTemplateDrawModal('Elands Pad')">
+            Option B: A-Team on Elands / B-Team on Small Blaar
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sessions Grid -->
+    <div style="display:flex; flex-direction:column; gap:1.25rem;">
+  `;
+
+  sessions.forEach(s => {
+    const isSat = s.session_id <= 2;
+    html += `
+      <div class="card" style="background:var(--bg-card); border:1px solid var(--border); border-radius:8px; padding:1rem;">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.75rem; border-bottom:1px solid rgba(255,255,255,0.06); padding-bottom:0.4rem;">
+          <div>
+            <strong style="font-size:1rem; color:#fff;">Session ${s.session_id}: ${escapeHtml(s.name)}</strong>
+            <span class="badge" style="background:rgba(59,130,246,0.15); color:#60a5fa; border:1px solid rgba(59,130,246,0.3); margin-left:0.5rem; font-size:0.75rem;">
+              ${isSat ? 'Saturday Split Groups' : `Sunday: A-Team on ${sARiver} &bull; B-Team on ${sBRiver}`}
+            </span>
+          </div>
+          <span class="text-xs text-muted">5 Matches &bull; 10 Competitors</span>
+        </div>
+
+        <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(260px, 1fr)); gap:0.6rem;">
+          ${(s.matches || []).map(m => {
+            const isElands = m.river === 'Elands Pad';
+            const riverColor = isElands ? '#38bdf8' : '#34d399';
+            const riverBg = isElands ? 'rgba(56,189,248,0.1)' : 'rgba(52,211,153,0.1)';
+            const riverBorder = isElands ? 'rgba(56,189,248,0.25)' : 'rgba(52,211,153,0.25)';
+
+            return `
+              <div style="background:var(--bg-secondary); border:1px solid var(--border); border-radius:6px; padding:0.6rem 0.75rem; display:flex; flex-direction:column; justify-content:space-between;">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.4rem;">
+                  <div>
+                    <span style="font-weight:700; color:#fbbf24; font-size:0.85rem;">${escapeHtml(m.beat_code)}</span>
+                    <span style="font-size:0.7rem; background:${riverBg}; color:${riverColor}; border:1px solid ${riverBorder}; border-radius:4px; padding:0.1rem 0.35rem; margin-left:0.3rem;">
+                      ${escapeHtml(m.river)}
+                    </span>
+                  </div>
+                  <span style="font-size:0.7rem; color:#9ca3af;">⏱️ ${m.travel_time || 15}m</span>
+                </div>
+                
+                <div style="display:flex; align-items:center; justify-content:center; gap:0.6rem; padding:0.4rem 0; font-size:0.95rem;">
+                  <span style="font-weight:700; color:#fff; background:rgba(255,255,255,0.06); padding:0.2rem 0.5rem; border-radius:4px; border:1px solid rgba(255,255,255,0.1);">
+                    ${escapeHtml(m.anglers[0])}
+                  </span>
+                  <span style="color:#ef4444; font-weight:700; font-size:0.75rem;">VS</span>
+                  <span style="font-weight:700; color:#fff; background:rgba(255,255,255,0.06); padding:0.2rem 0.5rem; border-radius:4px; border:1px solid rgba(255,255,255,0.1);">
+                    ${escapeHtml(m.anglers[1])}
+                  </span>
+                </div>
+
+                <div style="display:flex; justify-content:space-between; align-items:center; font-size:0.7rem; color:#9ca3af; margin-top:0.3rem; border-top:1px solid rgba(255,255,255,0.04); padding-top:0.3rem;">
+                  <span>${escapeHtml(m.group || '')}</span>
+                  <span style="font-weight:600; color:#cbd5e1;">${escapeHtml(m.match_desc || '1v1 Match')}</span>
+                </div>
+              </div>
+            `;
+          }).join('')}
+        </div>
+      </div>
+    `;
+  });
+
+  html += `</div>`;
+  body.innerHTML = html;
+}
+
 
 // --- Navigation & UI Utilities ---
 function switchTab(tabId) {

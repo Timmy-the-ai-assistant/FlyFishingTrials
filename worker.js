@@ -1,4 +1,4 @@
-const APP_VERSION = "v2.5.1";
+const APP_VERSION = "v2.6.0";
 /**
  * WP Fly Fishing Trials - Cloudflare Edge Worker
  * Full Edge-native API engine with zero cold starts and instant response times.
@@ -158,18 +158,19 @@ function checkAdminAuth(request, body = {}) {
 }
 
 const DEFAULT_CPS_BEATS = [
-  { id: "SB1", code: "SB1", name: "SB1", river: "Small Blaar", enabled: true, sat_available: true, sat_sessions: 2, sun_available: true, sun_sessions: 2, usage_mode: "double", travel_time: 15, lower_pin: [-33.7150, 19.1740], mid_pin: [-33.7170, 19.1700], upper_pin: [-33.7190, 19.1655], meeting_point: "Picnic site pull-off" },
-  { id: "SB2", code: "SB2", name: "SB2", river: "Small Blaar", enabled: true, sat_available: true, sat_sessions: 2, sun_available: true, sun_sessions: 2, usage_mode: "double", travel_time: 15, lower_pin: [-33.7190, 19.1655], mid_pin: [-33.7212, 19.1590], upper_pin: [-33.7235, 19.1530], meeting_point: "Picnic site parking" },
-  { id: "SB3", code: "SB3", name: "SB3", river: "Small Blaar", enabled: true, sat_available: true, sat_sessions: 2, sun_available: true, sun_sessions: 2, usage_mode: "double", travel_time: 15, lower_pin: [-33.7235, 19.1530], mid_pin: [-33.7258, 19.1470], upper_pin: [-33.7272, 19.1415], meeting_point: "N1 emergency telephone layby 3" },
-  { id: "SB4", code: "SB4", name: "SB4", river: "Small Blaar", enabled: true, sat_available: true, sat_sessions: 2, sun_available: true, sun_sessions: 2, usage_mode: "double", travel_time: 15, lower_pin: [-33.7272, 19.1415], mid_pin: [-33.7285, 19.1370], upper_pin: [-33.7295, 19.1320], meeting_point: "Donkergat pull-off" },
-  { id: "SB5", code: "SB5", name: "SB5", river: "Small Blaar", enabled: true, sat_available: true, sat_sessions: 2, sun_available: true, sun_sessions: 2, usage_mode: "double", travel_time: 15, lower_pin: [-33.7295, 19.1320], mid_pin: [-33.7305, 19.1270], upper_pin: [-33.7319, 19.1141], meeting_point: "CPS Elandspad parking lot" },
-  { id: "SB6", code: "SB6", name: "SB6", river: "Small Blaar", enabled: true, sat_available: true, sat_sessions: 2, sun_available: true, sun_sessions: 2, usage_mode: "double", travel_time: 15, lower_pin: [-33.7319, 19.1141], mid_pin: [-33.7330, 19.1105], upper_pin: [-33.7342, 19.1065], meeting_point: "Tunnel East Portal Parking / Junction Path" },
-  { id: "SB(HOTEL)", code: "SB(HOTEL)", name: "SB(HOTEL)", river: "Small Blaar", enabled: true, sat_available: true, sat_sessions: 1, sun_available: true, sun_sessions: 1, usage_mode: "single", travel_time: 15, lower_pin: [-33.7125, 19.1800], mid_pin: [-33.7138, 19.1770], upper_pin: [-33.7150, 19.1740], meeting_point: "Du Kloof Lodge guest parking" },
-  { id: "SB(TRANSPORT)", code: "SB(TRANSPORT)", name: "SB(TRANSPORT)", river: "Small Blaar", enabled: true, sat_available: true, sat_sessions: 2, sun_available: true, sun_sessions: 2, usage_mode: "double", travel_time: 15, lower_pin: [-33.7085, 19.1895], mid_pin: [-33.7105, 19.1845], upper_pin: [-33.7125, 19.1800], meeting_point: "Transport bridge parking" },
-  { id: "EP2", code: "EP2", name: "EP2", river: "Elands Pad", enabled: true, sat_available: true, sat_sessions: 2, sun_available: true, sun_sessions: 2, usage_mode: "double", travel_time: 30, lower_pin: [-33.7405, 19.1162], mid_pin: [-33.7460, 19.1172], upper_pin: [-33.7520, 19.1188], meeting_point: "Fisherman's Cave trail" },
-  { id: "EP3", code: "EP3", name: "EP3", river: "Elands Pad", enabled: true, sat_available: true, sat_sessions: 1, sun_available: true, sun_sessions: 1, usage_mode: "single", travel_time: 30, lower_pin: [-33.7520, 19.1188], mid_pin: [-33.7565, 19.1195], upper_pin: [-33.7610, 19.1205], meeting_point: "Star beat rock shelter" },
-  { id: "MOLENAARS(UPPER)", code: "MOLENAARS(UPPER)", name: "MOLENAARS(UPPER)", river: "Small Blaar", enabled: true, sat_available: true, sat_sessions: 2, sun_available: true, sun_sessions: 2, usage_mode: "double", travel_time: 15, lower_pin: [-33.7040, 19.2000], mid_pin: [-33.7065, 19.1945], upper_pin: [-33.7085, 19.1895], meeting_point: "Upper Molenaars turn-off" },
-  { id: "MOLENAARS(LOWER)", code: "MOLENAARS(LOWER)", name: "MOLENAARS(LOWER)", river: "Small Blaar", enabled: true, sat_available: true, sat_sessions: 2, sun_available: true, sun_sessions: 2, usage_mode: "double", travel_time: 15, lower_pin: [-33.6980, 19.2150], mid_pin: [-33.7010, 19.2075], upper_pin: [-33.7040, 19.2000], meeting_point: "Lower Molenaars boundary" }
+  { id: "EP1", code: "EP1", name: "EP1", river: "Elands Pad", enabled: true, sat_available: true, sat_sessions: 2, sun_available: true, sun_sessions: 2, usage_mode: "double", travel_time: 15, lower_pin: [-33.7319, 19.1141], mid_pin: [-33.7360, 19.1152], upper_pin: [-33.7405, 19.1162], meeting_point: "Junction Pool trail head", notes: "EP1: 2x sessions" },
+  { id: "EP2", code: "EP2", name: "EP2", river: "Elands Pad", enabled: true, sat_available: true, sat_sessions: 1, sun_available: true, sun_sessions: 1, usage_mode: "single", travel_time: 30, lower_pin: [-33.7405, 19.1162], mid_pin: [-33.7460, 19.1172], upper_pin: [-33.7520, 19.1188], meeting_point: "Fisherman's Cave trail", notes: "EP2: 1x session" },
+  { id: "EP3", code: "EP3", name: "EP3", river: "Elands Pad", enabled: true, sat_available: true, sat_sessions: 2, sun_available: true, sun_sessions: 2, usage_mode: "double", travel_time: 30, lower_pin: [-33.7520, 19.1188], mid_pin: [-33.7565, 19.1195], upper_pin: [-33.7610, 19.1205], meeting_point: "Star beat rock shelter", notes: "EP3: 2x sessions" },
+  { id: "SB6", code: "SB6", name: "SB6", river: "Elands Pad", enabled: true, sat_available: true, sat_sessions: 1, sun_available: true, sun_sessions: 1, usage_mode: "single", travel_time: 15, lower_pin: [-33.7319, 19.1141], mid_pin: [-33.7330, 19.1105], upper_pin: [-33.7342, 19.1065], meeting_point: "Tunnel East Portal Parking / Junction Path", notes: "SB6: 1x session (Elands access)" },
+  { id: "SB1", code: "SB1", name: "SB1", river: "Small Blaar", enabled: true, sat_available: true, sat_sessions: 2, sun_available: true, sun_sessions: 2, usage_mode: "double", travel_time: 15, lower_pin: [-33.7150, 19.1740], mid_pin: [-33.7170, 19.1700], upper_pin: [-33.7190, 19.1655], meeting_point: "Picnic site pull-off", notes: "SB1: 2x sessions" },
+  { id: "SB2", code: "SB2", name: "SB2", river: "Small Blaar", enabled: true, sat_available: true, sat_sessions: 2, sun_available: true, sun_sessions: 2, usage_mode: "double", travel_time: 15, lower_pin: [-33.7190, 19.1655], mid_pin: [-33.7212, 19.1590], upper_pin: [-33.7235, 19.1530], meeting_point: "Picnic site parking", notes: "SB2: 2x sessions" },
+  { id: "SB3", code: "SB3", name: "SB3", river: "Small Blaar", enabled: true, sat_available: true, sat_sessions: 2, sun_available: true, sun_sessions: 2, usage_mode: "double", travel_time: 15, lower_pin: [-33.7235, 19.1530], mid_pin: [-33.7258, 19.1470], upper_pin: [-33.7272, 19.1415], meeting_point: "N1 emergency telephone layby 3", notes: "SB3: 2x sessions" },
+  { id: "SB4", code: "SB4", name: "SB4", river: "Small Blaar", enabled: true, sat_available: true, sat_sessions: 1, sun_available: true, sun_sessions: 1, usage_mode: "single", travel_time: 15, lower_pin: [-33.7272, 19.1415], mid_pin: [-33.7285, 19.1370], upper_pin: [-33.7295, 19.1320], meeting_point: "Donkergat pull-off", notes: "SB4: 1x session" },
+  { id: "SB(TRANSPORT)", code: "SB(TRANSPORT)", name: "SB(TRANSPORT)", river: "Small Blaar", enabled: true, sat_available: true, sat_sessions: 1, sun_available: true, sun_sessions: 1, usage_mode: "single", travel_time: 15, lower_pin: [-33.7085, 19.1895], mid_pin: [-33.7105, 19.1845], upper_pin: [-33.7125, 19.1800], meeting_point: "Transport bridge parking", notes: "Transport: 1x session" },
+  { id: "SB5", code: "SB5", name: "SB5", river: "Small Blaar", enabled: false, sat_available: false, sat_sessions: 0, sun_available: false, sun_sessions: 0, usage_mode: "double", travel_time: 15, lower_pin: [-33.7295, 19.1320], mid_pin: [-33.7305, 19.1270], upper_pin: [-33.7319, 19.1141], meeting_point: "CPS Elandspad parking lot" },
+  { id: "SB(HOTEL)", code: "SB(HOTEL)", name: "SB(HOTEL)", river: "Small Blaar", enabled: false, sat_available: false, sat_sessions: 0, sun_available: false, sun_sessions: 0, usage_mode: "single", travel_time: 15, lower_pin: [-33.7125, 19.1800], mid_pin: [-33.7138, 19.1770], upper_pin: [-33.7150, 19.1740], meeting_point: "Du Kloof Lodge guest parking" },
+  { id: "MOLENAARS(UPPER)", code: "MOLENAARS(UPPER)", name: "MOLENAARS(UPPER)", river: "Small Blaar", enabled: false, sat_available: false, sat_sessions: 0, sun_available: false, sun_sessions: 0, usage_mode: "double", travel_time: 15, lower_pin: [-33.7040, 19.2000], mid_pin: [-33.7065, 19.1945], upper_pin: [-33.7085, 19.1895], meeting_point: "Upper Molenaars turn-off" },
+  { id: "MOLENAARS(LOWER)", code: "MOLENAARS(LOWER)", name: "MOLENAARS(LOWER)", river: "Small Blaar", enabled: false, sat_available: false, sat_sessions: 0, sun_available: false, sun_sessions: 0, usage_mode: "double", travel_time: 15, lower_pin: [-33.6980, 19.2150], mid_pin: [-33.7010, 19.2075], upper_pin: [-33.7040, 19.2000], meeting_point: "Lower Molenaars boundary" }
 ];
 
 function generateEdgeScheduleInternal(anglers, aTeamAnglers = [], availableBeats = [], anglerAvailability = {}) {
@@ -765,7 +766,252 @@ function generateEdgeScheduleInternal(anglers, aTeamAnglers = [], availableBeats
   };
 }
 
+
+
+function buildTemplateDraw(sundayARiver = "Small Blaar") {
+  const s1 = {
+    session_id: 1,
+    name: "Saturday Morning",
+    day: "Saturday",
+    time_slot: "Morning",
+    matches: [
+      { id: "S1_M1", beat_code: "EP1", beat_id: "EP1", river: "Elands Pad", anglers: ["A1", "B1"], travel_time: 15, group: "Group 1 (Elands)", match_desc: "A vs B" },
+      { id: "S1_M2", beat_code: "EP3", beat_id: "EP3", river: "Elands Pad", anglers: ["A2", "B2"], travel_time: 30, group: "Group 1 (Elands)", match_desc: "A vs B" },
+      { id: "S1_M3", beat_code: "SB1", beat_id: "SB1", river: "Small Blaar", anglers: ["A3", "B3"], travel_time: 15, group: "Group 2 (Small Blaar)", match_desc: "A vs B" },
+      { id: "S1_M4", beat_code: "SB2", beat_id: "SB2", river: "Small Blaar", anglers: ["A4", "B5"], travel_time: 15, group: "Group 2 (Small Blaar)", match_desc: "A vs B" },
+      { id: "S1_M5", beat_code: "SB3", beat_id: "SB3", river: "Small Blaar", anglers: ["B4", "B6"], travel_time: 15, group: "Group 2 (Small Blaar)", match_desc: "B vs B" }
+    ]
+  };
+
+  const s2 = {
+    session_id: 2,
+    name: "Saturday Afternoon",
+    day: "Saturday",
+    time_slot: "Afternoon",
+    matches: [
+      { id: "S2_M1", beat_code: "EP1", beat_id: "EP1", river: "Elands Pad", anglers: ["A1", "B2"], travel_time: 15, group: "Group 1 (Elands)", match_desc: "A vs B" },
+      { id: "S2_M2", beat_code: "EP3", beat_id: "EP3", river: "Elands Pad", anglers: ["A2", "B1"], travel_time: 30, group: "Group 1 (Elands)", match_desc: "A vs B" },
+      { id: "S2_M3", beat_code: "SB1", beat_id: "SB1", river: "Small Blaar", anglers: ["A3", "B4"], travel_time: 15, group: "Group 2 (Small Blaar)", match_desc: "A vs B" },
+      { id: "S2_M4", beat_code: "SB2", beat_id: "SB2", river: "Small Blaar", anglers: ["A4", "B6"], travel_time: 15, group: "Group 2 (Small Blaar)", match_desc: "A vs B" },
+      { id: "S2_M5", beat_code: "SB3", beat_id: "SB3", river: "Small Blaar", anglers: ["B3", "B5"], travel_time: 15, group: "Group 2 (Small Blaar)", match_desc: "B vs B" }
+    ]
+  };
+
+  let s3_matches = [];
+  let s4_matches = [];
+
+  if (sundayARiver === "Small Blaar") {
+    s3_matches = [
+      { id: "S3_M1", beat_code: "SB1", beat_id: "SB1", river: "Small Blaar", anglers: ["A1", "A2"], travel_time: 15, group: "A-Team River", match_desc: "A vs A" },
+      { id: "S3_M2", beat_code: "SB2", beat_id: "SB2", river: "Small Blaar", anglers: ["A3", "A4"], travel_time: 15, group: "A-Team River", match_desc: "A vs A" },
+      { id: "S3_M3", beat_code: "EP1", beat_id: "EP1", river: "Elands Pad", anglers: ["B1", "B3"], travel_time: 15, group: "B-Team River", match_desc: "B vs B" },
+      { id: "S3_M4", beat_code: "EP3", beat_id: "EP3", river: "Elands Pad", anglers: ["B2", "B4"], travel_time: 30, group: "B-Team River", match_desc: "B vs B" },
+      { id: "S3_M5", beat_code: "EP2", beat_id: "EP2", river: "Elands Pad", anglers: ["B5", "B6_or_new"], travel_time: 30, group: "B-Team River", match_desc: "B vs B" }
+    ];
+
+    s4_matches = [
+      { id: "S4_M1", beat_code: "SB3", beat_id: "SB3", river: "Small Blaar", anglers: ["A1", "A3"], travel_time: 15, group: "A-Team River", match_desc: "A vs A" },
+      { id: "S4_M2", beat_code: "SB1", beat_id: "SB1", river: "Small Blaar", anglers: ["A2", "A4"], travel_time: 15, group: "A-Team River", match_desc: "A vs A" },
+      { id: "S4_M3", beat_code: "EP3", beat_id: "EP3", river: "Elands Pad", anglers: ["B1", "B4"], travel_time: 30, group: "B-Team River", match_desc: "B vs B" },
+      { id: "S4_M4", beat_code: "EP1", beat_id: "EP1", river: "Elands Pad", anglers: ["B2", "B5"], travel_time: 15, group: "B-Team River", match_desc: "B vs B" },
+      { id: "S4_M5", beat_code: "SB6", beat_id: "SB6", river: "Elands Pad", anglers: ["B3", "B6_or_new"], travel_time: 15, group: "B-Team River", match_desc: "B vs B" }
+    ];
+  } else {
+    s3_matches = [
+      { id: "S3_M1", beat_code: "EP2", beat_id: "EP2", river: "Elands Pad", anglers: ["A1", "A2"], travel_time: 30, group: "A-Team River", match_desc: "A vs A" },
+      { id: "S3_M2", beat_code: "EP1", beat_id: "EP1", river: "Elands Pad", anglers: ["A3", "A4"], travel_time: 15, group: "A-Team River", match_desc: "A vs A" },
+      { id: "S3_M3", beat_code: "SB1", beat_id: "SB1", river: "Small Blaar", anglers: ["B1", "B3"], travel_time: 15, group: "B-Team River", match_desc: "B vs B" },
+      { id: "S3_M4", beat_code: "SB2", beat_id: "SB2", river: "Small Blaar", anglers: ["B2", "B4"], travel_time: 15, group: "B-Team River", match_desc: "B vs B" },
+      { id: "S3_M5", beat_code: "SB4", beat_id: "SB4", river: "Small Blaar", anglers: ["B5", "B6_or_new"], travel_time: 15, group: "B-Team River", match_desc: "B vs B" }
+    ];
+
+    s4_matches = [
+      { id: "S4_M1", beat_code: "EP3", beat_id: "EP3", river: "Elands Pad", anglers: ["A1", "A3"], travel_time: 30, group: "A-Team River", match_desc: "A vs A" },
+      { id: "S4_M2", beat_code: "SB6", beat_id: "SB6", river: "Elands Pad", anglers: ["A2", "A4"], travel_time: 15, group: "A-Team River", match_desc: "A vs A" },
+      { id: "S4_M3", beat_code: "SB3", beat_id: "SB3", river: "Small Blaar", anglers: ["B1", "B4"], travel_time: 15, group: "B-Team River", match_desc: "B vs B" },
+      { id: "S4_M4", beat_code: "SB1", beat_id: "SB1", river: "Small Blaar", anglers: ["B2", "B5"], travel_time: 15, group: "B-Team River", match_desc: "B vs B" },
+      { id: "S4_M5", beat_code: "SB(TRANSPORT)", beat_id: "SB(TRANSPORT)", river: "Small Blaar", anglers: ["B3", "B6_or_new"], travel_time: 15, group: "B-Team River", match_desc: "B vs B" }
+    ];
+  }
+
+  const s3 = { session_id: 3, name: "Sunday Morning", day: "Sunday", time_slot: "Morning", matches: s3_matches };
+  const s4 = { session_id: 4, name: "Sunday Afternoon", day: "Sunday", time_slot: "Afternoon", matches: s4_matches };
+
+  return {
+    sunday_a_team_river: sundayARiver,
+    sunday_b_team_river: sundayARiver === "Small Blaar" ? "Elands Pad" : "Small Blaar",
+    sessions: [s1, s2, s3, s4]
+  };
+}
+
+function generateGroupTournamentSchedule(anglers, aTeamAnglers = [], availableBeats = [], anglerAvailability = {}) {
+  const aList = [...aTeamAnglers.filter(a => anglers.includes(a))];
+  for (let i = aList.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [aList[i], aList[j]] = [aList[j], aList[i]];
+  }
+
+  const challengers = anglers.filter(a => !aTeamAnglers.includes(a));
+  const isAvailable = (ang, sess) => {
+    const av = anglerAvailability[ang];
+    if (!av || !Array.isArray(av) || av.length === 0) return true;
+    return av.includes(sess);
+  };
+
+  const satChallengers = challengers.filter(a => isAvailable(a, 1) || isAvailable(a, 2));
+  const sunChallengers = challengers.filter(a => isAvailable(a, 3) || isAvailable(a, 4));
+
+  const satB = [...satChallengers];
+  for (let i = satB.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [satB[i], satB[j]] = [satB[j], satB[i]];
+  }
+
+  const A1 = aList[0], A2 = aList[1], A3 = aList[2], A4 = aList[3];
+  const B1 = satB[0], B2 = satB[1], B3 = satB[2], B4 = satB[3], B5 = satB[4], B6 = satB[5];
+
+  const satOnly = satChallengers.filter(a => !sunChallengers.includes(a));
+  const sunOnly = sunChallengers.filter(a => !satChallengers.includes(a));
+
+  let sunB1 = B1, sunB2 = B2, sunB3 = B3, sunB4 = B4, sunB5 = B5, sunB6 = B6;
+  if (satOnly.length > 0 && sunOnly.length > 0) {
+    const outA = satOnly[0];
+    const inA = sunOnly[0];
+    if (sunB1 === outA) sunB1 = inA;
+    else if (sunB2 === outA) sunB2 = inA;
+    else if (sunB3 === outA) sunB3 = inA;
+    else if (sunB4 === outA) sunB4 = inA;
+    else if (sunB5 === outA) sunB5 = inA;
+    else if (sunB6 === outA) sunB6 = inA;
+  }
+
+  const sundayARiver = Math.random() < 0.5 ? "Small Blaar" : "Elands Pad";
+
+  const s1 = {
+    session_id: 1,
+    name: "Saturday Morning",
+    day: "Saturday",
+    time_slot: "Morning",
+    matches: [
+      { id: "S1_M1", beat_code: "EP1", beat_id: "EP1", river: "Elands Pad", anglers: [A1, B1], travel_time: 15, group: "Group 1 (Elands)", match_type: "NORMAL" },
+      { id: "S1_M2", beat_code: "EP3", beat_id: "EP3", river: "Elands Pad", anglers: [A2, B2], travel_time: 30, group: "Group 1 (Elands)", match_type: "NORMAL" },
+      { id: "S1_M3", beat_code: "SB1", beat_id: "SB1", river: "Small Blaar", anglers: [A3, B3], travel_time: 15, group: "Group 2 (Small Blaar)", match_type: "NORMAL" },
+      { id: "S1_M4", beat_code: "SB2", beat_id: "SB2", river: "Small Blaar", anglers: [A4, B5], travel_time: 15, group: "Group 2 (Small Blaar)", match_type: "NORMAL" },
+      { id: "S1_M5", beat_code: "SB3", beat_id: "SB3", river: "Small Blaar", anglers: [B4, B6], travel_time: 15, group: "Group 2 (Small Blaar)", match_type: "NORMAL" }
+    ]
+  };
+
+  const s2 = {
+    session_id: 2,
+    name: "Saturday Afternoon",
+    day: "Saturday",
+    time_slot: "Afternoon",
+    matches: [
+      { id: "S2_M1", beat_code: "EP1", beat_id: "EP1", river: "Elands Pad", anglers: [A1, B2], travel_time: 15, group: "Group 1 (Elands)", match_type: "NORMAL" },
+      { id: "S2_M2", beat_code: "EP3", beat_id: "EP3", river: "Elands Pad", anglers: [A2, B1], travel_time: 30, group: "Group 1 (Elands)", match_type: "NORMAL" },
+      { id: "S2_M3", beat_code: "SB1", beat_id: "SB1", river: "Small Blaar", anglers: [A3, B4], travel_time: 15, group: "Group 2 (Small Blaar)", match_type: "NORMAL" },
+      { id: "S2_M4", beat_code: "SB2", beat_id: "SB2", river: "Small Blaar", anglers: [A4, B6], travel_time: 15, group: "Group 2 (Small Blaar)", match_type: "NORMAL" },
+      { id: "S2_M5", beat_code: "SB3", beat_id: "SB3", river: "Small Blaar", anglers: [B3, B5], travel_time: 15, group: "Group 2 (Small Blaar)", match_type: "NORMAL" }
+    ]
+  };
+
+  let s3_matches = [];
+  let s4_matches = [];
+
+  if (sundayARiver === "Small Blaar") {
+    s3_matches = [
+      { id: "S3_M1", beat_code: "SB1", beat_id: "SB1", river: "Small Blaar", anglers: [A1, A2], travel_time: 15, group: "A-Team River", match_type: "NORMAL" },
+      { id: "S3_M2", beat_code: "SB2", beat_id: "SB2", river: "Small Blaar", anglers: [A3, A4], travel_time: 15, group: "A-Team River", match_type: "NORMAL" },
+      { id: "S3_M3", beat_code: "EP1", beat_id: "EP1", river: "Elands Pad", anglers: [sunB1, sunB3], travel_time: 15, group: "B-Team River", match_type: "NORMAL" },
+      { id: "S3_M4", beat_code: "EP3", beat_id: "EP3", river: "Elands Pad", anglers: [sunB2, sunB4], travel_time: 30, group: "B-Team River", match_type: "NORMAL" },
+      { id: "S3_M5", beat_code: "EP2", beat_id: "EP2", river: "Elands Pad", anglers: [sunB5, sunB6], travel_time: 30, group: "B-Team River", match_type: "NORMAL" }
+    ];
+
+    s4_matches = [
+      { id: "S4_M1", beat_code: "SB3", beat_id: "SB3", river: "Small Blaar", anglers: [A1, A3], travel_time: 15, group: "A-Team River", match_type: "NORMAL" },
+      { id: "S4_M2", beat_code: "SB1", beat_id: "SB1", river: "Small Blaar", anglers: [A2, A4], travel_time: 15, group: "A-Team River", match_type: "NORMAL" },
+      { id: "S4_M3", beat_code: "EP3", beat_id: "EP3", river: "Elands Pad", anglers: [sunB1, sunB4], travel_time: 30, group: "B-Team River", match_type: "NORMAL" },
+      { id: "S4_M4", beat_code: "EP1", beat_id: "EP1", river: "Elands Pad", anglers: [sunB2, sunB5], travel_time: 15, group: "B-Team River", match_type: "NORMAL" },
+      { id: "S4_M5", beat_code: "SB6", beat_id: "SB6", river: "Elands Pad", anglers: [sunB3, sunB6], travel_time: 15, group: "B-Team River", match_type: "NORMAL" }
+    ];
+  } else {
+    s3_matches = [
+      { id: "S3_M1", beat_code: "EP2", beat_id: "EP2", river: "Elands Pad", anglers: [A1, A2], travel_time: 30, group: "A-Team River", match_type: "NORMAL" },
+      { id: "S3_M2", beat_code: "EP1", beat_id: "EP1", river: "Elands Pad", anglers: [A3, A4], travel_time: 15, group: "A-Team River", match_type: "NORMAL" },
+      { id: "S3_M3", beat_code: "SB1", beat_id: "SB1", river: "Small Blaar", anglers: [sunB1, sunB3], travel_time: 15, group: "B-Team River", match_type: "NORMAL" },
+      { id: "S3_M4", beat_code: "SB2", beat_id: "SB2", river: "Small Blaar", anglers: [sunB2, sunB4], travel_time: 15, group: "B-Team River", match_type: "NORMAL" },
+      { id: "S3_M5", beat_code: "SB4", beat_id: "SB4", river: "Small Blaar", anglers: [sunB5, sunB6], travel_time: 15, group: "B-Team River", match_type: "NORMAL" }
+    ];
+
+    s4_matches = [
+      { id: "S4_M1", beat_code: "EP3", beat_id: "EP3", river: "Elands Pad", anglers: [A1, A3], travel_time: 30, group: "A-Team River", match_type: "NORMAL" },
+      { id: "S4_M2", beat_code: "SB6", beat_id: "SB6", river: "Elands Pad", anglers: [A2, A4], travel_time: 15, group: "A-Team River", match_type: "NORMAL" },
+      { id: "S4_M3", beat_code: "SB3", beat_id: "SB3", river: "Small Blaar", anglers: [sunB1, sunB4], travel_time: 15, group: "B-Team River", match_type: "NORMAL" },
+      { id: "S4_M4", beat_code: "SB1", beat_id: "SB1", river: "Small Blaar", anglers: [sunB2, sunB5], travel_time: 15, group: "B-Team River", match_type: "NORMAL" },
+      { id: "S4_M5", beat_code: "SB(TRANSPORT)", beat_id: "SB(TRANSPORT)", river: "Small Blaar", anglers: [sunB3, sunB6], travel_time: 15, group: "B-Team River", match_type: "NORMAL" }
+    ];
+  }
+
+  const s3 = { session_id: 3, name: "Sunday Morning", day: "Sunday", time_slot: "Morning", matches: s3_matches };
+  const s4 = { session_id: 4, name: "Sunday Afternoon", day: "Sunday", time_slot: "Afternoon", matches: s4_matches };
+  const sessions = [s1, s2, s3, s4];
+
+  const anglerSchedule = {};
+  anglers.forEach(a => { anglerSchedule[a] = []; });
+  sessions.forEach(s => {
+    s.matches.forEach(m => {
+      m.anglers.forEach(a => {
+        const opps = m.anglers.filter(x => x !== a);
+        anglerSchedule[a].push({
+          session: s.session_id,
+          session_name: s.name,
+          beat: m.beat_code,
+          river: m.river,
+          opponents: opps,
+          opponent: opps.join(' & ') || 'BYE',
+          match_id: m.id
+        });
+      });
+    });
+  });
+
+  const aSet = new Set(aTeamAnglers);
+  const leaderboard = anglers.map((a, i) => ({
+    rank: i + 1,
+    name: a,
+    angler: a,
+    is_a_team: aSet.has(a),
+    s1_pts: 0, s2_pts: 0, s3_pts: 0, s4_pts: 0,
+    total_points: 0,
+    total_fish: 0,
+    blanks: 0,
+    matches_played: 0,
+    session_points: { 1: 0, 2: 0, 3: 0, 4: 0 }
+  }));
+
+  const threeWayCounts = {};
+  anglers.forEach(a => { threeWayCounts[a] = 0; });
+
+  return {
+    sessions,
+    anglerSchedule,
+    leaderboard,
+    threeWayCounts,
+    numBeats: 5
+  };
+}
+
 function generateEdgeSchedule(anglers, aTeamAnglers = [], availableBeats = [], anglerAvailability = {}) {
+  // If exactly 4 A-Team anglers, use the dedicated Group Draw architecture
+  const activeATeam = (aTeamAnglers || []).filter(a => anglers.includes(a));
+  if (activeATeam.length === 4 && anglers.length >= 8) {
+    try {
+      return generateGroupTournamentSchedule(anglers, activeATeam, availableBeats, anglerAvailability);
+    } catch (e) {
+      console.warn("Group tournament generation fallback:", e);
+    }
+  }
+
   let bestResult = null;
   for (let cycle = 0; cycle < 50; cycle++) {
     const sched = generateEdgeScheduleInternal(anglers, aTeamAnglers, availableBeats, anglerAvailability);
@@ -799,10 +1045,7 @@ function generateEdgeSchedule(anglers, aTeamAnglers = [], availableBeats = [], a
     bestResult = sched;
   }
   return bestResult;
-}
-
-
-export default {
+}export default {
   async fetch(request, env, ctx) {
     const url = new URL(request.url);
 
@@ -830,7 +1073,26 @@ export default {
     }
 
     // 2. Tournament State
-    if (url.pathname === '/api/state' && request.method === 'GET') {
+        // 2b. Draw Template (Without Names)
+    if (url.pathname === '/api/draw/template' && request.method === 'GET') {
+      const sundayRiver = url.searchParams.get('sunday_river') || 'Small Blaar';
+      const template = buildTemplateDraw(sundayRiver);
+      return new Response(JSON.stringify({
+        success: true,
+        template: template,
+        rules: {
+          group1_sat: "2 A-Team + 2 B-Team on Elands Pad (EP1, EP3). Each A angler verses each B angler.",
+          group2_sat: "2 A-Team + 4 B-Team on Small Blaar (SB1, SB2, SB3). Each A verses 2 B, remaining 2 B verse 2 unique B.",
+          sunday_a_team: "All 4 A-Team anglers assigned to one river (2 matches against A-Team members).",
+          sunday_b_team: "All B-Team anglers assigned to opposite river (fish 2 new competitors).",
+          beat_limits: "EP1: 2x, EP3: 2x, EP2: 1x, SB6: 1x, SB1: 2x, SB2: 2x, SB3: 2x, SB4: 1x, Transport: 1x"
+        }
+      }), {
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' }
+      });
+    }
+
+if (url.pathname === '/api/state' && request.method === 'GET') {
       return new Response(JSON.stringify(getFullState()), {
         headers: { ...corsHeaders, 'Content-Type': 'application/json' }
       });

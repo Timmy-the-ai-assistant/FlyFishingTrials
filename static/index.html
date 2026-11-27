@@ -80,7 +80,7 @@
           <img src="disa_logo.png" alt="WP Disa" class="disa-logo-img">
         </div>
         <div>
-          <h1 id="tournamentTitle">Fly Fishing Trials 2026 <span class="badge" style="font-size:0.75rem; background:rgba(59,130,246,0.2); color:#60a5fa; border:1px solid rgba(59,130,246,0.3); border-radius:4px; margin-left:0.4rem; vertical-align:middle;">v2.5.1</span></h1>
+          <h1 id="tournamentTitle">Fly Fishing Trials 2026 <span class="badge" style="font-size:0.75rem; background:rgba(59,130,246,0.2); color:#60a5fa; border:1px solid rgba(59,130,246,0.3); border-radius:4px; margin-left:0.4rem; vertical-align:middle;">v2.6.0</span></h1>
           <div class="sub-meta">
             <span id="tournamentVenue" class="meta-tag">Championship Beats</span>
             <span id="anglerCountTag" class="meta-tag tag-accent">9 Anglers</span>
@@ -607,6 +607,9 @@
           </div>
 
           <div class="form-actions mt-3" style="display:flex; gap:0.6rem; flex-wrap:wrap;">
+            <button type="button" class="btn btn-info" onclick="openTemplateDrawModal()" style="background:#0284c7; border-color:#0284c7; font-weight:700;" title="View anonymous draw schedule without names">
+              📋 Preview Anonymous Template Draw
+            </button>
             <button class="btn btn-danger" onclick="confirmResetTournament()">
               🎲 Randomize & Start New Tournament
             </button>
@@ -995,6 +998,30 @@
           </div>
         </div>
 
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: Anonymous Draw Template (Without Names) -->
+  <div id="templateDrawModal" class="modal-overlay hidden">
+    <div class="modal-card card modal-lg" style="max-width: 920px; max-height: 90vh; overflow-y: auto;">
+      <div class="modal-header">
+        <div>
+          <h3>📋 Anonymous Draw Template (Without Names)</h3>
+          <p class="text-muted text-sm">Review the abstract tournament schedule (A1&ndash;A4, B1&ndash;B6) with beat allocations and river sections before assigning names.</p>
+        </div>
+        <button class="modal-close" onclick="closeTemplateDrawModal()">&times;</button>
+      </div>
+
+      <div class="modal-body" id="templateDrawBody">
+        <!-- Rendered dynamically by app.js -->
+      </div>
+
+      <div class="modal-footer" style="display:flex; justify-content:space-between; align-items:center; margin-top:1.25rem; padding-top:1rem; border-top:1px solid var(--border); flex-wrap:wrap; gap:0.5rem;">
+        <button class="btn btn-outline" onclick="closeTemplateDrawModal()">Close Preview</button>
+        <button class="btn btn-primary" onclick="closeTemplateDrawModal(); saveAteamSelectionAndRedraw();">
+          🎲 Randomize &amp; Assign Names to Draw
+        </button>
       </div>
     </div>
   </div>
