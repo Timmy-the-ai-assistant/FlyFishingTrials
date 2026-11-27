@@ -239,33 +239,6 @@ export const INITIAL_STATE = {
             "notes": "SB3: 2x sessions"
           },
           {
-            "id": "SB4",
-            "code": "SB4",
-            "name": "SB4",
-            "river": "Small Blaar",
-            "enabled": true,
-            "sat_available": true,
-            "sat_sessions": 1,
-            "sun_available": true,
-            "sun_sessions": 1,
-            "usage_mode": "single",
-            "travel_time": 15,
-            "lower_pin": [
-              -33.7272,
-              19.1415
-            ],
-            "mid_pin": [
-              -33.7285,
-              19.137
-            ],
-            "upper_pin": [
-              -33.7295,
-              19.132
-            ],
-            "meeting_point": "Donkergat pull-off",
-            "notes": "SB4: 1x session"
-          },
-          {
             "id": "SB(TRANSPORT)",
             "code": "SB(TRANSPORT)",
             "name": "SB(TRANSPORT)",
@@ -484,33 +457,6 @@ export const INITIAL_STATE = {
             "notes": "SB3: 2x sessions"
           },
           {
-            "id": "SB4",
-            "code": "SB4",
-            "name": "SB4",
-            "river": "Small Blaar",
-            "enabled": true,
-            "sat_available": true,
-            "sat_sessions": 1,
-            "sun_available": true,
-            "sun_sessions": 1,
-            "usage_mode": "single",
-            "travel_time": 15,
-            "lower_pin": [
-              -33.7272,
-              19.1415
-            ],
-            "mid_pin": [
-              -33.7285,
-              19.137
-            ],
-            "upper_pin": [
-              -33.7295,
-              19.132
-            ],
-            "meeting_point": "Donkergat pull-off",
-            "notes": "SB4: 1x session"
-          },
-          {
             "id": "SB(TRANSPORT)",
             "code": "SB(TRANSPORT)",
             "name": "SB(TRANSPORT)",
@@ -552,7 +498,7 @@ export const INITIAL_STATE = {
                 "river": "Elands Pad",
                 "anglers": [
                   "Barry",
-                  "Ryan"
+                  "Ian"
                 ],
                 "travel_time": 15,
                 "group": "Group 1 (Elands)",
@@ -565,7 +511,7 @@ export const INITIAL_STATE = {
                 "river": "Elands Pad",
                 "anglers": [
                   "Daniel",
-                  "Michelle"
+                  "Ryan"
                 ],
                 "travel_time": 30,
                 "group": "Group 1 (Elands)",
@@ -578,7 +524,7 @@ export const INITIAL_STATE = {
                 "river": "Small Blaar",
                 "anglers": [
                   "Dale",
-                  "Ian"
+                  "Michelle"
                 ],
                 "travel_time": 15,
                 "group": "Group 2 (Small Blaar)",
@@ -591,7 +537,7 @@ export const INITIAL_STATE = {
                 "river": "Small Blaar",
                 "anglers": [
                   "Garth",
-                  "Dylan"
+                  "Malcolm"
                 ],
                 "travel_time": 15,
                 "group": "Group 2 (Small Blaar)",
@@ -603,8 +549,8 @@ export const INITIAL_STATE = {
                 "beat_id": "SB3",
                 "river": "Small Blaar",
                 "anglers": [
-                  "James",
-                  "Malcolm"
+                  "Dylan",
+                  "James"
                 ],
                 "travel_time": 15,
                 "group": "Group 2 (Small Blaar)",
@@ -625,7 +571,7 @@ export const INITIAL_STATE = {
                 "river": "Elands Pad",
                 "anglers": [
                   "Barry",
-                  "Michelle"
+                  "Ryan"
                 ],
                 "travel_time": 15,
                 "group": "Group 1 (Elands)",
@@ -638,7 +584,7 @@ export const INITIAL_STATE = {
                 "river": "Elands Pad",
                 "anglers": [
                   "Daniel",
-                  "Ryan"
+                  "Ian"
                 ],
                 "travel_time": 30,
                 "group": "Group 1 (Elands)",
@@ -651,7 +597,7 @@ export const INITIAL_STATE = {
                 "river": "Small Blaar",
                 "anglers": [
                   "Dale",
-                  "James"
+                  "Dylan"
                 ],
                 "travel_time": 15,
                 "group": "Group 2 (Small Blaar)",
@@ -664,7 +610,7 @@ export const INITIAL_STATE = {
                 "river": "Small Blaar",
                 "anglers": [
                   "Garth",
-                  "Malcolm"
+                  "James"
                 ],
                 "travel_time": 15,
                 "group": "Group 2 (Small Blaar)",
@@ -676,8 +622,8 @@ export const INITIAL_STATE = {
                 "beat_id": "SB3",
                 "river": "Small Blaar",
                 "anglers": [
-                  "Ian",
-                  "Dylan"
+                  "Michelle",
+                  "Malcolm"
                 ],
                 "travel_time": 15,
                 "group": "Group 2 (Small Blaar)",
@@ -693,22 +639,22 @@ export const INITIAL_STATE = {
             "matches": [
               {
                 "id": "S3_M1",
-                "beat_code": "EP2",
-                "beat_id": "EP2",
-                "river": "Elands Pad",
+                "beat_code": "SB1",
+                "beat_id": "SB1",
+                "river": "Small Blaar",
                 "anglers": [
                   "Barry",
                   "Daniel"
                 ],
-                "travel_time": 30,
+                "travel_time": 15,
                 "group": "A-Team River",
                 "match_type": "NORMAL"
               },
               {
                 "id": "S3_M2",
-                "beat_code": "EP1",
-                "beat_id": "EP1",
-                "river": "Elands Pad",
+                "beat_code": "SB(TRANSPORT)",
+                "beat_id": "SB(TRANSPORT)",
+                "river": "Small Blaar",
                 "anglers": [
                   "Dale",
                   "Garth"
@@ -719,12 +665,12 @@ export const INITIAL_STATE = {
               },
               {
                 "id": "S3_M3",
-                "beat_code": "SB1",
-                "beat_id": "SB1",
-                "river": "Small Blaar",
+                "beat_code": "EP1",
+                "beat_id": "EP1",
+                "river": "Elands Pad",
                 "anglers": [
-                  "Ryan",
-                  "Ian"
+                  "Ian",
+                  "Michelle"
                 ],
                 "travel_time": 15,
                 "group": "B-Team River",
@@ -732,27 +678,27 @@ export const INITIAL_STATE = {
               },
               {
                 "id": "S3_M4",
-                "beat_code": "SB2",
-                "beat_id": "SB2",
-                "river": "Small Blaar",
+                "beat_code": "EP3",
+                "beat_id": "EP3",
+                "river": "Elands Pad",
                 "anglers": [
-                  "Michelle",
-                  "Garrett"
+                  "Ryan",
+                  "Dylan"
                 ],
-                "travel_time": 15,
+                "travel_time": 30,
                 "group": "B-Team River",
                 "match_type": "NORMAL"
               },
               {
                 "id": "S3_M5",
-                "beat_code": "SB4",
-                "beat_id": "SB4",
-                "river": "Small Blaar",
+                "beat_code": "EP2",
+                "beat_id": "EP2",
+                "river": "Elands Pad",
                 "anglers": [
-                  "Dylan",
-                  "Malcolm"
+                  "Malcolm",
+                  "Garrett"
                 ],
-                "travel_time": 15,
+                "travel_time": 30,
                 "group": "B-Team River",
                 "match_type": "NORMAL"
               }
@@ -766,22 +712,22 @@ export const INITIAL_STATE = {
             "matches": [
               {
                 "id": "S4_M1",
-                "beat_code": "EP3",
-                "beat_id": "EP3",
-                "river": "Elands Pad",
+                "beat_code": "SB2",
+                "beat_id": "SB2",
+                "river": "Small Blaar",
                 "anglers": [
                   "Barry",
                   "Dale"
                 ],
-                "travel_time": 30,
+                "travel_time": 15,
                 "group": "A-Team River",
                 "match_type": "NORMAL"
               },
               {
                 "id": "S4_M2",
-                "beat_code": "SB6",
-                "beat_id": "SB6",
-                "river": "Elands Pad",
+                "beat_code": "SB3",
+                "beat_id": "SB3",
+                "river": "Small Blaar",
                 "anglers": [
                   "Daniel",
                   "Garth"
@@ -792,25 +738,25 @@ export const INITIAL_STATE = {
               },
               {
                 "id": "S4_M3",
-                "beat_code": "SB3",
-                "beat_id": "SB3",
-                "river": "Small Blaar",
+                "beat_code": "EP3",
+                "beat_id": "EP3",
+                "river": "Elands Pad",
                 "anglers": [
-                  "Ryan",
-                  "Garrett"
+                  "Ian",
+                  "Dylan"
                 ],
-                "travel_time": 15,
+                "travel_time": 30,
                 "group": "B-Team River",
                 "match_type": "NORMAL"
               },
               {
                 "id": "S4_M4",
-                "beat_code": "SB1",
-                "beat_id": "SB1",
-                "river": "Small Blaar",
+                "beat_code": "EP1",
+                "beat_id": "EP1",
+                "river": "Elands Pad",
                 "anglers": [
-                  "Michelle",
-                  "Dylan"
+                  "Ryan",
+                  "Malcolm"
                 ],
                 "travel_time": 15,
                 "group": "B-Team River",
@@ -818,12 +764,12 @@ export const INITIAL_STATE = {
               },
               {
                 "id": "S4_M5",
-                "beat_code": "SB(TRANSPORT)",
-                "beat_id": "SB(TRANSPORT)",
-                "river": "Small Blaar",
+                "beat_code": "SB6",
+                "beat_id": "SB6",
+                "river": "Elands Pad",
                 "anglers": [
-                  "Ian",
-                  "Malcolm"
+                  "Michelle",
+                  "Garrett"
                 ],
                 "travel_time": 15,
                 "group": "B-Team River",
@@ -1076,21 +1022,21 @@ export const INITIAL_STATE = {
               "beat": "SB3",
               "river": "Small Blaar",
               "opponents": [
-                "Malcolm"
+                "Dylan"
               ],
-              "opponent": "Malcolm",
+              "opponent": "Dylan",
               "match_id": "S1_M5"
             },
             {
               "session": 2,
               "session_name": "Saturday Afternoon",
-              "beat": "SB1",
+              "beat": "SB2",
               "river": "Small Blaar",
               "opponents": [
-                "Dale"
+                "Garth"
               ],
-              "opponent": "Dale",
-              "match_id": "S2_M3"
+              "opponent": "Garth",
+              "match_id": "S2_M4"
             }
           ],
           "Barry": [
@@ -1100,9 +1046,9 @@ export const INITIAL_STATE = {
               "beat": "EP1",
               "river": "Elands Pad",
               "opponents": [
-                "Ryan"
+                "Ian"
               ],
-              "opponent": "Ryan",
+              "opponent": "Ian",
               "match_id": "S1_M1"
             },
             {
@@ -1111,16 +1057,16 @@ export const INITIAL_STATE = {
               "beat": "EP1",
               "river": "Elands Pad",
               "opponents": [
-                "Michelle"
+                "Ryan"
               ],
-              "opponent": "Michelle",
+              "opponent": "Ryan",
               "match_id": "S2_M1"
             },
             {
               "session": 3,
               "session_name": "Sunday Morning",
-              "beat": "EP2",
-              "river": "Elands Pad",
+              "beat": "SB1",
+              "river": "Small Blaar",
               "opponents": [
                 "Daniel"
               ],
@@ -1130,8 +1076,8 @@ export const INITIAL_STATE = {
             {
               "session": 4,
               "session_name": "Sunday Afternoon",
-              "beat": "EP3",
-              "river": "Elands Pad",
+              "beat": "SB2",
+              "river": "Small Blaar",
               "opponents": [
                 "Dale"
               ],
@@ -1146,9 +1092,9 @@ export const INITIAL_STATE = {
               "beat": "EP3",
               "river": "Elands Pad",
               "opponents": [
-                "Michelle"
+                "Ryan"
               ],
-              "opponent": "Michelle",
+              "opponent": "Ryan",
               "match_id": "S1_M2"
             },
             {
@@ -1157,16 +1103,16 @@ export const INITIAL_STATE = {
               "beat": "EP3",
               "river": "Elands Pad",
               "opponents": [
-                "Ryan"
+                "Ian"
               ],
-              "opponent": "Ryan",
+              "opponent": "Ian",
               "match_id": "S2_M2"
             },
             {
               "session": 3,
               "session_name": "Sunday Morning",
-              "beat": "EP2",
-              "river": "Elands Pad",
+              "beat": "SB1",
+              "river": "Small Blaar",
               "opponents": [
                 "Barry"
               ],
@@ -1176,8 +1122,8 @@ export const INITIAL_STATE = {
             {
               "session": 4,
               "session_name": "Sunday Afternoon",
-              "beat": "SB6",
-              "river": "Elands Pad",
+              "beat": "SB3",
+              "river": "Small Blaar",
               "opponents": [
                 "Garth"
               ],
@@ -1192,9 +1138,9 @@ export const INITIAL_STATE = {
               "beat": "SB2",
               "river": "Small Blaar",
               "opponents": [
-                "Dylan"
+                "Malcolm"
               ],
-              "opponent": "Dylan",
+              "opponent": "Malcolm",
               "match_id": "S1_M4"
             },
             {
@@ -1203,16 +1149,16 @@ export const INITIAL_STATE = {
               "beat": "SB2",
               "river": "Small Blaar",
               "opponents": [
-                "Malcolm"
+                "James"
               ],
-              "opponent": "Malcolm",
+              "opponent": "James",
               "match_id": "S2_M4"
             },
             {
               "session": 3,
               "session_name": "Sunday Morning",
-              "beat": "EP1",
-              "river": "Elands Pad",
+              "beat": "SB(TRANSPORT)",
+              "river": "Small Blaar",
               "opponents": [
                 "Dale"
               ],
@@ -1222,8 +1168,8 @@ export const INITIAL_STATE = {
             {
               "session": 4,
               "session_name": "Sunday Afternoon",
-              "beat": "SB6",
-              "river": "Elands Pad",
+              "beat": "SB3",
+              "river": "Small Blaar",
               "opponents": [
                 "Daniel"
               ],
@@ -1238,9 +1184,9 @@ export const INITIAL_STATE = {
               "beat": "SB1",
               "river": "Small Blaar",
               "opponents": [
-                "Ian"
+                "Michelle"
               ],
-              "opponent": "Ian",
+              "opponent": "Michelle",
               "match_id": "S1_M3"
             },
             {
@@ -1249,16 +1195,16 @@ export const INITIAL_STATE = {
               "beat": "SB1",
               "river": "Small Blaar",
               "opponents": [
-                "James"
+                "Dylan"
               ],
-              "opponent": "James",
+              "opponent": "Dylan",
               "match_id": "S2_M3"
             },
             {
               "session": 3,
               "session_name": "Sunday Morning",
-              "beat": "EP1",
-              "river": "Elands Pad",
+              "beat": "SB(TRANSPORT)",
+              "river": "Small Blaar",
               "opponents": [
                 "Garth"
               ],
@@ -1268,8 +1214,8 @@ export const INITIAL_STATE = {
             {
               "session": 4,
               "session_name": "Sunday Afternoon",
-              "beat": "EP3",
-              "river": "Elands Pad",
+              "beat": "SB2",
+              "river": "Small Blaar",
               "opponents": [
                 "Barry"
               ],
@@ -1278,98 +1224,6 @@ export const INITIAL_STATE = {
             }
           ],
           "Dylan": [
-            {
-              "session": 1,
-              "session_name": "Saturday Morning",
-              "beat": "SB2",
-              "river": "Small Blaar",
-              "opponents": [
-                "Garth"
-              ],
-              "opponent": "Garth",
-              "match_id": "S1_M4"
-            },
-            {
-              "session": 2,
-              "session_name": "Saturday Afternoon",
-              "beat": "SB3",
-              "river": "Small Blaar",
-              "opponents": [
-                "Ian"
-              ],
-              "opponent": "Ian",
-              "match_id": "S2_M5"
-            },
-            {
-              "session": 3,
-              "session_name": "Sunday Morning",
-              "beat": "SB4",
-              "river": "Small Blaar",
-              "opponents": [
-                "Malcolm"
-              ],
-              "opponent": "Malcolm",
-              "match_id": "S3_M5"
-            },
-            {
-              "session": 4,
-              "session_name": "Sunday Afternoon",
-              "beat": "SB1",
-              "river": "Small Blaar",
-              "opponents": [
-                "Michelle"
-              ],
-              "opponent": "Michelle",
-              "match_id": "S4_M4"
-            }
-          ],
-          "Ian": [
-            {
-              "session": 1,
-              "session_name": "Saturday Morning",
-              "beat": "SB1",
-              "river": "Small Blaar",
-              "opponents": [
-                "Dale"
-              ],
-              "opponent": "Dale",
-              "match_id": "S1_M3"
-            },
-            {
-              "session": 2,
-              "session_name": "Saturday Afternoon",
-              "beat": "SB3",
-              "river": "Small Blaar",
-              "opponents": [
-                "Dylan"
-              ],
-              "opponent": "Dylan",
-              "match_id": "S2_M5"
-            },
-            {
-              "session": 3,
-              "session_name": "Sunday Morning",
-              "beat": "SB1",
-              "river": "Small Blaar",
-              "opponents": [
-                "Ryan"
-              ],
-              "opponent": "Ryan",
-              "match_id": "S3_M3"
-            },
-            {
-              "session": 4,
-              "session_name": "Sunday Afternoon",
-              "beat": "SB(TRANSPORT)",
-              "river": "Small Blaar",
-              "opponents": [
-                "Malcolm"
-              ],
-              "opponent": "Malcolm",
-              "match_id": "S4_M5"
-            }
-          ],
-          "Malcolm": [
             {
               "session": 1,
               "session_name": "Saturday Morning",
@@ -1384,38 +1238,38 @@ export const INITIAL_STATE = {
             {
               "session": 2,
               "session_name": "Saturday Afternoon",
-              "beat": "SB2",
+              "beat": "SB1",
               "river": "Small Blaar",
               "opponents": [
-                "Garth"
+                "Dale"
               ],
-              "opponent": "Garth",
-              "match_id": "S2_M4"
+              "opponent": "Dale",
+              "match_id": "S2_M3"
             },
             {
               "session": 3,
               "session_name": "Sunday Morning",
-              "beat": "SB4",
-              "river": "Small Blaar",
+              "beat": "EP3",
+              "river": "Elands Pad",
               "opponents": [
-                "Dylan"
+                "Ryan"
               ],
-              "opponent": "Dylan",
-              "match_id": "S3_M5"
+              "opponent": "Ryan",
+              "match_id": "S3_M4"
             },
             {
               "session": 4,
               "session_name": "Sunday Afternoon",
-              "beat": "SB(TRANSPORT)",
-              "river": "Small Blaar",
+              "beat": "EP3",
+              "river": "Elands Pad",
               "opponents": [
                 "Ian"
               ],
               "opponent": "Ian",
-              "match_id": "S4_M5"
+              "match_id": "S4_M3"
             }
           ],
-          "Ryan": [
+          "Ian": [
             {
               "session": 1,
               "session_name": "Saturday Morning",
@@ -1441,51 +1295,73 @@ export const INITIAL_STATE = {
             {
               "session": 3,
               "session_name": "Sunday Morning",
-              "beat": "SB1",
-              "river": "Small Blaar",
+              "beat": "EP1",
+              "river": "Elands Pad",
               "opponents": [
-                "Ian"
+                "Michelle"
               ],
-              "opponent": "Ian",
+              "opponent": "Michelle",
               "match_id": "S3_M3"
             },
             {
               "session": 4,
               "session_name": "Sunday Afternoon",
-              "beat": "SB3",
-              "river": "Small Blaar",
+              "beat": "EP3",
+              "river": "Elands Pad",
               "opponents": [
-                "Garrett"
+                "Dylan"
               ],
-              "opponent": "Garrett",
+              "opponent": "Dylan",
               "match_id": "S4_M3"
             }
           ],
-          "Garrett": [
+          "Malcolm": [
             {
-              "session": 3,
-              "session_name": "Sunday Morning",
+              "session": 1,
+              "session_name": "Saturday Morning",
               "beat": "SB2",
+              "river": "Small Blaar",
+              "opponents": [
+                "Garth"
+              ],
+              "opponent": "Garth",
+              "match_id": "S1_M4"
+            },
+            {
+              "session": 2,
+              "session_name": "Saturday Afternoon",
+              "beat": "SB3",
               "river": "Small Blaar",
               "opponents": [
                 "Michelle"
               ],
               "opponent": "Michelle",
-              "match_id": "S3_M4"
+              "match_id": "S2_M5"
+            },
+            {
+              "session": 3,
+              "session_name": "Sunday Morning",
+              "beat": "EP2",
+              "river": "Elands Pad",
+              "opponents": [
+                "Garrett"
+              ],
+              "opponent": "Garrett",
+              "match_id": "S3_M5"
             },
             {
               "session": 4,
               "session_name": "Sunday Afternoon",
-              "beat": "SB3",
-              "river": "Small Blaar",
+              "beat": "EP1",
+              "river": "Elands Pad",
               "opponents": [
                 "Ryan"
               ],
               "opponent": "Ryan",
-              "match_id": "S4_M3"
+              "match_id": "S4_M4"
             }
           ],
-          "Michelle": [
+          "Ryan": [
             {
               "session": 1,
               "session_name": "Saturday Morning",
@@ -1511,24 +1387,94 @@ export const INITIAL_STATE = {
             {
               "session": 3,
               "session_name": "Sunday Morning",
-              "beat": "SB2",
-              "river": "Small Blaar",
+              "beat": "EP3",
+              "river": "Elands Pad",
               "opponents": [
-                "Garrett"
+                "Dylan"
               ],
-              "opponent": "Garrett",
+              "opponent": "Dylan",
               "match_id": "S3_M4"
             },
             {
               "session": 4,
               "session_name": "Sunday Afternoon",
+              "beat": "EP1",
+              "river": "Elands Pad",
+              "opponents": [
+                "Malcolm"
+              ],
+              "opponent": "Malcolm",
+              "match_id": "S4_M4"
+            }
+          ],
+          "Garrett": [
+            {
+              "session": 3,
+              "session_name": "Sunday Morning",
+              "beat": "EP2",
+              "river": "Elands Pad",
+              "opponents": [
+                "Malcolm"
+              ],
+              "opponent": "Malcolm",
+              "match_id": "S3_M5"
+            },
+            {
+              "session": 4,
+              "session_name": "Sunday Afternoon",
+              "beat": "SB6",
+              "river": "Elands Pad",
+              "opponents": [
+                "Michelle"
+              ],
+              "opponent": "Michelle",
+              "match_id": "S4_M5"
+            }
+          ],
+          "Michelle": [
+            {
+              "session": 1,
+              "session_name": "Saturday Morning",
               "beat": "SB1",
               "river": "Small Blaar",
               "opponents": [
-                "Dylan"
+                "Dale"
               ],
-              "opponent": "Dylan",
-              "match_id": "S4_M4"
+              "opponent": "Dale",
+              "match_id": "S1_M3"
+            },
+            {
+              "session": 2,
+              "session_name": "Saturday Afternoon",
+              "beat": "SB3",
+              "river": "Small Blaar",
+              "opponents": [
+                "Malcolm"
+              ],
+              "opponent": "Malcolm",
+              "match_id": "S2_M5"
+            },
+            {
+              "session": 3,
+              "session_name": "Sunday Morning",
+              "beat": "EP1",
+              "river": "Elands Pad",
+              "opponents": [
+                "Ian"
+              ],
+              "opponent": "Ian",
+              "match_id": "S3_M3"
+            },
+            {
+              "session": 4,
+              "session_name": "Sunday Afternoon",
+              "beat": "SB6",
+              "river": "Elands Pad",
+              "opponents": [
+                "Garrett"
+              ],
+              "opponent": "Garrett",
+              "match_id": "S4_M5"
             }
           ]
         }
@@ -1762,33 +1708,6 @@ export const INITIAL_STATE = {
             "notes": "SB3: 2x sessions"
           },
           {
-            "id": "SB4",
-            "code": "SB4",
-            "name": "SB4",
-            "river": "Small Blaar",
-            "enabled": true,
-            "sat_available": true,
-            "sat_sessions": 1,
-            "sun_available": true,
-            "sun_sessions": 1,
-            "usage_mode": "single",
-            "travel_time": 15,
-            "lower_pin": [
-              -33.7272,
-              19.1415
-            ],
-            "mid_pin": [
-              -33.7285,
-              19.137
-            ],
-            "upper_pin": [
-              -33.7295,
-              19.132
-            ],
-            "meeting_point": "Donkergat pull-off",
-            "notes": "SB4: 1x session"
-          },
-          {
             "id": "SB(TRANSPORT)",
             "code": "SB(TRANSPORT)",
             "name": "SB(TRANSPORT)",
@@ -2007,33 +1926,6 @@ export const INITIAL_STATE = {
             "notes": "SB3: 2x sessions"
           },
           {
-            "id": "SB4",
-            "code": "SB4",
-            "name": "SB4",
-            "river": "Small Blaar",
-            "enabled": true,
-            "sat_available": true,
-            "sat_sessions": 1,
-            "sun_available": true,
-            "sun_sessions": 1,
-            "usage_mode": "single",
-            "travel_time": 15,
-            "lower_pin": [
-              -33.7272,
-              19.1415
-            ],
-            "mid_pin": [
-              -33.7285,
-              19.137
-            ],
-            "upper_pin": [
-              -33.7295,
-              19.132
-            ],
-            "meeting_point": "Donkergat pull-off",
-            "notes": "SB4: 1x session"
-          },
-          {
             "id": "SB(TRANSPORT)",
             "code": "SB(TRANSPORT)",
             "name": "SB(TRANSPORT)",
@@ -2088,7 +1980,7 @@ export const INITIAL_STATE = {
                 "river": "Elands Pad",
                 "anglers": [
                   "Dale",
-                  "Garrett"
+                  "Dylan"
                 ],
                 "travel_time": 15,
                 "group": "Group 1 (Elands)",
@@ -2100,8 +1992,8 @@ export const INITIAL_STATE = {
                 "beat_id": "EP3",
                 "river": "Elands Pad",
                 "anglers": [
-                  "Daniel",
-                  "Michelle"
+                  "Barry",
+                  "Malcolm"
                 ],
                 "travel_time": 30,
                 "group": "Group 1 (Elands)",
@@ -2113,8 +2005,8 @@ export const INITIAL_STATE = {
                 "beat_id": "SB1",
                 "river": "Small Blaar",
                 "anglers": [
-                  "Garth",
-                  "James"
+                  "Daniel",
+                  "Michelle"
                 ],
                 "travel_time": 15,
                 "group": "Group 2 (Small Blaar)",
@@ -2126,8 +2018,8 @@ export const INITIAL_STATE = {
                 "beat_id": "SB2",
                 "river": "Small Blaar",
                 "anglers": [
-                  "Barry",
-                  "Dylan"
+                  "Garth",
+                  "Garrett"
                 ],
                 "travel_time": 15,
                 "group": "Group 2 (Small Blaar)",
@@ -2139,7 +2031,7 @@ export const INITIAL_STATE = {
                 "beat_id": "SB3",
                 "river": "Small Blaar",
                 "anglers": [
-                  "Ian",
+                  "James",
                   "Ryan"
                 ],
                 "travel_time": 15,
@@ -2161,7 +2053,7 @@ export const INITIAL_STATE = {
                 "river": "Elands Pad",
                 "anglers": [
                   "Dale",
-                  "Michelle"
+                  "Malcolm"
                 ],
                 "travel_time": 15,
                 "group": "Group 1 (Elands)",
@@ -2173,8 +2065,8 @@ export const INITIAL_STATE = {
                 "beat_id": "EP3",
                 "river": "Elands Pad",
                 "anglers": [
-                  "Daniel",
-                  "Garrett"
+                  "Barry",
+                  "Dylan"
                 ],
                 "travel_time": 30,
                 "group": "Group 1 (Elands)",
@@ -2186,8 +2078,8 @@ export const INITIAL_STATE = {
                 "beat_id": "SB1",
                 "river": "Small Blaar",
                 "anglers": [
-                  "Garth",
-                  "Ian"
+                  "Daniel",
+                  "James"
                 ],
                 "travel_time": 15,
                 "group": "Group 2 (Small Blaar)",
@@ -2199,7 +2091,7 @@ export const INITIAL_STATE = {
                 "beat_id": "SB2",
                 "river": "Small Blaar",
                 "anglers": [
-                  "Barry",
+                  "Garth",
                   "Ryan"
                 ],
                 "travel_time": 15,
@@ -2212,8 +2104,8 @@ export const INITIAL_STATE = {
                 "beat_id": "SB3",
                 "river": "Small Blaar",
                 "anglers": [
-                  "James",
-                  "Dylan"
+                  "Michelle",
+                  "Garrett"
                 ],
                 "travel_time": 15,
                 "group": "Group 2 (Small Blaar)",
@@ -2234,7 +2126,7 @@ export const INITIAL_STATE = {
                 "river": "Small Blaar",
                 "anglers": [
                   "Dale",
-                  "Daniel"
+                  "Barry"
                 ],
                 "travel_time": 15,
                 "group": "A-Team River",
@@ -2242,12 +2134,12 @@ export const INITIAL_STATE = {
               },
               {
                 "id": "S3_M2",
-                "beat_code": "SB2",
-                "beat_id": "SB2",
+                "beat_code": "SB(TRANSPORT)",
+                "beat_id": "SB(TRANSPORT)",
                 "river": "Small Blaar",
                 "anglers": [
-                  "Garth",
-                  "Barry"
+                  "Daniel",
+                  "Garth"
                 ],
                 "travel_time": 15,
                 "group": "A-Team River",
@@ -2259,8 +2151,8 @@ export const INITIAL_STATE = {
                 "beat_id": "EP1",
                 "river": "Elands Pad",
                 "anglers": [
-                  "Garrett",
-                  "James"
+                  "Dylan",
+                  "Michelle"
                 ],
                 "travel_time": 15,
                 "group": "B-Team River",
@@ -2272,8 +2164,8 @@ export const INITIAL_STATE = {
                 "beat_id": "EP3",
                 "river": "Elands Pad",
                 "anglers": [
-                  "Michelle",
-                  "Ian"
+                  "Malcolm",
+                  "James"
                 ],
                 "travel_time": 30,
                 "group": "B-Team River",
@@ -2285,7 +2177,7 @@ export const INITIAL_STATE = {
                 "beat_id": "EP2",
                 "river": "Elands Pad",
                 "anglers": [
-                  "Dylan",
+                  "Garrett",
                   "Ryan"
                 ],
                 "travel_time": 30,
@@ -2302,12 +2194,12 @@ export const INITIAL_STATE = {
             "matches": [
               {
                 "id": "S4_M1",
-                "beat_code": "SB3",
-                "beat_id": "SB3",
+                "beat_code": "SB2",
+                "beat_id": "SB2",
                 "river": "Small Blaar",
                 "anglers": [
                   "Dale",
-                  "Garth"
+                  "Daniel"
                 ],
                 "travel_time": 15,
                 "group": "A-Team River",
@@ -2315,12 +2207,12 @@ export const INITIAL_STATE = {
               },
               {
                 "id": "S4_M2",
-                "beat_code": "SB1",
-                "beat_id": "SB1",
+                "beat_code": "SB3",
+                "beat_id": "SB3",
                 "river": "Small Blaar",
                 "anglers": [
-                  "Daniel",
-                  "Barry"
+                  "Barry",
+                  "Garth"
                 ],
                 "travel_time": 15,
                 "group": "A-Team River",
@@ -2332,8 +2224,8 @@ export const INITIAL_STATE = {
                 "beat_id": "EP3",
                 "river": "Elands Pad",
                 "anglers": [
-                  "Garrett",
-                  "Ian"
+                  "Dylan",
+                  "James"
                 ],
                 "travel_time": 30,
                 "group": "B-Team River",
@@ -2345,8 +2237,8 @@ export const INITIAL_STATE = {
                 "beat_id": "EP1",
                 "river": "Elands Pad",
                 "anglers": [
-                  "Michelle",
-                  "Dylan"
+                  "Malcolm",
+                  "Garrett"
                 ],
                 "travel_time": 15,
                 "group": "B-Team River",
@@ -2358,7 +2250,7 @@ export const INITIAL_STATE = {
                 "beat_id": "SB6",
                 "river": "Elands Pad",
                 "anglers": [
-                  "James",
+                  "Michelle",
                   "Ryan"
                 ],
                 "travel_time": 15,
@@ -2603,104 +2495,58 @@ export const INITIAL_STATE = {
             {
               "session": 1,
               "session_name": "Saturday Morning",
-              "beat": "SB1",
-              "river": "Small Blaar",
-              "opponents": [
-                "Garth"
-              ],
-              "opponent": "Garth",
-              "match_id": "S1_M3"
-            },
-            {
-              "session": 2,
-              "session_name": "Saturday Afternoon",
               "beat": "SB3",
               "river": "Small Blaar",
               "opponents": [
-                "Dylan"
-              ],
-              "opponent": "Dylan",
-              "match_id": "S2_M5"
-            },
-            {
-              "session": 3,
-              "session_name": "Sunday Morning",
-              "beat": "EP1",
-              "river": "Elands Pad",
-              "opponents": [
-                "Garrett"
-              ],
-              "opponent": "Garrett",
-              "match_id": "S3_M3"
-            },
-            {
-              "session": 4,
-              "session_name": "Sunday Afternoon",
-              "beat": "SB6",
-              "river": "Elands Pad",
-              "opponents": [
                 "Ryan"
               ],
               "opponent": "Ryan",
-              "match_id": "S4_M5"
-            }
-          ],
-          "Barry": [
-            {
-              "session": 1,
-              "session_name": "Saturday Morning",
-              "beat": "SB2",
-              "river": "Small Blaar",
-              "opponents": [
-                "Dylan"
-              ],
-              "opponent": "Dylan",
-              "match_id": "S1_M4"
+              "match_id": "S1_M5"
             },
             {
               "session": 2,
               "session_name": "Saturday Afternoon",
-              "beat": "SB2",
-              "river": "Small Blaar",
-              "opponents": [
-                "Ryan"
-              ],
-              "opponent": "Ryan",
-              "match_id": "S2_M4"
-            },
-            {
-              "session": 3,
-              "session_name": "Sunday Morning",
-              "beat": "SB2",
-              "river": "Small Blaar",
-              "opponents": [
-                "Garth"
-              ],
-              "opponent": "Garth",
-              "match_id": "S3_M2"
-            },
-            {
-              "session": 4,
-              "session_name": "Sunday Afternoon",
               "beat": "SB1",
               "river": "Small Blaar",
               "opponents": [
                 "Daniel"
               ],
               "opponent": "Daniel",
-              "match_id": "S4_M2"
+              "match_id": "S2_M3"
+            },
+            {
+              "session": 3,
+              "session_name": "Sunday Morning",
+              "beat": "EP3",
+              "river": "Elands Pad",
+              "opponents": [
+                "Malcolm"
+              ],
+              "opponent": "Malcolm",
+              "match_id": "S3_M4"
+            },
+            {
+              "session": 4,
+              "session_name": "Sunday Afternoon",
+              "beat": "EP3",
+              "river": "Elands Pad",
+              "opponents": [
+                "Dylan"
+              ],
+              "opponent": "Dylan",
+              "match_id": "S4_M3"
             }
           ],
-          "Daniel": [
+          "Barry": [
             {
               "session": 1,
               "session_name": "Saturday Morning",
               "beat": "EP3",
               "river": "Elands Pad",
               "opponents": [
-                "Michelle"
+                "Malcolm"
               ],
-              "opponent": "Michelle",
+              "opponent": "Malcolm",
               "match_id": "S1_M2"
             },
             {
@@ -2709,9 +2555,9 @@ export const INITIAL_STATE = {
               "beat": "EP3",
               "river": "Elands Pad",
               "opponents": [
-                "Garrett"
+                "Dylan"
               ],
-              "opponent": "Garrett",
+              "opponent": "Dylan",
               "match_id": "S2_M2"
             },
             {
@@ -2728,25 +2574,25 @@ export const INITIAL_STATE = {
             {
               "session": 4,
               "session_name": "Sunday Afternoon",
-              "beat": "SB1",
+              "beat": "SB3",
               "river": "Small Blaar",
               "opponents": [
-                "Barry"
+                "Garth"
               ],
-              "opponent": "Barry",
+              "opponent": "Garth",
               "match_id": "S4_M2"
             }
           ],
-          "Garth": [
+          "Daniel": [
             {
               "session": 1,
               "session_name": "Saturday Morning",
               "beat": "SB1",
               "river": "Small Blaar",
               "opponents": [
-                "James"
+                "Michelle"
               ],
-              "opponent": "James",
+              "opponent": "Michelle",
               "match_id": "S1_M3"
             },
             {
@@ -2755,20 +2601,66 @@ export const INITIAL_STATE = {
               "beat": "SB1",
               "river": "Small Blaar",
               "opponents": [
-                "Ian"
+                "James"
               ],
-              "opponent": "Ian",
+              "opponent": "James",
               "match_id": "S2_M3"
             },
             {
               "session": 3,
               "session_name": "Sunday Morning",
+              "beat": "SB(TRANSPORT)",
+              "river": "Small Blaar",
+              "opponents": [
+                "Garth"
+              ],
+              "opponent": "Garth",
+              "match_id": "S3_M2"
+            },
+            {
+              "session": 4,
+              "session_name": "Sunday Afternoon",
               "beat": "SB2",
               "river": "Small Blaar",
               "opponents": [
-                "Barry"
+                "Dale"
               ],
-              "opponent": "Barry",
+              "opponent": "Dale",
+              "match_id": "S4_M1"
+            }
+          ],
+          "Garth": [
+            {
+              "session": 1,
+              "session_name": "Saturday Morning",
+              "beat": "SB2",
+              "river": "Small Blaar",
+              "opponents": [
+                "Garrett"
+              ],
+              "opponent": "Garrett",
+              "match_id": "S1_M4"
+            },
+            {
+              "session": 2,
+              "session_name": "Saturday Afternoon",
+              "beat": "SB2",
+              "river": "Small Blaar",
+              "opponents": [
+                "Ryan"
+              ],
+              "opponent": "Ryan",
+              "match_id": "S2_M4"
+            },
+            {
+              "session": 3,
+              "session_name": "Sunday Morning",
+              "beat": "SB(TRANSPORT)",
+              "river": "Small Blaar",
+              "opponents": [
+                "Daniel"
+              ],
+              "opponent": "Daniel",
               "match_id": "S3_M2"
             },
             {
@@ -2777,10 +2669,10 @@ export const INITIAL_STATE = {
               "beat": "SB3",
               "river": "Small Blaar",
               "opponents": [
-                "Dale"
+                "Barry"
               ],
-              "opponent": "Dale",
-              "match_id": "S4_M1"
+              "opponent": "Barry",
+              "match_id": "S4_M2"
             }
           ],
           "Dale": [
@@ -2790,9 +2682,9 @@ export const INITIAL_STATE = {
               "beat": "EP1",
               "river": "Elands Pad",
               "opponents": [
-                "Garrett"
+                "Dylan"
               ],
-              "opponent": "Garrett",
+              "opponent": "Dylan",
               "match_id": "S1_M1"
             },
             {
@@ -2801,9 +2693,9 @@ export const INITIAL_STATE = {
               "beat": "EP1",
               "river": "Elands Pad",
               "opponents": [
-                "Michelle"
+                "Malcolm"
               ],
-              "opponent": "Michelle",
+              "opponent": "Malcolm",
               "match_id": "S2_M1"
             },
             {
@@ -2812,163 +2704,24 @@ export const INITIAL_STATE = {
               "beat": "SB1",
               "river": "Small Blaar",
               "opponents": [
-                "Daniel"
+                "Barry"
               ],
-              "opponent": "Daniel",
+              "opponent": "Barry",
               "match_id": "S3_M1"
             },
             {
               "session": 4,
               "session_name": "Sunday Afternoon",
-              "beat": "SB3",
+              "beat": "SB2",
               "river": "Small Blaar",
               "opponents": [
-                "Garth"
+                "Daniel"
               ],
-              "opponent": "Garth",
+              "opponent": "Daniel",
               "match_id": "S4_M1"
             }
           ],
           "Dylan": [
-            {
-              "session": 1,
-              "session_name": "Saturday Morning",
-              "beat": "SB2",
-              "river": "Small Blaar",
-              "opponents": [
-                "Barry"
-              ],
-              "opponent": "Barry",
-              "match_id": "S1_M4"
-            },
-            {
-              "session": 2,
-              "session_name": "Saturday Afternoon",
-              "beat": "SB3",
-              "river": "Small Blaar",
-              "opponents": [
-                "James"
-              ],
-              "opponent": "James",
-              "match_id": "S2_M5"
-            },
-            {
-              "session": 3,
-              "session_name": "Sunday Morning",
-              "beat": "EP2",
-              "river": "Elands Pad",
-              "opponents": [
-                "Ryan"
-              ],
-              "opponent": "Ryan",
-              "match_id": "S3_M5"
-            },
-            {
-              "session": 4,
-              "session_name": "Sunday Afternoon",
-              "beat": "EP1",
-              "river": "Elands Pad",
-              "opponents": [
-                "Michelle"
-              ],
-              "opponent": "Michelle",
-              "match_id": "S4_M4"
-            }
-          ],
-          "Ian": [
-            {
-              "session": 1,
-              "session_name": "Saturday Morning",
-              "beat": "SB3",
-              "river": "Small Blaar",
-              "opponents": [
-                "Ryan"
-              ],
-              "opponent": "Ryan",
-              "match_id": "S1_M5"
-            },
-            {
-              "session": 2,
-              "session_name": "Saturday Afternoon",
-              "beat": "SB1",
-              "river": "Small Blaar",
-              "opponents": [
-                "Garth"
-              ],
-              "opponent": "Garth",
-              "match_id": "S2_M3"
-            },
-            {
-              "session": 3,
-              "session_name": "Sunday Morning",
-              "beat": "EP3",
-              "river": "Elands Pad",
-              "opponents": [
-                "Michelle"
-              ],
-              "opponent": "Michelle",
-              "match_id": "S3_M4"
-            },
-            {
-              "session": 4,
-              "session_name": "Sunday Afternoon",
-              "beat": "EP3",
-              "river": "Elands Pad",
-              "opponents": [
-                "Garrett"
-              ],
-              "opponent": "Garrett",
-              "match_id": "S4_M3"
-            }
-          ],
-          "Malcolm": [],
-          "Ryan": [
-            {
-              "session": 1,
-              "session_name": "Saturday Morning",
-              "beat": "SB3",
-              "river": "Small Blaar",
-              "opponents": [
-                "Ian"
-              ],
-              "opponent": "Ian",
-              "match_id": "S1_M5"
-            },
-            {
-              "session": 2,
-              "session_name": "Saturday Afternoon",
-              "beat": "SB2",
-              "river": "Small Blaar",
-              "opponents": [
-                "Barry"
-              ],
-              "opponent": "Barry",
-              "match_id": "S2_M4"
-            },
-            {
-              "session": 3,
-              "session_name": "Sunday Morning",
-              "beat": "EP2",
-              "river": "Elands Pad",
-              "opponents": [
-                "Dylan"
-              ],
-              "opponent": "Dylan",
-              "match_id": "S3_M5"
-            },
-            {
-              "session": 4,
-              "session_name": "Sunday Afternoon",
-              "beat": "SB6",
-              "river": "Elands Pad",
-              "opponents": [
-                "James"
-              ],
-              "opponent": "James",
-              "match_id": "S4_M5"
-            }
-          ],
-          "Garrett": [
             {
               "session": 1,
               "session_name": "Saturday Morning",
@@ -2986,9 +2739,9 @@ export const INITIAL_STATE = {
               "beat": "EP3",
               "river": "Elands Pad",
               "opponents": [
-                "Daniel"
+                "Barry"
               ],
-              "opponent": "Daniel",
+              "opponent": "Barry",
               "match_id": "S2_M2"
             },
             {
@@ -2997,9 +2750,9 @@ export const INITIAL_STATE = {
               "beat": "EP1",
               "river": "Elands Pad",
               "opponents": [
-                "James"
+                "Michelle"
               ],
-              "opponent": "James",
+              "opponent": "Michelle",
               "match_id": "S3_M3"
             },
             {
@@ -3008,22 +2761,23 @@ export const INITIAL_STATE = {
               "beat": "EP3",
               "river": "Elands Pad",
               "opponents": [
-                "Ian"
+                "James"
               ],
-              "opponent": "Ian",
+              "opponent": "James",
               "match_id": "S4_M3"
             }
           ],
-          "Michelle": [
+          "Ian": [],
+          "Malcolm": [
             {
               "session": 1,
               "session_name": "Saturday Morning",
               "beat": "EP3",
               "river": "Elands Pad",
               "opponents": [
-                "Daniel"
+                "Barry"
               ],
-              "opponent": "Daniel",
+              "opponent": "Barry",
               "match_id": "S1_M2"
             },
             {
@@ -3043,9 +2797,9 @@ export const INITIAL_STATE = {
               "beat": "EP3",
               "river": "Elands Pad",
               "opponents": [
-                "Ian"
+                "James"
               ],
-              "opponent": "Ian",
+              "opponent": "James",
               "match_id": "S3_M4"
             },
             {
@@ -3054,10 +2808,148 @@ export const INITIAL_STATE = {
               "beat": "EP1",
               "river": "Elands Pad",
               "opponents": [
+                "Garrett"
+              ],
+              "opponent": "Garrett",
+              "match_id": "S4_M4"
+            }
+          ],
+          "Ryan": [
+            {
+              "session": 1,
+              "session_name": "Saturday Morning",
+              "beat": "SB3",
+              "river": "Small Blaar",
+              "opponents": [
+                "James"
+              ],
+              "opponent": "James",
+              "match_id": "S1_M5"
+            },
+            {
+              "session": 2,
+              "session_name": "Saturday Afternoon",
+              "beat": "SB2",
+              "river": "Small Blaar",
+              "opponents": [
+                "Garth"
+              ],
+              "opponent": "Garth",
+              "match_id": "S2_M4"
+            },
+            {
+              "session": 3,
+              "session_name": "Sunday Morning",
+              "beat": "EP2",
+              "river": "Elands Pad",
+              "opponents": [
+                "Garrett"
+              ],
+              "opponent": "Garrett",
+              "match_id": "S3_M5"
+            },
+            {
+              "session": 4,
+              "session_name": "Sunday Afternoon",
+              "beat": "SB6",
+              "river": "Elands Pad",
+              "opponents": [
+                "Michelle"
+              ],
+              "opponent": "Michelle",
+              "match_id": "S4_M5"
+            }
+          ],
+          "Garrett": [
+            {
+              "session": 1,
+              "session_name": "Saturday Morning",
+              "beat": "SB2",
+              "river": "Small Blaar",
+              "opponents": [
+                "Garth"
+              ],
+              "opponent": "Garth",
+              "match_id": "S1_M4"
+            },
+            {
+              "session": 2,
+              "session_name": "Saturday Afternoon",
+              "beat": "SB3",
+              "river": "Small Blaar",
+              "opponents": [
+                "Michelle"
+              ],
+              "opponent": "Michelle",
+              "match_id": "S2_M5"
+            },
+            {
+              "session": 3,
+              "session_name": "Sunday Morning",
+              "beat": "EP2",
+              "river": "Elands Pad",
+              "opponents": [
+                "Ryan"
+              ],
+              "opponent": "Ryan",
+              "match_id": "S3_M5"
+            },
+            {
+              "session": 4,
+              "session_name": "Sunday Afternoon",
+              "beat": "EP1",
+              "river": "Elands Pad",
+              "opponents": [
+                "Malcolm"
+              ],
+              "opponent": "Malcolm",
+              "match_id": "S4_M4"
+            }
+          ],
+          "Michelle": [
+            {
+              "session": 1,
+              "session_name": "Saturday Morning",
+              "beat": "SB1",
+              "river": "Small Blaar",
+              "opponents": [
+                "Daniel"
+              ],
+              "opponent": "Daniel",
+              "match_id": "S1_M3"
+            },
+            {
+              "session": 2,
+              "session_name": "Saturday Afternoon",
+              "beat": "SB3",
+              "river": "Small Blaar",
+              "opponents": [
+                "Garrett"
+              ],
+              "opponent": "Garrett",
+              "match_id": "S2_M5"
+            },
+            {
+              "session": 3,
+              "session_name": "Sunday Morning",
+              "beat": "EP1",
+              "river": "Elands Pad",
+              "opponents": [
                 "Dylan"
               ],
               "opponent": "Dylan",
-              "match_id": "S4_M4"
+              "match_id": "S3_M3"
+            },
+            {
+              "session": 4,
+              "session_name": "Sunday Afternoon",
+              "beat": "SB6",
+              "river": "Elands Pad",
+              "opponents": [
+                "Ryan"
+              ],
+              "opponent": "Ryan",
+              "match_id": "S4_M5"
             }
           ]
         }
@@ -3290,33 +3182,6 @@ export const INITIAL_STATE = {
             "notes": "SB3: 2x sessions"
           },
           {
-            "id": "SB4",
-            "code": "SB4",
-            "name": "SB4",
-            "river": "Small Blaar",
-            "enabled": true,
-            "sat_available": true,
-            "sat_sessions": 1,
-            "sun_available": true,
-            "sun_sessions": 1,
-            "usage_mode": "single",
-            "travel_time": 15,
-            "lower_pin": [
-              -33.7272,
-              19.1415
-            ],
-            "mid_pin": [
-              -33.7285,
-              19.137
-            ],
-            "upper_pin": [
-              -33.7295,
-              19.132
-            ],
-            "meeting_point": "Donkergat pull-off",
-            "notes": "SB4: 1x session"
-          },
-          {
             "id": "SB(TRANSPORT)",
             "code": "SB(TRANSPORT)",
             "name": "SB(TRANSPORT)",
@@ -3535,33 +3400,6 @@ export const INITIAL_STATE = {
             "notes": "SB3: 2x sessions"
           },
           {
-            "id": "SB4",
-            "code": "SB4",
-            "name": "SB4",
-            "river": "Small Blaar",
-            "enabled": true,
-            "sat_available": true,
-            "sat_sessions": 1,
-            "sun_available": true,
-            "sun_sessions": 1,
-            "usage_mode": "single",
-            "travel_time": 15,
-            "lower_pin": [
-              -33.7272,
-              19.1415
-            ],
-            "mid_pin": [
-              -33.7285,
-              19.137
-            ],
-            "upper_pin": [
-              -33.7295,
-              19.132
-            ],
-            "meeting_point": "Donkergat pull-off",
-            "notes": "SB4: 1x session"
-          },
-          {
             "id": "SB(TRANSPORT)",
             "code": "SB(TRANSPORT)",
             "name": "SB(TRANSPORT)",
@@ -3616,7 +3454,7 @@ export const INITIAL_STATE = {
                 "river": "Elands Pad",
                 "anglers": [
                   "Barry",
-                  "Ryan"
+                  "Dylan"
                 ],
                 "travel_time": 15,
                 "group": "Group 1 (Elands)",
@@ -3629,7 +3467,7 @@ export const INITIAL_STATE = {
                 "river": "Elands Pad",
                 "anglers": [
                   "Dale",
-                  "Garrett"
+                  "Ian"
                 ],
                 "travel_time": 30,
                 "group": "Group 1 (Elands)",
@@ -3641,8 +3479,8 @@ export const INITIAL_STATE = {
                 "beat_id": "SB1",
                 "river": "Small Blaar",
                 "anglers": [
-                  "Daniel",
-                  "Michelle"
+                  "Garth",
+                  "Garrett"
                 ],
                 "travel_time": 15,
                 "group": "Group 2 (Small Blaar)",
@@ -3654,8 +3492,8 @@ export const INITIAL_STATE = {
                 "beat_id": "SB2",
                 "river": "Small Blaar",
                 "anglers": [
-                  "Garth",
-                  "Ian"
+                  "Daniel",
+                  "Michelle"
                 ],
                 "travel_time": 15,
                 "group": "Group 2 (Small Blaar)",
@@ -3668,7 +3506,7 @@ export const INITIAL_STATE = {
                 "river": "Small Blaar",
                 "anglers": [
                   "James",
-                  "Malcolm"
+                  "Ryan"
                 ],
                 "travel_time": 15,
                 "group": "Group 2 (Small Blaar)",
@@ -3689,7 +3527,7 @@ export const INITIAL_STATE = {
                 "river": "Elands Pad",
                 "anglers": [
                   "Barry",
-                  "Garrett"
+                  "Ian"
                 ],
                 "travel_time": 15,
                 "group": "Group 1 (Elands)",
@@ -3702,7 +3540,7 @@ export const INITIAL_STATE = {
                 "river": "Elands Pad",
                 "anglers": [
                   "Dale",
-                  "Ryan"
+                  "Dylan"
                 ],
                 "travel_time": 30,
                 "group": "Group 1 (Elands)",
@@ -3714,7 +3552,7 @@ export const INITIAL_STATE = {
                 "beat_id": "SB1",
                 "river": "Small Blaar",
                 "anglers": [
-                  "Daniel",
+                  "Garth",
                   "James"
                 ],
                 "travel_time": 15,
@@ -3727,8 +3565,8 @@ export const INITIAL_STATE = {
                 "beat_id": "SB2",
                 "river": "Small Blaar",
                 "anglers": [
-                  "Garth",
-                  "Malcolm"
+                  "Daniel",
+                  "Ryan"
                 ],
                 "travel_time": 15,
                 "group": "Group 2 (Small Blaar)",
@@ -3740,8 +3578,8 @@ export const INITIAL_STATE = {
                 "beat_id": "SB3",
                 "river": "Small Blaar",
                 "anglers": [
-                  "Michelle",
-                  "Ian"
+                  "Garrett",
+                  "Michelle"
                 ],
                 "travel_time": 15,
                 "group": "Group 2 (Small Blaar)",
@@ -3770,12 +3608,12 @@ export const INITIAL_STATE = {
               },
               {
                 "id": "S3_M2",
-                "beat_code": "SB2",
-                "beat_id": "SB2",
+                "beat_code": "SB(TRANSPORT)",
+                "beat_id": "SB(TRANSPORT)",
                 "river": "Small Blaar",
                 "anglers": [
-                  "Daniel",
-                  "Garth"
+                  "Garth",
+                  "Daniel"
                 ],
                 "travel_time": 15,
                 "group": "A-Team River",
@@ -3787,8 +3625,8 @@ export const INITIAL_STATE = {
                 "beat_id": "EP1",
                 "river": "Elands Pad",
                 "anglers": [
-                  "Ryan",
-                  "Michelle"
+                  "Dylan",
+                  "Garrett"
                 ],
                 "travel_time": 15,
                 "group": "B-Team River",
@@ -3800,7 +3638,7 @@ export const INITIAL_STATE = {
                 "beat_id": "EP3",
                 "river": "Elands Pad",
                 "anglers": [
-                  "Garrett",
+                  "Ian",
                   "James"
                 ],
                 "travel_time": 30,
@@ -3813,8 +3651,8 @@ export const INITIAL_STATE = {
                 "beat_id": "EP2",
                 "river": "Elands Pad",
                 "anglers": [
-                  "Ian",
-                  "Malcolm"
+                  "Michelle",
+                  "Ryan"
                 ],
                 "travel_time": 30,
                 "group": "B-Team River",
@@ -3830,12 +3668,12 @@ export const INITIAL_STATE = {
             "matches": [
               {
                 "id": "S4_M1",
-                "beat_code": "SB3",
-                "beat_id": "SB3",
+                "beat_code": "SB2",
+                "beat_id": "SB2",
                 "river": "Small Blaar",
                 "anglers": [
                   "Barry",
-                  "Daniel"
+                  "Garth"
                 ],
                 "travel_time": 15,
                 "group": "A-Team River",
@@ -3843,12 +3681,12 @@ export const INITIAL_STATE = {
               },
               {
                 "id": "S4_M2",
-                "beat_code": "SB1",
-                "beat_id": "SB1",
+                "beat_code": "SB3",
+                "beat_id": "SB3",
                 "river": "Small Blaar",
                 "anglers": [
                   "Dale",
-                  "Garth"
+                  "Daniel"
                 ],
                 "travel_time": 15,
                 "group": "A-Team River",
@@ -3860,7 +3698,7 @@ export const INITIAL_STATE = {
                 "beat_id": "EP3",
                 "river": "Elands Pad",
                 "anglers": [
-                  "Ryan",
+                  "Dylan",
                   "James"
                 ],
                 "travel_time": 30,
@@ -3873,8 +3711,8 @@ export const INITIAL_STATE = {
                 "beat_id": "EP1",
                 "river": "Elands Pad",
                 "anglers": [
-                  "Garrett",
-                  "Ian"
+                  "Ian",
+                  "Michelle"
                 ],
                 "travel_time": 15,
                 "group": "B-Team River",
@@ -3886,8 +3724,8 @@ export const INITIAL_STATE = {
                 "beat_id": "SB6",
                 "river": "Elands Pad",
                 "anglers": [
-                  "Michelle",
-                  "Malcolm"
+                  "Garrett",
+                  "Ryan"
                 ],
                 "travel_time": 15,
                 "group": "B-Team River",
@@ -4134,9 +3972,9 @@ export const INITIAL_STATE = {
               "beat": "SB3",
               "river": "Small Blaar",
               "opponents": [
-                "Malcolm"
+                "Ryan"
               ],
-              "opponent": "Malcolm",
+              "opponent": "Ryan",
               "match_id": "S1_M5"
             },
             {
@@ -4145,9 +3983,9 @@ export const INITIAL_STATE = {
               "beat": "SB1",
               "river": "Small Blaar",
               "opponents": [
-                "Daniel"
+                "Garth"
               ],
-              "opponent": "Daniel",
+              "opponent": "Garth",
               "match_id": "S2_M3"
             },
             {
@@ -4156,9 +3994,9 @@ export const INITIAL_STATE = {
               "beat": "EP3",
               "river": "Elands Pad",
               "opponents": [
-                "Garrett"
+                "Ian"
               ],
-              "opponent": "Garrett",
+              "opponent": "Ian",
               "match_id": "S3_M4"
             },
             {
@@ -4167,9 +4005,9 @@ export const INITIAL_STATE = {
               "beat": "EP3",
               "river": "Elands Pad",
               "opponents": [
-                "Ryan"
+                "Dylan"
               ],
-              "opponent": "Ryan",
+              "opponent": "Dylan",
               "match_id": "S4_M3"
             }
           ],
@@ -4180,9 +4018,9 @@ export const INITIAL_STATE = {
               "beat": "EP1",
               "river": "Elands Pad",
               "opponents": [
-                "Ryan"
+                "Dylan"
               ],
-              "opponent": "Ryan",
+              "opponent": "Dylan",
               "match_id": "S1_M1"
             },
             {
@@ -4191,9 +4029,9 @@ export const INITIAL_STATE = {
               "beat": "EP1",
               "river": "Elands Pad",
               "opponents": [
-                "Garrett"
+                "Ian"
               ],
-              "opponent": "Garrett",
+              "opponent": "Ian",
               "match_id": "S2_M1"
             },
             {
@@ -4210,12 +4048,12 @@ export const INITIAL_STATE = {
             {
               "session": 4,
               "session_name": "Sunday Afternoon",
-              "beat": "SB3",
+              "beat": "SB2",
               "river": "Small Blaar",
               "opponents": [
-                "Daniel"
+                "Garth"
               ],
-              "opponent": "Daniel",
+              "opponent": "Garth",
               "match_id": "S4_M1"
             }
           ],
@@ -4223,12 +4061,58 @@ export const INITIAL_STATE = {
             {
               "session": 1,
               "session_name": "Saturday Morning",
-              "beat": "SB1",
+              "beat": "SB2",
               "river": "Small Blaar",
               "opponents": [
                 "Michelle"
               ],
               "opponent": "Michelle",
+              "match_id": "S1_M4"
+            },
+            {
+              "session": 2,
+              "session_name": "Saturday Afternoon",
+              "beat": "SB2",
+              "river": "Small Blaar",
+              "opponents": [
+                "Ryan"
+              ],
+              "opponent": "Ryan",
+              "match_id": "S2_M4"
+            },
+            {
+              "session": 3,
+              "session_name": "Sunday Morning",
+              "beat": "SB(TRANSPORT)",
+              "river": "Small Blaar",
+              "opponents": [
+                "Garth"
+              ],
+              "opponent": "Garth",
+              "match_id": "S3_M2"
+            },
+            {
+              "session": 4,
+              "session_name": "Sunday Afternoon",
+              "beat": "SB3",
+              "river": "Small Blaar",
+              "opponents": [
+                "Dale"
+              ],
+              "opponent": "Dale",
+              "match_id": "S4_M2"
+            }
+          ],
+          "Garth": [
+            {
+              "session": 1,
+              "session_name": "Saturday Morning",
+              "beat": "SB1",
+              "river": "Small Blaar",
+              "opponents": [
+                "Garrett"
+              ],
+              "opponent": "Garrett",
               "match_id": "S1_M3"
             },
             {
@@ -4245,53 +4129,7 @@ export const INITIAL_STATE = {
             {
               "session": 3,
               "session_name": "Sunday Morning",
-              "beat": "SB2",
-              "river": "Small Blaar",
-              "opponents": [
-                "Garth"
-              ],
-              "opponent": "Garth",
-              "match_id": "S3_M2"
-            },
-            {
-              "session": 4,
-              "session_name": "Sunday Afternoon",
-              "beat": "SB3",
-              "river": "Small Blaar",
-              "opponents": [
-                "Barry"
-              ],
-              "opponent": "Barry",
-              "match_id": "S4_M1"
-            }
-          ],
-          "Garth": [
-            {
-              "session": 1,
-              "session_name": "Saturday Morning",
-              "beat": "SB2",
-              "river": "Small Blaar",
-              "opponents": [
-                "Ian"
-              ],
-              "opponent": "Ian",
-              "match_id": "S1_M4"
-            },
-            {
-              "session": 2,
-              "session_name": "Saturday Afternoon",
-              "beat": "SB2",
-              "river": "Small Blaar",
-              "opponents": [
-                "Malcolm"
-              ],
-              "opponent": "Malcolm",
-              "match_id": "S2_M4"
-            },
-            {
-              "session": 3,
-              "session_name": "Sunday Morning",
-              "beat": "SB2",
+              "beat": "SB(TRANSPORT)",
               "river": "Small Blaar",
               "opponents": [
                 "Daniel"
@@ -4302,13 +4140,13 @@ export const INITIAL_STATE = {
             {
               "session": 4,
               "session_name": "Sunday Afternoon",
-              "beat": "SB1",
+              "beat": "SB2",
               "river": "Small Blaar",
               "opponents": [
-                "Dale"
+                "Barry"
               ],
-              "opponent": "Dale",
-              "match_id": "S4_M2"
+              "opponent": "Barry",
+              "match_id": "S4_M1"
             }
           ],
           "Dale": [
@@ -4318,9 +4156,9 @@ export const INITIAL_STATE = {
               "beat": "EP3",
               "river": "Elands Pad",
               "opponents": [
-                "Garrett"
+                "Ian"
               ],
-              "opponent": "Garrett",
+              "opponent": "Ian",
               "match_id": "S1_M2"
             },
             {
@@ -4329,9 +4167,9 @@ export const INITIAL_STATE = {
               "beat": "EP3",
               "river": "Elands Pad",
               "opponents": [
-                "Ryan"
+                "Dylan"
               ],
-              "opponent": "Ryan",
+              "opponent": "Dylan",
               "match_id": "S2_M2"
             },
             {
@@ -4348,109 +4186,16 @@ export const INITIAL_STATE = {
             {
               "session": 4,
               "session_name": "Sunday Afternoon",
-              "beat": "SB1",
+              "beat": "SB3",
               "river": "Small Blaar",
               "opponents": [
-                "Garth"
+                "Daniel"
               ],
-              "opponent": "Garth",
+              "opponent": "Daniel",
               "match_id": "S4_M2"
             }
           ],
-          "Dylan": [],
-          "Ian": [
-            {
-              "session": 1,
-              "session_name": "Saturday Morning",
-              "beat": "SB2",
-              "river": "Small Blaar",
-              "opponents": [
-                "Garth"
-              ],
-              "opponent": "Garth",
-              "match_id": "S1_M4"
-            },
-            {
-              "session": 2,
-              "session_name": "Saturday Afternoon",
-              "beat": "SB3",
-              "river": "Small Blaar",
-              "opponents": [
-                "Michelle"
-              ],
-              "opponent": "Michelle",
-              "match_id": "S2_M5"
-            },
-            {
-              "session": 3,
-              "session_name": "Sunday Morning",
-              "beat": "EP2",
-              "river": "Elands Pad",
-              "opponents": [
-                "Malcolm"
-              ],
-              "opponent": "Malcolm",
-              "match_id": "S3_M5"
-            },
-            {
-              "session": 4,
-              "session_name": "Sunday Afternoon",
-              "beat": "EP1",
-              "river": "Elands Pad",
-              "opponents": [
-                "Garrett"
-              ],
-              "opponent": "Garrett",
-              "match_id": "S4_M4"
-            }
-          ],
-          "Malcolm": [
-            {
-              "session": 1,
-              "session_name": "Saturday Morning",
-              "beat": "SB3",
-              "river": "Small Blaar",
-              "opponents": [
-                "James"
-              ],
-              "opponent": "James",
-              "match_id": "S1_M5"
-            },
-            {
-              "session": 2,
-              "session_name": "Saturday Afternoon",
-              "beat": "SB2",
-              "river": "Small Blaar",
-              "opponents": [
-                "Garth"
-              ],
-              "opponent": "Garth",
-              "match_id": "S2_M4"
-            },
-            {
-              "session": 3,
-              "session_name": "Sunday Morning",
-              "beat": "EP2",
-              "river": "Elands Pad",
-              "opponents": [
-                "Ian"
-              ],
-              "opponent": "Ian",
-              "match_id": "S3_M5"
-            },
-            {
-              "session": 4,
-              "session_name": "Sunday Afternoon",
-              "beat": "SB6",
-              "river": "Elands Pad",
-              "opponents": [
-                "Michelle"
-              ],
-              "opponent": "Michelle",
-              "match_id": "S4_M5"
-            }
-          ],
-          "Ryan": [
+          "Dylan": [
             {
               "session": 1,
               "session_name": "Saturday Morning",
@@ -4479,9 +4224,9 @@ export const INITIAL_STATE = {
               "beat": "EP1",
               "river": "Elands Pad",
               "opponents": [
-                "Michelle"
+                "Garrett"
               ],
-              "opponent": "Michelle",
+              "opponent": "Garrett",
               "match_id": "S3_M3"
             },
             {
@@ -4496,7 +4241,7 @@ export const INITIAL_STATE = {
               "match_id": "S4_M3"
             }
           ],
-          "Garrett": [
+          "Ian": [
             {
               "session": 1,
               "session_name": "Saturday Morning",
@@ -4536,22 +4281,69 @@ export const INITIAL_STATE = {
               "beat": "EP1",
               "river": "Elands Pad",
               "opponents": [
-                "Ian"
+                "Michelle"
               ],
-              "opponent": "Ian",
+              "opponent": "Michelle",
               "match_id": "S4_M4"
             }
           ],
-          "Michelle": [
+          "Malcolm": [],
+          "Ryan": [
+            {
+              "session": 1,
+              "session_name": "Saturday Morning",
+              "beat": "SB3",
+              "river": "Small Blaar",
+              "opponents": [
+                "James"
+              ],
+              "opponent": "James",
+              "match_id": "S1_M5"
+            },
+            {
+              "session": 2,
+              "session_name": "Saturday Afternoon",
+              "beat": "SB2",
+              "river": "Small Blaar",
+              "opponents": [
+                "Daniel"
+              ],
+              "opponent": "Daniel",
+              "match_id": "S2_M4"
+            },
+            {
+              "session": 3,
+              "session_name": "Sunday Morning",
+              "beat": "EP2",
+              "river": "Elands Pad",
+              "opponents": [
+                "Michelle"
+              ],
+              "opponent": "Michelle",
+              "match_id": "S3_M5"
+            },
+            {
+              "session": 4,
+              "session_name": "Sunday Afternoon",
+              "beat": "SB6",
+              "river": "Elands Pad",
+              "opponents": [
+                "Garrett"
+              ],
+              "opponent": "Garrett",
+              "match_id": "S4_M5"
+            }
+          ],
+          "Garrett": [
             {
               "session": 1,
               "session_name": "Saturday Morning",
               "beat": "SB1",
               "river": "Small Blaar",
               "opponents": [
-                "Daniel"
+                "Garth"
               ],
-              "opponent": "Daniel",
+              "opponent": "Garth",
               "match_id": "S1_M3"
             },
             {
@@ -4560,9 +4352,9 @@ export const INITIAL_STATE = {
               "beat": "SB3",
               "river": "Small Blaar",
               "opponents": [
-                "Ian"
+                "Michelle"
               ],
-              "opponent": "Ian",
+              "opponent": "Michelle",
               "match_id": "S2_M5"
             },
             {
@@ -4571,9 +4363,9 @@ export const INITIAL_STATE = {
               "beat": "EP1",
               "river": "Elands Pad",
               "opponents": [
-                "Ryan"
+                "Dylan"
               ],
-              "opponent": "Ryan",
+              "opponent": "Dylan",
               "match_id": "S3_M3"
             },
             {
@@ -4582,10 +4374,56 @@ export const INITIAL_STATE = {
               "beat": "SB6",
               "river": "Elands Pad",
               "opponents": [
-                "Malcolm"
+                "Ryan"
               ],
-              "opponent": "Malcolm",
+              "opponent": "Ryan",
               "match_id": "S4_M5"
+            }
+          ],
+          "Michelle": [
+            {
+              "session": 1,
+              "session_name": "Saturday Morning",
+              "beat": "SB2",
+              "river": "Small Blaar",
+              "opponents": [
+                "Daniel"
+              ],
+              "opponent": "Daniel",
+              "match_id": "S1_M4"
+            },
+            {
+              "session": 2,
+              "session_name": "Saturday Afternoon",
+              "beat": "SB3",
+              "river": "Small Blaar",
+              "opponents": [
+                "Garrett"
+              ],
+              "opponent": "Garrett",
+              "match_id": "S2_M5"
+            },
+            {
+              "session": 3,
+              "session_name": "Sunday Morning",
+              "beat": "EP2",
+              "river": "Elands Pad",
+              "opponents": [
+                "Ryan"
+              ],
+              "opponent": "Ryan",
+              "match_id": "S3_M5"
+            },
+            {
+              "session": 4,
+              "session_name": "Sunday Afternoon",
+              "beat": "EP1",
+              "river": "Elands Pad",
+              "opponents": [
+                "Ian"
+              ],
+              "opponent": "Ian",
+              "match_id": "S4_M4"
             }
           ]
         }
@@ -4809,33 +4647,6 @@ export const INITIAL_STATE = {
       "notes": "SB3: 2x sessions"
     },
     {
-      "id": "SB4",
-      "code": "SB4",
-      "name": "SB4",
-      "river": "Small Blaar",
-      "enabled": true,
-      "sat_available": true,
-      "sat_sessions": 1,
-      "sun_available": true,
-      "sun_sessions": 1,
-      "usage_mode": "single",
-      "travel_time": 15,
-      "lower_pin": [
-        -33.7272,
-        19.1415
-      ],
-      "mid_pin": [
-        -33.7285,
-        19.137
-      ],
-      "upper_pin": [
-        -33.7295,
-        19.132
-      ],
-      "meeting_point": "Donkergat pull-off",
-      "notes": "SB4: 1x session"
-    },
-    {
       "id": "SB(TRANSPORT)",
       "code": "SB(TRANSPORT)",
       "name": "SB(TRANSPORT)",
@@ -5054,33 +4865,6 @@ export const INITIAL_STATE = {
       "notes": "SB3: 2x sessions"
     },
     {
-      "id": "SB4",
-      "code": "SB4",
-      "name": "SB4",
-      "river": "Small Blaar",
-      "enabled": true,
-      "sat_available": true,
-      "sat_sessions": 1,
-      "sun_available": true,
-      "sun_sessions": 1,
-      "usage_mode": "single",
-      "travel_time": 15,
-      "lower_pin": [
-        -33.7272,
-        19.1415
-      ],
-      "mid_pin": [
-        -33.7285,
-        19.137
-      ],
-      "upper_pin": [
-        -33.7295,
-        19.132
-      ],
-      "meeting_point": "Donkergat pull-off",
-      "notes": "SB4: 1x session"
-    },
-    {
       "id": "SB(TRANSPORT)",
       "code": "SB(TRANSPORT)",
       "name": "SB(TRANSPORT)",
@@ -5135,7 +4919,7 @@ export const INITIAL_STATE = {
           "river": "Elands Pad",
           "anglers": [
             "Barry",
-            "Ryan"
+            "Ian"
           ],
           "travel_time": 15,
           "group": "Group 1 (Elands)",
@@ -5148,7 +4932,7 @@ export const INITIAL_STATE = {
           "river": "Elands Pad",
           "anglers": [
             "Daniel",
-            "Michelle"
+            "Ryan"
           ],
           "travel_time": 30,
           "group": "Group 1 (Elands)",
@@ -5161,7 +4945,7 @@ export const INITIAL_STATE = {
           "river": "Small Blaar",
           "anglers": [
             "Dale",
-            "Ian"
+            "Michelle"
           ],
           "travel_time": 15,
           "group": "Group 2 (Small Blaar)",
@@ -5174,7 +4958,7 @@ export const INITIAL_STATE = {
           "river": "Small Blaar",
           "anglers": [
             "Garth",
-            "Dylan"
+            "Malcolm"
           ],
           "travel_time": 15,
           "group": "Group 2 (Small Blaar)",
@@ -5186,8 +4970,8 @@ export const INITIAL_STATE = {
           "beat_id": "SB3",
           "river": "Small Blaar",
           "anglers": [
-            "James",
-            "Malcolm"
+            "Dylan",
+            "James"
           ],
           "travel_time": 15,
           "group": "Group 2 (Small Blaar)",
@@ -5208,7 +4992,7 @@ export const INITIAL_STATE = {
           "river": "Elands Pad",
           "anglers": [
             "Barry",
-            "Michelle"
+            "Ryan"
           ],
           "travel_time": 15,
           "group": "Group 1 (Elands)",
@@ -5221,7 +5005,7 @@ export const INITIAL_STATE = {
           "river": "Elands Pad",
           "anglers": [
             "Daniel",
-            "Ryan"
+            "Ian"
           ],
           "travel_time": 30,
           "group": "Group 1 (Elands)",
@@ -5234,7 +5018,7 @@ export const INITIAL_STATE = {
           "river": "Small Blaar",
           "anglers": [
             "Dale",
-            "James"
+            "Dylan"
           ],
           "travel_time": 15,
           "group": "Group 2 (Small Blaar)",
@@ -5247,7 +5031,7 @@ export const INITIAL_STATE = {
           "river": "Small Blaar",
           "anglers": [
             "Garth",
-            "Malcolm"
+            "James"
           ],
           "travel_time": 15,
           "group": "Group 2 (Small Blaar)",
@@ -5259,8 +5043,8 @@ export const INITIAL_STATE = {
           "beat_id": "SB3",
           "river": "Small Blaar",
           "anglers": [
-            "Ian",
-            "Dylan"
+            "Michelle",
+            "Malcolm"
           ],
           "travel_time": 15,
           "group": "Group 2 (Small Blaar)",
@@ -5276,22 +5060,22 @@ export const INITIAL_STATE = {
       "matches": [
         {
           "id": "S3_M1",
-          "beat_code": "EP2",
-          "beat_id": "EP2",
-          "river": "Elands Pad",
+          "beat_code": "SB1",
+          "beat_id": "SB1",
+          "river": "Small Blaar",
           "anglers": [
             "Barry",
             "Daniel"
           ],
-          "travel_time": 30,
+          "travel_time": 15,
           "group": "A-Team River",
           "match_type": "NORMAL"
         },
         {
           "id": "S3_M2",
-          "beat_code": "EP1",
-          "beat_id": "EP1",
-          "river": "Elands Pad",
+          "beat_code": "SB(TRANSPORT)",
+          "beat_id": "SB(TRANSPORT)",
+          "river": "Small Blaar",
           "anglers": [
             "Dale",
             "Garth"
@@ -5302,12 +5086,12 @@ export const INITIAL_STATE = {
         },
         {
           "id": "S3_M3",
-          "beat_code": "SB1",
-          "beat_id": "SB1",
-          "river": "Small Blaar",
+          "beat_code": "EP1",
+          "beat_id": "EP1",
+          "river": "Elands Pad",
           "anglers": [
-            "Ryan",
-            "Ian"
+            "Ian",
+            "Michelle"
           ],
           "travel_time": 15,
           "group": "B-Team River",
@@ -5315,27 +5099,27 @@ export const INITIAL_STATE = {
         },
         {
           "id": "S3_M4",
-          "beat_code": "SB2",
-          "beat_id": "SB2",
-          "river": "Small Blaar",
+          "beat_code": "EP3",
+          "beat_id": "EP3",
+          "river": "Elands Pad",
           "anglers": [
-            "Michelle",
-            "Garrett"
+            "Ryan",
+            "Dylan"
           ],
-          "travel_time": 15,
+          "travel_time": 30,
           "group": "B-Team River",
           "match_type": "NORMAL"
         },
         {
           "id": "S3_M5",
-          "beat_code": "SB4",
-          "beat_id": "SB4",
-          "river": "Small Blaar",
+          "beat_code": "EP2",
+          "beat_id": "EP2",
+          "river": "Elands Pad",
           "anglers": [
-            "Dylan",
-            "Malcolm"
+            "Malcolm",
+            "Garrett"
           ],
-          "travel_time": 15,
+          "travel_time": 30,
           "group": "B-Team River",
           "match_type": "NORMAL"
         }
@@ -5349,22 +5133,22 @@ export const INITIAL_STATE = {
       "matches": [
         {
           "id": "S4_M1",
-          "beat_code": "EP3",
-          "beat_id": "EP3",
-          "river": "Elands Pad",
+          "beat_code": "SB2",
+          "beat_id": "SB2",
+          "river": "Small Blaar",
           "anglers": [
             "Barry",
             "Dale"
           ],
-          "travel_time": 30,
+          "travel_time": 15,
           "group": "A-Team River",
           "match_type": "NORMAL"
         },
         {
           "id": "S4_M2",
-          "beat_code": "SB6",
-          "beat_id": "SB6",
-          "river": "Elands Pad",
+          "beat_code": "SB3",
+          "beat_id": "SB3",
+          "river": "Small Blaar",
           "anglers": [
             "Daniel",
             "Garth"
@@ -5375,25 +5159,25 @@ export const INITIAL_STATE = {
         },
         {
           "id": "S4_M3",
-          "beat_code": "SB3",
-          "beat_id": "SB3",
-          "river": "Small Blaar",
+          "beat_code": "EP3",
+          "beat_id": "EP3",
+          "river": "Elands Pad",
           "anglers": [
-            "Ryan",
-            "Garrett"
+            "Ian",
+            "Dylan"
           ],
-          "travel_time": 15,
+          "travel_time": 30,
           "group": "B-Team River",
           "match_type": "NORMAL"
         },
         {
           "id": "S4_M4",
-          "beat_code": "SB1",
-          "beat_id": "SB1",
-          "river": "Small Blaar",
+          "beat_code": "EP1",
+          "beat_id": "EP1",
+          "river": "Elands Pad",
           "anglers": [
-            "Michelle",
-            "Dylan"
+            "Ryan",
+            "Malcolm"
           ],
           "travel_time": 15,
           "group": "B-Team River",
@@ -5401,12 +5185,12 @@ export const INITIAL_STATE = {
         },
         {
           "id": "S4_M5",
-          "beat_code": "SB(TRANSPORT)",
-          "beat_id": "SB(TRANSPORT)",
-          "river": "Small Blaar",
+          "beat_code": "SB6",
+          "beat_id": "SB6",
+          "river": "Elands Pad",
           "anglers": [
-            "Ian",
-            "Malcolm"
+            "Michelle",
+            "Garrett"
           ],
           "travel_time": 15,
           "group": "B-Team River",
@@ -5662,21 +5446,21 @@ export const INITIAL_STATE = {
         "beat": "SB3",
         "river": "Small Blaar",
         "opponents": [
-          "Malcolm"
+          "Dylan"
         ],
-        "opponent": "Malcolm",
+        "opponent": "Dylan",
         "match_id": "S1_M5"
       },
       {
         "session": 2,
         "session_name": "Saturday Afternoon",
-        "beat": "SB1",
+        "beat": "SB2",
         "river": "Small Blaar",
         "opponents": [
-          "Dale"
+          "Garth"
         ],
-        "opponent": "Dale",
-        "match_id": "S2_M3"
+        "opponent": "Garth",
+        "match_id": "S2_M4"
       }
     ],
     "Barry": [
@@ -5686,9 +5470,9 @@ export const INITIAL_STATE = {
         "beat": "EP1",
         "river": "Elands Pad",
         "opponents": [
-          "Ryan"
+          "Ian"
         ],
-        "opponent": "Ryan",
+        "opponent": "Ian",
         "match_id": "S1_M1"
       },
       {
@@ -5697,16 +5481,16 @@ export const INITIAL_STATE = {
         "beat": "EP1",
         "river": "Elands Pad",
         "opponents": [
-          "Michelle"
+          "Ryan"
         ],
-        "opponent": "Michelle",
+        "opponent": "Ryan",
         "match_id": "S2_M1"
       },
       {
         "session": 3,
         "session_name": "Sunday Morning",
-        "beat": "EP2",
-        "river": "Elands Pad",
+        "beat": "SB1",
+        "river": "Small Blaar",
         "opponents": [
           "Daniel"
         ],
@@ -5716,8 +5500,8 @@ export const INITIAL_STATE = {
       {
         "session": 4,
         "session_name": "Sunday Afternoon",
-        "beat": "EP3",
-        "river": "Elands Pad",
+        "beat": "SB2",
+        "river": "Small Blaar",
         "opponents": [
           "Dale"
         ],
@@ -5732,9 +5516,9 @@ export const INITIAL_STATE = {
         "beat": "EP3",
         "river": "Elands Pad",
         "opponents": [
-          "Michelle"
+          "Ryan"
         ],
-        "opponent": "Michelle",
+        "opponent": "Ryan",
         "match_id": "S1_M2"
       },
       {
@@ -5743,16 +5527,16 @@ export const INITIAL_STATE = {
         "beat": "EP3",
         "river": "Elands Pad",
         "opponents": [
-          "Ryan"
+          "Ian"
         ],
-        "opponent": "Ryan",
+        "opponent": "Ian",
         "match_id": "S2_M2"
       },
       {
         "session": 3,
         "session_name": "Sunday Morning",
-        "beat": "EP2",
-        "river": "Elands Pad",
+        "beat": "SB1",
+        "river": "Small Blaar",
         "opponents": [
           "Barry"
         ],
@@ -5762,8 +5546,8 @@ export const INITIAL_STATE = {
       {
         "session": 4,
         "session_name": "Sunday Afternoon",
-        "beat": "SB6",
-        "river": "Elands Pad",
+        "beat": "SB3",
+        "river": "Small Blaar",
         "opponents": [
           "Garth"
         ],
@@ -5778,9 +5562,9 @@ export const INITIAL_STATE = {
         "beat": "SB2",
         "river": "Small Blaar",
         "opponents": [
-          "Dylan"
+          "Malcolm"
         ],
-        "opponent": "Dylan",
+        "opponent": "Malcolm",
         "match_id": "S1_M4"
       },
       {
@@ -5789,16 +5573,16 @@ export const INITIAL_STATE = {
         "beat": "SB2",
         "river": "Small Blaar",
         "opponents": [
-          "Malcolm"
+          "James"
         ],
-        "opponent": "Malcolm",
+        "opponent": "James",
         "match_id": "S2_M4"
       },
       {
         "session": 3,
         "session_name": "Sunday Morning",
-        "beat": "EP1",
-        "river": "Elands Pad",
+        "beat": "SB(TRANSPORT)",
+        "river": "Small Blaar",
         "opponents": [
           "Dale"
         ],
@@ -5808,8 +5592,8 @@ export const INITIAL_STATE = {
       {
         "session": 4,
         "session_name": "Sunday Afternoon",
-        "beat": "SB6",
-        "river": "Elands Pad",
+        "beat": "SB3",
+        "river": "Small Blaar",
         "opponents": [
           "Daniel"
         ],
@@ -5824,9 +5608,9 @@ export const INITIAL_STATE = {
         "beat": "SB1",
         "river": "Small Blaar",
         "opponents": [
-          "Ian"
+          "Michelle"
         ],
-        "opponent": "Ian",
+        "opponent": "Michelle",
         "match_id": "S1_M3"
       },
       {
@@ -5835,16 +5619,16 @@ export const INITIAL_STATE = {
         "beat": "SB1",
         "river": "Small Blaar",
         "opponents": [
-          "James"
+          "Dylan"
         ],
-        "opponent": "James",
+        "opponent": "Dylan",
         "match_id": "S2_M3"
       },
       {
         "session": 3,
         "session_name": "Sunday Morning",
-        "beat": "EP1",
-        "river": "Elands Pad",
+        "beat": "SB(TRANSPORT)",
+        "river": "Small Blaar",
         "opponents": [
           "Garth"
         ],
@@ -5854,8 +5638,8 @@ export const INITIAL_STATE = {
       {
         "session": 4,
         "session_name": "Sunday Afternoon",
-        "beat": "EP3",
-        "river": "Elands Pad",
+        "beat": "SB2",
+        "river": "Small Blaar",
         "opponents": [
           "Barry"
         ],
@@ -5864,98 +5648,6 @@ export const INITIAL_STATE = {
       }
     ],
     "Dylan": [
-      {
-        "session": 1,
-        "session_name": "Saturday Morning",
-        "beat": "SB2",
-        "river": "Small Blaar",
-        "opponents": [
-          "Garth"
-        ],
-        "opponent": "Garth",
-        "match_id": "S1_M4"
-      },
-      {
-        "session": 2,
-        "session_name": "Saturday Afternoon",
-        "beat": "SB3",
-        "river": "Small Blaar",
-        "opponents": [
-          "Ian"
-        ],
-        "opponent": "Ian",
-        "match_id": "S2_M5"
-      },
-      {
-        "session": 3,
-        "session_name": "Sunday Morning",
-        "beat": "SB4",
-        "river": "Small Blaar",
-        "opponents": [
-          "Malcolm"
-        ],
-        "opponent": "Malcolm",
-        "match_id": "S3_M5"
-      },
-      {
-        "session": 4,
-        "session_name": "Sunday Afternoon",
-        "beat": "SB1",
-        "river": "Small Blaar",
-        "opponents": [
-          "Michelle"
-        ],
-        "opponent": "Michelle",
-        "match_id": "S4_M4"
-      }
-    ],
-    "Ian": [
-      {
-        "session": 1,
-        "session_name": "Saturday Morning",
-        "beat": "SB1",
-        "river": "Small Blaar",
-        "opponents": [
-          "Dale"
-        ],
-        "opponent": "Dale",
-        "match_id": "S1_M3"
-      },
-      {
-        "session": 2,
-        "session_name": "Saturday Afternoon",
-        "beat": "SB3",
-        "river": "Small Blaar",
-        "opponents": [
-          "Dylan"
-        ],
-        "opponent": "Dylan",
-        "match_id": "S2_M5"
-      },
-      {
-        "session": 3,
-        "session_name": "Sunday Morning",
-        "beat": "SB1",
-        "river": "Small Blaar",
-        "opponents": [
-          "Ryan"
-        ],
-        "opponent": "Ryan",
-        "match_id": "S3_M3"
-      },
-      {
-        "session": 4,
-        "session_name": "Sunday Afternoon",
-        "beat": "SB(TRANSPORT)",
-        "river": "Small Blaar",
-        "opponents": [
-          "Malcolm"
-        ],
-        "opponent": "Malcolm",
-        "match_id": "S4_M5"
-      }
-    ],
-    "Malcolm": [
       {
         "session": 1,
         "session_name": "Saturday Morning",
@@ -5970,38 +5662,38 @@ export const INITIAL_STATE = {
       {
         "session": 2,
         "session_name": "Saturday Afternoon",
-        "beat": "SB2",
+        "beat": "SB1",
         "river": "Small Blaar",
         "opponents": [
-          "Garth"
+          "Dale"
         ],
-        "opponent": "Garth",
-        "match_id": "S2_M4"
+        "opponent": "Dale",
+        "match_id": "S2_M3"
       },
       {
         "session": 3,
         "session_name": "Sunday Morning",
-        "beat": "SB4",
-        "river": "Small Blaar",
+        "beat": "EP3",
+        "river": "Elands Pad",
         "opponents": [
-          "Dylan"
+          "Ryan"
         ],
-        "opponent": "Dylan",
-        "match_id": "S3_M5"
+        "opponent": "Ryan",
+        "match_id": "S3_M4"
       },
       {
         "session": 4,
         "session_name": "Sunday Afternoon",
-        "beat": "SB(TRANSPORT)",
-        "river": "Small Blaar",
+        "beat": "EP3",
+        "river": "Elands Pad",
         "opponents": [
           "Ian"
         ],
         "opponent": "Ian",
-        "match_id": "S4_M5"
+        "match_id": "S4_M3"
       }
     ],
-    "Ryan": [
+    "Ian": [
       {
         "session": 1,
         "session_name": "Saturday Morning",
@@ -6027,51 +5719,73 @@ export const INITIAL_STATE = {
       {
         "session": 3,
         "session_name": "Sunday Morning",
-        "beat": "SB1",
-        "river": "Small Blaar",
+        "beat": "EP1",
+        "river": "Elands Pad",
         "opponents": [
-          "Ian"
+          "Michelle"
         ],
-        "opponent": "Ian",
+        "opponent": "Michelle",
         "match_id": "S3_M3"
       },
       {
         "session": 4,
         "session_name": "Sunday Afternoon",
-        "beat": "SB3",
-        "river": "Small Blaar",
+        "beat": "EP3",
+        "river": "Elands Pad",
         "opponents": [
-          "Garrett"
+          "Dylan"
         ],
-        "opponent": "Garrett",
+        "opponent": "Dylan",
         "match_id": "S4_M3"
       }
     ],
-    "Garrett": [
+    "Malcolm": [
       {
-        "session": 3,
-        "session_name": "Sunday Morning",
+        "session": 1,
+        "session_name": "Saturday Morning",
         "beat": "SB2",
+        "river": "Small Blaar",
+        "opponents": [
+          "Garth"
+        ],
+        "opponent": "Garth",
+        "match_id": "S1_M4"
+      },
+      {
+        "session": 2,
+        "session_name": "Saturday Afternoon",
+        "beat": "SB3",
         "river": "Small Blaar",
         "opponents": [
           "Michelle"
         ],
         "opponent": "Michelle",
-        "match_id": "S3_M4"
+        "match_id": "S2_M5"
+      },
+      {
+        "session": 3,
+        "session_name": "Sunday Morning",
+        "beat": "EP2",
+        "river": "Elands Pad",
+        "opponents": [
+          "Garrett"
+        ],
+        "opponent": "Garrett",
+        "match_id": "S3_M5"
       },
       {
         "session": 4,
         "session_name": "Sunday Afternoon",
-        "beat": "SB3",
-        "river": "Small Blaar",
+        "beat": "EP1",
+        "river": "Elands Pad",
         "opponents": [
           "Ryan"
         ],
         "opponent": "Ryan",
-        "match_id": "S4_M3"
+        "match_id": "S4_M4"
       }
     ],
-    "Michelle": [
+    "Ryan": [
       {
         "session": 1,
         "session_name": "Saturday Morning",
@@ -6097,24 +5811,94 @@ export const INITIAL_STATE = {
       {
         "session": 3,
         "session_name": "Sunday Morning",
-        "beat": "SB2",
-        "river": "Small Blaar",
+        "beat": "EP3",
+        "river": "Elands Pad",
         "opponents": [
-          "Garrett"
+          "Dylan"
         ],
-        "opponent": "Garrett",
+        "opponent": "Dylan",
         "match_id": "S3_M4"
       },
       {
         "session": 4,
         "session_name": "Sunday Afternoon",
+        "beat": "EP1",
+        "river": "Elands Pad",
+        "opponents": [
+          "Malcolm"
+        ],
+        "opponent": "Malcolm",
+        "match_id": "S4_M4"
+      }
+    ],
+    "Garrett": [
+      {
+        "session": 3,
+        "session_name": "Sunday Morning",
+        "beat": "EP2",
+        "river": "Elands Pad",
+        "opponents": [
+          "Malcolm"
+        ],
+        "opponent": "Malcolm",
+        "match_id": "S3_M5"
+      },
+      {
+        "session": 4,
+        "session_name": "Sunday Afternoon",
+        "beat": "SB6",
+        "river": "Elands Pad",
+        "opponents": [
+          "Michelle"
+        ],
+        "opponent": "Michelle",
+        "match_id": "S4_M5"
+      }
+    ],
+    "Michelle": [
+      {
+        "session": 1,
+        "session_name": "Saturday Morning",
         "beat": "SB1",
         "river": "Small Blaar",
         "opponents": [
-          "Dylan"
+          "Dale"
         ],
-        "opponent": "Dylan",
-        "match_id": "S4_M4"
+        "opponent": "Dale",
+        "match_id": "S1_M3"
+      },
+      {
+        "session": 2,
+        "session_name": "Saturday Afternoon",
+        "beat": "SB3",
+        "river": "Small Blaar",
+        "opponents": [
+          "Malcolm"
+        ],
+        "opponent": "Malcolm",
+        "match_id": "S2_M5"
+      },
+      {
+        "session": 3,
+        "session_name": "Sunday Morning",
+        "beat": "EP1",
+        "river": "Elands Pad",
+        "opponents": [
+          "Ian"
+        ],
+        "opponent": "Ian",
+        "match_id": "S3_M3"
+      },
+      {
+        "session": 4,
+        "session_name": "Sunday Afternoon",
+        "beat": "SB6",
+        "river": "Elands Pad",
+        "opponents": [
+          "Garrett"
+        ],
+        "opponent": "Garrett",
+        "match_id": "S4_M5"
       }
     ]
   }

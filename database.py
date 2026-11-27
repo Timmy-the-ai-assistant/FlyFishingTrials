@@ -1,4 +1,4 @@
-APP_VERSION = "v2.6.0"
+APP_VERSION = "v2.6.1"
 """
 Fly Fishing Trials Database & Verification Engine
 =================================================

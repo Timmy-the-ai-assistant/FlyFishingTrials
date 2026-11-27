@@ -1,4 +1,4 @@
-const APP_VERSION = "v2.6.0";
+const APP_VERSION = "v2.6.1";
 /**
  * WP Fly Fishing Trials - Cloudflare Edge Worker
  * Full Edge-native API engine with zero cold starts and instant response times.
@@ -165,7 +165,7 @@ const DEFAULT_CPS_BEATS = [
   { id: "SB1", code: "SB1", name: "SB1", river: "Small Blaar", enabled: true, sat_available: true, sat_sessions: 2, sun_available: true, sun_sessions: 2, usage_mode: "double", travel_time: 15, lower_pin: [-33.7150, 19.1740], mid_pin: [-33.7170, 19.1700], upper_pin: [-33.7190, 19.1655], meeting_point: "Picnic site pull-off", notes: "SB1: 2x sessions" },
   { id: "SB2", code: "SB2", name: "SB2", river: "Small Blaar", enabled: true, sat_available: true, sat_sessions: 2, sun_available: true, sun_sessions: 2, usage_mode: "double", travel_time: 15, lower_pin: [-33.7190, 19.1655], mid_pin: [-33.7212, 19.1590], upper_pin: [-33.7235, 19.1530], meeting_point: "Picnic site parking", notes: "SB2: 2x sessions" },
   { id: "SB3", code: "SB3", name: "SB3", river: "Small Blaar", enabled: true, sat_available: true, sat_sessions: 2, sun_available: true, sun_sessions: 2, usage_mode: "double", travel_time: 15, lower_pin: [-33.7235, 19.1530], mid_pin: [-33.7258, 19.1470], upper_pin: [-33.7272, 19.1415], meeting_point: "N1 emergency telephone layby 3", notes: "SB3: 2x sessions" },
-  { id: "SB4", code: "SB4", name: "SB4", river: "Small Blaar", enabled: true, sat_available: true, sat_sessions: 1, sun_available: true, sun_sessions: 1, usage_mode: "single", travel_time: 15, lower_pin: [-33.7272, 19.1415], mid_pin: [-33.7285, 19.1370], upper_pin: [-33.7295, 19.1320], meeting_point: "Donkergat pull-off", notes: "SB4: 1x session" },
+  { id: "SB4", code: "SB4", name: "SB4", river: "Small Blaar", enabled: false, sat_available: true, sat_sessions: 1, sun_available: true, sun_sessions: 1, usage_mode: "single", travel_time: 15, lower_pin: [-33.7272, 19.1415], mid_pin: [-33.7285, 19.1370], upper_pin: [-33.7295, 19.1320], meeting_point: "Donkergat pull-off", notes: "SB4: 1x session" },
   { id: "SB(TRANSPORT)", code: "SB(TRANSPORT)", name: "SB(TRANSPORT)", river: "Small Blaar", enabled: true, sat_available: true, sat_sessions: 1, sun_available: true, sun_sessions: 1, usage_mode: "single", travel_time: 15, lower_pin: [-33.7085, 19.1895], mid_pin: [-33.7105, 19.1845], upper_pin: [-33.7125, 19.1800], meeting_point: "Transport bridge parking", notes: "Transport: 1x session" },
   { id: "SB5", code: "SB5", name: "SB5", river: "Small Blaar", enabled: false, sat_available: false, sat_sessions: 0, sun_available: false, sun_sessions: 0, usage_mode: "double", travel_time: 15, lower_pin: [-33.7295, 19.1320], mid_pin: [-33.7305, 19.1270], upper_pin: [-33.7319, 19.1141], meeting_point: "CPS Elandspad parking lot" },
   { id: "SB(HOTEL)", code: "SB(HOTEL)", name: "SB(HOTEL)", river: "Small Blaar", enabled: false, sat_available: false, sat_sessions: 0, sun_available: false, sun_sessions: 0, usage_mode: "single", travel_time: 15, lower_pin: [-33.7125, 19.1800], mid_pin: [-33.7138, 19.1770], upper_pin: [-33.7150, 19.1740], meeting_point: "Du Kloof Lodge guest parking" },
@@ -803,15 +803,15 @@ function buildTemplateDraw(sundayARiver = "Small Blaar") {
   if (sundayARiver === "Small Blaar") {
     s3_matches = [
       { id: "S3_M1", beat_code: "SB1", beat_id: "SB1", river: "Small Blaar", anglers: ["A1", "A2"], travel_time: 15, group: "A-Team River", match_desc: "A vs A" },
-      { id: "S3_M2", beat_code: "SB2", beat_id: "SB2", river: "Small Blaar", anglers: ["A3", "A4"], travel_time: 15, group: "A-Team River", match_desc: "A vs A" },
+      { id: "S3_M2", beat_code: "SB(TRANSPORT)", beat_id: "SB(TRANSPORT)", river: "Small Blaar", anglers: ["A3", "A4"], travel_time: 15, group: "A-Team River", match_desc: "A vs A" },
       { id: "S3_M3", beat_code: "EP1", beat_id: "EP1", river: "Elands Pad", anglers: ["B1", "B3"], travel_time: 15, group: "B-Team River", match_desc: "B vs B" },
       { id: "S3_M4", beat_code: "EP3", beat_id: "EP3", river: "Elands Pad", anglers: ["B2", "B4"], travel_time: 30, group: "B-Team River", match_desc: "B vs B" },
       { id: "S3_M5", beat_code: "EP2", beat_id: "EP2", river: "Elands Pad", anglers: ["B5", "B6_or_new"], travel_time: 30, group: "B-Team River", match_desc: "B vs B" }
     ];
 
     s4_matches = [
-      { id: "S4_M1", beat_code: "SB3", beat_id: "SB3", river: "Small Blaar", anglers: ["A1", "A3"], travel_time: 15, group: "A-Team River", match_desc: "A vs A" },
-      { id: "S4_M2", beat_code: "SB1", beat_id: "SB1", river: "Small Blaar", anglers: ["A2", "A4"], travel_time: 15, group: "A-Team River", match_desc: "A vs A" },
+      { id: "S4_M1", beat_code: "SB2", beat_id: "SB2", river: "Small Blaar", anglers: ["A1", "A3"], travel_time: 15, group: "A-Team River", match_desc: "A vs A" },
+      { id: "S4_M2", beat_code: "SB3", beat_id: "SB3", river: "Small Blaar", anglers: ["A2", "A4"], travel_time: 15, group: "A-Team River", match_desc: "A vs A" },
       { id: "S4_M3", beat_code: "EP3", beat_id: "EP3", river: "Elands Pad", anglers: ["B1", "B4"], travel_time: 30, group: "B-Team River", match_desc: "B vs B" },
       { id: "S4_M4", beat_code: "EP1", beat_id: "EP1", river: "Elands Pad", anglers: ["B2", "B5"], travel_time: 15, group: "B-Team River", match_desc: "B vs B" },
       { id: "S4_M5", beat_code: "SB6", beat_id: "SB6", river: "Elands Pad", anglers: ["B3", "B6_or_new"], travel_time: 15, group: "B-Team River", match_desc: "B vs B" }
@@ -822,7 +822,7 @@ function buildTemplateDraw(sundayARiver = "Small Blaar") {
       { id: "S3_M2", beat_code: "EP1", beat_id: "EP1", river: "Elands Pad", anglers: ["A3", "A4"], travel_time: 15, group: "A-Team River", match_desc: "A vs A" },
       { id: "S3_M3", beat_code: "SB1", beat_id: "SB1", river: "Small Blaar", anglers: ["B1", "B3"], travel_time: 15, group: "B-Team River", match_desc: "B vs B" },
       { id: "S3_M4", beat_code: "SB2", beat_id: "SB2", river: "Small Blaar", anglers: ["B2", "B4"], travel_time: 15, group: "B-Team River", match_desc: "B vs B" },
-      { id: "S3_M5", beat_code: "SB4", beat_id: "SB4", river: "Small Blaar", anglers: ["B5", "B6_or_new"], travel_time: 15, group: "B-Team River", match_desc: "B vs B" }
+      { id: "S3_M5", beat_code: "SB(TRANSPORT)", beat_id: "SB(TRANSPORT)", river: "Small Blaar", anglers: ["B5", "B6_or_new"], travel_time: 15, group: "B-Team River", match_desc: "B vs B" }
     ];
 
     s4_matches = [
@@ -830,7 +830,7 @@ function buildTemplateDraw(sundayARiver = "Small Blaar") {
       { id: "S4_M2", beat_code: "SB6", beat_id: "SB6", river: "Elands Pad", anglers: ["A2", "A4"], travel_time: 15, group: "A-Team River", match_desc: "A vs A" },
       { id: "S4_M3", beat_code: "SB3", beat_id: "SB3", river: "Small Blaar", anglers: ["B1", "B4"], travel_time: 15, group: "B-Team River", match_desc: "B vs B" },
       { id: "S4_M4", beat_code: "SB1", beat_id: "SB1", river: "Small Blaar", anglers: ["B2", "B5"], travel_time: 15, group: "B-Team River", match_desc: "B vs B" },
-      { id: "S4_M5", beat_code: "SB(TRANSPORT)", beat_id: "SB(TRANSPORT)", river: "Small Blaar", anglers: ["B3", "B6_or_new"], travel_time: 15, group: "B-Team River", match_desc: "B vs B" }
+      { id: "S4_M5", beat_code: "SB2", beat_id: "SB2", river: "Small Blaar", anglers: ["B3", "B6_or_new"], travel_time: 15, group: "B-Team River", match_desc: "B vs B" }
     ];
   }
 
@@ -921,15 +921,15 @@ function generateGroupTournamentSchedule(anglers, aTeamAnglers = [], availableBe
   if (sundayARiver === "Small Blaar") {
     s3_matches = [
       { id: "S3_M1", beat_code: "SB1", beat_id: "SB1", river: "Small Blaar", anglers: [A1, A2], travel_time: 15, group: "A-Team River", match_type: "NORMAL" },
-      { id: "S3_M2", beat_code: "SB2", beat_id: "SB2", river: "Small Blaar", anglers: [A3, A4], travel_time: 15, group: "A-Team River", match_type: "NORMAL" },
+      { id: "S3_M2", beat_code: "SB(TRANSPORT)", beat_id: "SB(TRANSPORT)", river: "Small Blaar", anglers: [A3, A4], travel_time: 15, group: "A-Team River", match_type: "NORMAL" },
       { id: "S3_M3", beat_code: "EP1", beat_id: "EP1", river: "Elands Pad", anglers: [sunB1, sunB3], travel_time: 15, group: "B-Team River", match_type: "NORMAL" },
       { id: "S3_M4", beat_code: "EP3", beat_id: "EP3", river: "Elands Pad", anglers: [sunB2, sunB4], travel_time: 30, group: "B-Team River", match_type: "NORMAL" },
       { id: "S3_M5", beat_code: "EP2", beat_id: "EP2", river: "Elands Pad", anglers: [sunB5, sunB6], travel_time: 30, group: "B-Team River", match_type: "NORMAL" }
     ];
 
     s4_matches = [
-      { id: "S4_M1", beat_code: "SB3", beat_id: "SB3", river: "Small Blaar", anglers: [A1, A3], travel_time: 15, group: "A-Team River", match_type: "NORMAL" },
-      { id: "S4_M2", beat_code: "SB1", beat_id: "SB1", river: "Small Blaar", anglers: [A2, A4], travel_time: 15, group: "A-Team River", match_type: "NORMAL" },
+      { id: "S4_M1", beat_code: "SB2", beat_id: "SB2", river: "Small Blaar", anglers: [A1, A3], travel_time: 15, group: "A-Team River", match_type: "NORMAL" },
+      { id: "S4_M2", beat_code: "SB3", beat_id: "SB3", river: "Small Blaar", anglers: [A2, A4], travel_time: 15, group: "A-Team River", match_type: "NORMAL" },
       { id: "S4_M3", beat_code: "EP3", beat_id: "EP3", river: "Elands Pad", anglers: [sunB1, sunB4], travel_time: 30, group: "B-Team River", match_type: "NORMAL" },
       { id: "S4_M4", beat_code: "EP1", beat_id: "EP1", river: "Elands Pad", anglers: [sunB2, sunB5], travel_time: 15, group: "B-Team River", match_type: "NORMAL" },
       { id: "S4_M5", beat_code: "SB6", beat_id: "SB6", river: "Elands Pad", anglers: [sunB3, sunB6], travel_time: 15, group: "B-Team River", match_type: "NORMAL" }
@@ -940,7 +940,7 @@ function generateGroupTournamentSchedule(anglers, aTeamAnglers = [], availableBe
       { id: "S3_M2", beat_code: "EP1", beat_id: "EP1", river: "Elands Pad", anglers: [A3, A4], travel_time: 15, group: "A-Team River", match_type: "NORMAL" },
       { id: "S3_M3", beat_code: "SB1", beat_id: "SB1", river: "Small Blaar", anglers: [sunB1, sunB3], travel_time: 15, group: "B-Team River", match_type: "NORMAL" },
       { id: "S3_M4", beat_code: "SB2", beat_id: "SB2", river: "Small Blaar", anglers: [sunB2, sunB4], travel_time: 15, group: "B-Team River", match_type: "NORMAL" },
-      { id: "S3_M5", beat_code: "SB4", beat_id: "SB4", river: "Small Blaar", anglers: [sunB5, sunB6], travel_time: 15, group: "B-Team River", match_type: "NORMAL" }
+      { id: "S3_M5", beat_code: "SB(TRANSPORT)", beat_id: "SB(TRANSPORT)", river: "Small Blaar", anglers: [sunB5, sunB6], travel_time: 15, group: "B-Team River", match_type: "NORMAL" }
     ];
 
     s4_matches = [
@@ -948,7 +948,7 @@ function generateGroupTournamentSchedule(anglers, aTeamAnglers = [], availableBe
       { id: "S4_M2", beat_code: "SB6", beat_id: "SB6", river: "Elands Pad", anglers: [A2, A4], travel_time: 15, group: "A-Team River", match_type: "NORMAL" },
       { id: "S4_M3", beat_code: "SB3", beat_id: "SB3", river: "Small Blaar", anglers: [sunB1, sunB4], travel_time: 15, group: "B-Team River", match_type: "NORMAL" },
       { id: "S4_M4", beat_code: "SB1", beat_id: "SB1", river: "Small Blaar", anglers: [sunB2, sunB5], travel_time: 15, group: "B-Team River", match_type: "NORMAL" },
-      { id: "S4_M5", beat_code: "SB(TRANSPORT)", beat_id: "SB(TRANSPORT)", river: "Small Blaar", anglers: [sunB3, sunB6], travel_time: 15, group: "B-Team River", match_type: "NORMAL" }
+      { id: "S4_M5", beat_code: "SB2", beat_id: "SB2", river: "Small Blaar", anglers: [sunB3, sunB6], travel_time: 15, group: "B-Team River", match_type: "NORMAL" }
     ];
   }
 
@@ -1085,7 +1085,7 @@ function generateEdgeSchedule(anglers, aTeamAnglers = [], availableBeats = [], a
           group2_sat: "2 A-Team + 4 B-Team on Small Blaar (SB1, SB2, SB3). Each A verses 2 B, remaining 2 B verse 2 unique B.",
           sunday_a_team: "All 4 A-Team anglers assigned to one river (2 matches against A-Team members).",
           sunday_b_team: "All B-Team anglers assigned to opposite river (fish 2 new competitors).",
-          beat_limits: "EP1: 2x, EP3: 2x, EP2: 1x, SB6: 1x, SB1: 2x, SB2: 2x, SB3: 2x, SB4: 1x, Transport: 1x"
+          beat_limits: "EP1: 2x, EP3: 2x, EP2: 1x, SB6: 1x, SB1: 2x, SB2: 2x, SB3: 2x, Transport: 1x (SB4 removed)"
         }
       }), {
         headers: { ...corsHeaders, 'Content-Type': 'application/json' }

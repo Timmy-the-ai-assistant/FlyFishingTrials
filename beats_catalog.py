@@ -67,7 +67,7 @@ CPS_BEATS_DATA: List[Dict[str, Any]] = [
         "code": "SB4",
         "name": "SB4",
         "river": "Small Blaar",
-        "enabled": True,
+        "enabled": False,
         "sat_available": True,
         "sat_sessions": 1,
         "sun_available": True,

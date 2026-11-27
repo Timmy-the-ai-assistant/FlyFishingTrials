@@ -1,4 +1,4 @@
-const APP_VERSION = "v2.6.0";
+const APP_VERSION = "v2.6.1";
 /**
  * Fly Fishing Trials - Real-Time Frontend Application
  * Handles live polling, dual-submission Google-form verification,
@@ -2535,7 +2535,8 @@ function renderTemplateDrawContent(template, sundayRiver) {
         <div style="background:rgba(255,255,255,0.03); padding:0.6rem; border-radius:6px; border-left:3px solid #8b5cf6;">
           <strong>⏱️ Active Beats &amp; Session Limits:</strong><br>
           &bull; <strong>Elands Beats:</strong> EP1 (2x), EP3 (2x), EP2 (1x), SB6 (1x)<br>
-          &bull; <strong>Small Blaar Beats:</strong> SB1 (2x), SB2 (2x), SB3 (2x), SB4 (1x), Transport (1x)
+          &bull; <strong>Small Blaar Beats:</strong> SB1 (2x), SB2 (2x), SB3 (2x), Transport (1x)<br>
+          <span style="color:#ef4444;">&bull; Note: SB4 has been removed from tournament beats</span>
         </div>
       </div>
 
