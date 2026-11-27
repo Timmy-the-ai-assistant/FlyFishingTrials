@@ -1,4 +1,4 @@
-const APP_VERSION = "v2.6.1";
+const APP_VERSION = "v2.6.2";
 /**
  * WP Fly Fishing Trials - Cloudflare Edge Worker
  * Full Edge-native API engine with zero cold starts and instant response times.

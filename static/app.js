@@ -1,4 +1,4 @@
-const APP_VERSION = "v2.6.1";
+const APP_VERSION = "v2.6.2";
 /**
  * Fly Fishing Trials - Real-Time Frontend Application
  * Handles live polling, dual-submission Google-form verification,
